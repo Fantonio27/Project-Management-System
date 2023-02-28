@@ -59,7 +59,7 @@ export default function Login(){
         if (Dataform.LRN == "" || Dataform.Password == ""){
             setnotif(()=> ({
                 Severity: "warning",
-                Text: "Please fill in all required fields.",
+                Text: "Please fill in all the required fields.",
                 Show: true
             }))
             
@@ -83,10 +83,10 @@ export default function Login(){
     const handlechange = (event) =>{
         const {name, value } =  event.target
 
-        setDataform((prev)=>({
+        setDataform((prev) => ({
             ...prev,
-            [name] : value
-        }))
+            [name]: value
+        }))   
     }
 
     const handleClickShowPassword = () => {
@@ -98,7 +98,7 @@ export default function Login(){
             <div className="Login--container">
                 <div className="Login--topbox"></div>
                 
-                <Zoom in={true} transitionDuration={5000} style={{timeout: 5000}}>
+                <Zoom in={true} timeout={1000}>
                     <form>
                         <div className="Login--box">
                             <img src="../logo.png" className="Login--logo"></img>
@@ -113,14 +113,16 @@ export default function Login(){
                                 }
                             </div>
                             
-                            <TextField  
+                            <TextField 
                                 name="LRN"
+                                type="number"
                                 label="Learning Reference No. (LRN)" 
                                 variant="outlined" 
                                 className="Login-input-text"
                                 sx={textbox}
                                 color="success"
                                 value={Dataform.LRN}
+                                pattern="[0-9]*"
                                 onChange={handlechange}
                             />
 
