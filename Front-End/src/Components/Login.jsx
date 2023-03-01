@@ -12,6 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Zoom from '@mui/material/Zoom';
+import "../css/Login.css"
 
 const Login_btn = {
     width: "137px",
@@ -95,15 +96,15 @@ export default function Login(){
 
     return(
         <div className="Login">
-            <div className="Login--container">
-                <div className="Login--topbox"></div>
+            <div className="Login-container">
+                <div className="Login-topbox"></div>
                 
                 <Zoom in={true} timeout={1000}>
                     <form>
-                        <div className="Login--box">
-                            <img src="../logo.png" className="Login--logo"></img>
+                        <div className="Login-box">
+                            <img src="../logo.png" className="Login-logo"></img>
 
-                            <div className="Login--notifbox" >
+                            <div className="Login-notifbox" >
                                 {notif.Show &&
                                     <Fade in={notif.Show}>
                                         <Alert onClose={()=>setnotif(e=> ({...e, Show: false}))} variant="outlined" sx={{backgroundColor:"white"}} severity={notif.Severity}>
