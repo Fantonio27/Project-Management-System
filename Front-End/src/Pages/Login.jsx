@@ -12,7 +12,9 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Zoom from '@mui/material/Zoom';
-import "../css/Login.css"
+import "../css/Login.css";
+import { Link } from 'react-router-dom';
+
 
 const Login_btn = {
     width: "137px",
@@ -28,77 +30,77 @@ const Login_btn = {
     borderRadius: "4px",
     textTransform: "none",
 
-    "&:hover":{
+    "&:hover": {
         backgroundColor: "#066506"
     }
 }
 
 const textbox = {
-    marginBottom:"20px",
+    marginBottom: "20px",
     fontFamily: "'Poppins', sans-serif",
-    
+
 }
 
-export default function Login(){
+export default function Login() {
 
     const [notif, setnotif] = useState({
         Severity: "",
-        Text:"",
-        Show: false 
+        Text: "",
+        Show: false
     })
 
-    const [Dataform,setDataform] = useState({
+    const [Dataform, setDataform] = useState({
         LRN: "",
-        Password:""
+        Password: ""
     })
 
     const [showPassword, setShowPassword] = React.useState(false);
 
-    const login = (event) =>{
+    const login = (event) => {
         event.preventDefault()
 
-        if (Dataform.LRN == "" || Dataform.Password == ""){
-            setnotif(()=> ({
+        if (Dataform.LRN == "" || Dataform.Password == "") {
+            setnotif(() => ({
                 Severity: "warning",
                 Text: "Please fill in all the required fields.",
                 Show: true
             }))
-            
-        }else if(Dataform.LRN === "12345" && Dataform.Password === "Student12"){    
+
+        } else if (Dataform.LRN === "12345" && Dataform.Password === "Student12") {
             console.log("Login Success")
 
-        }else{
-            setnotif(()=> ({
+        } else {
+            setnotif(() => ({
                 Severity: "error",
                 Text: "Your LRN or password is incorrect.",
-                Show: true    
+                Show: true
             }))
 
-            setDataform((prev)=> ({
+            setDataform((prev) => ({
                 ...prev,
                 Password: ""
             }))
         }
     }
 
-    const handlechange = (event) =>{
-        const {name, value } =  event.target
+    const handlechange = (event) => {
+        const { name, value } = event.target
 
         setDataform((prev) => ({
             ...prev,
             [name]: value
-        }))   
+        }))
     }
 
     const handleClickShowPassword = () => {
         setShowPassword((show) => !show);
     }
 
-    return(
+    return (
         <div className="Login">
             <div className="Login-container">
                 <div className="Login-topbox"></div>
-                
+
                 <Zoom in={true} timeout={1000}>
                     <form>
                         <div className="Login-box">
@@ -107,18 +109,18 @@ export default function Login(){
                             <div className="Login-notifbox" >
                                 {notif.Show &&
                                     <Fade in={notif.Show}>
-                                        <Alert onClose={()=>setnotif(e=> ({...e, Show: false}))} variant="outlined" sx={{backgroundColor:"white"}} severity={notif.Severity}>
+                                        <Alert onClose={() => setnotif(e => ({ ...e, Show: false }))} variant="outlined" sx={{ backgroundColor: "white" }} severity={notif.Severity}>
                                             {notif.Text}
                                         </Alert>
-                                    </Fade>    
+                                    </Fade>
                                 }
                             </div>
-                            
-                            <TextField 
+
+                            <TextField
                                 name="LRN"
                                 type="number"
-                                label="Learning Reference No. (LRN)" 
-                                variant="outlined" 
+                                label="Learning Reference No. (LRN)"
+                                variant="outlined"
                                 className="Login-input-text"
                                 sx={textbox}
                                 color="success"
@@ -148,10 +150,10 @@ export default function Login(){
                                     onChange={handlechange}
                                 />
                             </FormControl>
-                                
-                            <p>No account? <a href="/">Sign in</a></p>
-                                
-                            <Button variant="contained" sx={Login_btn} onClick={login}>Login</Button>       
+
+                            <p>No account?<Link to="/Dashboard" state={{ Text: "Hello" }}> Sign in</Link></p>
+
+                            <Button variant="contained" sx={Login_btn} onClick={login}>Login</Button>
                         </div>
                     </form>
                 </Zoom>
@@ -161,7 +163,7 @@ export default function Login(){
 }
 
 
-//<button className="Login-btn" onClick={login}>Login</button> 
+//<button className="Login-btn" onClick={login}>Login</button>
 //<input type="text" className="Login-input-text"/>
 //<label>Learning Reference No. (LRN)</label>
 //   <label>Password</label>

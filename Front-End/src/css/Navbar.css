@@ -1,0 +1,36 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.Navbar{
+    background-color: white;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0px 10px 30px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.Navbar-title{
+    font-size: 30px;
+    font-family: 'Quicksand', sans-serif;
+    color: black;
+}
+.Navbar div{
+    display: flex;
+    align-items: center;
+}
+
+.Navbar-usertab {
+    border-left: 1px solid #e9ecef;
+    padding: 0px 30px 0px 20px ;
+}
+
+.Navbar-usertab p{
+    font-family: 'Karla', sans-serif;
+    font-weight: 600;
+    color: #343a40;
+    font-size: 18px;
+    letter-spacing: 1px;
+}

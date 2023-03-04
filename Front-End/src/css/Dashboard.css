@@ -1,0 +1,42 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.Main-container {
+    border-top: 7px solid #004000;
+    color: #004000;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px 20px;
+    border-radius: 7px;
+}
+
+.Main-Likeicon {
+    color: #008000;
+    margin-right: 20px;
+}
+
+.Main-Text {
+    font-size: 18px;
+}
+
+.Dashboard {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.Dashboard-Container {
+    display: flex;
+    height: inherit;
+}
+
+.Dashboard-Box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px 50px 20px;
+    width: 100%;
+    background-color: #fdfffc;
+}
