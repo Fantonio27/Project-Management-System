@@ -3,24 +3,6 @@
     padding: 0px;
 }
 
-.Main-container {
-    border-top: 7px solid #004000;
-    color: #004000;
-    display: flex;
-    align-items: center;
-    padding: 15px 20px 20px;
-    border-radius: 7px;
-}
-
-.Main-Likeicon {
-    color: #008000;
-    margin-right: 20px;
-}
-
-.Main-Text {
-    font-size: 18px;
-}
-
 .Dashboard {
     display: flex;
     flex-direction: column;
@@ -39,4 +21,13 @@
     padding: 50px 50px 20px;
     width: 100%;
     background-color: #fdfffc;
+}
+
+.Footer{
+    width: 100%;
+    border: 0px;
+    border-top: 5px solid #2d6a4f;
+    padding: 10px 0px;
+    font-family: 'Karla', sans-serif;
+    color: #212529;
 }

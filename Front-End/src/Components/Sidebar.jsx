@@ -1,10 +1,8 @@
 import "../css/Sidebar.css"
 import { ListItemIcon } from "@mui/material";
 import DashboardIcon from '@mui/icons-material/DashboardRounded';
-import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import LibraryBooksRoundedIcon from '@mui/icons-material/LibraryBooksRounded';
 import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
-import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
 import HelpCenterRoundedIcon from '@mui/icons-material/HelpCenterRounded';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -22,11 +20,9 @@ export default function Sidebar(props) {
 
     const icon = [
         <DashboardIcon sx={{ fontSize: 28 }} />,
-        // <PersonRoundedIcon sx={{ fontSize: 28 }} />,
         <LibraryBooksRoundedIcon sx={{ fontSize: 28 }} />,
         <DescriptionRoundedIcon sx={{ fontSize: 28 }} />,
         <HelpCenterRoundedIcon sx={{ fontSize: 28 }} />,
-        // <ExitToAppRoundedIcon sx={{ fontSize: 28 }}/>
     ]
 
     return (
@@ -41,6 +37,7 @@ export default function Sidebar(props) {
                                 borderRadius: Active? "20px 0px 0px 20px / 20px 0px 20px 20px" : "10px",
                                 padding: '10px 5px',
                                 marginRight: Active? "0px" : "15px",
+                                transition: "0.2s",
                                 "&:hover":{
                                     backgroundColor: Active? "#fdfffc" : "rgb(44, 110, 73)"
                                 }

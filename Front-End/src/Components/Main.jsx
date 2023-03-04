@@ -1,17 +1,18 @@
-import "../css/Dashboard.css"
+import "../css/Main.css"
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import Image from "../assets/Images/undraw_happy_announcement_re_tsm0 (1).svg"
 
-export default function Main(){
-    return(
+export default function Main() {
+    return (
         <div className="Main">
+            <h1>Dashboard</h1>
             <div className="Main-container">
-                <ThumbUpIcon 
-                    sx={{ width: "75px" , height: "75px"}}
-                    className="Main-Likeicon"/>
-                <div>
-                    <h1>Signed In!</h1>
+                <img src={Image} className="Main-Image"></img>
+                <div className="Main-Box">
+                    <h2>Signed In!</h2>
                     <p className="Main-Text">Students, welcome to the Caloocan High School Examination Website!</p>
                 </div>
+
             </div>
         </div>
     )

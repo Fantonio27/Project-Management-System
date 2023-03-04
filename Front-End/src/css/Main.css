@@ -1,0 +1,50 @@
+.Main-container {
+    color: #003857;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 25px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+    width: 280px;
+    justify-content: center;
+    font-family: 'Quicksand', sans-serif;
+    background-color: #0076b62b;
+    border: 1px solid #e9ecef;
+}
+
+.Main-Likeicon {
+    color: #008000;
+    margin-right: 20px;
+}
+
+.Main-Text {
+    font-size: 18px;
+}
+
+.Main h1 {
+    font-family: 'Poppins', sans-serif;
+    color: #2d6a4f;
+    margin-bottom: 20px;
+    width: 100%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.Main-Image {
+    width: 200px;
+    margin-bottom: 35px;
+}
+
+.Main-Box h2{
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.Main-Box p{
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    letter-spacing: 1px;
+
+}

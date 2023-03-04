@@ -1,6 +1,5 @@
 import { Link, Routes, useLocation } from "react-router-dom"
 import "../css/Dashboard.css"
-import MainLayout from "../Components/MainLayout"
 import Main from "../Components/Main"
 import Profile from '../Components/User_Profile'
 import Sidebar from "../Components/Sidebar"
