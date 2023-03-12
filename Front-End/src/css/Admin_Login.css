@@ -1,0 +1,63 @@
+.A_login {
+    background-color: #388e3c22;
+}
+
+.A_login_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.A_login_form {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
+    width: 17%;
+    padding: 50px;
+    font-family: 'Lato', sans-serif;
+    transition: 0.5s;
+}
+
+.A_login_username,
+.A_login_password {
+    padding: 15px 0px;
+    text-indent: 10px;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #212529;
+    letter-spacing: 1px;
+}
+
+.A_login_username,
+.A_login_password {
+    width: 100%;
+    border-radius: 5px;
+    border: 1.5px solid #dee2e6;
+    transition: 0.5s;
+    margin: 7px 0px;
+}
+
+.A_login_username:focus,
+.A_login_password:focus {
+    outline: none;
+    border: 1.5px solid #adb5bd;
+}
+
+.A_login_h1 {
+    color: #212529;
+    font-size: 28px;
+    margin: 10px 0px 20px;
+}
+
+.notif {
+    width: 100%;
+    display: flex;
+    margin-bottom: 5px;
+}

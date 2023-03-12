@@ -1,0 +1,43 @@
+.ErrorPage{
+    display: flex;
+    flex-direction: column;
+    background-color: #a3cef117;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    color: #343a40;
+}
+
+.Error_Image{
+    width: 30%;
+}
+
+.ErrorPage h1{
+    font-family: 'Poppins', sans-serif;
+}
+
+.ErrorPage p{
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    color: #6c757d;
+}
+
+.ErrorPage button{
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    margin-top: 30px;
+    width: 200px;
+    padding: 12px 0px;
+    border-radius: 20px;
+    border: 0px;
+    cursor: pointer;
+    border: 0px;
+    background-color: #388e3cda;
+    color: white;
+    letter-spacing: 1px;
+    transition: 0.5s;
+}
+
+.ErrorPage button:hover{
+    background-color: #388e3c;
+}

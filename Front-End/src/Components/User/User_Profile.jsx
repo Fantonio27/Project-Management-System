@@ -1,4 +1,4 @@
-import "../css/User_Profile.css"
+import "../../css/User_Profile.css"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Divider } from "@mui/material";
 

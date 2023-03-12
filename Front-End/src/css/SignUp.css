@@ -1,0 +1,89 @@
+.Sign_Up_box {
+    width: 450px;
+    padding: 60px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.Sign_Up_form,
+.Sign_Up_div {
+    display: flex;
+    flex-direction: column;
+}
+
+.Sign_logo {
+    object-fit: contain;
+    object-position: center;
+    width: 80px;
+}
+
+.Sign_h1 {
+    font-family: 'Quicksand', sans-serif;
+    color: #008000;
+}
+
+.Sign_p {
+    margin: 8px 0px 25px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #343a40;
+}
+
+.Sign_Up_div {
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.Sign_Up_div div {
+    width: 100%;
+}
+
+.Sign_label {
+    display: block;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    margin-left: 2px;
+    letter-spacing: 0.5px;
+}
+
+.Sign_text_box {
+    padding: 11px 0px;
+    text-indent: 10px;
+    margin: 10px 0px 3px;
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+    transition: 0.5s;
+    width: 100%;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.Sign_text_box:focus {
+    outline: none;
+    box-shadow: rgba(56, 142, 60, 0.702) 0px 0px 0px 2px;
+}
+
+.Sign_text_box:hover {
+    border: 1px solid rgb(56, 142, 60, 0.7);
+}
+
+.Sign_p1 {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+
+.dvd1 {
+    background-color: red;
+    padding: 0px;
+}
+
+.Sign_p1 a {
+    color: #008000;
+    font-weight: 600;
+}

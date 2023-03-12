@@ -3,6 +3,8 @@
     padding: 0px;
 }
 
+/* Student Dashboard */
+
 .Dashboard {
     display: flex;
     flex-direction: column;

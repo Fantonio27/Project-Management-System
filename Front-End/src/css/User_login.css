@@ -1,0 +1,63 @@
+.Login_logo{
+    object-fit: contain;
+    width: 130px;
+    height: 130px;
+    margin-bottom: 15px;
+}
+
+.Login_box{
+    width: 330px;
+    background-color: rgb(255, 255, 255,0.95);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 89px 42px 78px;
+    font-family: 'Lexend', sans-serif;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.Login_input_text{
+    width: 100%;
+    text-indent: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: 1px solid #00800080;
+}
+
+.Login_box a{
+    color: #008000;
+    font-weight: 600;
+}
+
+.Login_notifbox{
+    width: 100%;
+    transition: 0.3s;
+    overflow: hidden;
+}
+
+.Login_box_p{
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #212529;
+    margin-top: 10px;
+    font-weight: 400;
+}
+
+.Login_box_h1{
+    font-family: 'Quicksand', sans-serif;
+    color: #343a40;
+    font-size: 30px;
+}
+
+.label_sm{
+    color:rgb(255, 0, 0);
+    margin: 0px 5px 5px;
+    align-self: flex-start;
+    transition: 0.3s;
+    overflow: hidden;
+    font-size: 12px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 800;
+}

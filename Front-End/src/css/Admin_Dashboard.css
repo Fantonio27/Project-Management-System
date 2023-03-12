@@ -1,0 +1,22 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.AdminDashboard {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.AdminDashboard_Main {
+    width: 100%;
+    background-color: white;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px 50px 20px;
+    width: 100%;
+    background-color: #fdfffc;
+}

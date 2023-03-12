@@ -1,6 +1,5 @@
-import "../css/Main.css"
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import Image from "../assets/Images/undraw_happy_announcement_re_tsm0 (1).svg"
+import "../../css/Main.css"
+import Image from "../../assets/Images/undraw_happy_announcement_re_tsm0 (1).svg"
 
 export default function Main() {
     return (
