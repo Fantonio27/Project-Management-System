@@ -13,6 +13,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Link, useNavigate } from "react-router-dom";
 import Modal from '@mui/material/Modal';
 import { Box } from "@mui/system";
+import Logo from '../../assets/Images/logo.png'
 
 const Avatar_design = {
     backgroundColor: "#388E3C",
@@ -55,7 +56,8 @@ export default function Navbar(props) {
                 <IconButton sx={Menu_sx} onClick={props.MenuClick}>
                     <MenuIcon />
                 </IconButton>
-                <h1 className="Navbar-title">LOGO</h1>
+                {/* <h1 className="Navbar-title">Logo</h1> */}
+                <img src={Logo} className="Navbar-logo"/>
             </div>
             <div className="Navbar-usertab">
                 <Button sx={{ padding: '2px' }} onClick={handleClick}>

@@ -3,7 +3,7 @@ import Sidebar from "../Components/User/Sidebar"
 import Navbar from "../Components/User/Navbar"
 import Footer from "../Components/Footer"
 import { useState } from "react";
-import {Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 export default function Dashboard(props) {
 

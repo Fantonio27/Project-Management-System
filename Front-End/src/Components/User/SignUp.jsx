@@ -41,6 +41,9 @@ const eye_sx = {
 export default function Login() {
 
     const navigate = useNavigate();
+
+    const repeat = "1234567"
+
     const [notif, setnotif] = useState({
         FirstName: false,
         LastName: false,
@@ -61,6 +64,11 @@ export default function Login() {
         Checked: false
     })
 
+    const [valtext, setvaltext] = useState({
+        Confirmtxt: false,
+        LRNtxt: false,
+    })
+
     const [showPassword, setShowPassword] = useState(false);
     const [showCPassword, setShowCPassword] = useState(false);
 
@@ -77,12 +85,25 @@ export default function Login() {
                 Email: Email == "" ? true : false,
                 Password: Password == "" ? true : false,
                 Confirm: Confirm == "" ? true : false,
-                Checked: Checked ? true : false
+                Checked: Checked ? false : true
             }))
-            console.log("No")
-        } else {
-            navigate("/Dashboard");
+        }
+        // }else if (){
 
+        // }
+        else if (Password !== Confirm) {
+            setvaltext((prev) => ({
+                ...prev,
+                Confirmtxt: true
+            }))
+
+            setnotif((prev) => ({
+                ...prev,
+                Confirm: Password !== Confirm ? true : false
+            }))
+        }
+        else {
+            navigate("/Dashboard");
         }
     }
 
@@ -90,7 +111,6 @@ export default function Login() {
         const { name, value, checked } = event.target
         const number = /^[0-9\b]+$/;
         const letter = /^[a-z\b]+$/;
-
 
         if ((name == "FirstName" || name == "LastName")) {
             if (value === "" || letter.test(value)) {
@@ -110,16 +130,25 @@ export default function Login() {
             }));
         }
 
+        // if (!checked){
+        //     setnotif((prev) => ({
+        //         ...prev,
+        //         [name]: false
+        //     }));
+
+        // }
         if (value != "") {
             setnotif((prev) => ({
                 ...prev,
                 [name]: false
             }));
-        } else {
+        }
+        else {
             setnotif((prev) => ({
                 ...prev,
                 [name]: true
             }));
+
         }
     }
 
@@ -220,6 +249,7 @@ export default function Login() {
                             name="Email"
                             value={Dataform.Email}
                             onChange={handlechange}
+                            maxLength={62}
                         />
                         <p
                             className="label_sm"
@@ -258,6 +288,7 @@ export default function Login() {
                                     Please fill in this required field.
                                 </p>
                             </div>
+
                             <div style={{ position: "relative" }}>
                                 <label className="Sign_label">Confirm Password</label>
                                 <input
@@ -282,7 +313,7 @@ export default function Login() {
                                         opacity: notif.Confirm ? "1" : "0"
                                     }}
                                 >
-                                    Please fill in this required field.
+                                    {valtext.Confirmtxt ? "Password did not match" : "Please fill in this required field."}
                                 </p>
                             </div>
                         </div>
@@ -296,6 +327,14 @@ export default function Login() {
                             />
                             <label className="Sign_label" style={{ margin: "0px" }}>I agree with the User Agreement and Privacy Policy.</label>
                         </div>
+                        <p
+                            className="label_sm"
+                            style={{
+                                opacity: notif.Checked ? "1" : "0"
+                            }}
+                        >
+                            Please fill in this required field.
+                        </p>
 
                         <Button sx={SignUp_btn} className="Sign_btn" onClick={SignUp_validation}>Sign Up</Button>
                         <p className="Sign_p1">Already have an Account?<Link to="/" style={{ textDecoration: "none" }}> Log In</Link></p>

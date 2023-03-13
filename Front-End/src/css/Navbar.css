@@ -12,11 +12,11 @@
     border-bottom: 1px solid #e9ecef;
 }
 
-.Navbar-title{
-    font-size: 30px;
-    font-family: 'Quicksand', sans-serif;
-    color: #212529;
+.Navbar-logo{
+    object-fit: contain;
+    width: 50px;
 }
+
 .Navbar div{
     display: flex;
     align-items: center;
