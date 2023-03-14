@@ -56,26 +56,40 @@ export default function Login(props) {
 
     const [showPassword, setShowPassword] = useState(false);
 
+    const [valtext, setvaltext] = useState({
+        LRN: false,
+        Password: false
+    })
+
     const login_validation = (event) => {
         event.preventDefault()
 
-        if (Dataform.LRN == "" || Dataform.Password == "") {
+        const {LRN, Password} = Dataform
+
+        if (LRN == "" || Password == "") {
             setnotif(() => ({
                 Show: false,
                 LRN: Dataform.LRN == "" ? true : false,
                 Password: Dataform.Password == "" ? true : false
-
+            }))
+        } else if (LRN.length !== 12 || Password.length < 8) {
+            setvaltext(()=>({
+                LRN: LRN.length !== 12? true : false,
+                Password: Password.length < 8? true : false
             }))
 
-        } else if (Dataform.LRN === "12345" && Dataform.Password === "Student12") {
-            navigate("/Dashboard");
+            setnotif(() => ({
+                LRN: LRN.length !== 12? true : false,
+                Password: Password.length < 8? true : false
+            }))
 
+        } else if (LRN === "12345" && Password === "Student12") {
+            navigate("/Dashboard");
         } else {
             setnotif(() => ({
                 Show: true,
                 LRN: false,
                 Password: false
-
             }))
 
             setDataform((prev) => ({
@@ -161,13 +175,12 @@ export default function Login(props) {
                         value={Dataform.LRN}
                         pattern="[0-9]*"
                         onChange={handlechange}
-                        maxLength={12}
                     />
                     <p className="label_sm" style={{
                         paddingBottom: notif.LRN ? "2px" : "0px",
                         height: notif.LRN ? "12px" : "0px"
                     }}>
-                        Please fill in this required fields.
+                        {valtext.LRN? "Must be exact 12 numbers" :"Please fill in this required fields."}
                     </p>
                     <FormControl className="Login_input_text" sx={textbox} variant="outlined" >
                         <InputLabel color="success" >Password</InputLabel>
@@ -195,7 +208,7 @@ export default function Login(props) {
                         paddingBottom: notif.Password ? "2px" : "0px",
                         height: notif.Password ? "12px" : "0px"
                     }}>
-                        Please fill in this required fields.
+                        {valtext.Password? "Must be atleast 8 characters":"Please fill in this required fields."}
                     </p>
                     <Button variant="contained" sx={Login_btn} onClick={login_validation}>Login</Button>
                     <p className='Login_box_p'>Dont have an account?<Link to="/Sign_Up" style={{ textDecoration: "none" }}> Sign up</Link></p>

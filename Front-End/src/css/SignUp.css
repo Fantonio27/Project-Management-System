@@ -34,7 +34,7 @@
 .Sign_Up_div {
     flex-direction: row;
     gap: 20px;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .Sign_Up_div div {

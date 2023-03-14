@@ -9,39 +9,50 @@ import { useState } from "react";
 export default function Course_Directory() {
     const Array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 
-    const [department, setdepartment] = useState({
-        course: ""
+    const [Dataform, setDataform] = useState({
+        Department: "",
+        Search:"",
     })
 
-    const handlechange = (event) => {
-        const {value} = event.target
+    const handleChange = (event) => {
+        const {value, name} = event.target
 
-        setdepartment(prev=> value)
-    }
+        setDataform((prev)=>({
+            ...prev,
+            [name]: value
+        }))
+    };
 
     const checkbox_sx = {
-        height : "30px",
+        height: "30px",
     }
-    
+
     return (
         <div className="Course_Directory">
             <div className="Course_titlebar">
                 <h1 className="Course_title">Course Directory</h1>
                 <div>
-                    <input type="text" className="Course_input" placeholder="Search"></input>
+                    <input 
+                        type="text"
+                        className="Course_input" 
+                        placeholder="Search"
+                        name="Search"
+                        value={Dataform.Search}
+                        onChange={handleChange}></input>
 
                     <Select
-                        value={department.course}
-                        onChange={handlechange}
+                        value={Dataform.Department}
+                        onChange={handleChange}
                         displayEmpty
                         sx={checkbox_sx}
+                        name="Department"
                     >
                         <MenuItem value="">
                             <em>All</em>
                         </MenuItem>
-                        <MenuItem>Dep1</MenuItem>
-                        <MenuItem>Dep2</MenuItem>
-                        <MenuItem>Dep3</MenuItem>
+                        <MenuItem value="Dep1">Dep1</MenuItem>
+                        <MenuItem value="Dep2">Dep2</MenuItem>
+                        <MenuItem value="Dep3">Dep3</MenuItem>
                     </Select>
                 </div>
             </div>

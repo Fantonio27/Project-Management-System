@@ -42,8 +42,6 @@ export default function Login() {
 
     const navigate = useNavigate();
 
-    const repeat = "1234567"
-
     const [notif, setnotif] = useState({
         FirstName: false,
         LastName: false,
@@ -66,7 +64,11 @@ export default function Login() {
 
     const [valtext, setvaltext] = useState({
         Confirmtxt: false,
-        LRNtxt: false,
+        LRNtxt: {
+            text: "1",
+        },
+        passchar: false,
+        Emailtxt:false
     })
 
     const [showPassword, setShowPassword] = useState(false);
@@ -74,7 +76,9 @@ export default function Login() {
 
     const SignUp_validation = (event) => {
         event.preventDefault()
-
+        const repeat = Dataform.LRN === "123456789012"? true : false;
+        const email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        
         const { FirstName, LastName, LRN, Email, Password, Confirm, Checked } = Dataform
 
         if (FirstName == "" || LastName == "" || LRN == "" || Email == "" || Password == "" || Confirm == "" || Checked == false) {
@@ -87,11 +91,52 @@ export default function Login() {
                 Confirm: Confirm == "" ? true : false,
                 Checked: Checked ? false : true
             }))
-        }
-        // }else if (){
 
-        // }
-        else if (Password !== Confirm) {
+            setvaltext((prev) => ({
+                ...prev,
+                LRNtxt: {
+                    text: "Please fill in this required field."
+                }
+            }))
+        }else if (LRN.length < 12 || Password.length < 8) {
+            setvaltext(() => ({
+                LRNtxt: {
+                    // show: LRN.length < 12 ? true : false,
+                    text: "Must be exact 12 numbers"
+                },
+                passchar: Password.length < 8 ? true : false,
+                Confirmtxt: false
+            }))
+
+            setnotif((prev) => ({
+                ...prev,
+                LRN: LRN.length < 12 ? true : false,
+                Password: Password.length < 8 ? true : false
+            }))
+        }else if (repeat){
+            setvaltext((prev) => ({
+                ...prev,
+                LRNtxt: {
+                    text: "LRN already exists"
+                },
+            }))
+
+            setnotif((prev) => ({
+                ...prev,
+                LRN: true
+            }))
+
+        }else if(!email.test(Email)){
+            setvaltext((prev) => ({
+                ...prev,
+                Emailtxt: true
+            }))
+
+            setnotif((prev) => ({
+                ...prev,
+                Email: true
+            }))
+        }else if (Password !== Confirm || Confirm !== Password) {
             setvaltext((prev) => ({
                 ...prev,
                 Confirmtxt: true
@@ -101,8 +146,7 @@ export default function Login() {
                 ...prev,
                 Confirm: Password !== Confirm ? true : false
             }))
-        }
-        else {
+        }else {
             navigate("/Dashboard");
         }
     }
@@ -130,13 +174,6 @@ export default function Login() {
             }));
         }
 
-        // if (!checked){
-        //     setnotif((prev) => ({
-        //         ...prev,
-        //         [name]: false
-        //     }));
-
-        // }
         if (value != "") {
             setnotif((prev) => ({
                 ...prev,
@@ -234,7 +271,7 @@ export default function Login() {
                                 opacity: notif.LRN ? "1" : "0"
                             }}
                         >
-                            Please fill in this required field.
+                            {valtext.LRNtxt.text}
                         </p>
 
                         <label className="Sign_label">Email</label>
@@ -257,7 +294,7 @@ export default function Login() {
                                 opacity: notif.Email ? "1" : "0"
                             }}
                         >
-                            Please fill in this required field.
+                            {valtext.Emailtxt? "Invalid Email Address" : "Please fill in this required field."}
                         </p>
 
                         <div className="Sign_Up_div">
@@ -285,7 +322,7 @@ export default function Login() {
                                         opacity: notif.Password ? "1" : "0"
                                     }}
                                 >
-                                    Please fill in this required field.
+                                    {valtext.passchar ? "Must be at least 8 characters" : "Please fill in this required field."}
                                 </p>
                             </div>
 
@@ -325,16 +362,19 @@ export default function Login() {
                                 onClick={handlechange}
                                 checked={Dataform.Checked}
                             />
-                            <label className="Sign_label" style={{ margin: "0px" }}>I agree with the User Agreement and Privacy Policy.</label>
+                            <div>
+                                <label className="Sign_label" style={{ margin: "0px" }}>I agree with the User Agreement and Privacy Policy.</label>
+                                <p
+                                    className="label_sm"
+                                    style={{
+                                        opacity: notif.Checked ? "1" : "0",
+                                        margin: "5px 0px"
+                                    }}
+                                >
+                                    Please fill in this required field.
+                                </p>
+                            </div>
                         </div>
-                        <p
-                            className="label_sm"
-                            style={{
-                                opacity: notif.Checked ? "1" : "0"
-                            }}
-                        >
-                            Please fill in this required field.
-                        </p>
 
                         <Button sx={SignUp_btn} className="Sign_btn" onClick={SignUp_validation}>Sign Up</Button>
                         <p className="Sign_p1">Already have an Account?<Link to="/" style={{ textDecoration: "none" }}> Log In</Link></p>
