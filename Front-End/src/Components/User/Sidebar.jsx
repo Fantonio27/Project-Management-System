@@ -17,7 +17,7 @@ export default function Sidebar(props) {
 
     const Category = ["Dashboard", "Courses", "Examination", "Help"]
 
-    const link = ["", "Course", "Examination", "Help"]
+    const link = ["", "Course_Diretory", "Examination", "Help"]
 
     const [component, setcomponent] = useState(0)
 
@@ -33,13 +33,12 @@ export default function Sidebar(props) {
             <List className="Sidebar-Listitem">
                 {Category.map((text, index) => (
                     Active = component === index,
-                    
-                    <div key={index}>
+                    <div key={index} className="List">
                         <Link to={link[index]} style={{textDecoration: "none", color: "inherit"}}>
-                            <ListItem sx={{ paddingRight: '0px', }}>
+                            <ListItem sx={{ paddingRight: '0px'}}>
                                 <ListItemButton onClick={() => setcomponent(index)}
                                     sx={{
-                                        backgroundColor: Active ? '#fdfffc' : '#388E3C',
+                                        backgroundColor: Active ? '#fdfffc' : '#52b78803',
                                         borderRadius: Active ? "20px 0px 0px 20px / 20px 0px 20px 20px" : "10px",
                                         padding: '10px 5px',
                                         marginRight: Active ? "0px" : "15px",

@@ -83,7 +83,7 @@ export default function Login(props) {
                 Password: Password.length < 8? true : false
             }))
 
-        } else if (LRN === "12345" && Password === "Student12") {
+        } else if (LRN === "123456789012" && Password === "Student12") {
             navigate("/Dashboard");
         } else {
             setnotif(() => ({
