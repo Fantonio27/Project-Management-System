@@ -26,13 +26,14 @@ export default function Course_Directory() {
 
     const checkbox_sx = {
         height: "30px",
+        zIndex: -1
     }
 
     const course = {
         id: 1,
         name: "Information_Technology"
     }
-
+    let n
     return (
         <div className="Course_Directory">
             <div className="Course_titlebar">
@@ -45,7 +46,6 @@ export default function Course_Directory() {
                         name="Search"
                         value={Dataform.Search}
                         onChange={handleChange}></input>
-
                     <Select
                         value={Dataform.Department}
                         onChange={handleChange}
@@ -75,7 +75,7 @@ export default function Course_Directory() {
                                         <h1 className="Course_h1">Information Technology</h1>
                                         <p className="Course_p3">Involves the use of technology to communicate, transfer data and process information. </p>
                                     </div>
-                                    <Link to={`${course.name}`}>  
+                                    <Link to={`${course.name}`} style={{textDecoration: "none"}}>  
                                         <div className="Course_p4">
                                             See More
                                             <Arrow sx={{ fontSize: "14px" }} />

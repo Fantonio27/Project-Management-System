@@ -5,7 +5,7 @@ export default function Course_Info() {
     return (
         <div className="Course_Info">
             <div className="Course_container">
-                vs
+                IT
             </div>
         </div>
     )

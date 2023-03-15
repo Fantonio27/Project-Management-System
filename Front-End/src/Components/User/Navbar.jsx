@@ -24,6 +24,7 @@ export default function Navbar(props) {
 
     const navigate = useNavigate();
 
+    // console.log(props.data)
     const Menu_sx = {
         transform: props.Menu ? "rotate(90deg)" : "none",
         transition: "0.5s",
@@ -56,13 +57,12 @@ export default function Navbar(props) {
                 <IconButton sx={Menu_sx} onClick={props.MenuClick}>
                     <MenuIcon />
                 </IconButton>
-                {/* <h1 className="Navbar-title">Logo</h1> */}
-                <img src={Logo} className="Navbar-logo"/>
+                <img src={Logo} className="Navbar-logo" />
             </div>
             <div className="Navbar-usertab">
                 <Button sx={{ padding: '2px' }} onClick={handleClick}>
-                    <Avatar sx={Avatar_design}>FA</Avatar>
-                    <p>Francis Antonio</p>
+                    <Avatar sx={Avatar_design}>{props.data.FirstName[0]}{props.data.LastName[0]}</Avatar>
+                    <p>{props.data.FirstName} {props.data.LastName}</p>
                     {menubar ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                 </Button>
                 <MenuList
@@ -72,13 +72,13 @@ export default function Navbar(props) {
                         pointerEvents: menubar ? "all" : "none",
                         position: "absolute",
                     }}>
-                    <Link to="Profile" style={{ textDecoration: "none", color: "inherit" }}>
+                    <Link to="Profile" style={{ textDecoration: "none", color: "inherit" }}  state={props.data}>
                         <MenuItem>
                             <PersonRoundedIcon sx={{ mr: 1.5 }} />
                             <p>Profile</p>
                         </MenuItem>
                     </Link>
-                    <MenuItem onClick={()=> setmodal(prev => !prev)}>
+                    <MenuItem onClick={() => setmodal(prev => !prev)}>
                         <ExitToAppRoundedIcon sx={{ mr: 1.5 }} />
                         <p>Sign Out</p>
                     </MenuItem>
@@ -95,8 +95,8 @@ export default function Navbar(props) {
                             Are you sure you want to sign out?
                         </p>
                         <div className="modal_div">
-                            <button className="SignOut_btn" onClick={()=> navigate("/")}>Sign Out</button>
-                            <button className="Cancel_btn" onClick={()=>setmodal(prev=> false)}>Cancel</button>
+                            <button className="SignOut_btn" onClick={() => navigate("/")}>Sign Out</button>
+                            <button className="Cancel_btn" onClick={() => setmodal(prev => false)}>Cancel</button>
                         </div>
                     </Box>
                 </Modal>

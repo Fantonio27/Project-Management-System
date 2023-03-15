@@ -17,6 +17,9 @@
     box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
     transition: all 0.15s ease-in-out;
     border-radius: 8px;
+    animation-name: fadeup;
+    animation-duration: 1s;
+    position: relative;
 }
 
 .Course_box:hover {
@@ -111,6 +114,9 @@
 .Course_title{
     font-family: 'Poppins', sans-serif;
     color: #2d6a4f;
+    animation-name: leftfade;
+    animation-duration: 1s;
+    position: relative;
 }
 
 .Course_input{
@@ -132,4 +138,14 @@
 
 .Course_input:hover{
     border: 1px solid #2d6a4fa8;
+}
+
+@keyframes fadeup {
+    from {
+        opacity: 0;
+        top:20px
+    }to {
+        opacity: 1;
+        top:0px
+    }
 }

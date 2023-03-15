@@ -147,14 +147,16 @@ export default function Login() {
                 Confirm: Password !== Confirm ? true : false
             }))
         }else {
-            navigate("/Dashboard");
+            navigate("/Dashboard",
+            {state:Dataform
+            });
         }
     }
 
     const handlechange = (event) => {
         const { name, value, checked } = event.target
         const number = /^[0-9\b]+$/;
-        const letter = /^[a-z\b]+$/;
+        const letter = /^[a-z A-Z \b]+$/;
 
         if ((name == "FirstName" || name == "LastName")) {
             if (value === "" || letter.test(value)) {
@@ -378,6 +380,7 @@ export default function Login() {
 
                         <Button sx={SignUp_btn} className="Sign_btn" onClick={SignUp_validation}>Sign Up</Button>
                         <p className="Sign_p1">Already have an Account?<Link to="/" style={{ textDecoration: "none" }}> Log In</Link></p>
+                       
                     </div>
                 </div>
             </form>
