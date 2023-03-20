@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 
 export default function Sidebar(props) {
     let Active;
-
     const Menu = props.Menu
 
     const Category = ["Dashboard", "Courses", "Examination", "Help"]
@@ -20,6 +19,7 @@ export default function Sidebar(props) {
     const link = ["", "Course_Diretory", "Examination", "Help"]
 
     const location = window.location.pathname
+    // console.log(location)
 
     const url = () => {
         let index

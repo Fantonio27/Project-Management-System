@@ -1,10 +1,10 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useOutletContext } from "react-router-dom";
 
-export default function Course(props) {
-
+export default function Course() {
+    const data = useOutletContext();
     return (
         <>
-            <Outlet />
+            <Outlet context={data}/>
         </>
     )
 }

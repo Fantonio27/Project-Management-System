@@ -51,7 +51,10 @@ export default function Login(props) {
 
     const [Dataform, setDataform] = useState({
         LRN: "",
-        Password: ""
+        Password: "",
+        FirstName: "Francis",
+        LastName: "Antonio",
+        Email: "example@gmail.com"
     })
 
     const [showPassword, setShowPassword] = useState(false);
@@ -84,7 +87,10 @@ export default function Login(props) {
             }))
 
         } else if (LRN === "123456789012" && Password === "Student12") {
-            navigate("/Dashboard");
+            navigate("/Dashboard",
+            {
+                state:Dataform
+            });
         } else {
             setnotif(() => ({
                 Show: true,
@@ -217,28 +223,3 @@ export default function Login(props) {
         </Zoom>
     )
 }
-
-//Validation
-// if (value !== "") {
-        //     if (name == "LRN" && number.test(value)) {
-        //         setDataform((prev) => ({
-        //             ...prev, [name]: value
-        //         }));
-        //     } else if (name == "Password") {
-        //         setDataform((prev) => ({
-        //             ...prev, [name]: value
-        //         }));
-        //     }
-
-        //     if (value != "") {
-        //         setnotif((prev) => ({
-        //             ...prev,
-        //             [name]: false
-        //         }));
-        //     } else {
-        //         setnotif((prev) => ({
-        //             ...prev,
-        //             [name]: true
-        //         }));
-        //     }
-        // }

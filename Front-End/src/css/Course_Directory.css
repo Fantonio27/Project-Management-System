@@ -18,7 +18,7 @@
     transition: all 0.15s ease-in-out;
     border-radius: 8px;
     animation-name: fadeup;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
     position: relative;
 }
 
@@ -115,7 +115,7 @@
     font-family: 'Poppins', sans-serif;
     color: #2d6a4f;
     animation-name: leftfade;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
     position: relative;
 }
 

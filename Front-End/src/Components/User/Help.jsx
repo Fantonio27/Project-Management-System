@@ -1,5 +1,5 @@
 
-// import "../../css/Course_Directory.css"
+import "../../css/Help.css"
 
 export default function Help() {
     return(

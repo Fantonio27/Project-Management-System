@@ -5,20 +5,22 @@ import Arrow from '@mui/icons-material/KeyboardDoubleArrowRightOutlined';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 export default function Course_Directory() {
+    const data = useOutletContext();
+
     const Array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 
     const [Dataform, setDataform] = useState({
         Department: "",
-        Search:"",
+        Search: "",
     })
 
     const handleChange = (event) => {
-        const {value, name} = event.target
+        const { value, name } = event.target
 
-        setDataform((prev)=>({
+        setDataform((prev) => ({
             ...prev,
             [name]: value
         }))
@@ -39,9 +41,9 @@ export default function Course_Directory() {
             <div className="Course_titlebar">
                 <h1 className="Course_title">Course Directory</h1>
                 <div>
-                    <input 
+                    <input
                         type="text"
-                        className="Course_input" 
+                        className="Course_input"
                         placeholder="Search"
                         name="Search"
                         value={Dataform.Search}
@@ -75,7 +77,7 @@ export default function Course_Directory() {
                                         <h1 className="Course_h1">Information Technology</h1>
                                         <p className="Course_p3">Involves the use of technology to communicate, transfer data and process information. </p>
                                     </div>
-                                    <Link to={`${course.name}`} style={{textDecoration: "none"}}>  
+                                    <Link to={`${course.name}`} style={{ textDecoration: "none" }} state={data}>
                                         <div className="Course_p4">
                                             See More
                                             <Arrow sx={{ fontSize: "14px" }} />

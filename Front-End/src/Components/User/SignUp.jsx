@@ -67,8 +67,12 @@ export default function Login() {
         LRNtxt: {
             text: "1",
         },
-        passchar: false,
-        Emailtxt:false
+        // passchar: false,
+        passchar: {
+            text: "1",
+            show: false
+        },
+        Emailtxt: false
     })
 
     const [showPassword, setShowPassword] = useState(false);
@@ -76,9 +80,10 @@ export default function Login() {
 
     const SignUp_validation = (event) => {
         event.preventDefault()
-        const repeat = Dataform.LRN === "123456789012"? true : false;
-        const email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        
+        const repeat = Dataform.LRN === "123456789012" ? true : false
+        const email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        var password_val = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/
+
         const { FirstName, LastName, LRN, Email, Password, Confirm, Checked } = Dataform
 
         if (FirstName == "" || LastName == "" || LRN == "" || Email == "" || Password == "" || Confirm == "" || Checked == false) {
@@ -96,24 +101,28 @@ export default function Login() {
                 ...prev,
                 LRNtxt: {
                     text: "Please fill in this required field."
+                },
+
+                passchar: {
+                    text: "Please fill in this required field.",
+                    show: true
                 }
             }))
-        }else if (LRN.length < 12 || Password.length < 8) {
-            setvaltext(() => ({
+            
+        } else if (LRN.length < 12) {
+            setvaltext((prev) => ({
+                ...prev,
                 LRNtxt: {
-                    // show: LRN.length < 12 ? true : false,
                     text: "Must be exact 12 numbers"
                 },
-                passchar: Password.length < 8 ? true : false,
                 Confirmtxt: false
             }))
 
             setnotif((prev) => ({
                 ...prev,
                 LRN: LRN.length < 12 ? true : false,
-                Password: Password.length < 8 ? true : false
             }))
-        }else if (repeat){
+        } else if (repeat) {
             setvaltext((prev) => ({
                 ...prev,
                 LRNtxt: {
@@ -126,7 +135,7 @@ export default function Login() {
                 LRN: true
             }))
 
-        }else if(!email.test(Email)){
+        } else if (!email.test(Email)) {
             setvaltext((prev) => ({
                 ...prev,
                 Emailtxt: true
@@ -136,20 +145,41 @@ export default function Login() {
                 ...prev,
                 Email: true
             }))
-        }else if (Password !== Confirm || Confirm !== Password) {
+
+        } else if (!password_val.test(Password)) {
             setvaltext((prev) => ({
                 ...prev,
-                Confirmtxt: true
+                passchar: {
+                    text: "Password should be contain:",
+                    show: true
+                }
+            }))
+
+            setnotif((prev) => ({
+                ...prev,
+                Password: true
+            }))
+        }
+        else if (Password !== Confirm || Confirm !== Password) {
+            setvaltext((prev) => ({
+                ...prev,
+                Confirmtxt: true,
+                passchar: {
+                    text: "Password should be contain:",
+                    show: false
+                },
             }))
 
             setnotif((prev) => ({
                 ...prev,
                 Confirm: Password !== Confirm ? true : false
             }))
-        }else {
+
+        } else {
             navigate("/Dashboard",
-            {state:Dataform
-            });
+                {
+                    state: Dataform
+                });
         }
     }
 
@@ -170,7 +200,19 @@ export default function Login() {
                     ...prev, [name]: value
                 }));
             }
-        } else if (name == "Email" || name == "Password" || name == "Confirm" || name == "Checked") {
+        } else if (name == "Password") {
+            setDataform((prev) => ({
+                ...prev, [name]: value
+            }));
+
+            setvaltext((prev) => ({
+                ...prev,
+                passchar: {
+                    show: false,
+                    text: "Password should be contain:"
+                }
+            }))
+        } else if (name == "Email" || name == "Confirm" || name == "Checked") {
             setDataform((prev) => ({
                 ...prev, [name]: name == "Checked" ? checked : value
             }));
@@ -187,7 +229,6 @@ export default function Login() {
                 ...prev,
                 [name]: true
             }));
-
         }
     }
 
@@ -276,7 +317,7 @@ export default function Login() {
                             {valtext.LRNtxt.text}
                         </p>
 
-                        <label className="Sign_label">Email</label>
+                        <label className="Sign_label">Email Address</label>
                         <input
                             style={{
                                 border: notif.Email ? " 1px solid rgb(255, 0, 0, 0.6)" : "",
@@ -284,7 +325,7 @@ export default function Login() {
                             }}
                             type="email"
                             className="Sign_text_box"
-                            placeholder="example@gmail.com"
+                            placeholder="Email Address"
                             name="Email"
                             value={Dataform.Email}
                             onChange={handlechange}
@@ -296,7 +337,7 @@ export default function Login() {
                                 opacity: notif.Email ? "1" : "0"
                             }}
                         >
-                            {valtext.Emailtxt? "Invalid Email Address" : "Please fill in this required field."}
+                            {valtext.Emailtxt ? "Invalid Email Address(example@gmail.com)" : "Please fill in this required field."}
                         </p>
 
                         <div className="Sign_Up_div">
@@ -309,7 +350,7 @@ export default function Login() {
                                     }}
                                     type={showPassword ? "text" : "password"}
                                     className="Sign_text_box"
-                                    placeholder="At least 8 characters"
+                                    placeholder="Password"
                                     name="Password"
                                     value={Dataform.Password}
                                     onChange={handlechange}
@@ -321,13 +362,13 @@ export default function Login() {
                                 <p
                                     className="label_sm"
                                     style={{
-                                        opacity: notif.Password ? "1" : "0"
+                                        opacity: notif.Password ? "1" : "0",
+                                        textAlign: "justify"
                                     }}
                                 >
-                                    {valtext.passchar ? "Must be at least 8 characters" : "Please fill in this required field."}
+                                    {valtext.passchar.text}
                                 </p>
                             </div>
-
                             <div style={{ position: "relative" }}>
                                 <label className="Sign_label">Confirm Password</label>
                                 <input
@@ -337,7 +378,7 @@ export default function Login() {
                                     }}
                                     type={showCPassword ? "text" : "password"}
                                     className="Sign_text_box"
-                                    placeholder="At least 8 characters"
+                                    placeholder="Confirm Password"
                                     name="Confirm"
                                     value={Dataform.Confirm}
                                     onChange={handlechange}
@@ -356,7 +397,24 @@ export default function Login() {
                                 </p>
                             </div>
                         </div>
-                        <div className="Sign_Up_div" style={{ gap: 10, marginTop: "15px" }}>
+                        <p
+                            className="label_sm"
+                            style={{
+                                opacity: notif.Password ? "1" : "0",
+                                width: "47%",
+                                height: notif.Password ? "60px" : "0px"
+                            }}
+                        >
+                            {valtext.passchar ?
+                                <ul style={{ marginLeft: 30, listStyleType: "circle" }}>
+                                    <li>at least 8 characters</li>
+                                    <li>at least one uppercase letter</li>
+                                    <li>at least one lowercase letter</li>
+                                    <li>one number</li>
+                                </ul>
+                                : ""}
+                        </p>
+                        <div className="Sign_Up_div" style={{ gap: 10 }}>
                             <Checkbox
                                 name="Checked"
                                 size="small"
@@ -380,11 +438,10 @@ export default function Login() {
 
                         <Button sx={SignUp_btn} className="Sign_btn" onClick={SignUp_validation}>Sign Up</Button>
                         <p className="Sign_p1">Already have an Account?<Link to="/" style={{ textDecoration: "none" }}> Log In</Link></p>
-                       
                     </div>
                 </div>
             </form>
-        </Zoom>
+        </Zoom >
     )
 }
 

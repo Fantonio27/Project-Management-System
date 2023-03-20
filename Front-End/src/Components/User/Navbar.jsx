@@ -3,17 +3,16 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
-import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from "react";
 import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Link, useNavigate } from "react-router-dom";
 import Modal from '@mui/material/Modal';
 import { Box } from "@mui/system";
 import Logo from '../../assets/Images/logo.png'
+import Menu from '@mui/material/Menu';
 
 const Avatar_design = {
     backgroundColor: "#388E3C",
@@ -24,7 +23,6 @@ export default function Navbar(props) {
 
     const navigate = useNavigate();
 
-    // console.log(props.data)
     const Menu_sx = {
         transform: props.Menu ? "rotate(90deg)" : "none",
         transition: "0.5s",
@@ -32,13 +30,7 @@ export default function Navbar(props) {
         mr: '20px'
     }
 
-    const [menubar, setmenubar] = useState(false)
-
     const [modal, setmodal] = useState(false)
-
-    const handleClick = () => {
-        setmenubar(prev => !prev);
-    }
 
     const style = {
         position: 'absolute',
@@ -49,6 +41,15 @@ export default function Navbar(props) {
         borderRadius: '20px',
         border: "1px solid #dee2e6",
         p: 4,
+    };
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    }
+    const handleClose = () => {
+        setAnchorEl(null);
     };
 
     return (
@@ -63,26 +64,34 @@ export default function Navbar(props) {
                 <Button sx={{ padding: '2px' }} onClick={handleClick}>
                     <Avatar sx={Avatar_design}>{props.data.FirstName[0]}{props.data.LastName[0]}</Avatar>
                     <p>{props.data.FirstName} {props.data.LastName}</p>
-                    {menubar ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                    <KeyboardArrowDownIcon sx={{
+                        transform: open ? "rotate(180deg)" : "rotate(0deg)",
+                        transition: "0.3s"
+                    }} />
                 </Button>
-                <MenuList
-                    className="Navbar-Menu"
-                    style={{
-                        opacity: menubar ? "1" : "0",
-                        pointerEvents: menubar ? "all" : "none",
+                <Menu
+                    sx={{
                         position: "absolute",
+                        left: "100px",
+                        top: "20px"
+                    }}
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    MenuListProps={{
+                        'aria-labelledby': 'basic-button',
                     }}>
-                    <Link to="Profile" style={{ textDecoration: "none", color: "inherit" }}  state={props.data}>
-                        <MenuItem>
+                    <Link to="Profile" style={{ textDecoration: "none", color: "inherit" }} state={props.data}>
+                        <MenuItem onClick={handleClose}>
                             <PersonRoundedIcon sx={{ mr: 1.5 }} />
                             <p>Profile</p>
                         </MenuItem>
                     </Link>
-                    <MenuItem onClick={() => setmodal(prev => !prev)}>
+                    <MenuItem onClick={() => (setmodal(prev => !prev), setAnchorEl(null))}>
                         <ExitToAppRoundedIcon sx={{ mr: 1.5 }} />
                         <p>Sign Out</p>
                     </MenuItem>
-                </MenuList>
+                </Menu>
                 <Modal
                     open={modal}
                     aria-labelledby="modal-modal-title"
@@ -104,3 +113,40 @@ export default function Navbar(props) {
         </div>
     )
 }
+
+  {/* <Button
+                    id="basic-button"
+                    aria-controls={open ? 'basic-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    onClick={handleClick}
+                >
+                    <Avatar sx={Avatar_design}>{props.data.FirstName[0]}{props.data.LastName[0]}</Avatar>
+                    <p>{props.data.FirstName} {props.data.LastName}</p>
+                    <KeyboardArrowDownIcon sx={{
+                        transform: menubar ? "rotate(180deg)" : "rotate(0deg)",
+                        transition: "0.3s"
+                    }} />
+                </Button>
+                <Menu
+                    id="basic-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    MenuListProps={{
+                        'aria-labelledby': 'basic-button',
+                    }}
+                >
+                    <Link to="Profile" style={{ textDecoration: "none", color: "inherit" }} state={props.data}>
+                        <MenuItem onClick={
+                            handleClose
+                        }>
+                            <PersonRoundedIcon sx={{ mr: 1.5 }} />
+                            <p>Profile</p>
+                        </MenuItem>
+                    </Link>
+                    <MenuItem onClick={() => setmodal(prev => !prev)}>
+                        <ExitToAppRoundedIcon sx={{ mr: 1.5 }} />
+                        <p>Sign Out</p>
+                    </MenuItem>
+                </Menu> */}

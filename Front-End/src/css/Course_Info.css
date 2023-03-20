@@ -1,0 +1,81 @@
+.Course_info_container{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    overflow: auto;
+}
+
+.Course_header{
+    border-radius: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.Course_bg{
+    background-color: rgb(0, 0, 0, 0.2);
+    padding: 80px 50px;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.Course_header_h1{
+    font-family: 'Quicksand', sans-serif; 
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.Course_header_h2{
+    font-family: 'Quicksand', sans-serif; 
+    margin-bottom: 15px;
+}
+
+.Course_header_p1{
+    font-family: 'Lato', sans-serif; 
+}
+
+.Course_info_div{
+    display: flex;
+    flex-direction: row;
+}
+
+.Course_info_box{
+    padding:  0px 50px 50px;
+    font-family: 'Poppins', sans-serif; 
+    flex: 50%;
+}
+
+.Course_info_p1{
+    font-size: 23px;
+    font-weight: bold;
+    color: #2d6a4f;
+    margin-bottom: 15px;
+    font-family: 'Quicksand', sans-serif; 
+    padding-bottom: 8px;
+}
+
+.Course_info_p2{
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    text-align: justify; 
+    font-weight: bold;
+    line-height: 1.8;
+}
+
+.job_title{
+    font-size: 16px;
+    color: #343a40;
+    letter-spacing: 1.2px;   
+}
+
+.job_desc{
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    text-align: justify; 
+    font-weight: bold;
+    color: #212529;
+}
+
