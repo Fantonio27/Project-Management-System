@@ -49,7 +49,7 @@ export default function Help() {
 }
 
 
-  {/* <div className="Contact">
+{/* <div className="Contact">
                 <div className="developer_contact">
                     <h1>Reach us</h1>
                     <p>Thank you for participating in the Course Directory with Recommendation System; our team gives our best effort to give Senior High School students from Caloocan High School a better knowledge of what college profession or another interest profession they intend to follow. Do you have any questions or comments? Contact or message us right now using our social media sites, email, or the contact information provided.</p>
