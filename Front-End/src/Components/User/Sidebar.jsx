@@ -19,7 +19,6 @@ export default function Sidebar(props) {
     const link = ["", "Course_Diretory", "Examination", "Help"]
 
     const location = window.location.pathname
-    // console.log(location)
 
     const url = () => {
         let index

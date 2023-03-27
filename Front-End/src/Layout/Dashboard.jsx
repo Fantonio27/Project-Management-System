@@ -6,12 +6,12 @@ import { useEffect, useState } from "react";
 import { Outlet, useLocation, useParams } from "react-router-dom";
 import Fade from '@mui/material/Fade';
 import { Snackbar, Alert } from "@mui/material";
+import axios from "axios";
 
-export default function Dashboard(props) {
+export default function Dashboard() {
 
     const location = useLocation();
     const data = location.state;
-
     const [menu, setmenu] = useState(false)
 
     const MenuClick = () => {
@@ -23,7 +23,7 @@ export default function Dashboard(props) {
     const handleClose = () => {
         setnotif(false);
     };
-    
+
     useEffect(()=> {
         setnotif(true)
     },[])
@@ -39,7 +39,7 @@ export default function Dashboard(props) {
                         <Sidebar Menu={menu} data={data} />
                     </div>
                     <div className="Dashboard-Box">
-                        <Outlet context={data}></Outlet>
+                        <Outlet context={{passvalue: data}}></Outlet>
                         <Footer />
                     </div>
                 </div>
@@ -60,3 +60,25 @@ export default function Dashboard(props) {
 }
 
 /* <Link to="/Dashboard/Course">Hello</Link> */
+
+    // console.log(location.state)
+    // useEffect(() => {
+    //     // const location = useLocation();
+    //     // var data = location.state;
+    //     // axios.get(`http://localhost/recommendation_system/api/user/Dashboard?lrn=${data.LRN}`).then(function (response) {
+    //     //     console.log(response.data);
+    //     // })
+    //     data()
+    // }, [])
+
+    // const data = () => {
+    //     const data = location.state;
+    //     // console.log(data.LRN)
+    //     axios.get(`http://localhost/recommendation_system/api/user/Dashboard/111111111133`).then(function (response) {
+    //         console.log(response.data);
+    //     })
+    // }
+
+    // axios.get(`http://localhost/recommendation_system/api/user/Dashboard?lrn=${data.LRN}`).then(function (response) {
+    //     console.log(response.data);
+    // })

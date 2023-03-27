@@ -4,6 +4,7 @@ import Main from "../Components/Admin/Admin_Main"
 import Data_Table from "../Components/Admin/Data_Table"
 import Footer from "../Components/Footer"
 import { useState } from "react"
+import { Outlet } from "react-router-dom"
 
 export default function Admin() {
 
@@ -22,10 +23,10 @@ export default function Admin() {
     return (
         <div className="AdminDashboard">
             <div>
-                <SideNavbar handleClick={handlevalue} index={tab.index}/>
+                <SideNavbar handleClick={handlevalue} index={tab.index}/>  
             </div>
             <div className="AdminDashboard_Main">
-                <Data_Table Title={tab.text}/>
+                <Outlet/>
                 <Footer/>
             </div>
         </div>

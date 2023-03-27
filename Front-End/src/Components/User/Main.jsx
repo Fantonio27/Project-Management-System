@@ -5,12 +5,13 @@ import ProfileIcon from '@mui/icons-material/ManageAccountsOutlined';
 import ExamIcon from '@mui/icons-material/NoteAltOutlined';
 import FeedOutlinedIcon from '@mui/icons-material/FeedOutlined';
 import QuestionMarkOutlinedIcon from '@mui/icons-material/QuestionMarkOutlined';
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useOutletContext } from "react-router-dom";
 
 export default function Main() {
 
     const location = useLocation();
-
+    const {passvalue} = useOutletContext()
+    
     const button_sx = {
         fontFamily: "'Lato', sans-serif",
         fontSize: "12px",
@@ -94,7 +95,6 @@ export default function Main() {
                                     {/* <Link to={e.link} style={{textDecoration: "none"}} state={location.state}>
                                         <Button sx={button_sx}>{e.buttontxt}</Button>
                                     </Link> */}
-
                                     <Button sx={button_sx}>{e.buttontxt}</Button>
                                 </div>
                             </div>

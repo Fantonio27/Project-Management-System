@@ -62,8 +62,8 @@ export default function Navbar(props) {
             </div>
             <div className="Navbar-usertab">
                 <Button sx={{ padding: '2px' }} onClick={handleClick}>
-                    <Avatar sx={Avatar_design}>{props.data.FirstName[0]}{props.data.LastName[0]}</Avatar>
-                    <p>{props.data.FirstName} {props.data.LastName}</p>
+                    <Avatar sx={Avatar_design}>{props.data.FIRSTNAME[0]}{props.data.LASTNAME[0]}</Avatar>
+                    <p>{props.data.FIRSTNAME} {props.data.LASTNAME}</p>
                     <KeyboardArrowDownIcon sx={{
                         transform: open ? "rotate(180deg)" : "rotate(0deg)",
                         transition: "0.3s"

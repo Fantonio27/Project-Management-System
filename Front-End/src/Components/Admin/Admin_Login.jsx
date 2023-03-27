@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import { useState } from 'react';
 import Alert from '@mui/material/Alert';
 import Fade from '@mui/material/Fade'
+import { Link } from 'react-router-dom';
 
 const logo_sx = {
     backgroundColor: "#1C82AD",
@@ -63,32 +64,32 @@ export default function Login() {
         Password: ""
     })
 
-    const login = (event) => {
-        event.preventDefault()
+    // const login = (event) => {
+    //     event.preventDefault()
 
-        if (Dataform.Username == "" || Dataform.Password == "") {
-            setnotif(() => ({
-                Severity: "warning",
-                Text: "Please fill in all the required fields.",
-                Show: true
-            }))
+    //     if (Dataform.Username == "" || Dataform.Password == "") {
+    //         setnotif(() => ({
+    //             Severity: "warning",
+    //             Text: "Please fill in all the required fields.",
+    //             Show: true
+    //         }))
 
-        } else if (Dataform.Username === "Admin123" && Dataform.Password === "password") {
-            console.log("Hello")
+    //     } else if (Dataform.Username === "Admin123" && Dataform.Password === "password") {
 
-        } else {
-            setnotif(() => ({
-                Severity: "error",
-                Text: "Invalid Username or Password!",
-                Show: true
-            }))
 
-            setDataform((prev) => ({
-                ...prev,
-                Password: ""
-            }))
-        }
-    }
+    //     } else {
+    //         setnotif(() => ({
+    //             Severity: "error",
+    //             Text: "Invalid Username or Password!",
+    //             Show: true
+    //         }))
+
+    //         setDataform((prev) => ({
+    //             ...prev,
+    //             Password: ""
+    //         }))
+    //     }
+    // }
 
 
     const handleclick = () => {
@@ -117,13 +118,13 @@ export default function Login() {
                         <AdminLogo sx={logo_sx} />
                         <h1 className='A_login_h1'>Admin Login</h1>
                         <div className='notif'>
-                        {notif.Show &&
-                            <Fade in={notif.Show}>
-                                <Alert onClose={() => setnotif(e => ({ ...e, Show: false }))} variant="outlined" sx={notif_sx} severity={notif.Severity}>
-                                    {notif.Text}
-                                </Alert>
-                            </Fade>
-                        }
+                            {notif.Show &&
+                                <Fade in={notif.Show}>
+                                    <Alert onClose={() => setnotif(e => ({ ...e, Show: false }))} variant="outlined" sx={notif_sx} severity={notif.Severity}>
+                                        {notif.Text}
+                                    </Alert>
+                                </Fade>
+                            }
                         </div>
                         <input
                             type="text"
@@ -149,7 +150,10 @@ export default function Login() {
                                 <Off sx={{ color: '#6c757d' }} />
                             }
                         </IconButton>
-                        <Button sx={btn_sx} onClick={login}>Login</Button>
+                        <Link to="/Admin_Dashboard" style={{ textDecoration: "none" }}>
+                            {/* <Button sx={btn_sx} onClick={login}>Login</Button> */}
+                            <Button sx={btn_sx} >Login</Button>
+                        </Link>
                     </div>
                 </div>
             </form>

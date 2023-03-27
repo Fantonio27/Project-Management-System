@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -9,9 +9,10 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
-import { Link, Navigate, NavLink, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Logo from "../../assets/Images/logo.png"
 import { Zoom } from "@mui/material";
+import axios from "axios";
 import '../../css/User_login.css'
 
 const Login_btn = {
@@ -52,9 +53,9 @@ export default function Login(props) {
     const [Dataform, setDataform] = useState({
         LRN: "",
         Password: "",
-        FirstName: "Francis",
-        LastName: "Antonio",
-        Email: "example@gmail.com"
+        // FirstName: "Francis",
+        // LastName: "Antonio",
+        // Email: "example@gmail.com"
     })
 
     const [showPassword, setShowPassword] = useState(false);
@@ -67,7 +68,7 @@ export default function Login(props) {
     const login_validation = (event) => {
         event.preventDefault()
 
-        const {LRN, Password} = Dataform
+        const { LRN, Password } = Dataform
 
         if (LRN == "" || Password == "") {
             setnotif(() => ({
@@ -76,32 +77,45 @@ export default function Login(props) {
                 Password: Dataform.Password == "" ? true : false
             }))
         } else if (LRN.length !== 12 || Password.length < 8) {
-            setvaltext(()=>({
-                LRN: LRN.length !== 12? true : false,
-                Password: Password.length < 8? true : false
+            setvaltext(() => ({
+                LRN: LRN.length !== 12 ? true : false,
+                Password: Password.length < 8 ? true : false
             }))
 
             setnotif(() => ({
-                LRN: LRN.length !== 12? true : false,
-                Password: Password.length < 8? true : false
+                LRN: LRN.length !== 12 ? true : false,
+                Password: Password.length < 8 ? true : false
             }))
 
         } else if (LRN === "123456789012" && Password === "Student12") {
-            navigate("/Dashboard",
-            {
-                state:Dataform
-            });
-        } else {
-            setnotif(() => ({
-                Show: true,
-                LRN: false,
-                Password: false
-            }))
 
-            setDataform((prev) => ({
-                ...prev,
-                Password: ""
-            }))
+        } else {
+            axios.get(`http://localhost/recommendation_system/api/user/Login.php?lrn=${Dataform.LRN}&pass=${Dataform.Password}`).then(function (response) {
+                // console.log(response.data[0].LRN);
+                if (response.data.length == 1) {
+                    navigate("/Dashboard",
+                        {
+                            state: {
+                                STUDENTNO : response.data[0].STUDENT_NO,
+                                LRN : response.data[0].LRN,
+                                FIRSTNAME : response.data[0].STUDENT_FIRSTNAME,
+                                LASTNAME : response.data[0].STUDENT_LASTNAME,
+                            }
+                        });
+
+                } else if (response.data.length == 0) {
+                    setnotif(() => ({
+                        Show: true,
+                        LRN: false,
+                        Password: false
+                    }))
+
+                    setDataform((prev) => ({
+                        ...prev,
+                        Password: ""
+                    }))
+                }
+            })
         }
     }
 
@@ -186,7 +200,7 @@ export default function Login(props) {
                         paddingBottom: notif.LRN ? "2px" : "0px",
                         height: notif.LRN ? "12px" : "0px"
                     }}>
-                        {valtext.LRN? "Must be exact 12 numbers" :"Please fill in this required fields."}
+                        {valtext.LRN ? "Must be exact 12 numbers" : "Please fill in this required fields."}
                     </p>
                     <FormControl className="Login_input_text" sx={textbox} variant="outlined" >
                         <InputLabel color="success" >Password</InputLabel>
@@ -214,9 +228,12 @@ export default function Login(props) {
                         paddingBottom: notif.Password ? "2px" : "0px",
                         height: notif.Password ? "12px" : "0px"
                     }}>
-                        {valtext.Password? "Must be atleast 8 characters":"Please fill in this required fields."}
+                        {valtext.Password ? "Must be atleast 8 characters" : "Please fill in this required fields."}
                     </p>
                     <Button variant="contained" sx={Login_btn} onClick={login_validation}>Login</Button>
+                    {/* <input type="text" placeholder="First" name="FirstName" onChange={handleChange}></input>
+                    <input type="text" placeholder="lrn" name="LRN" onChange={handleChange}></input>
+                    <button onClick={handleSubmit}>Click</button> */}
                     <p className='Login_box_p'>Dont have an account?<Link to="/Sign_Up" style={{ textDecoration: "none" }}> Sign up</Link></p>
                 </div>
             </form>

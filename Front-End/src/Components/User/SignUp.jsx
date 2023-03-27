@@ -5,13 +5,14 @@ import Button from '@mui/material/Button';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import { Link } from 'react-router-dom';
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Logo from "../../assets/Images/logo.png"
 import { Navigate } from "react-router-dom";
 import Checkbox from '@mui/material/Checkbox';
 import { Zoom } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import IconButton from '@mui/material/IconButton';
+import axios from "axios"
 
 const SignUp_btn = {
     padding: "10px 0px",
@@ -78,13 +79,14 @@ export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
     const [showCPassword, setShowCPassword] = useState(false);
 
-    const SignUp_validation = (event) => {
+    const [repeat, setrepeat] = useState(false)
+    const SignUp_submit = (event) => {
         event.preventDefault()
-        const repeat = Dataform.LRN === "123456789012" ? true : false
+        const { FirstName, LastName, LRN, Email, Password, Confirm, Checked } = Dataform
+
+        console.log(repeat)
         const email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
         var password_val = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/
-
-        const { FirstName, LastName, LRN, Email, Password, Confirm, Checked } = Dataform
 
         if (FirstName == "" || LastName == "" || LRN == "" || Email == "" || Password == "" || Confirm == "" || Checked == false) {
             setnotif(() => ({
@@ -108,7 +110,7 @@ export default function Login() {
                     show: true
                 }
             }))
-            
+
         } else if (LRN.length < 12) {
             setvaltext((prev) => ({
                 ...prev,
@@ -121,18 +123,6 @@ export default function Login() {
             setnotif((prev) => ({
                 ...prev,
                 LRN: LRN.length < 12 ? true : false,
-            }))
-        } else if (repeat) {
-            setvaltext((prev) => ({
-                ...prev,
-                LRNtxt: {
-                    text: "LRN already exists"
-                },
-            }))
-
-            setnotif((prev) => ({
-                ...prev,
-                LRN: true
             }))
 
         } else if (!email.test(Email)) {
@@ -176,10 +166,30 @@ export default function Login() {
             }))
 
         } else {
-            navigate("/Dashboard",
-                {
-                    state: Dataform
-                });
+            axios.get(`http://localhost/recommendation_system/api/${Dataform.LRN}`).then(function (response) {
+                console.log(response.data);
+                if (response.data != false) {
+                    setvaltext((prev) => ({
+                        ...prev,
+                        LRNtxt: {
+                            text: "LRN already exists"
+                        },
+                    }))
+
+                    setnotif((prev) => ({
+                        ...prev,
+                        LRN: true
+                    }))
+                } else {
+                    axios.post('http://localhost/recommendation_system/api/save', Dataform).then(function (response) {
+                        console.log(response.data);
+                        navigate("/Dashboard",
+                            {
+                                state: Dataform
+                            });
+                    });
+                }
+            });
         }
     }
 
@@ -229,6 +239,13 @@ export default function Login() {
                 ...prev,
                 [name]: true
             }));
+
+            setvaltext((prev) => ({
+                ...prev,
+                LRNtxt: {
+                    text: "Please fill in this required field."
+                },
+            }))
         }
     }
 
@@ -397,7 +414,7 @@ export default function Login() {
                                 </p>
                             </div>
                         </div>
-                        <p
+                        <div
                             className="label_sm"
                             style={{
                                 opacity: notif.Password ? "1" : "0",
@@ -413,7 +430,7 @@ export default function Login() {
                                     <li>one number</li>
                                 </ul>
                                 : ""}
-                        </p>
+                        </div>
                         <div className="Sign_Up_div" style={{ gap: 10 }}>
                             <Checkbox
                                 name="Checked"
@@ -436,9 +453,13 @@ export default function Login() {
                             </div>
                         </div>
 
-                        <Button sx={SignUp_btn} className="Sign_btn" onClick={SignUp_validation}>Sign Up</Button>
+                        <Button sx={SignUp_btn} className="Sign_btn" onClick={SignUp_submit}>Sign Up</Button>
                         <p className="Sign_p1">Already have an Account?<Link to="/" style={{ textDecoration: "none" }}> Log In</Link></p>
                     </div>
+                    {/* <input type="text" placeholder="First" name="FirstName" onChange={handleChange}></input>
+                    <input type="text" placeholder="Last" name="LastName" onChange={handleChange}></input>
+                    <input type="text" placeholder="LRN" name="LRN" onChange={handleChange}></input>
+                    <button>Save</button> */}
                 </div>
             </form>
         </Zoom >

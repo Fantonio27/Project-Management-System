@@ -1,25 +1,17 @@
 import "../../css/User_Profile.css"
-import { Avatar, Badge, Box, LinearProgress, Zoom } from "@mui/material";
+import { Avatar, Badge, Box, LinearProgress, Zoom, FormControl, Select, MenuItem } from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 import CameraIcon from '@mui/icons-material/CameraAltRounded';
 import Button from '@mui/material/Button';
 import { useState } from "react";
 import CircularProgress from '@mui/material/CircularProgress';
-import {useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
 export default function Profile() {
 
     const location = useLocation();
     const data = location.state;
 
-    const [Dataform, setDataform] = useState({
-        FirstName: data.FirstName,
-        LastName: data.LastName,
-        LRN: data.LRN,
-        Email: data.Email,
-        Password: data.Password,
-        ExamResult: "",
-        SHSstrand: "",
-    })
     const [edit, setedit] = useState(false)
 
     const edit_sx = {
@@ -80,6 +72,11 @@ export default function Profile() {
         "&:hover": {
             backgroundColor: "#f8f9fa",
         }
+    }
+
+    const combo_sx = {
+        backgroundColor: edit ? "white" : "rgba(255, 255, 255, 0.5)",
+        border: "0px solid #ced4da"
     }
 
     const subject = [
@@ -162,6 +159,26 @@ export default function Profile() {
         setedit(prev => !prev)
     }
 
+    const [Dataform, setDataform] = useState({
+        FirstName: data.FirstName,
+        LastName: data.LastName,
+        LRN: data.LRN,
+        Email: data.Email,
+        Password: data.Password,
+        Confirm: "",
+        ExamResult: "",
+        SHSstrand: "",
+    })
+
+    const handlechange = (event) => {
+        const { name, value } = event.target
+
+        setDataform((prev) => ({
+            ...prev,
+            [name]: value
+        }))
+    }
+    
     return (
         <Zoom in={true} timeout={500}>
             <div className="Profile">
@@ -193,31 +210,101 @@ export default function Profile() {
                                         <div className="Profile-input-container">
                                             <div>
                                                 <p>First name</p>
-                                                <input type="text" placeholder="First name" disabled={!edit} value={Dataform.FirstName} />
+                                                <input
+                                                    type="text"
+                                                    placeholder="First name"
+                                                    disabled={!edit}
+                                                    value={Dataform.FirstName}
+                                                    onChange={handlechange}
+                                                    name="FirstName" />
                                             </div>
                                             <div>
                                                 <p>Last name</p>
-                                                <input type="text" placeholder="Last name" disabled={!edit} value={Dataform.LastName}/>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Last name"
+                                                    disabled={!edit}
+                                                    value={Dataform.LastName}
+                                                    onChange={handlechange}
+                                                    name="LastName" />
                                             </div>
                                             <div>
                                                 <p>LRN</p>
-                                                <input type="text" placeholder="Learner Reference Number" disabled={!edit} value={Dataform.LRN}/>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Learner Reference Number"
+                                                    disabled={!edit} value={Dataform.LRN}
+                                                    onChange={handlechange}
+                                                    name="LRN" />
                                             </div>
                                             <div>
                                                 <p>Email Address</p>
-                                                <input type="text" placeholder="Email Address" disabled={!edit} value={Dataform.Email} />
+                                                <input
+                                                    type="text"
+                                                    placeholder="Email Address"
+                                                    disabled={!edit}
+                                                    value={Dataform.Email}
+                                                    onChange={handlechange}
+                                                    name="Email" />
                                             </div>
                                             <div>
                                                 <p>Password</p>
-                                                <input type="text" placeholder="Password" disabled={!edit} value={Dataform.Password}/>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Password"
+                                                    disabled={!edit}
+                                                    value={Dataform.Password}
+                                                    onChange={handlechange}
+                                                    name="Password" />
+                                            </div>
+                                            <div style={{ display: edit ? "block" : "none" }}>
+                                                <p>Confirm Password</p>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Password"
+                                                    disabled={!edit}
+                                                    value={Dataform.Confirm}
+                                                    onChange={handlechange}
+                                                    name="Confirm" />
                                             </div>
                                             <div>
                                                 <p>SHS Strand (optional)</p>
-                                                <input type="text" placeholder="SHS Strand" disabled={!edit} value={Dataform.SHSstrand}/>
+                                                <FormControl sx={{ mt: "10px", width: "100%", border: "0px" }} size="small">
+                                                    <Select
+                                                        value={Dataform.SHSstrand}
+                                                        onChange={handlechange}
+                                                        displayEmpty
+                                                        disabled={!edit}
+                                                        sx={combo_sx}
+                                                    >
+                                                        <MenuItem value="">
+                                                            <em>None</em>
+                                                        </MenuItem>
+                                                        <MenuItem value="STEM">STEM (Science, Technology, Engineering, and Mathematics)</MenuItem>
+                                                        <MenuItem value="HUMSS">HUMSS (Humanities and Social Sciences)</MenuItem>
+                                                        <MenuItem value="ABM">ABM (Accounting, Business, and Management)</MenuItem>
+                                                        <MenuItem value="GAS">GAS (General Academic Strand)</MenuItem>
+                                                        <MenuItem value="TVL">TVL (Technical-Vocational Livelihood)</MenuItem>
+                                                    </Select>
+                                                </FormControl>
+                                                {/* <p>SHS Strand (optional)</p>
+                                                <input
+                                                    type="text"
+                                                    placeholder="SHS Strand"
+                                                    disabled={!edit}
+                                                    value={Dataform.SHSstrand}
+                                                    onChange={handlechange} 
+                                                    name="SHSstrand"/> */}
                                             </div>
                                             <div>
                                                 <p>Exam Status</p>
-                                                <input type="text" placeholder="Exam Status" disabled={!edit} value={Dataform.ExamResult}/>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Exam Status"
+                                                    disabled={!edit}
+                                                    value={Dataform.ExamResult}
+                                                    onChange={handlechange}
+                                                    name="ExamResult" />
                                             </div>
                                         </div>
                                         <div className="Profile-btn-container">

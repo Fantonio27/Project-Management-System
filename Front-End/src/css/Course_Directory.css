@@ -1,6 +1,7 @@
 .Course_container {
     overflow: auto;
     height: 725px;
+    margin-top: 5px;
     padding: 10px 10px 10px 5px;
 }
 
@@ -10,6 +11,7 @@
     gap: 20px;
     align-items: center;
     justify-content: center;
+    padding-right: 15px;
 }
 
 .Course_box {
