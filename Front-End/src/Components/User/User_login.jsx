@@ -96,7 +96,7 @@ export default function Login(props) {
                     navigate("/Dashboard",
                         {
                             state: {
-                                STUDENTNO : response.data[0].STUDENT_NO,
+                                // STUDENTNO : response.data[0].STUDENT_NO,
                                 LRN : response.data[0].LRN,
                                 FIRSTNAME : response.data[0].STUDENT_FIRSTNAME,
                                 LASTNAME : response.data[0].STUDENT_LASTNAME,

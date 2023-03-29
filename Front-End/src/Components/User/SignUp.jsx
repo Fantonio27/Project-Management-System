@@ -182,10 +182,15 @@ export default function Login() {
                     }))
                 } else {
                     axios.post('http://localhost/recommendation_system/api/save', Dataform).then(function (response) {
-                        console.log(response.data);
+                        // console.log(response.data);
                         navigate("/Dashboard",
                             {
-                                state: Dataform
+                                state: {
+                                    // STUDENTNO : response.data[0].STUDENT_NO,
+                                    LRN : Dataform.LRN,
+                                    FIRSTNAME : Dataform.FirstName,
+                                    LASTNAME : Dataform.LastName,
+                                }
                             });
                     });
                 }

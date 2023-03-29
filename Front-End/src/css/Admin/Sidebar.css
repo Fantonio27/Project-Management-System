@@ -1,0 +1,40 @@
+.A_Sidebar_header{
+    padding: 20px 25px 10px;
+    border-bottom: 1px solid rgba(245, 245, 245, 0.153);
+}
+
+.A_Sidebar_header_box{
+    background-color:#f6fbf412;
+    margin: 10px 0px;
+    border-radius: 8px;
+    padding: 12px 12px;
+    color:white;
+}
+
+.A_Sidebar_header_p1{
+    font-size: 16px;
+    font-family: 'QuickSand', sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.A_Sidebar_header_p2{
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 800;
+    color: #9da4ae;
+    letter-spacing: 0.5px;
+}
+
+.A_Sidebar_list_container{
+    padding: 20px 15px;
+}
+
+.Admin_List_p1{
+    font-family: 'Lato', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing:1.5px;
+    margin: 5px 0px;
+}

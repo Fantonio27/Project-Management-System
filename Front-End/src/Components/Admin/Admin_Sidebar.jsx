@@ -1,59 +1,87 @@
-import "../../css/Admin_Sidebar.css"
-import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
-import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
+import "../../css/Admin/Sidebar.css"
 import ListItemButton from '@mui/material/ListItemButton';
-import InterestsOutlinedIcon from '@mui/icons-material/InterestsOutlined';
-import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
-import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
-import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
-import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
-import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import { useState } from "react";
-import Logo from "../../assets/Images/logo.png"
 import { Link } from "react-router-dom";
+import SignalCellularAltRoundedIcon from '@mui/icons-material/SignalCellularAltRounded';
+import TaskRoundedIcon from '@mui/icons-material/TaskRounded';
+import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
+import FeedRoundedIcon from '@mui/icons-material/FeedRounded';
+import FolderSharedRoundedIcon from '@mui/icons-material/FolderSharedRounded';
+import InterestsRoundedIcon from '@mui/icons-material/InterestsRounded';
+import NoteAltRoundedIcon from '@mui/icons-material/NoteAltRounded';
 
 export default function Admin_Sidebar(props) {
 
-    const [open, setopen] = useState(true)
-
-    let val;
-
-    const Menu = ["Dashboard", "Student Information", "Courses", "Interests", "Entrance Exam", "Interest Assessment", "Student Results"]
-    
-    const Icon = [
-        <GridViewOutlinedIcon />,
-        <PeopleAltOutlinedIcon />,
-        <ArticleOutlinedIcon />,
-        <InterestsOutlinedIcon />,
-        <DescriptionOutlinedIcon />,
-        <GridViewOutlinedIcon />,
-        <ReceiptLongOutlinedIcon />
+    const Menu = [
+        {
+            Title: "Overview",
+            Icon: <SignalCellularAltRoundedIcon />
+        },
+        {
+            Title: "Student Information",
+            Icon: <FolderSharedRoundedIcon />,
+        },
+        {
+            Title: "Course Information",
+            Icon: <ArticleRoundedIcon />,
+        },
+        {
+            Title: "Interest Information",
+            Icon: <InterestsRoundedIcon />,
+        },
+        {
+            Title: "Entrance Exam",
+            Icon: <FeedRoundedIcon />,
+        },
+        {
+            Title: "Interest Assessment",
+            Icon: <TaskRoundedIcon />,
+        },
+        {
+            Title: "Student Results",
+            Icon: <NoteAltRoundedIcon />
+        }
     ]
 
-    const icon_sx = {
-        color: "white",
-        fontSize: "16px",
-        cursor: "pointer",
-        padding: "5px",
-        borderRadius: "30px",
-
-        "&:hover": {
-            backgroundColor: "rgb(46, 125, 50,0.1)"
-        }
-    }
-
-    const logo_sx = {
-        width: open ? "120px" : "80px",
-        height: open ? "120px" : "80px"
-    }
-
-    const handleclick = () => {
-        setopen(prev => !prev)
-    }
-
+    let act
     return (
-        <div className="Admin_Sidebar" style={{ width: open ? "300px" : "100px" }}>
-            <div className="Admin_Sidebar_container">
+        <div className="Admin_Sidebar" >
+            <div className="A_Sidebar_header">
+                <div className="A_Sidebar_header_box">
+                    <p className="A_Sidebar_header_p1">Admin</p>
+                    <p className="A_Sidebar_header_p2">Dashboard</p>
+                </div>
+            </div>
+            <div className="A_Sidebar_list_container">
+                {Menu.map((val, index) => (
+                    act = props.Active.index == index,
+                    <ListItemButton
+                        key={index}
+                        name={val.Title}
+                        sx={{
+                            borderRadius: "10px",
+                            margin: "10px 0px",
+                            color: act? "white":"#9da4ae",
+                            display: "flex",
+                            gap: "15px",
+                            alignItems: "center",
+                            backgroundColor: act? "rgb(67, 160, 71,0.2)" : "none",
+                            "&:hover": {
+                                backgroundColor: "rgb(67, 160, 71,0.2)"
+                            }
+                        }}
+                        onClick={()=>props.handleClick(index)}
+                    >
+                <div style={{ color: act? "#4caf50": "#9da4ae", display: "flex"}}>{val.Icon}</div>
+                <p className="Admin_List_p1">{val.Title}</p>
+            </ListItemButton>
+                ))}
+        </div>
+        </div >
+    )
+}
+
+{/* <div className="Admin_Sidebar_container">
                 <div className="Admin_Sidebar_Arrow" style={{alignSelf : open? "flex-end" :"center" }}>
                     {open ?
                         <ArrowBackIosNewOutlinedIcon sx={icon_sx} onClick={handleclick} />
@@ -88,7 +116,4 @@ export default function Admin_Sidebar(props) {
                         </ListItemButton>
                     ))}
                 </div>
-            </div>
-        </div>
-    )
-}
+            </div> */}

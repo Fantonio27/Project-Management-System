@@ -1,0 +1,87 @@
+.Admin_Main{
+    padding: 50px 100px;
+}
+
+.A_Main_GroupBox{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.A_Main_Container, .A_Main_Chart , .A_Main_Table{
+    flex: 20%;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgb(233, 236, 239,0.2) 0px 0px 0px 1px;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.A_Main_p1{
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #6f727e;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.A_Main_Box{
+    position: relative;
+}
+
+.A_Main_p2{
+    font-family: 'Karla', sans-serif;
+    font-size: 34px;
+    font-weight: bold;
+    color: #141826;
+    letter-spacing: 1px;
+    margin: 5px 0px 0px;
+}
+
+.A_Main_Diagrams{
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.A_Main_Table{
+    flex: 70%;
+}
+
+.A_Main_Chart{
+    flex: 30%;
+}
+
+.A_Main_Table_p1, .A_Main_Chart_p1{
+    font-size: 20px;
+    font-family: 'QuickSand', sans-serif;
+    font-weight: bold;
+    color: #141826;
+    margin: 15px 0px 20px;
+}
+
+.A_Main_Table_button{
+    margin: 15px 0px 0px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-end;
+    color: #6f727e;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 8px;
+    width: 80px;
+    transition: 0.4s;
+}
+
+.A_Main_Table_button:hover{
+    background-color: #6f727e1e;
+}
+
+
+
+
+
+

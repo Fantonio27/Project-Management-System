@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 
 export default function Course_Directory() {
-    const data = useOutletContext();
+    const {passvalue} = useOutletContext();
 
     const Array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 
@@ -77,7 +77,7 @@ export default function Course_Directory() {
                                         <h1 className="Course_h1">Information Technology</h1>
                                         <p className="Course_p3">Involves the use of technology to communicate, transfer data and process information. </p>
                                     </div>
-                                    <Link to={`${course.name}`} style={{ textDecoration: "none" }} state={data}>
+                                    <Link to={`${course.name}`} style={{ textDecoration: "none" }} state={passvalue}>
                                         <div className="Course_p4">
                                             See More
                                             <Arrow sx={{ fontSize: "14px" }} />
