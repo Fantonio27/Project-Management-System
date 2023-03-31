@@ -15,31 +15,38 @@ export default function Admin_Sidebar(props) {
     const Menu = [
         {
             Title: "Overview",
-            Icon: <SignalCellularAltRoundedIcon />
+            Icon: <SignalCellularAltRoundedIcon />,
+            Link: "",
         },
         {
             Title: "Student Information",
             Icon: <FolderSharedRoundedIcon />,
+            Link: "Student_Information",
         },
         {
             Title: "Course Information",
             Icon: <ArticleRoundedIcon />,
+            Link: "Course_Information",
         },
         {
             Title: "Interest Information",
             Icon: <InterestsRoundedIcon />,
+            Link: "Interest_Information",
         },
         {
             Title: "Entrance Exam",
             Icon: <FeedRoundedIcon />,
+            Link: "Entrance_Exam",
         },
         {
             Title: "Interest Assessment",
             Icon: <TaskRoundedIcon />,
+            Link: "Interest_Assessment",
         },
         {
             Title: "Student Results",
-            Icon: <NoteAltRoundedIcon />
+            Icon: <NoteAltRoundedIcon />,
+            Link: "Student_Results",
         }
     ]
 
@@ -54,29 +61,30 @@ export default function Admin_Sidebar(props) {
             </div>
             <div className="A_Sidebar_list_container">
                 {Menu.map((val, index) => (
-                    act = props.Active.index == index,
-                    <ListItemButton
-                        key={index}
-                        name={val.Title}
-                        sx={{
-                            borderRadius: "10px",
-                            margin: "10px 0px",
-                            color: act? "white":"#9da4ae",
-                            display: "flex",
-                            gap: "15px",
-                            alignItems: "center",
-                            backgroundColor: act? "rgb(67, 160, 71,0.2)" : "none",
-                            "&:hover": {
-                                backgroundColor: "rgb(67, 160, 71,0.2)"
-                            }
-                        }}
-                        onClick={()=>props.handleClick(index)}
-                    >
-                <div style={{ color: act? "#4caf50": "#9da4ae", display: "flex"}}>{val.Icon}</div>
-                <p className="Admin_List_p1">{val.Title}</p>
-            </ListItemButton>
+                    act = props.Active.text == val.Link,
+                    <Link to={val.Link} style={{textDecoration: "none", color: "inherit"}} key={index}>
+                        <ListItemButton
+                            name={val.Title}
+                            sx={{
+                                borderRadius: "10px",
+                                margin: "10px 0px",
+                                color: act ? "white" : "#9da4ae",
+                                display: "flex",
+                                gap: "15px",
+                                alignItems: "center",
+                                backgroundColor: act ? "rgb(67, 160, 71,0.2)" : "none",
+                                "&:hover": {
+                                    backgroundColor: "rgb(67, 160, 71,0.2)"
+                                }
+                            }}
+                            onClick={() => props.handleClick(val.Link)}
+                        >
+                            <div style={{ color: act ? "#4caf50" : "#9da4ae", display: "flex" }}>{val.Icon}</div>
+                            <p className="Admin_List_p1">{val.Title}</p>
+                        </ListItemButton>
+                    </Link>
                 ))}
-        </div>
+            </div>
         </div >
     )
 }

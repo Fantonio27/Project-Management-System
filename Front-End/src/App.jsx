@@ -17,6 +17,7 @@ import Course from "./Components/User/Course"
 import Data_Table from "./Components/Admin/Data_Table";
 import Admin_Main from "./Components/Admin/Admin_Main";
 import Admin_Dashboard from "./Layout/Admin_Dashboard"
+import Admin_Info from "./Components/Admin/Tab/Student_Information"
 
 function App() {
   return (
@@ -42,7 +43,7 @@ function App() {
         </Route>
         <Route path="/Admin_Dashboard" element={<Admin_Dashboard />}>
           <Route index path="" element={<Admin_Main />}></Route>
-          <Route path="Data_Table" element={<Data_Table />}></Route>
+          <Route path="Student_Information" element={<Admin_Info />}></Route>
         </Route>
         <Route path='*' element={<Errorpage />} />
       </Routes>

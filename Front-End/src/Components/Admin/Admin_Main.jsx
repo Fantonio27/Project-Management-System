@@ -7,6 +7,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
+import Chart from "chart.js/auto";
+import { Doughnut } from 'react-chartjs-2';
 
 export default function Admin_Main() {
 
@@ -14,28 +16,28 @@ export default function Admin_Main() {
         {
             Title: "Total Users",
             Number: "100",
-            Text: "",
+            Text: "HELLO",
             Icon: "",
             Color: "",
         },
         {
             Title: "Total Users",
             Number: "100",
-            Text: "",
+            Text: "HELLO",
             Icon: "",
             Color: "",
         },
         {
             Title: "Total Users",
             Number: "100",
-            Text: "",
+            Text: "HELLO",
             Icon: "",
             Color: "",
         },
         {
             Title: "Total Users",
             Number: "100",
-            Text: "",
+            Text: "HELLO",
             Icon: "",
             Color: "",
         },
@@ -64,16 +66,44 @@ export default function Admin_Main() {
         createData('Cupcake', 305, 3.7, 67, 4.3),
         createData('Gingerbread', 356, 16.0, 49, 3.9),
     ];
+
+    const data = {
+        datasets: [{
+            data: [10, 90],
+        }],
+
+        labels: [
+            'Result1',
+            'Result2',
+        ],
+    };
+
+    const option = {
+        animation: {
+            duration: 1500,
+        },
+        cutout: 80,
+        // borderWidth: 0,'
+        plugins: {
+            legend: {
+                position: "bottom",
+                labels: {
+                    padding: 30
+                }
+            }
+        }
+    }
     return (
         <div className="Admin_Main">
             <div className="A_Main_GroupBox">
                 {
-                    group.map((e) => (
-                        <div className="A_Main_Container">
+                    group.map((e, index) => (
+                        <div key={index} className="A_Main_Container">
                             <div className="A_Main_Box">
                                 <PeopleAltRoundedIcon sx={icon_sx} />
                                 <p className="A_Main_p1">{e.Title}</p>
                                 <p className="A_Main_p2">{e.Number}</p>
+                                <p className="A_Main_p1">{e.Text}</p>
                             </div>
                         </div>
                     ))
@@ -83,7 +113,7 @@ export default function Admin_Main() {
                 <div className="A_Main_Table">
                     <p className="A_Main_Table_p1">Latest Users</p>
                     <TableContainer>
-                        <Table sx={{ boxShadow: 0 }}>
+                        <Table sx={{ boxShadow: 0 , maxwidth: "120px"}}>
                             <TableHead sx={{ backgroundColor: "rgb(67, 160, 71,0.1)" }}>
                                 <TableRow sx={{ '& td, & th': { borderBottom: "1.5px solid rgb(233, 236, 239,0)" } }}>
                                     <TableCell>Dessert (100g serving)</TableCell>
@@ -116,7 +146,7 @@ export default function Admin_Main() {
                             </TableBody>
                         </Table>
                     </TableContainer>
-                    <div style={{display: 'flex', justifyContent: "flex-end"}}>
+                    <div style={{ display: 'flex', justifyContent: "flex-end" }}>
                         <div className="A_Main_Table_button">
                             <p>View all</p>
                             <ArrowForwardRoundedIcon sx={{ color: "#6f727e", fontSize: "20px" }} />
@@ -125,6 +155,11 @@ export default function Admin_Main() {
                 </div>
                 <div className="A_Main_Chart">
                     <p className="A_Main_Chart_p1">Students Result</p>
+                    <div className="A_Main_Chart_box">
+                        <div>
+                            <Doughnut data={data} options={option} />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
