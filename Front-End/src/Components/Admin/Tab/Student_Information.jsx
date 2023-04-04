@@ -407,7 +407,7 @@ export default function Student_Info() {
         } else if (sublabel == "Exam Taken" || sublabel == "Exam Not Taken" ) {
             return (
                 <>
-                    <Checkbox name={idlabel} /><p className="filter_p3">{sublabel}</p>
+                    <Checkbox sx={{color: "#697280d3"}}name={idlabel} /><p className="filter_p3">{sublabel}</p>
                 </>
             )
         } else {

@@ -231,18 +231,24 @@
 }
 
 .filter_p3{
-    font-family: 'Karla', sans-serif;
-    font-size: 15px;
-    color: #505161;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #697280;
+    letter-spacing: 0.5px ;
+    margin-bottom: 2px;
 }
 
 .filter_input{
-    padding: 7px 8px;
+    padding: 10px 10px;
+    width: 80%;
     margin: 5px ;
-    font-family: 'Karla', sans-serif;
-    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
     border: 1px solid #DEE2E6;
     border-radius: 5px;
+    color: #697280
 }
 
 .filter_input:focus{
