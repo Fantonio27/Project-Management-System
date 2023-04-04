@@ -242,7 +242,8 @@ export default function Student_Info() {
         window.scrollTo(0, 0)
     }, [rowsPerPage >= 10])
 
-    const [open, setOpen] = useState(false);    //for Dialog
+    const [open, setOpen] = useState(false);    //for Dialog in view
+    const [expanded, setExpanded] = useState(); //for the filter
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -251,17 +252,7 @@ export default function Student_Info() {
     const handleClose = () => {
         setOpen(false);
     };
-
-    const option = (    //Action in Table
-        <div>
-            <Tooltip title="View" arrow>
-                <IconButton sx={iconbutton_sx} onClick={handleClickOpen}>
-                    <OpenInNewRoundedIcon sx={icon_sx} />
-                </IconButton>
-            </Tooltip>
-        </div>
-    )
-
+    
     function dataperrow(a, i, val) {
         if (a === "Action") {
             return (option)
@@ -309,12 +300,14 @@ export default function Student_Info() {
     const [anchorsort, setanchorsort] = useState(null);
     const sortmenu = Boolean(anchorsort)  //for sort menu
 
+    useEffect(()=>{
+        setExpanded(prev=>-1)
+    },[sortmenu])
+
     const sortmenuclose = () => {
         setanchorsort(null);
         setfilter(prev => !prev)
     };
-
-    const [expanded, setExpanded] = useState(); //for the filter
 
     const filtertabs = [
         {
@@ -371,8 +364,7 @@ export default function Student_Info() {
     ]
 
     const handleopentab = (i) => () => {
-        setExpanded((prev) => prev === i ? -1 : i
-        )
+        setExpanded((prev) => prev === i ? -1 : i)
     };
 
     const onChangefilter = (event) => {
@@ -451,7 +443,6 @@ export default function Student_Info() {
                 {
                     filtertabs.map((tab, index) => {
                         const { id, icon, label, } = tab
-
                         return (
                             <div key={id}>
                                 <ListItemButton onClick={handleopentab(index)} sx={accordion_filter_sx}>
@@ -459,7 +450,7 @@ export default function Student_Info() {
                                         {icon}
                                         <p className="filter_p2">{label}</p>
                                     </div>
-                                    {expanded === index ? <ExpandLess /> : <ExpandMore />}
+                                    {expanded === index? <ExpandLess /> : <ExpandMore />}
                                 </ListItemButton>
                                 <Collapse in={expanded === index} timeout="auto" unmountOnExit>
                                     {tab.sub.map((val, index) => {
@@ -478,6 +469,16 @@ export default function Student_Info() {
                 }
             </List>
         </Menu >
+    )
+
+    const option = (    //Action in Table
+        <div>
+            <Tooltip title="View" arrow>
+                <IconButton sx={iconbutton_sx} onClick={handleClickOpen}>
+                    <OpenInNewRoundedIcon sx={icon_sx} />
+                </IconButton>
+            </Tooltip>
+        </div>
     )
     return (
         <Grow in={true} timeout={600}>
