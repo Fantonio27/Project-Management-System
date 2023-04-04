@@ -14,10 +14,9 @@ import Examination_Main from "./Components/User/Examination_Main";
 import Help from "./Components/User/Help";
 import Course_Info from "./Components/User/Course_Information";
 import Course from "./Components/User/Course"
-import Data_Table from "./Components/Admin/Data_Table";
 import Admin_Main from "./Components/Admin/Admin_Main";
 import Admin_Dashboard from "./Layout/Admin_Dashboard"
-import Admin_Info from "./Components/Admin/Tab/Student_Information"
+import Student_Info from "./Components/Admin/Tab/Student_Information"
 
 function App() {
   return (
@@ -42,8 +41,9 @@ function App() {
           <Route path="Profile" element={<Profile />}></Route>
         </Route>
         <Route path="/Admin_Dashboard" element={<Admin_Dashboard />}>
-          <Route index path="" element={<Admin_Main />}></Route>
-          <Route path="Student_Information" element={<Admin_Info />}></Route>
+          <Route path="" element={<Admin_Main />}></Route>
+          <Route path="Student_Information" element={<Student_Info />}>
+          </Route>
         </Route>
         <Route path='*' element={<Errorpage />} />
       </Routes>

@@ -187,9 +187,9 @@ export default function Login() {
                             {
                                 state: {
                                     // STUDENTNO : response.data[0].STUDENT_NO,
-                                    LRN : Dataform.LRN,
-                                    FIRSTNAME : Dataform.FirstName,
-                                    LASTNAME : Dataform.LastName,
+                                    LRN: Dataform.LRN,
+                                    FIRSTNAME: Dataform.FirstName,
+                                    LASTNAME: Dataform.LastName,
                                 }
                             });
                     });

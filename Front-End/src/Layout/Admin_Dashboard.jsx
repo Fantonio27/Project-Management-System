@@ -13,7 +13,8 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
-import { Typography } from "@mui/material"
+
+
 const drawerWidth = 280;
 
 export default function Admin(props) {
@@ -110,7 +111,7 @@ export default function Admin(props) {
             </Box>
             <Box
                 component="main"
-                sx={{ flexGrow: 1, p: 10, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+                sx={{ flexGrow: 1, p:15, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
                 <Outlet />
