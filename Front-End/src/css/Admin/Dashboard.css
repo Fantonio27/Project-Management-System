@@ -43,5 +43,40 @@
 } */
 
 Body{
-    background-color: #d8f3dc18;
+    background-color: #fcfcfd;
+}
+
+.titlepertable{
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'QuickSand', sans-serif;
+    color: #252a35
+}
+
+.button_add{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px 15px;
+    outline: none;
+    background-color: #69b96e;
+    color: white;
+    border-radius: 5px;
+    border: 0px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.button_add:hover{
+    background-color: #5da462;
+}
+
+.action_icon{
+    
 }

@@ -1,4 +1,4 @@
-import "../../css/Admin/Main.css"
+import "../../../css/Admin/Main.css"
 import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';

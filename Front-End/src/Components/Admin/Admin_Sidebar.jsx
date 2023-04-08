@@ -9,6 +9,10 @@ import FeedRoundedIcon from '@mui/icons-material/FeedRounded';
 import FolderSharedRoundedIcon from '@mui/icons-material/FolderSharedRounded';
 import InterestsRoundedIcon from '@mui/icons-material/InterestsRounded';
 import NoteAltRoundedIcon from '@mui/icons-material/NoteAltRounded';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import Collapse from '@mui/material/Collapse';
+import List from '@mui/material/List';
 
 export default function Admin_Sidebar(props) {
 
@@ -47,10 +51,22 @@ export default function Admin_Sidebar(props) {
             Title: "Student Results",
             Icon: <NoteAltRoundedIcon />,
             Link: "Student_Results",
+            tab: [
+                { sub: "Entrance Exam Results", Link2: "Entrance_Exam_Results" },
+                { sub: "Interest Assessment Results", Link2: "Interest_Assessment_Results" },
+                { sub: "OverAll Results", Link2: "OverAll_Results" },
+            ]
         }
     ]
 
-    let act
+    let act, act1
+
+    const [expanded, setExpanded] = useState(false)
+
+    const handleopentab = () => {
+        setExpanded(prev => !prev)
+    }
+
     return (
         <div className="Admin_Sidebar" >
             <div className="A_Sidebar_header">
@@ -62,66 +78,66 @@ export default function Admin_Sidebar(props) {
             <div className="A_Sidebar_list_container">
                 {Menu.map((val, index) => (
                     act = props.Active.text == val.Link,
-                    <Link to={val.Link} style={{textDecoration: "none", color: "inherit"}} key={index}>
-                        <ListItemButton
-                            name={val.Title}
-                            sx={{
-                                borderRadius: "10px",
-                                margin: "10px 0px",
-                                color: act ? "white" : "#9da4ae",
-                                display: "flex",
-                                gap: "15px",
-                                alignItems: "center",
-                                backgroundColor: act ? "rgb(67, 160, 71,0.2)" : "none",
-                                "&:hover": {
-                                    backgroundColor: "rgb(67, 160, 71,0.2)"
-                                }
-                            }}
-                            onClick={() => props.handleClick(val.Link)}
-                        >
-                            <div style={{ color: act ? "#4caf50" : "#9da4ae", display: "flex" }}>{val.Icon}</div>
-                            <p className="Admin_List_p1">{val.Title}</p>
-                        </ListItemButton>
-                    </Link>
+                    act1 = props.Active.text2 == val.Link,
+                    val.Title === "Student Results" ?
+                        <div key={index}>
+                            <ListItemButton onClick={handleopentab}
+                                sx={{
+                                    borderRadius: "10px",
+                                    margin: "10px 0px 0px",
+                                    color: act1 ? "white" : "#9da4ae",
+                                    display: "flex",
+                                    gap: "15px",
+                                    alignItems: "center",
+                                    justifyContent: 'space-between',
+                                    backgroundColor: act1 ? "rgb(67, 160, 71,0.2)" : "none",
+                                    "&:hover": {
+                                        backgroundColor: "rgb(67, 160, 71,0.2)"
+                                    }
+                                }}
+                            >
+                                <div style={{ display: "flex", gap: "15px" }}>
+                                    <div style={{ color: act1 ? "#4caf50" : "#9da4ae" }}>{val.Icon}</div>
+                                    <p className="Admin_List_p1">{val.Title}</p>
+                                </div>
+                                {expanded ? <ExpandLess /> : <ExpandMore />}
+                            </ListItemButton>
+                            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                                {val.tab.map((sub, index) => {
+                                    return (
+                                        <Link to={`Student_Results/${sub.Link2}`} style={{ textDecoration: "none" }} key={index} state={{name: sub.sub}}>
+                                            <ListItemButton sx={{ pl: 7, color: sub.Link2 === props.Active.text ? "white" : "#9da4ae", }} onClick={() => props.handleClick(sub.Link2, val.Link)}>
+                                                <p className="Admin_List_p1">{sub.sub}</p>
+                                            </ListItemButton>
+                                        </Link>
+                                    )
+                                })}
+                            </Collapse>
+                        </div>
+                        :
+                        <Link to={val.Link} style={{ textDecoration: "none", color: "inherit" }} key={index}>
+                            <ListItemButton
+                                name={val.Title}
+                                sx={{
+                                    borderRadius: "10px",
+                                    margin: "10px 0px",
+                                    color: act ? "white" : "#9da4ae",
+                                    display: "flex",
+                                    gap: "15px",
+                                    alignItems: "center",
+                                    backgroundColor: act ? "rgb(67, 160, 71,0.2)" : "none",
+                                    "&:hover": {
+                                        backgroundColor: "rgb(67, 160, 71,0.2)"
+                                    }
+                                }}
+                                onClick={() => props.handleClick(val.Link)}
+                            >
+                                <div style={{ color: act ? "#4caf50" : "#9da4ae", display: "flex" }}>{val.Icon}</div>
+                                <p className="Admin_List_p1">{val.Title}</p>
+                            </ListItemButton>
+                        </Link>
                 ))}
             </div>
         </div >
     )
 }
-
-{/* <div className="Admin_Sidebar_container">
-                <div className="Admin_Sidebar_Arrow" style={{alignSelf : open? "flex-end" :"center" }}>
-                    {open ?
-                        <ArrowBackIosNewOutlinedIcon sx={icon_sx} onClick={handleclick} />
-                        :
-                        <ArrowForwardIosOutlinedIcon sx={icon_sx} onClick={handleclick} />
-                    }
-                </div>
-                <div className="Admin_Sidebar_Avatar_container">
-                    <img src={Logo} className="Admin_Sidebar_Logo" style={logo_sx}></img>
-                    <h1 className="Admin_Sidebar_Avatar_h1">{open ? "Admin Panel" : ""} </h1>
-                    
-                    <Link to="/" className="Admin_Sidebar_Avatar_a">{open ? "Log Out" : ""}</Link>
-                </div>
-                <div className="Admin_Sidebar_Menu_container">
-                    <p className="Admin_Sidebar_Menu_title">{open ? "Menu" : " "}</p>
-                    {Menu.map((text, index) => (
-                        val = props.index == index,
-                        <ListItemButton key={index} sx={{
-                            margin: "5px 0px",
-                            borderRadius: "20px",
-                            width: "100%",
-                            justifyContent: open ? "initial" : "center",
-                            backgroundColor: val ? "rgb(44, 110, 73)" : "inherit",
-                            fontWeight: val ? "600" : "",
-                            "&:hover": {
-                                backgroundColor: "rgb(44, 110, 73,0.5)"
-                            }
-                        }} 
-                            onClick={()=>props.handleClick(index,text)}
-                        >
-                            {Icon[index]}{open ? <p className="Admin_Sidebar_Menu_p">{text}</p> : ""}
-                        </ListItemButton>
-                    ))}
-                </div>
-            </div> */}

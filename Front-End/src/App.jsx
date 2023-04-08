@@ -14,9 +14,13 @@ import Examination_Main from "./Components/User/Examination_Main";
 import Help from "./Components/User/Help";
 import Course_Info from "./Components/User/Course_Information";
 import Course from "./Components/User/Course"
-import Admin_Main from "./Components/Admin/Admin_Main";
+import Admin_Main from "./Components/Admin/Tab/Admin_Main";
 import Admin_Dashboard from "./Layout/Admin_Dashboard"
 import Student_Info from "./Components/Admin/Tab/Student_Information"
+import Course_Information from "./Components/Admin/Tab/Course_Information";
+import Add_Course_Information from "./Components/Admin/Tab/Add_Course_Information";
+import Student_Results from "./Components/Admin/Tab/Student_Result";
+import Form from "./Components/Admin/Tab/Components/CI_Form";
 
 function App() {
   return (
@@ -40,10 +44,18 @@ function App() {
           <Route path="Help" element={<Help />}></Route>
           <Route path="Profile" element={<Profile />}></Route>
         </Route>
+
+        {/*Admin Dashboard*/}
+
         <Route path="/Admin_Dashboard" element={<Admin_Dashboard />}>
-          <Route path="" element={<Admin_Main />}></Route>
-          <Route path="Student_Information" element={<Student_Info />}>
+          <Route path="" element={<Admin_Main />} />
+          <Route path="Student_Information" element={<Student_Info />} />
+          <Route path="Course_Information">
+            <Route index path="" element={<Course_Information />}/>
+            <Route path=":name" element={<Course_Information />}/>
+            <Route path="Edit/:cid" element={<Form />}/>
           </Route>
+          <Route path="Student_Results/:name" element={<Student_Results />}></Route>
         </Route>
         <Route path='*' element={<Errorpage />} />
       </Routes>
