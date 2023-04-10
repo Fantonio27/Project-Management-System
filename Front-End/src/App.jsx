@@ -18,9 +18,10 @@ import Admin_Main from "./Components/Admin/Tab/Admin_Main";
 import Admin_Dashboard from "./Layout/Admin_Dashboard"
 import Student_Info from "./Components/Admin/Tab/Student_Information"
 import Course_Information from "./Components/Admin/Tab/Course_Information";
-import Add_Course_Information from "./Components/Admin/Tab/Add_Course_Information";
 import Student_Results from "./Components/Admin/Tab/Student_Result";
 import Form from "./Components/Admin/Tab/Components/CI_Form";
+import Entrance_Exam from "./Components/Admin/Tab/Entrance_Exam";
+import Add_Entrance_Exam from "./Components/Admin/Tab/Components/Add_Entrance_Exam";
 
 function App() {
   return (
@@ -55,7 +56,11 @@ function App() {
             <Route path=":name" element={<Course_Information />}/>
             <Route path="Edit/:cid" element={<Form />}/>
           </Route>
-          <Route path="Student_Results/:name" element={<Student_Results />}></Route>
+          <Route path="Student_Results/:name" element={<Student_Results />}/>
+          <Route path="Entrance_Exam">
+            <Route path="" element={<Entrance_Exam />}/>
+            <Route path="Add" element={<Add_Entrance_Exam />}/>
+          </Route>
         </Route>
         <Route path='*' element={<Errorpage />} />
       </Routes>
