@@ -1,0 +1,71 @@
+.Dashboard_main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+}
+
+/* 
+
+.Course_Directory{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        ". . .";
+    align-items: center;
+}
+
+.box{
+    border-radius: 20px;
+    background-color: #d8f3dce6;
+    color: #458d6b;
+    width:max-content;
+    padding: 5px;
+}   
+
+.Course_Directory{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px ;
+}
+
+.box_pic{
+   
+}
+
+.box_img1, .box_img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.box_img1{
+    background-image: url('../../assets/Images/2.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.box_img1 div{
+    background: linear-gradient(180deg, rgba(253, 253, 253, 0.147) 0%, rgba(246, 246, 246,  0.147)50%, rgba(0, 0, 0, 2) 100%, rgba(164,170,158,1) 100%);
+    height: 100%;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column-reverse;
+    color: white;
+    padding: 15px 15px;
+}
+
+.p1{
+    font-weight: 600;
+    font-size: 16px;
+    font-family: Inter;
+}
+
+.p2{
+    font-size: 14px;
+    font-family: Poppins;
+} */

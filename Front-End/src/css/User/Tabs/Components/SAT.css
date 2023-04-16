@@ -1,0 +1,317 @@
+.SAT {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 0px;
+}
+
+.SAT_container {
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr;
+    grid-template-rows: 1fr;
+    gap: 0px 35px;
+    grid-template-areas:
+        ". .";
+}
+
+.SAT_Questions_container {
+    display: flex;
+    flex-direction: column;
+    /* margin: 30px 0px; */
+    gap: 30px;
+    border-top: 2px solid #458d6b7f;
+    padding: 30px 0px;
+}
+
+.SAT_p1 {
+    font-family: 'QuickSand', sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: #458d6b;
+    line-height: 1.2;
+}
+
+.SAT_p2 {
+    font-family: 'QuickSand', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: rgb(26, 44, 42);
+}
+
+.SAT_p3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: rgb(26, 44, 42);
+    margin: 5px 0px 15px;
+}
+
+.SAT_Questions {
+    /* background-color:#; */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border-radius: 12px;
+    border: 1px solid #E9ECEF;
+}
+
+.tile {
+    /* background-color: #458d6b; */
+    /* color: white; */
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #457860;
+    padding: 12px 30px;
+    background-color: #458d6b16;
+}
+
+
+.SAT_form {
+    padding: 30px;
+}
+
+.SAT_q1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: rgb(26, 44, 42);
+}
+
+
+.SAT_c1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 10px;
+    color: rgba(26, 44, 42, 0.971);
+}
+
+.Question_Status {
+    height: max-content;
+    position: relative;
+}
+
+.Status_div0{
+    position: fixed;
+    padding: 30px;
+    border: 1px solid #4578600e;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    background-color: #458d6b0b;
+    font-family: 'Poppins', sans-serif;
+}
+
+.Status_div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 15px 15px;
+    padding: 10px 50px;
+}
+
+.roundball {
+    border-radius: 20px;
+    border: 1px solid #457860aa;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Status_subjects{
+    border: 1px solid #457860aa;
+    padding:8px 0px;
+    text-align: center;
+    margin:10px 0px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+/* .SAT_header {
+    font-family: 'QuickSand', sans-serif;
+    letter-spacing: 1px;
+    color: #295c45;
+    padding: 12px 25px;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: #388e3c29;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid white;
+}
+
+.SAT_container {
+    display: flex;
+    gap: 50px;
+    padding: 0px 25px 40px 25px;
+}
+
+.SAT_form {
+    width: 80%;
+}
+
+.SAT_question_h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    background-color: #388e3ce8;
+    padding: 15px 20px;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    letter-spacing: 1px;
+}
+
+.SAT_question_p2 {
+    font-family: 'Karla', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 20px 20px 0px;
+    letter-spacing: 0.5px;
+    color: #1a533b;
+}
+
+.Question_Status {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 8px;
+}
+
+.SAT_sub_container {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    margin: 20px 25px 50px;
+}
+
+.SAT_sub_container div {
+    padding: 10px 20px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.Question_Status_container {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+    gap: 10px;
+}
+
+.Questions_circle {
+    border: 1px solid #e9ecef;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    background-color: #f8f9fa;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.Question_Status_p1,
+.Question_Status_p2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.choices_group {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    margin: 20px 20px;
+}
+
+.choices_group div {
+    border: 1px;
+    padding: 5px 0px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.choices_group div:hover {
+    background-color: #388e3c1d;
+}
+
+.SAT_header_div {
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.SAT_question_container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 20px 0px;
+}
+
+.SAT_question {
+    border: 1px solid #ced4da63;
+    background-color: #388e3c05;
+    border-radius: 10px;
+    color: #255741;
+}
+
+.SAT_form_p {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    margin: 20px 5px 0px;
+}
+
+.status{
+
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 25px;
+}
+
+.status div div {
+    width: 12px;
+    height: 12px;
+    border-radius: 20px;
+    border: 1px solid #ced4da63
+}
+
+.status div {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-family: 'Karla', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #343a40;
+} */

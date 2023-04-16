@@ -1,0 +1,19 @@
+.Navbar_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        ". . .";
+}
+
+.Navbar_Logo{
+    object-fit: contain;
+    width: 50px;
+}
+
+.Navbar_p1{
+    font-family: 'Inter', sans-serif;
+    text-transform: none;
+    /* color: rgb(37, 42, 53); */
+}

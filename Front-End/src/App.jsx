@@ -1,37 +1,80 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Dashboard from './Layout/Dashboard'
+
+/** User Pages **/
+
+// User Form
+import SignUp from "./Components/User/Forms/SignUp"
+import Login from "./Components/User/Forms/Login";
+
+// User Dashboard
+import Dashboard from "./Components/User/Dashboard";
+
+//User Tabs
+import Main_Dashboard from './Components/User/Tab/Main_Dashboard'
+import Course_Directory from "./Components/User/Tab/Course_Directory"
+import IA_Information from "./Components/User/Tab/IA_Information";
+import Profile from './Components/User/Tab/Profile'
+import Help from "./Components/User/Tab/Help";
+
+//Components 
+import Examination from "./Components/User/Tab/Examination";
+import SAT from "./Components/User/Tab/Components/SAT";
+import Course_Info from "./Components/User/Tab/Components/Course_Information";
+import IA from "./Components/User/Tab/Components/IA";
+/* End*/
+
+
+/** Admin Pages **/
+
+// Admin Form
 import Admin_Login from './Components/Admin/Admin_Login'
-import Main from './Components/User/Main'
-import Profile from './Components/User/User_Profile'
-import Course_Directory from "./Components/User/Course_Directory"
-import SignUp from "./Components/User/SignUp"
-import Login from "./Components/User/User_login";
-import Errorpage from './Components/ErrorPage'
-import Index from "./Layout/index";
-import SAT from "./Components/User/SAT";
-import Exam_Page from "./Layout/Exam_page";
-import Examination_Main from "./Components/User/Examination_Main";
-import Help from "./Components/User/Help";
-import Course_Info from "./Components/User/Course_Information";
-import Course from "./Components/User/Course"
+
+//Admin Pages
 import Admin_Main from "./Components/Admin/Tab/Admin_Main";
 import Admin_Dashboard from "./Layout/Admin_Dashboard"
+
+//Admin Tabs
 import Student_Info from "./Components/Admin/Tab/Student_Information"
 import Course_Information from "./Components/Admin/Tab/Course_Information";
 import Student_Results from "./Components/Admin/Tab/Student_Result";
-import Form from "./Components/Admin/Tab/Components/CI_Form";
 import Entrance_Exam from "./Components/Admin/Tab/Entrance_Exam";
+
+//Components 
+import Form from "./Components/Admin/Tab/Components/CI_Form";
 import Add_Entrance_Exam from "./Components/Admin/Tab/Components/Add_Entrance_Exam";
+
+/* End*/
+
+
+/** Extra Pages **/
+import Errorpage from './Components/ErrorPage'
+import Index from "./Layout/index";
+
+
+
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Index />}>
+        {/* <Route path="/" element={<Index />}>
           <Route index path="" element={<Login />}></Route>
           <Route path="Sign_Up" element={<SignUp />}></Route>
           <Route path="Admin_Login" element={<Admin_Login />}></Route>
+        </Route> */}
+
+        <Route path="/" element={<Dashboard />}>
+          <Route path="" element={<Main_Dashboard />}></Route>
+          <Route path="Course_Directory" element={<Course_Directory />}></Route>
+          <Route path="IA_Information" element={<IA_Information />} /> 
+          <Route path="Examination">
+            <Route path="" element={<Examination />}></Route>
+            <Route path="Scholastic_Aptitude_Test" element={<SAT />}></Route>
+            <Route path="Interest_Assessment" element={<IA />}></Route>
+          </Route>
+          <Route path="Help" element={<Help />} />
         </Route>
+{/* 
         <Route path="/Dashboard" element={<Dashboard />}>
           <Route index path="" element={<Main />}></Route>
           <Route path="Course_Diretory" element={<Course />}>
@@ -40,11 +83,11 @@ function App() {
           </Route>
           <Route path="Examination" element={<Exam_Page />}>
             <Route path="" element={<Examination_Main />}></Route>
-            <Route path="Scholastic_Aptitude_Test" element={<SAT />}></Route>
+    
           </Route>
           <Route path="Help" element={<Help />}></Route>
           <Route path="Profile" element={<Profile />}></Route>
-        </Route>
+        </Route> */}
 
         {/*Admin Dashboard*/}
 
@@ -52,16 +95,17 @@ function App() {
           <Route path="" element={<Admin_Main />} />
           <Route path="Student_Information" element={<Student_Info />} />
           <Route path="Course_Information">
-            <Route index path="" element={<Course_Information />}/>
-            <Route path=":name" element={<Course_Information />}/>
-            <Route path="Edit/:cid" element={<Form />}/>
+            <Route index path="" element={<Course_Information />} />
+            <Route path=":name" element={<Course_Information />} />
+            <Route path="Edit/:cid" element={<Form />} />
           </Route>
-          <Route path="Student_Results/:name" element={<Student_Results />}/>
+          <Route path="Student_Results/:name" element={<Student_Results />} />
           <Route path="Entrance_Exam">
-            <Route path="" element={<Entrance_Exam />}/>
-            <Route path="Add" element={<Add_Entrance_Exam />}/>
+            <Route path="" element={<Entrance_Exam />} />
+            <Route path="Add" element={<Add_Entrance_Exam />} />
           </Route>
         </Route>
+
         <Route path='*' element={<Errorpage />} />
       </Routes>
     </BrowserRouter>

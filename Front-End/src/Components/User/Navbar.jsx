@@ -1,152 +1,129 @@
-import "../../css/Navbar.css"
-import Avatar from '@mui/material/Avatar';
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
+import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
-import { useState } from "react";
-import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
-import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Link, useNavigate } from "react-router-dom";
-import Modal from '@mui/material/Modal';
-import { Box } from "@mui/system";
-import Logo from '../../assets/Images/logo.png'
-import Menu from '@mui/material/Menu';
+import logo from '../../assets/Images/logo.png'
+import "../../css/User/Navbar.css"
+import { Avatar } from '@mui/material';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import { Link } from 'react-router-dom'
 
-const Avatar_design = {
-    backgroundColor: "#388E3C",
-    mr: "10px"
-}
+export default function User_Navbar(props) {
 
-export default function Navbar(props) {
+    const drawerWidth = 240;
+    const navItems = ['Dashboard', 'Course', 'IA Information', 'Examination', 'Help']
 
-    const navigate = useNavigate();
+    const navLinks = ["", 'Course_Directory', 'IA_Information', 'Examination', 'Help'];
 
-    const Menu_sx = {
-        transform: props.Menu ? "rotate(90deg)" : "none",
-        transition: "0.5s",
-        color: "#388E3C",
-        mr: '20px'
-    }
+    const { window } = props;
+    const [mobileOpen, setMobileOpen] = React.useState(false);
 
-    const [modal, setmodal] = useState(false)
-
-    const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        backgroundColor: 'white',
-        borderRadius: '20px',
-        border: "1px solid #dee2e6",
-        p: 4,
+    const handleDrawerToggle = () => {
+        setMobileOpen((prevState) => !prevState);
     };
 
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    }
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    const drawer = (
+        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+            <Typography variant="h6" sx={{ my: 2 }}>
+                MUI
+            </Typography>
+            <Divider />
+            <List>
+                {navItems.map((item) => (
+                    <ListItem key={item} disablePadding>
+                        <ListItemButton sx={{ textAlign: 'center' }}>
+                            <ListItemText primary={item} />
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+            </List>
+        </Box>
+    );
+
+    const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <div className="Navbar">
-            <div>
-                <IconButton sx={Menu_sx} onClick={props.MenuClick}>
-                    <MenuIcon />
-                </IconButton>
-                <img src={Logo} className="Navbar-logo" />
-            </div>
-            <div className="Navbar-usertab">
-                <Button sx={{ padding: '2px' }} onClick={handleClick}>
-                    <Avatar sx={Avatar_design}>{props.data.FIRSTNAME[0]}{props.data.LASTNAME[0]}</Avatar>
-                    <p>{props.data.FIRSTNAME} {props.data.LASTNAME}</p>
-                    <KeyboardArrowDownIcon sx={{
-                        transform: open ? "rotate(180deg)" : "rotate(0deg)",
-                        transition: "0.3s"
-                    }} />
-                </Button>
-                <Menu
-                    sx={{
-                        position: "absolute",
-                        left: "100px",
-                        top: "20px"
-                    }}
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    MenuListProps={{
-                        'aria-labelledby': 'basic-button',
-                    }}>
-                    <Link to="Profile" style={{ textDecoration: "none", color: "inherit" }} state={props.data}>
-                        <MenuItem onClick={handleClose}>
-                            <PersonRoundedIcon sx={{ mr: 1.5 }} />
-                            <p>Profile</p>
-                        </MenuItem>
-                    </Link>
-                    <MenuItem onClick={() => (setmodal(prev => !prev), setAnchorEl(null))}>
-                        <ExitToAppRoundedIcon sx={{ mr: 1.5 }} />
-                        <p>Sign Out</p>
-                    </MenuItem>
-                </Menu>
-                <Modal
-                    open={modal}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                >
-                    <Box sx={style}>
-                        <h1 className="modal_h1">Log out</h1>
+        <div>
+            <AppBar component="nav" sx={{ backgroundColor: 'white', boxShadow: 'rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;' }} elevation={0}>
+                <Toolbar>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        edge="start"
+                        onClick={handleDrawerToggle}
+                        sx={{ mr: 2, display: { sm: 'none' }, color: '#458d6b' }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
 
-                        <p className="modal_p1">
-                            Are you sure you want to sign out?
-                        </p>
-                        <div className="modal_div">
-                            <button className="SignOut_btn" onClick={() => navigate("/")}>Sign Out</button>
-                            <button className="Cancel_btn" onClick={() => setmodal(prev => false)}>Cancel</button>
+                    <Box sx={{ display: { xs: 'none', sm: 'block' }, width: '100%' }}>
+                        <div className='Navbar_container'>
+                            <img src={logo} className="Navbar_Logo" />
+                            <div style={{ display: 'flex', justifyContent: 'center', gap: '30px' }}>
+                                {navItems.map((item, index) => {
+                                    let active = props.tabindex === index
+                                    return(
+                                    <Link to={navLinks[index]} style={{
+                                        textDecoration: 'none',
+                                        // backgroundColor: 'red',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        borderBottom: active? '1px solid #458d6b': '1px solid white'
+                                    }} key={item}>
+                                        <Button key={item} sx={{
+                                            color: active? '#458d6b' : '#1a2c2aff',
+                                            padding: '5px 10px',
+                                            // color: props.tabindex === index ? 'white' : '#1a2c2aff',
+                                            // backgroundColor: props.tabindex === index? 'rgb(69, 141, 107)':'none',
+                                            '&:hover': {
+                                                backgroundColor: 'rgb(69, 141, 107,0.09)'
+                                            }
+                                        }}
+                                            onClick={() => { props.handletab(index) }}>
+                                            <p className='Navbar_p1'>{item}</p>
+                                        </Button>
+                                    </Link>
+                                )})}
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                                <Avatar sx={{ backgroundColor: '#d8f3dce6', color: '#458d6b', fontSize: '16px' }}>AD</Avatar>
+                            </div>
                         </div>
                     </Box>
-                </Modal>
-            </div>
+                </Toolbar>
+            </AppBar>
+
+            <Box component="nav">
+                <Drawer
+                    container={container}
+                    variant="temporary"
+                    open={mobileOpen}
+                    onClose={handleDrawerToggle}
+                    ModalProps={{
+                        keepMounted: true,
+                    }}
+                    sx={{
+                        display: { xs: 'block', sm: 'none' },
+                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                    }}
+                >
+                    {drawer}
+                </Drawer>
+            </Box>
         </div>
     )
 }
 
-  {/* <Button
-                    id="basic-button"
-                    aria-controls={open ? 'basic-menu' : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    onClick={handleClick}
-                >
-                    <Avatar sx={Avatar_design}>{props.data.FirstName[0]}{props.data.LastName[0]}</Avatar>
-                    <p>{props.data.FirstName} {props.data.LastName}</p>
-                    <KeyboardArrowDownIcon sx={{
-                        transform: menubar ? "rotate(180deg)" : "rotate(0deg)",
-                        transition: "0.3s"
-                    }} />
-                </Button>
-                <Menu
-                    id="basic-menu"
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    MenuListProps={{
-                        'aria-labelledby': 'basic-button',
-                    }}
-                >
-                    <Link to="Profile" style={{ textDecoration: "none", color: "inherit" }} state={props.data}>
-                        <MenuItem onClick={
-                            handleClose
-                        }>
-                            <PersonRoundedIcon sx={{ mr: 1.5 }} />
-                            <p>Profile</p>
-                        </MenuItem>
-                    </Link>
-                    <MenuItem onClick={() => setmodal(prev => !prev)}>
-                        <ExitToAppRoundedIcon sx={{ mr: 1.5 }} />
-                        <p>Sign Out</p>
-                    </MenuItem>
-                </Menu> */}
+// DrawerAppBar.propTypes = {
+//     window: PropTypes.func,
+// };
