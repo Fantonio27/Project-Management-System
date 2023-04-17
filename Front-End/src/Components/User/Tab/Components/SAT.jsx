@@ -107,7 +107,7 @@ export default function SAT() {
                             <div className="Status_subjects">English</div>
                             <div className="Status_subjects">Reading Comprehension</div>
                         </div>
-                        <Link to="Interest_Assessment">
+                        <Link to="../Interest_Assessment">
                             <Button>Submit</Button>
                         </Link>
                     </div>

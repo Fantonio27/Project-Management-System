@@ -93,14 +93,24 @@ export default function Login(props) {
             axios.get(`http://localhost/recommendation_system/api/user/Login.php?lrn=${Dataform.LRN}&pass=${Dataform.Password}`).then(function (response) {
                 // console.log(response.data[0].LRN);
                 if (response.data.length == 1) {
+                    const data = {
+                            // STUDENTNO : response.data[0].STUDENT_NO,
+                            LRN : response.data[0].LRN,
+                            FIRSTNAME : response.data[0].STUDENT_FIRSTNAME,
+                            LASTNAME : response.data[0].STUDENT_LASTNAME,
+                        };
+
+                    window.localStorage.setItem('USER_DATA', JSON.stringify(data))
+                    
                     navigate("/Dashboard",
                         {
-                            state: {
-                                // STUDENTNO : response.data[0].STUDENT_NO,
-                                LRN : response.data[0].LRN,
-                                FIRSTNAME : response.data[0].STUDENT_FIRSTNAME,
-                                LASTNAME : response.data[0].STUDENT_LASTNAME,
-                            }
+                            // state: {
+                            //     // STUDENTNO : response.data[0].STUDENT_NO,
+                            //     LRN : response.data[0].LRN,
+                            //     FIRSTNAME : response.data[0].STUDENT_FIRSTNAME,
+                            //     LASTNAME : response.data[0].STUDENT_LASTNAME,
+                            // }
+                            
                         });
 
                 } else if (response.data.length == 0) {
@@ -195,16 +205,19 @@ export default function Login(props) {
                         value={Dataform.LRN}
                         pattern="[0-9]*"
                         onChange={handlechange}
+                        InputLabelProps={{
+                            style: { color: notif.LRN? 'red': '#4e7f38ff' },
+                        }}
                     />
                     <p className="label_sm" style={{
                         paddingBottom: notif.LRN ? "2px" : "0px",
                         height: notif.LRN ? "12px" : "0px"
                     }}>
-                        {valtext.LRN ? "Must be exact 12 numbers" : "Please fill in this required fields."}
+                        {valtext.LRN ? `Must be exact 12 numbers (char: ${Dataform.LRN.length})` : "Please fill in this required fields."}
                     </p>
                     <FormControl className="Login_input_text" sx={textbox} variant="outlined" >
-                        <InputLabel color="success" >Password</InputLabel>
-                        <OutlinedInput
+                        <InputLabel><p style={{color: notif.Password ? 'red' : '#4e7f38ff'}}>Password</p></InputLabel>
+                        <OutlinedInput     
                             error={notif.Password ? true : false}
                             name="Password"
                             type={showPassword ? 'text' : 'password'}

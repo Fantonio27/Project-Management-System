@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2023 at 05:14 PM
+-- Generation Time: Apr 16, 2023 at 04:37 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -45,7 +45,7 @@ CREATE TABLE `course_information` (
   `ACRONYM` varchar(255) NOT NULL,
   `COURSE_NAME` varchar(255) NOT NULL,
   `INFORMATION` varchar(255) NOT NULL,
-  `HEADER_PICTURE` int(255) NOT NULL,
+  `HEADER_PICTURE` varchar(255) NOT NULL,
   `DATE` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -54,8 +54,8 @@ CREATE TABLE `course_information` (
 --
 
 INSERT INTO `course_information` (`CID`, `FIELD`, `ACRONYM`, `COURSE_NAME`, `INFORMATION`, `HEADER_PICTURE`, `DATE`) VALUES
-(1, 'Engineering', 'BSIT', 'Bachelor of Science in Information Technology', 'blabla', 0, '02/02/02'),
-(2, 'Humanity', 'HUMSS', 'Scientist', 'I dont know', 0, '02/03/04');
+(1, 'Formal Sciences ', 'BSIT', 'Bachelor of Science in Computer Science ', 'Focuses on the study of computer systems and the development of computer software and hardware.', '2.jpg', '02/02/02'),
+(2, 'Humanities ', 'HUMSS', 'Bachelor of Fine Arts Major in Industrial Design ', 'Explores fundamental questions about knowledge, existence, ethics, and the nature of reality through critical thinking and analysis.', '1.jpg', '02/03/04');
 
 -- --------------------------------------------------------
 
@@ -81,11 +81,11 @@ INSERT INTO `course_information_job` (`CIJID`, `JOB_NAME`, `INFORMATION`, `CID`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `eeq_english`
+-- Table structure for table `eq_english`
 --
 
-CREATE TABLE `eeq_english` (
-  `EEQID` int(255) NOT NULL,
+CREATE TABLE `eq_english` (
+  `EQEID` int(255) NOT NULL,
   `Question` varchar(255) NOT NULL,
   `Choice_A` int(255) NOT NULL,
   `Choice_B` int(255) NOT NULL,
@@ -94,17 +94,17 @@ CREATE TABLE `eeq_english` (
   `Choice_E` int(255) NOT NULL,
   `Choice_F` int(255) NOT NULL,
   `Answer` varchar(255) NOT NULL,
-  `EEID` int(255) NOT NULL
+  `EID` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `eeq_math`
+-- Table structure for table `eq_math`
 --
 
-CREATE TABLE `eeq_math` (
-  `EEQID` int(255) NOT NULL,
+CREATE TABLE `eq_math` (
+  `EQMID` int(255) NOT NULL,
   `Question` varchar(255) NOT NULL,
   `Choice_A` int(255) NOT NULL,
   `Choice_B` int(255) NOT NULL,
@@ -113,17 +113,17 @@ CREATE TABLE `eeq_math` (
   `Choice_E` int(255) NOT NULL,
   `ChoiceF` int(255) NOT NULL,
   `Answer` int(255) NOT NULL,
-  `EEID` int(255) NOT NULL
+  `EID` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `eeq_reading_comp`
+-- Table structure for table `eq_reading_comprehension`
 --
 
-CREATE TABLE `eeq_reading_comp` (
-  `EEQID` int(255) NOT NULL,
+CREATE TABLE `eq_reading_comprehension` (
+  `EQRCID` int(255) NOT NULL,
   `Question` varchar(255) NOT NULL,
   `Choice_A` int(255) NOT NULL,
   `Choice_B` int(255) NOT NULL,
@@ -132,17 +132,17 @@ CREATE TABLE `eeq_reading_comp` (
   `Choice_E` int(255) NOT NULL,
   `Choice_F` int(255) NOT NULL,
   `Answer` varchar(255) NOT NULL,
-  `EEID` int(255) NOT NULL
+  `EID` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `eeq_science`
+-- Table structure for table `eq_science`
 --
 
-CREATE TABLE `eeq_science` (
-  `EEQID` int(255) NOT NULL,
+CREATE TABLE `eq_science` (
+  `EQSID` int(255) NOT NULL,
   `Question` varchar(255) NOT NULL,
   `Choice_A` int(255) NOT NULL,
   `Choice_B` int(255) NOT NULL,
@@ -151,23 +151,19 @@ CREATE TABLE `eeq_science` (
   `Choice_E` int(255) NOT NULL,
   `Choice_F` int(255) NOT NULL,
   `Answer` varchar(255) NOT NULL,
-  `EEID` int(255) NOT NULL
+  `EID` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `entrance_exam`
+-- Table structure for table `exams_form`
 --
 
-CREATE TABLE `entrance_exam` (
-  `EEID` int(11) NOT NULL,
-  `TITLE` varchar(255) NOT NULL,
-  `MATH_TOTAL_ITEM` varchar(255) NOT NULL,
-  `ENGLISH_TOTAL_ITEM` varchar(255) NOT NULL,
-  `SCIENCE_TOTAL_ITEM` varchar(255) NOT NULL,
-  `READING_COMPREHENSION_TOTAL_ITEM` varchar(255) NOT NULL,
-  `TOTAL_ITEM` varchar(255) NOT NULL,
+CREATE TABLE `exams_form` (
+  `EFID` int(11) NOT NULL,
+  `EID` int(255) NOT NULL,
+  `IAFID` int(255) NOT NULL,
   `STATUS` varchar(255) NOT NULL,
   `DATE` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -175,11 +171,27 @@ CREATE TABLE `entrance_exam` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `entrance_exam_result`
+-- Table structure for table `exam_informations`
 --
 
-CREATE TABLE `entrance_exam_result` (
-  `EERID` int(11) NOT NULL,
+CREATE TABLE `exam_informations` (
+  `EID` int(11) NOT NULL,
+  `TITLE` varchar(255) NOT NULL,
+  `MATH_TOTAL_ITEM` varchar(255) NOT NULL,
+  `ENGLISH_TOTAL_ITEM` varchar(255) NOT NULL,
+  `SCIENCE_TOTAL_ITEM` varchar(255) NOT NULL,
+  `READING_COMPREHENSION_TOTAL_ITEM` varchar(255) NOT NULL,
+  `TOTAL_ITEM` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exam_result`
+--
+
+CREATE TABLE `exam_result` (
+  `ERID` int(11) NOT NULL,
   `MATH_SCORE` int(255) NOT NULL,
   `ENGLISH_SCORE` int(255) NOT NULL,
   `SCIENCE_SCORE` int(255) NOT NULL,
@@ -191,23 +203,33 @@ CREATE TABLE `entrance_exam_result` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `entrance_exam_result`
+-- Dumping data for table `exam_result`
 --
 
-INSERT INTO `entrance_exam_result` (`EERID`, `MATH_SCORE`, `ENGLISH_SCORE`, `SCIENCE_SCORE`, `READING_COMPREHENSION_SCORE`, `TOTAL_SCORE`, `EXAM_RESULT`, `LRN`, `DATE`) VALUES
+INSERT INTO `exam_result` (`ERID`, `MATH_SCORE`, `ENGLISH_SCORE`, `SCIENCE_SCORE`, `READING_COMPREHENSION_SCORE`, `TOTAL_SCORE`, `EXAM_RESULT`, `LRN`, `DATE`) VALUES
 (1, 10, 10, 10, 10, 30, 'PASSED', 2147483647, '01/02/03');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `exam`
+-- Table structure for table `ia_informations`
 --
 
-CREATE TABLE `exam` (
-  `EID` int(11) NOT NULL,
-  `EXAM_TYPE` varchar(255) NOT NULL,
-  `STATUS` varchar(255) NOT NULL,
-  `DATE` varchar(255) NOT NULL
+CREATE TABLE `ia_informations` (
+  `IAFID` int(11) NOT NULL,
+  `TOTAL_ITEMS` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ia_questions`
+--
+
+CREATE TABLE `ia_questions` (
+  `IAQID` int(11) NOT NULL,
+  `Question` int(11) NOT NULL,
+  `IAIID` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -270,8 +292,8 @@ CREATE TABLE `interest_nfo` (
 
 CREATE TABLE `overall_result` (
   `RID` int(255) NOT NULL,
-  `EERID` int(255) NOT NULL,
-  `IRID` int(255) NOT NULL,
+  `ERID` int(255) NOT NULL,
+  `IARID` int(255) NOT NULL,
   `RECOMMENDED_COURSE` varchar(255) NOT NULL,
   `RESULT_STATUS` varchar(255) NOT NULL,
   `LRN` int(255) NOT NULL,
@@ -282,7 +304,7 @@ CREATE TABLE `overall_result` (
 -- Dumping data for table `overall_result`
 --
 
-INSERT INTO `overall_result` (`RID`, `EERID`, `IRID`, `RECOMMENDED_COURSE`, `RESULT_STATUS`, `LRN`, `DATE`) VALUES
+INSERT INTO `overall_result` (`RID`, `ERID`, `IARID`, `RECOMMENDED_COURSE`, `RESULT_STATUS`, `LRN`, `DATE`) VALUES
 (1, 2, 3, 'BSIT', 'PASSED', 2147483647, '01/01/2003');
 
 -- --------------------------------------------------------
@@ -340,22 +362,34 @@ ALTER TABLE `course_information_job`
   ADD PRIMARY KEY (`CIJID`);
 
 --
--- Indexes for table `entrance_exam`
+-- Indexes for table `exams_form`
 --
-ALTER TABLE `entrance_exam`
-  ADD PRIMARY KEY (`EEID`);
+ALTER TABLE `exams_form`
+  ADD PRIMARY KEY (`EFID`);
 
 --
--- Indexes for table `entrance_exam_result`
+-- Indexes for table `exam_informations`
 --
-ALTER TABLE `entrance_exam_result`
-  ADD PRIMARY KEY (`EERID`);
-
---
--- Indexes for table `exam`
---
-ALTER TABLE `exam`
+ALTER TABLE `exam_informations`
   ADD PRIMARY KEY (`EID`);
+
+--
+-- Indexes for table `exam_result`
+--
+ALTER TABLE `exam_result`
+  ADD PRIMARY KEY (`ERID`);
+
+--
+-- Indexes for table `ia_informations`
+--
+ALTER TABLE `ia_informations`
+  ADD PRIMARY KEY (`IAFID`);
+
+--
+-- Indexes for table `ia_questions`
+--
+ALTER TABLE `ia_questions`
+  ADD PRIMARY KEY (`IAQID`);
 
 --
 -- Indexes for table `instructions`
@@ -392,22 +426,16 @@ ALTER TABLE `course_information_job`
   MODIFY `CIJID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `entrance_exam`
+-- AUTO_INCREMENT for table `exam_informations`
 --
-ALTER TABLE `entrance_exam`
-  MODIFY `EEID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `entrance_exam_result`
---
-ALTER TABLE `entrance_exam_result`
-  MODIFY `EERID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `exam`
---
-ALTER TABLE `exam`
+ALTER TABLE `exam_informations`
   MODIFY `EID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `exam_result`
+--
+ALTER TABLE `exam_result`
+  MODIFY `ERID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `instructions`

@@ -17,3 +17,46 @@
     text-transform: none;
     /* color: rgb(37, 42, 53); */
 }
+
+.Navbar_Avatar{
+    padding: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: #141826ff;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.Navbar_Avatar_p1{
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1;
+    margin-top: 7px;
+    color: rgba(37, 42, 53, 0.895);
+    letter-spacing: 1px;
+}
+
+.Navbar_title{
+    font-size: 34px;
+    font-family: 'QuickSand', sans-serif;
+    font-weight: bold;
+    color: #407d61;
+}
+
+.avatar_button{
+    display: flex;
+    border: 0px ;
+    background-color: white;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.avatar_button:hover{
+    background-color: rgba(242, 243, 244, 0.336);
+}
+

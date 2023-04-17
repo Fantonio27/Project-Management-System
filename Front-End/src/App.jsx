@@ -27,7 +27,7 @@ import IA from "./Components/User/Tab/Components/IA";
 /** Admin Pages **/
 
 // Admin Form
-import Admin_Login from './Components/Admin/Admin_Login'
+import Admin_Login from './Components/Admin/Forms/Admin_Login'
 
 //Admin Pages
 import Admin_Main from "./Components/Admin/Tab/Admin_Main";
@@ -57,41 +57,29 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<Index />}>
-          <Route index path="" element={<Login />}></Route>
-          <Route path="Sign_Up" element={<SignUp />}></Route>
-          <Route path="Admin_Login" element={<Admin_Login />}></Route>
-        </Route> */}
+        <Route path="/" element={<Index />}>
+          <Route path="" element={<Login />}></Route>
+          <Route path="Sign_Up" element={<SignUp />} />
+        </Route>
 
-        <Route path="/" element={<Dashboard />}>
+        <Route path="Dashboard" element={<Dashboard />}>
           <Route path="" element={<Main_Dashboard />}></Route>
-          <Route path="Course_Directory" element={<Course_Directory />}></Route>
-          <Route path="IA_Information" element={<IA_Information />} /> 
+          <Route path="Course_Directory">
+            <Route path="" element={<Course_Directory />} />
+            <Route path=":name" element={<Course_Info />} />
+          </Route>
+          <Route path="IA_Information" element={<IA_Information />} />
           <Route path="Examination">
-            <Route path="" element={<Examination />}></Route>
-            <Route path="Scholastic_Aptitude_Test" element={<SAT />}></Route>
-            <Route path="Interest_Assessment" element={<IA />}></Route>
+            <Route path="" element={<Examination />} />
+            <Route path="Scholastic_Aptitude_Test" element={<SAT />} />
+            <Route path="Interest_Assessment" element={<IA />} />
           </Route>
           <Route path="Help" element={<Help />} />
         </Route>
-{/* 
-        <Route path="/Dashboard" element={<Dashboard />}>
-          <Route index path="" element={<Main />}></Route>
-          <Route path="Course_Diretory" element={<Course />}>
-            <Route path="" element={<Course_Directory />}></Route>
-            <Route path=":name" element={<Course_Info />}></Route>
-          </Route>
-          <Route path="Examination" element={<Exam_Page />}>
-            <Route path="" element={<Examination_Main />}></Route>
-    
-          </Route>
-          <Route path="Help" element={<Help />}></Route>
-          <Route path="Profile" element={<Profile />}></Route>
-        </Route> */}
 
-        {/*Admin Dashboard*/}
-
-        <Route path="/Admin_Dashboard" element={<Admin_Dashboard />}>
+        <Route path="Admin_Login" element={<Admin_Login />} />
+        
+        <Route path="Admin_Dashboard" element={<Admin_Dashboard />}>
           <Route path="" element={<Admin_Main />} />
           <Route path="Student_Information" element={<Student_Info />} />
           <Route path="Course_Information">
@@ -107,6 +95,22 @@ function App() {
         </Route>
 
         <Route path='*' element={<Errorpage />} />
+        {/* 
+        <Route path="/Dashboard" element={<Dashboard />}>
+          <Route index path="" element={<Main />}></Route>
+          <Route path="Course_Diretory" element={<Course />}>
+            <Route path="" element={<Course_Directory />}></Route>
+            <Route path=":name" element={<Course_Info />}></Route>
+          </Route>
+          <Route path="Examination" element={<Exam_Page />}>
+            <Route path="" element={<Examination_Main />}></Route>
+    
+          </Route>
+          <Route path="Help" element={<Help />}></Route>
+          <Route path="Profile" element={<Profile />}></Route>
+        </Route> */}
+
+        {/*Admin Dashboard*/}
       </Routes>
     </BrowserRouter>
   )

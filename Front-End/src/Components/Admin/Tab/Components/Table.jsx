@@ -122,16 +122,6 @@ const select_sx = {
 //     // { id: 'Action', label: 'Actions', minWidth: 0, align: 'center' },
 // ];
 
-const data = [      //Example data
-    {
-        Student_Name: "Francis Louie Antonio",
-        LRN: "123456789012",
-        Exam_Status: "Passed",
-        Email_Address: "example@gmail.com",
-        Date_Added: "01/02/2003",
-
-    },
-]
 
 // const field = [          //Field in dialog
 //     { id: 'FirstName', label: 'First Name', value: 'Francis' },
@@ -160,41 +150,9 @@ export default function Data_Table(props) {
         setPage(0);
     };
 
-    // useEffect(() => {   //for Scrolling up
-    //     window.scrollTo(0, 0)
-    // }, [rowsPerPage >= 10])
 
-    // const [open, setOpen] = useState(false);    //for Dialog in view
     const [expanded, setExpanded] = useState(); //for the filter
 
-    // const handleClickOpen = () => {
-    //     setOpen(true);
-    // };
-
-    // const handleClose = () => {
-    //     setOpen(false);
-    // };
-
-    // function dataperrow(a, i, val) {
-    //     if (a === "Action") {
-    //         return (option)
-    //     } else if (a === "Exam_Status") {
-    //         if (val === "Passed") {
-    //             return (a = val,
-    //                 <p className="Account_Status_p1">Passed</p>)
-    //         } else {
-    //             return (
-    //                 <p className="Account_Status_p2">Failed</p>
-    //             )
-    //         }
-    //     } else {
-    //         if (a === "No") {
-    //             return i + 1
-    //         } else {
-    //             return val
-    //         }
-    //     }
-    // }
 
     const [FilterData, setFilterData] = useState({
         Sortby: '',
@@ -483,7 +441,7 @@ export default function Data_Table(props) {
                     <TablePagination
                         rowsPerPageOptions={[5, 10, 25]}
                         component="div"
-                        count={data.length}
+                        count={props.Row.length}
                         rowsPerPage={rowsPerPage}
                         page={page}
                         onPageChange={handleChangePage}

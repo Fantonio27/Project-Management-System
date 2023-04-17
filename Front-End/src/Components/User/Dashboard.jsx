@@ -8,11 +8,27 @@ import { Outlet } from 'react-router-dom';
 import { useRef } from 'react';
 import Footer from '../Footer';
 import { Drawer } from '@mui/material';
+
 export default function User_Dashboard() {
 
-    // const windowSize = useRef([window.innerWidth, window.innerHeight]);
+
+    const [datauser, setdatauser] = React.useState({})
+
+    React.useEffect(()=>{
+        const d = window.localStorage.getItem('USER_DATA')
+        setdatauser(JSON.parse(d))
+    },[])
 
     const [tab, settab] = React.useState()
+
+    function locationget() {
+        const parts = location.href.split('/').at(-1);
+        settab(parts)
+    }
+
+    React.useEffect(() => {
+        locationget()
+    }, [])
 
     const handlesettab = (i) => {
         settab(i)
@@ -23,7 +39,7 @@ export default function User_Dashboard() {
             <CssBaseline />
 
             <div>
-                <User_Navbar tabindex={tab} handletab={handlesettab}/>
+                <User_Navbar tabindex={tab} handletab={handlesettab} userdata={datauser}/>
             </div>
                     
             <Box component="main">

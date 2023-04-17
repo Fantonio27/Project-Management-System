@@ -188,7 +188,7 @@ export default function Student_Results() {
             return (option)
         }
         else if (columnid === "ACCOUNT_STATUS") {
-            if (val === "Active") {
+            if (val === "ACTIVE") {
                 return (columnid = val,
                     <p className="Account_Status_p1">Active</p>)
             } else {

@@ -1,0 +1,92 @@
+.IA{
+    margin: 100px 0px;
+    /* background-color: red; */
+    width: 100%;
+}
+
+.IA_p1{
+    font-size: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: #457860;
+    letter-spacing: 1.5px;
+}
+
+.IA_p2{
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    color: #1a2c2aff;
+    margin-bottom: 50px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(26, 44, 43, 0.522);
+}
+
+.IA_questions{
+    width: 100%;
+    background-color: #4578600e;
+    padding: 150px 0px;
+    margin: 0px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    border-bottom-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.IA_div0{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.IA_q_p1{
+    font-size: 16px;
+    color: #457860ef;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1px;
+
+}
+
+.IA_q_p2{
+    font-size: 34px;
+    color: rgba(32, 53, 59, 0.947);
+    font-family: 'QuickSand', sans-serif;
+    text-align: center;
+}
+
+.IA_div{
+    display: flex;
+    gap: 30px;
+}
+
+.IA_button1, .IA_button2{
+    padding: 20px 0px;
+    width: 200px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    background-color: #69b96eff;
+    border: 1px solid #E9ECEF;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+    color: white;
+    transition: 0.3s;
+    letter-spacing: 1.5px;
+}
+
+.IA_button2{
+    background-color: #db514cff;
+}
+
+.IA_button1:hover{
+    background-color: rgb(86, 157, 91);
+}
+
+.IA_button2:hover{
+    background-color: rgb(183, 67, 63);
+}

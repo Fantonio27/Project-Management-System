@@ -1,4 +1,4 @@
-import '../../css/Admin/Admin_Login.css'
+import '../../../css/Admin/Admin_Login.css'
 import AdminLogo from '@mui/icons-material/PersonOutlineOutlined';
 import On from '@mui/icons-material/RemoveRedEyeOutlined';
 import Off from '@mui/icons-material/VisibilityOffOutlined';
@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import { useState } from 'react';
 import Alert from '@mui/material/Alert';
 import Fade from '@mui/material/Fade'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const logo_sx = {
     backgroundColor: "#1C82AD",
@@ -19,7 +19,7 @@ const logo_sx = {
 
 const icon_sx = {
     position: "relative",
-    bottom: "54px",
+    bottom: "52px",
     right: "5px",
     alignSelf: "flex-end",
     cursor: "pointer",
@@ -45,6 +45,8 @@ const btn_sx = {
 
 export default function Login() {
 
+    const navigate = useNavigate()
+
     const LoginAdmin = (event) => {
         event.preventDefault()
         setnotif(true)
@@ -64,32 +66,32 @@ export default function Login() {
         Password: ""
     })
 
-    // const login = (event) => {
-    //     event.preventDefault()
+    const login = (event) => {
+        event.preventDefault()
 
-    //     if (Dataform.Username == "" || Dataform.Password == "") {
-    //         setnotif(() => ({
-    //             Severity: "warning",
-    //             Text: "Please fill in all the required fields.",
-    //             Show: true
-    //         }))
+        if (Dataform.Username == "" || Dataform.Password == "") {
+            setnotif(() => ({
+                Severity: "warning",
+                Text: "Please fill in all the required fields.",
+                Show: true
+            }))
 
-    //     } else if (Dataform.Username === "Admin123" && Dataform.Password === "password") {
+        } else if (Dataform.Username === "Admin123" && Dataform.Password === "password") {
+            navigate("/Admin_Dashboard")
 
+        } else {
+            setnotif(() => ({
+                Severity: "error",
+                Text: "Invalid Username or Password!",
+                Show: true
+            }))
 
-    //     } else {
-    //         setnotif(() => ({
-    //             Severity: "error",
-    //             Text: "Invalid Username or Password!",
-    //             Show: true
-    //         }))
-
-    //         setDataform((prev) => ({
-    //             ...prev,
-    //             Password: ""
-    //         }))
-    //     }
-    // }
+            setDataform((prev) => ({
+                ...prev,
+                Password: ""
+            }))
+        }
+    }
 
 
     const handleclick = () => {
@@ -112,6 +114,7 @@ export default function Login() {
 
     return (
         <div className="A_login">
+
             <form>
                 <div className='A_login_container'>
                     <div className='A_login_form'>
@@ -150,10 +153,7 @@ export default function Login() {
                                 <Off sx={{ color: '#6c757d' }} />
                             }
                         </IconButton>
-                        <Link to="/Admin_Dashboard" style={{ textDecoration: "none" }}>
-                            {/* <Button sx={btn_sx} onClick={login}>Login</Button> */}
-                            <Button sx={btn_sx} >Login</Button>
-                        </Link>
+                        <Button sx={btn_sx} onClick={login}>Login</Button>
                     </div>
                 </div>
             </form>

@@ -25,9 +25,9 @@
 
 .Sign_p {
     margin: 8px 0px 25px;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Karla', sans-serif;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 18px;
     color: #343a40;
 }
 
@@ -43,11 +43,12 @@
 
 .Sign_label {
     display: block;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 14px;
     margin-left: 2px;
     letter-spacing: 0.5px;
+    color: #343a40;
 }
 
 .Sign_text_box {

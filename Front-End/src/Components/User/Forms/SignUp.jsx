@@ -181,7 +181,7 @@ export default function Login() {
                         LRN: true
                     }))
                 } else {
-                    axios.post('http://localhost/recommendation_system/api/save', Dataform).then(function (response) {
+                    axios.post('http://localhost/recommendation_system/api/user/Register.php/saves', Dataform).then(function (response) {
                         // console.log(response.data);
                         navigate("/Dashboard",
                             {
@@ -461,10 +461,6 @@ export default function Login() {
                         <Button sx={SignUp_btn} className="Sign_btn" onClick={SignUp_submit}>Sign Up</Button>
                         <p className="Sign_p1">Already have an Account?<Link to="/" style={{ textDecoration: "none" }}> Log In</Link></p>
                     </div>
-                    {/* <input type="text" placeholder="First" name="FirstName" onChange={handleChange}></input>
-                    <input type="text" placeholder="Last" name="LastName" onChange={handleChange}></input>
-                    <input type="text" placeholder="LRN" name="LRN" onChange={handleChange}></input>
-                    <button>Save</button> */}
                 </div>
             </form>
         </Zoom >

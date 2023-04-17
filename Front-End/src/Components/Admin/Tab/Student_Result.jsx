@@ -43,7 +43,7 @@ export default function Student_Results() {
     const tab_table = () => {
         if (data.name === "Entrance Exam Results") {
             setcolumn([
-                { id: 'EERID', label: 'EERID', align: 'center' },
+                { id: 'ERID', label: 'ERID', align: 'center' },
                 { id: 'LRN', label: 'LRN',},
                 { id: 'MATH_SCORE', label: 'MATH', align: 'center', },
                 { id: 'ENGLISH_SCORE', label: 'ENGLISH', align: 'center', },
@@ -63,17 +63,17 @@ export default function Student_Results() {
                 { id: 'SOCIAL_SCORE', label: 'Social', align: 'center' },
                 { id: 'ENTERPRISING_SCORE', label: 'Enterprising', align: 'center' },
                 { id: 'CONVENTIONAL_SCORE', label: 'Conventional', align: 'center' },
-                { id: 'IA_RESULT', label: 'Interest Assessment Result', },
+                { id: 'IA_RESULT', label: 'Interest Assessment Result', align: 'center' },
                 { id: 'DATE', label: 'Date', align: 'center' },
             ])
         } else {
             setcolumn([
                 { id: 'RID', label: 'RID',  align: 'center'},
                 { id: 'LRN', label: 'LRN', align: 'center'},
-                { id: 'EERID', label: 'EERID', align: 'center'},
+                { id: 'ERID', label: 'ERID', align: 'center'},
                 { id: 'IRID', label: 'IRID', align: 'center'},
-                { id: 'RECOMMENDED_COURSE', label: 'Recommendation Course', },
-                { id: 'RESULT_STATUS', label: 'Result Status',  align: 'center'},
+                { id: 'RECOMMENDED_COURSE', label: 'Recommendation Course',  align: 'center'},
+                // { id: 'RESULT_STATUS', label: 'Result Status',  align: 'center'},
                 { id: 'DATE', label: 'Date',  align: 'center'},
             ])
         }

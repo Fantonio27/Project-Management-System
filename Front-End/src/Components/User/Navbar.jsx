@@ -15,11 +15,23 @@ import Button from '@mui/material/Button';
 import logo from '../../assets/Images/logo.png'
 import "../../css/User/Navbar.css"
 import { Avatar } from '@mui/material';
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import { Link } from 'react-router-dom'
+import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
 
+
+const avatar_button = {
+    textTransform: 'none', 
+    padding: '3px 10px',
+    // border: '1px solid #e9ecef', 
+    // backgroundColor: '#f8f9fa',
+    '&:hover':{
+        backgroundColor: '#f8f9fa',
+    }
+}
 export default function User_Navbar(props) {
 
+    // {props.userdata.FIRSTNAME} {props.userdata.LASTNAME}
+    // console.log(props.userdata)
     const drawerWidth = 240;
     const navItems = ['Dashboard', 'Course', 'IA Information', 'Examination', 'Help']
 
@@ -68,35 +80,50 @@ export default function User_Navbar(props) {
 
                     <Box sx={{ display: { xs: 'none', sm: 'block' }, width: '100%' }}>
                         <div className='Navbar_container'>
-                            <img src={logo} className="Navbar_Logo" />
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                <img src={logo} className="Navbar_Logo" />
+                                <p className='Navbar_title'>CRRS</p>
+                            </div>
                             <div style={{ display: 'flex', justifyContent: 'center', gap: '30px' }}>
                                 {navItems.map((item, index) => {
-                                    let active = props.tabindex === index
-                                    return(
-                                    <Link to={navLinks[index]} style={{
-                                        textDecoration: 'none',
-                                        // backgroundColor: 'red',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        borderBottom: active? '1px solid #458d6b': '1px solid white'
-                                    }} key={item}>
-                                        <Button key={item} sx={{
-                                            color: active? '#458d6b' : '#1a2c2aff',
-                                            padding: '5px 10px',
-                                            // color: props.tabindex === index ? 'white' : '#1a2c2aff',
-                                            // backgroundColor: props.tabindex === index? 'rgb(69, 141, 107)':'none',
-                                            '&:hover': {
-                                                backgroundColor: 'rgb(69, 141, 107,0.09)'
-                                            }
+                                    let active = props.tabindex === navLinks[index]
+                                    return (
+                                        <Link to={{
+                                            pathname: navLinks[index],
+                                            state: { data: 'hello'}
+                                        }} style={{
+                                            textDecoration: 'none',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            // transition: '0.3s',
+                                            // borderBottom: active? '2px solid rgb(69, 141, 107, 0.8)': '2px solid white'
                                         }}
-                                            onClick={() => { props.handletab(index) }}>
-                                            <p className='Navbar_p1'>{item}</p>
-                                        </Button>
-                                    </Link>
-                                )})}
+                                        key={item}>
+                                            <Button key={item} sx={{
+                                                // color: active? '#458d6b' : '#1a2c2aff',
+                                                padding: '8px 15px',
+                                                color: active ? 'white' : '#1a2c2aff',
+                                                backgroundColor: active ? '#458d6b' : 'none',
+                                                '&:hover': {
+                                                    backgroundColor: active ? '#407d61' : 'rgb(69, 141, 107,0.09)'
+                                                }
+                                            }}
+                                                onClick={() => { props.handletab(navLinks[index]) }}>
+                                                <p className='Navbar_p1'>{item}</p>
+                                            </Button>
+                                        </Link>
+                                    )
+                                })}
                             </div>
                             <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-                                <Avatar sx={{ backgroundColor: '#d8f3dce6', color: '#458d6b', fontSize: '16px' }}>AD</Avatar>
+                                <button className='avatar_button'>
+                                    <Avatar sx={{ backgroundColor: '#d8f3dce6', color: '#458d6b', fontSize: '16px' }}>AD</Avatar>
+                                    <div className='Navbar_Avatar'>
+                                        <p className='Navbar_Avatar_p1'> {props.userdata.FIRSTNAME} {props.userdata.LASTNAME}</p>
+                                        <p className='Navbar_Avatar_p2'>Student</p>
+                                    </div>
+                                    <ArrowBackIosRoundedIcon sx={{ color: '#6f727eff', fontSize: '16px', transform: 'rotate(270deg)' }} />
+                                </button>
                             </div>
                         </div>
                     </Box>

@@ -1,5 +1,4 @@
-// import { Outlet, useLocation, useOutletContext } from "react-router-dom"
-// import "../../../../css/User/Tabs/Components/Course_Info.css"
+import "../../../../css/User/Tabs/Components/Course_Info.css"
 // // import image from "../../../../../assets/Images/2.jpg"
 // import { useState } from "react";
 // import { styled } from '@mui/material/styles';
@@ -46,9 +45,42 @@
 
 
 export default function Course_Info() {
-    return(
-        <div>
-            
+
+    const Array = [
+        "Network Administrator",
+        "Database Manager",
+        "Technical Support Specialist",
+        "Web Developer",
+        "QA Specialist",
+        // "Mobile Applications Developer",
+    ]
+    return (
+        <div className="Course_Info">
+            <div className="Course_Info_header">
+                <div>
+                    <img src="/1.jpg" className="Course_header_img"></img>
+                </div>
+                <div>
+                    <p className="Course_header_p1">Formal Sciences</p>
+                    <p className="Course_header_p2">Bachelor of Science in Computer Science (BSSC)</p>
+                    <p className="Course_header_p3">Bachelor of Science in Computer Science is a four-year degree program in the Philippines that is generally concerned with the effective use of computation methods to analyze, solve, and come up with practical solutions for different problems, often through the use of computers or computer programs designed to perform specific tasks.</p>
+                </div>
+            </div>
+            <div className="Course_Info_career">
+                <p className="Course_I_p1">Top 6 best job for BSSC graduate</p>
+                <div className="Course_Info_c_div">
+                    {
+                        Array.map((val, index) => {
+                            return (
+                                <div key={index} className="Course_Info_c_box">
+                                    <p className="Course_I_c_p1">{val}</p>
+                                    <p>Database administrators employ specialized software to organize and keep track of data. The software can be associated with software configuration, security and performance when applicable.</p>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div>
         </div>
     )
 }
