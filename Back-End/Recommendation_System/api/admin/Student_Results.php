@@ -10,7 +10,7 @@
     $sql="";
     $result = $params['result'];
     if($result == "Entrance Exam Results"){
-        $sql .= "SELECT * FROM entrance_exam_result";
+        $sql .= "SELECT * FROM exam_result";
     }else if ($result == "Interest Assessment Results"){
         $sql .= "SELECT * FROM interest_assessment_result";
     }else if ($result == "OverAll Results"){

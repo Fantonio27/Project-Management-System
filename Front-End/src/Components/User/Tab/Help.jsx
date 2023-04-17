@@ -85,7 +85,7 @@ export default function Help(props) {
                 </div>
             </div>
 
-            <div className="Contact_Us_container">
+            {/* <div className="Contact_Us_container">
                 <div>
                     <p className="Contact_p0">Contact Us</p>
                     <p className="Contact_p1">Get In Touch With Us</p>
@@ -111,7 +111,7 @@ export default function Help(props) {
                     <input placeholder="Email"></input>
                     <textarea placeholder="Email"></textarea>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

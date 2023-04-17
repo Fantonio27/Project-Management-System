@@ -18,6 +18,15 @@
     align-items: center;
 }
 
+.Menu_p1{
+    color: #252a35ff;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    padding: 0px 10px;
+    text-align: center;
+    width: 100%;
+}
+
 /* .banner{
     position:absolute;
     top: 55px;

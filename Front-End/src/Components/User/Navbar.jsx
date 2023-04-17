@@ -17,21 +17,21 @@ import "../../css/User/Navbar.css"
 import { Avatar } from '@mui/material';
 import { Link } from 'react-router-dom'
 import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 
 const avatar_button = {
-    textTransform: 'none', 
+    textTransform: 'none',
     padding: '3px 10px',
     // border: '1px solid #e9ecef', 
     // backgroundColor: '#f8f9fa',
-    '&:hover':{
+    '&:hover': {
         backgroundColor: '#f8f9fa',
     }
 }
 export default function User_Navbar(props) {
 
-    // {props.userdata.FIRSTNAME} {props.userdata.LASTNAME}
-    // console.log(props.userdata)
     const drawerWidth = 240;
     const navItems = ['Dashboard', 'Course', 'IA Information', 'Examination', 'Help']
 
@@ -64,6 +64,17 @@ export default function User_Navbar(props) {
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     return (
         <div>
             <AppBar component="nav" sx={{ backgroundColor: 'white', boxShadow: 'rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;' }} elevation={0}>
@@ -90,17 +101,14 @@ export default function User_Navbar(props) {
                                     return (
                                         <Link to={{
                                             pathname: navLinks[index],
-                                            state: { data: 'hello'}
+                                            state: { data: 'hello' }
                                         }} style={{
                                             textDecoration: 'none',
                                             display: 'flex',
                                             alignItems: 'center',
-                                            // transition: '0.3s',
-                                            // borderBottom: active? '2px solid rgb(69, 141, 107, 0.8)': '2px solid white'
                                         }}
-                                        key={item}>
+                                            key={item}>
                                             <Button key={item} sx={{
-                                                // color: active? '#458d6b' : '#1a2c2aff',
                                                 padding: '8px 15px',
                                                 color: active ? 'white' : '#1a2c2aff',
                                                 backgroundColor: active ? '#458d6b' : 'none',
@@ -116,7 +124,7 @@ export default function User_Navbar(props) {
                                 })}
                             </div>
                             <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-                                <button className='avatar_button'>
+                                <button className='avatar_button' onClick={handleClick}>
                                     <Avatar sx={{ backgroundColor: '#d8f3dce6', color: '#458d6b', fontSize: '16px' }}>AD</Avatar>
                                     <div className='Navbar_Avatar'>
                                         <p className='Navbar_Avatar_p1'> {props.userdata.FIRSTNAME} {props.userdata.LASTNAME}</p>
@@ -124,6 +132,23 @@ export default function User_Navbar(props) {
                                     </div>
                                     <ArrowBackIosRoundedIcon sx={{ color: '#6f727eff', fontSize: '16px', transform: 'rotate(270deg)' }} />
                                 </button>
+                                <Menu
+                                    id="basic-menu"
+                                    anchorEl={anchorEl}
+                                    open={open}
+                                    onClose={handleClose}
+                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                                    transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                                >
+                                    <MenuItem onClick={handleClose}>
+                                        <p className='Menu_p1'>Profile</p>
+                                    </MenuItem>
+                                    <Link to="/" style={{ textDecoration: 'none' }}>
+                                        <MenuItem onClick={handleClose}>
+                                            <p className='Menu_p1'>Sign Out</p>
+                                        </MenuItem>
+                                    </Link>
+                                </Menu>
                             </div>
                         </div>
                     </Box>

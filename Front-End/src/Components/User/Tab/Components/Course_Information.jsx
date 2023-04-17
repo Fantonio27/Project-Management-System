@@ -1,50 +1,19 @@
 import "../../../../css/User/Tabs/Components/Course_Info.css"
-// // import image from "../../../../../assets/Images/2.jpg"
-// import { useState } from "react";
-// import { styled } from '@mui/material/styles';
-// import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
-// import MuiAccordion from '@mui/material/Accordion';
-// import MuiAccordionSummary from '@mui/material/AccordionSummary';
-// import MuiAccordionDetails from '@mui/material/AccordionDetails';
-// import Grow from '@mui/material/Grow';
-
-// const Accordion = styled((props) => (
-//     <MuiAccordion disableGutters elevation={0} square {...props} />
-// ))(({ theme }) => ({
-//     border: `0px`,
-//     transition: "0.3s",
-//     '&:not(:last-child)': {
-//         borderBottom: 0,
-//     },
-//     '&:before': {
-//         display: 'none',
-//     }
-// }));
-
-// const AccordionSummary = styled((props) => (
-//     <MuiAccordionSummary
-//         expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem' }} />}
-//         {...props}
-//     />
-// ))(({ theme }) => ({
-//     flexDirection: 'row-reverse',
-//     '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
-//         transform: 'rotate(90deg)',
-//     },
-//     '& .MuiAccordionSummary-content': {
-//         marginLeft: theme.spacing(1),
-//     },
-//     '&:hover': {
-//         backgroundColor: "rgba(56, 142, 60, 0.2)"
-//     }
-// }));
-
-// const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-//     padding: "17px 40px 20px",
-// }));
+import axios from "axios";
+import React, { useEffect } from "react";
+import { Grow } from "@mui/material";
 
 
 export default function Course_Info() {
+
+    const [coursedata, setcoursedata] = React.useState({})
+    const parts = location.href.split('/').at(-1);
+
+    useEffect(() => {
+        axios.get(`http://localhost/recommendation_system/api/user/Course_Information.php?CID=${parts}`).then(function (response) {
+            setcoursedata(response.data)
+        })
+    },)
 
     const Array = [
         "Network Administrator",
@@ -52,36 +21,38 @@ export default function Course_Info() {
         "Technical Support Specialist",
         "Web Developer",
         "QA Specialist",
-        // "Mobile Applications Developer",
+        "Mobile Applications Developer",
     ]
     return (
-        <div className="Course_Info">
-            <div className="Course_Info_header">
-                <div>
-                    <img src="/1.jpg" className="Course_header_img"></img>
+        <Grow in={true} timeout={1000}>
+            <div className="Course_Info">
+                <div className="Course_Info_header">
+                    <div>
+                        <img src={`/${coursedata.HEADER_PICTURE}`} className="Course_header_img"></img>
+                    </div>
+                    <div>
+                        <p className="Course_header_p1">{coursedata.FIELD}</p>
+                        <p className="Course_header_p2">{coursedata.COURSE_NAME} ({coursedata.ACRONYM})</p>
+                        <p className="Course_header_p3">{coursedata.INFORMATION}</p>
+                    </div>
                 </div>
-                <div>
-                    <p className="Course_header_p1">Formal Sciences</p>
-                    <p className="Course_header_p2">Bachelor of Science in Computer Science (BSSC)</p>
-                    <p className="Course_header_p3">Bachelor of Science in Computer Science is a four-year degree program in the Philippines that is generally concerned with the effective use of computation methods to analyze, solve, and come up with practical solutions for different problems, often through the use of computers or computer programs designed to perform specific tasks.</p>
+                <div className="Course_Info_career">
+                    <p className="Course_I_p1">Top 6 best job for BSSC graduate</p>
+                    <div className="Course_Info_c_div">
+                        {
+                            Array.map((val, index) => {
+                                return (
+                                    <div key={index} className="Course_Info_c_box">
+                                        <p className="Course_I_c_p1">{val}</p>
+                                        <p>Database administrators employ specialized software to organize and keep track of data. The software can be associated with software configuration, security and performance when applicable.</p>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
             </div>
-            <div className="Course_Info_career">
-                <p className="Course_I_p1">Top 6 best job for BSSC graduate</p>
-                <div className="Course_Info_c_div">
-                    {
-                        Array.map((val, index) => {
-                            return (
-                                <div key={index} className="Course_Info_c_box">
-                                    <p className="Course_I_c_p1">{val}</p>
-                                    <p>Database administrators employ specialized software to organize and keep track of data. The software can be associated with software configuration, security and performance when applicable.</p>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-            </div>
-        </div>
+        </Grow>
     )
 }
 

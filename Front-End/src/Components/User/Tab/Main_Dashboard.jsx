@@ -6,12 +6,14 @@
 // import FeedOutlinedIcon from '@mui/icons-material/FeedOutlined';
 // import QuestionMarkOutlinedIcon from '@mui/icons-material/QuestionMarkOutlined';
 // import { Link, useLocation, useOutletContext } from "react-router-dom";
-
+import { Fade } from "@mui/material"
 export default function Main_Dashboard() {
     return(
-        <div>
-            Dashboard
-        </div>
+        <Fade in={true} timeout={800}>
+            <div>
+                Dashboard
+            </div>
+        </Fade>
     )
 }
 
