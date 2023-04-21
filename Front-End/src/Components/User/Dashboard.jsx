@@ -23,6 +23,7 @@ export default function User_Dashboard() {
 
     function locationget() {
         const parts = location.href.split('/').at(-1);
+
         settab(parts)
     }
 

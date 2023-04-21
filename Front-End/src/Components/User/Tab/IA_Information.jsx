@@ -60,7 +60,7 @@ export default function IA_Information() {
                                 {
                                     val.columntext.map((colval, index) => {
                                         return (
-                                            <p className="IA_I_Column_text">{colval}</p>
+                                            <p className="IA_I_Column_text" key={index}>{colval}</p>
                                         )
                                     })
                                 }

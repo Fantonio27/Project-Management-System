@@ -91,6 +91,8 @@
     font-size: 15px;
     margin-left: 10px;
     color: rgba(26, 44, 42, 0.971);
+    display: flex;
+    gap: 10px
 }
 
 .Question_Status {
@@ -118,21 +120,30 @@
 
 .roundball {
     border-radius: 20px;
-    border: 1px solid #457860aa;
+    border: 1px solid #45786027;
     height: 40px;
     width: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* background-color: #45786026; */
 }
 
 .Status_subjects{
-    border: 1px solid #457860aa;
-    padding:8px 0px;
+    border: 1px solid #45786051;
+    padding:10px 0px;
     text-align: center;
-    margin:10px 0px;
     border-radius: 5px;
     cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+}
+
+.Status_div3{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 15px 0px 40px;
 }
 
 

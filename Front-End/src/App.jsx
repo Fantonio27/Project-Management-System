@@ -21,6 +21,7 @@ import Examination from "./Components/User/Tab/Examination";
 import SAT from "./Components/User/Tab/Components/SAT";
 import Course_Info from "./Components/User/Tab/Components/Course_Information";
 import IA from "./Components/User/Tab/Components/IA";
+import Result from "./Components/User/Tab/Components/Result";
 /* End*/
 
 
@@ -73,6 +74,7 @@ function App() {
             <Route path="" element={<Examination />} />
             <Route path="Scholastic_Aptitude_Test" element={<SAT />} />
             <Route path="Interest_Assessment" element={<IA />} />
+            <Route path="Exam_Result" element={<Result />} />
           </Route>
           <Route path="Help" element={<Help />} />
         </Route>

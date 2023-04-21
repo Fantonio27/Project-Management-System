@@ -6,15 +6,12 @@ import * as React from 'react';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Radiogroup = {
     '& .MuiSvgIcon-root': {
         fontSize: 20,
     },
-    // display: 'grid',
-    // gridTemplateColumns: '1fr 1fr',
-    // gridTemplateRows: '1fr',
-    // gap: '0px 0px',
 }
 
 const radio = {
@@ -27,8 +24,159 @@ const radio = {
 }
 export default function SAT() {
 
-    // function roundball(){
-    // }
+    const [questions, setquestions] = React.useState([])
+    const [subject, setsubject] = React.useState({
+        sub: 'eq_math',
+        id: 'EQMID'
+    })
+
+    const [mathanswer, setmathanswer] = React.useState([])
+    const [scienceanswer, setscienceanswer] = React.useState([])
+    const [englishanswer, setenglishanswer] = React.useState([])
+    const [rcanswer, setrcanswer] = React.useState([])
+
+    const [dataform, setdataform] = React.useState({})
+    const [result, setresult] = React.useState({
+        MATH: 0,
+        SCIENCE: 0,
+        ENGLISH: 0,
+        READING_COMPREHENSION: 0,
+    })
+
+    const sub = (event) => {
+        const { value } = event.target
+
+        const s = (
+            value === 'eq_reading_comprehension' ? 'RC' : value[3].toUpperCase()
+        )
+
+        setsubject(() => ({
+            sub: value,
+            id: `EQ${s}ID`
+        }))
+    }
+
+    React.useEffect(() => {
+        axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?SUB=${subject.sub}`).then(function (response) {
+            setquestions(response.data)
+        })
+
+        const d = window.localStorage.getItem('MATH_ANSWER')
+        setdataform(JSON.parse(d))
+
+    }, [subject])
+
+    let setsub = (setmathanswer)
+    let eachsub = mathanswer
+    let reachsub = ""
+
+    if (subject.sub === "eq_math") {
+        setsub = (setmathanswer)
+        eachsub = mathanswer
+        reachsub = "MATH"
+    } else if (subject.sub === "eq_science") {
+        setsub = (setscienceanswer)
+        eachsub = scienceanswer
+        reachsub = "SCIENCE"
+    } else if (subject.sub === "eq_english") {
+        setsub = (setenglishanswer)
+        eachsub = englishanswer
+        reachsub = "ENGLISH"
+    } else {
+        setsub = (setrcanswer)
+        eachsub = rcanswer
+        reachsub = "READING_COMPREHENSION"
+    }
+
+    const handleClick = (i, ans) => (event) => {
+        const { value, name } = event.target
+
+        let a = 0;
+        eachsub.map(prev => {
+            if (prev.id === name) {
+                return a = a + 1
+            } else if (prev.id !== name) {
+                return a = a + 0
+            }
+        })
+
+        // console.log(a)
+
+        if (a === 1) {
+            setsub(current =>
+                current.map(obj => {
+                    if (obj.id === name) {
+                        return { ...obj, index: i, id: name, value: value, answer: ans };
+                    }
+
+                    return obj;
+                }),
+            );
+        } else {
+            setsub(obj2 => ([...obj2, { index: i, id: name, value: value, answer: ans }]))
+        }
+
+        setdataform((prev) => ({
+            ...prev,
+            [reachsub] : eachsub
+        }))
+    }
+
+    React.useEffect(() => {
+        window.localStorage.setItem('MATH_ANSWER', JSON.stringify(dataform))
+    }, [mathanswer])
+
+
+    const onSubmit = () => {
+        let m = 0, e = 0, s = 0, r = 0
+        mathanswer.map(prev => {
+            if (prev.value === prev.answer) {
+                m = m + 1
+            } else {
+                m = m + 0
+            }
+        })
+
+        scienceanswer.map(prev => {
+            if (prev.value === prev.answer) {
+                s = s + 1
+            }
+        })
+
+        englishanswer.map(prev => {
+            if (prev.value === prev.answer) {
+                e = e + 1
+            }
+        })
+
+        rcanswer.map(prev => {
+            if (prev.value === prev.answer) {
+                r = r + 1
+            }
+        })
+
+        setresult(prev => ({
+            MATH: m,
+            SCIENCE: s,
+            ENGLISH: e,
+            READING_COMPREHENSION: r,
+        }))
+        console.log(result)
+    }
+    // console.log(eachsub[1].value)
+
+    const setvalue = (data) => () => {
+        // if (eachsub.length === '0') {
+        //     return ('')
+        // } else {
+        //     dataform.find((da) => da.id== data[subject.id]).value
+        // }
+
+
+        // console.log(data)
+    }
+
+    // console.log(data.find((da) => da.id=="EQMID_1").index)
 
     return (
         <div className="SAT">
@@ -40,48 +188,69 @@ export default function SAT() {
                         selecting only the best answer from the options provided below.</p>
                     <div className="SAT_Questions_container">
                         {
-                            data.map((data, index) => {
+                            questions.map((data, index) => {
                                 return (
-                                    <div className="SAT_Questions" key={data.No}>
+                                    <div className="SAT_Questions" key={index} >
                                         <div className="tile">
-                                            Question No. {data.No}
+                                            Question No. {index + 1}
                                         </div>
                                         <div className="SAT_form">
                                             <p className="SAT_q1">{data.Question}</p>
                                             <RadioGroup
-                                                // defaultValue="female"
+                                                defaultValue={setvalue(data)}
                                                 name="radio-buttons-group"
                                                 sx={Radiogroup}
                                             >
-                                                <FormControlLabel sx={radio} value={data.Choice_A} control={<Radio />} label={<p className="SAT_c1"><b>A.</b> {data.Choice_A}</p>} />
-                                                <FormControlLabel sx={radio} value={data.Choice_B} control={<Radio />} label={<p className="SAT_c1"><b>B.</b> {data.Choice_B}</p>} />
-                                                <FormControlLabel sx={radio} value={data.Choice_C} control={<Radio />} label={<p className="SAT_c1"><b>C.</b>  {data.Choice_C}</p>} />
-                                                <FormControlLabel sx={radio} value={data.Choice_D} control={<Radio />} label={<p className="SAT_c1"><b>D.</b> {data.Choice_D}</p>} />
+                                                <FormControlLabel
+                                                    sx={radio}
+                                                    control={
+                                                        <Radio
+                                                            name={data[subject.id]}
+                                                            onClick={handleClick(index + 1, data.Answer)}
+                                                            value={data.Choice_A}
+                                                        />
+                                                    }
+                                                    label={<div className="SAT_c1" ><b>A.</b><p>{data.Choice_A}</p></div>}
+                                                />
+                                                <FormControlLabel
+                                                    sx={radio}
+                                                    control={
+                                                        <Radio
+                                                            name={data[subject.id]}
+                                                            onClick={handleClick(index + 1, data.Answer)}
+                                                            value={data.Choice_B}
+                                                        />
+                                                    }
+                                                    label={<div className="SAT_c1" ><b>B.</b> <p>{data.Choice_B}</p></div>}
+                                                />
+                                                <FormControlLabel
+                                                    sx={radio}
+                                                    control={
+                                                        <Radio
+                                                            name={data[subject.id]}
+                                                            onClick={handleClick(index + 1, data.Answer)}
+                                                            value={data.Choice_C}
+                                                        />
+                                                    }
+                                                    label={<div className="SAT_c1" ><b>C.</b> <p>{data.Choice_C}</p></div>}
+                                                />
+                                                <FormControlLabel
+                                                    sx={radio}
+                                                    control={
+                                                        <Radio
+                                                            name={data[subject.id]}
+                                                            onClick={handleClick(index + 1, data.Answer)}
+                                                            value={data.Choice_D}
+                                                        />
+                                                    }
+                                                    label={<div className="SAT_c1" ><b>D.</b> <p>{data.Choice_D}</p></div>}
+                                                />
                                             </RadioGroup>
                                         </div>
                                     </div>
                                 )
                             })
                         }
-                        {/* <div className="SAT_Questions" key={data[1].No}>
-                            <div className="tile">
-                                Question {data[1].No} of {data.length}
-                            </div>
-                            <div className="SAT_form">
-                                <p className="SAT_q1"><p>{data[1].Question}</p></p>
-                                <RadioGroup
-                                    aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue="female"
-                                    name="radio-buttons-group"
-                                    sx={Radiogroup}
-                                >
-                                    <FormControlLabel sx={radio} value="female" control={<Radio />} label={<p className="SAT_c1"><b>A.</b> {data[1].Choice_A}</p>} />
-                                    <FormControlLabel sx={radio} value="male" control={<Radio />} label={<p className="SAT_c1"><b>B.</b> {data[1].Choice_B}</p>} />
-                                    <FormControlLabel sx={radio} value="other" control={<Radio />} label={<p className="SAT_c1"><b>C.</b>  {data[1].Choice_C}</p>} />
-                                    <FormControlLabel sx={radio} value="cscs" control={<Radio />} label={<p className="SAT_c1"><b>D.</b> {data[1].Choice_D}</p>} />
-                                </RadioGroup>
-                            </div>
-                        </div> */}
                     </div>
                 </div>
                 <div className="Question_Status">
@@ -89,10 +258,14 @@ export default function SAT() {
                         <p><b>Time Limit:</b> 00:50:00</p>
                         <p><b>Question Status</b></p>
                         <div className="Status_div">
-                            {data.map((val, index) => {
+                            {questions.map((val, index) => {
                                 return (
-                                    <div className="roundball" key={index}>
-                                        {val.No}
+                                    <div
+                                        className="roundball"
+                                        style={{
+                                            // backgroundColor: JSON.stringify(obj1)===JSON.stringify(obj2) ?'#45786026' :'none'
+                                        }} key={index}>
+                                        {index + 1}
                                     </div>
                                 )
                             })}
@@ -102,130 +275,49 @@ export default function SAT() {
                         </div>
                         <p><b>Subjects</b></p>
                         <div className="Status_div3">
-                            <div className="Status_subjects">Math</div>
-                            <div className="Status_subjects">Science</div>
-                            <div className="Status_subjects">English</div>
-                            <div className="Status_subjects">Reading Comprehension</div>
+                            {/* <Link to="../Interest_Assessment" state={{ sub: "Math" }}><div className="Status_subjects">Math</div></Link>
+                            <Link to="../Interest_Assessment" state={{ sub: "Science" }}><div className="Status_subjects">Science</div></Link>
+                            <Link to="../Interest_Assessment" state={{ sub: "English" }}><div className="Status_subjects">English</div></Link>
+                            <Link to="../Interest_Assessment" state={{ sub: "Reading Comprehension" }}><div className="Status_subjects">Reading Comprehension</div></Link> */}
+                            <button className="Status_subjects" value="eq_math" onClick={sub}>Math</button>
+                            <button className="Status_subjects" value="eq_science" onClick={sub}>Science</button>
+                            <button className="Status_subjects" value="eq_english" onClick={sub}>English</button>
+                            <button className="Status_subjects" value="eq_reading_comprehension" onClick={sub}>Reading Comprehension</button>
                         </div>
-                        <Link to="../Interest_Assessment">
+                        {/* <Link to="../Interest_Assessment">
                             <Button>Submit</Button>
-                        </Link>
+                        </Link> */}
+                        <Button onClick={onSubmit}>Result</Button>
                     </div>
                 </div>
             </div>
         </div>
     )
 }
-// export default function SAT() {
-//     // const myRef= useRef(null);
-//     // const executeScroll = () => {
-//     //     myRef.current.scrollIntoView();
-//     // }
 
-//     // const content = []
-//     // function circle(a) {
-//     //     let i;
-//     //     for (i = 1; i <= a; i++) {
-//     //         content.push(i)
-//     //     }
-//     // }
+     // if (subject.sub === "eq_math") {
+        //     s(prev => ([...prev, {
+        //         [name]: value,
+        //         [i]: i
+        //     }
+        //     ]))
+        // } else if (subject.sub === "eq_science") {
+        //     setscienceanswer(prev => ({
+        //         ...prev,
+        //         [name]: value,
+        //         [i]: i
+        //     }))
+        // } else if (subject.sub === "eq_english") {
+        //     setenglishanswer(prev => ({
+        //         ...prev,
+        //         [name]: value,
+        //         [i]: i
+        //     }))
 
-//     // // const questions = () => {
-//     // //     data.map(info=>{
-//     // //         return(
-//     // //         <div></div>
-//     // //         )
-//     // //     })
-//     // // }
-
-//     // const time_sx = {
-//     //     borderRadius: "20px",
-//     //     backgroundColor: 'white',
-//     //     '& .MuiLinearProgress-bar': {
-//     //         backgroundColor: "#388e3c"
-//     //     }
-//     // }
-
-//     // circle(data.length)
-
-//     // const button_sx = {
-//     //     width: "100px",
-//     //     textAlign: "center",
-//     //     backgroundColor: "#388e3c"
-//     // }
-
-
-//     return (
-//         <div className="SAT">
-//             {/* <div className="SAT_sub_container">
-//                 <div>Math</div>
-//                 <div>Science</div>
-//                 <div>English</div>
-//                 <div>Reading Comprehension</div>
-//             </div> */}
-//             <div className="SAT_container">
-//                 <div className="SAT_form">
-//                     <div className="SAT_header">
-//                         <p>Scholastic Aptitude Test - Part I - Math</p>
-//                         <div className="SAT_header_div">
-//                             <p style={{ width: "45%" }}>Time Limit: 00:50:00</p>
-//                             <Box sx={{ width: '55%' }}>
-//                                 <LinearProgress variant="determinate" value={10} sx={time_sx} />
-//                             </Box>
-//                         </div>
-//                         <p className="SAT_header_p3">Total Questions: 20</p>
-//                     </div>
-//                     <p className="SAT_form_p">Direction: Choose the correct answer by solving each problem and
-//                         selecting only the best answer from the options provided below.</p>
-//                     <div className="SAT_question_container">
-//                         {
-//                             data.map((info) => (
-//                                 <div className="SAT_question" key={info.No}  ref={myRef}>
-//                                     <h1 className="SAT_question_h1">Question No: {info.No}</h1>
-//                                     <p className="SAT_question_p2">{info.Question}</p>
-//                                     <div className="choices_group">
-//                                         <div>
-//                                             <Radio name="Choices" color="success" size="small" /><p>A. {info.Choice_A}</p>
-//                                         </div>
-//                                         <div>
-//                                             <Radio name="Choices" color="success" size="small" /><p>B. {info.Choice_B}</p>
-//                                         </div>
-//                                         <div>
-//                                             <Radio name="Choices" color="success" size="small" /><p>C. {info.Choice_C}</p>
-//                                         </div>
-//                                         <div>
-//                                             <Radio name="Choices" color="success" size="small" /><p>D. {info.Choice_D}</p>
-//                                         </div>
-//                                     </div>
-//                                 </div>
-//                             ))
-//                         }
-//                     </div>
-//                     <Button sx={button_sx} onClick={executeScroll}>Submit</Button>
-//                 </div>
-//                 <div style={{ width: "20%" }}>
-//                     <div className="Question_Status">
-//                         <p className="Question_Status_p2">Questions Status</p>
-//                         <div className="Question_Status_container">
-//                             {content.map((index) => (
-//                                 <div key={index} className="Questions_circle">
-//                                     <a style={{textDecoration: "none", color: "#343a40"}} href="#Q1">{index}</a>
-//                                 </div>
-//                             ))}
-//                         </div>
-//                         <div className="status">
-//                             <div>
-//                                 <div style={{backgroundColor: "#388e3c"}}></div>
-//                                 <p>Answered</p>
-//                             </div>
-//                             <div>
-//                                 <div style={{backgroundColor: "#f8f9fa"}}></div>
-//                                 <p>Unanswered</p>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     )
-// }
+        // } else {
+        //     setrcanswer(prev => ({
+        //         ...prev,
+        //         [name]: value,
+        //         [i]: i
+        //     }))
+        // }

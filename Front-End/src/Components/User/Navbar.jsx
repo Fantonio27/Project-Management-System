@@ -97,11 +97,12 @@ export default function User_Navbar(props) {
                             </div>
                             <div style={{ display: 'flex', justifyContent: 'center', gap: '30px' }}>
                                 {navItems.map((item, index) => {
-                                    let active = props.tabindex === navLinks[index]
+                                    let tabindex = props.tabindex === "Dashboard"? "" : props.tabindex
+                                    let active = tabindex === navLinks[index]
                                     return (
                                         <Link to={{
                                             pathname: navLinks[index],
-                                            state: { data: 'hello' }
+                                            // state: { data: 'hello' }
                                         }} style={{
                                             textDecoration: 'none',
                                             display: 'flex',

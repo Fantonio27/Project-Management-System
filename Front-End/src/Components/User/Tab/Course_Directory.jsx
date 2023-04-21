@@ -71,7 +71,7 @@ export default function Course_Directory() {
                             dataform.map((val, index) => {
                                 // {`/${val.COURSE_NAME}`}
                                 return (
-                                    <Link to={`${val.CID}`} style={{ textDecoration: 'none' }}>
+                                    <Link to={`${val.CID}`} style={{ textDecoration: 'none' }} key={index}>
                                         <div className="Course_D_Box">
                                             <img
                                                 // src="https://drive.google.com/uc?export=view&id=1qviHfamCOF4u8L8WzZf8jsyu4M0qzfYR" 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2023 at 04:56 PM
+-- Generation Time: Apr 21, 2023 at 07:37 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -54,7 +54,7 @@ CREATE TABLE `course_information` (
 --
 
 INSERT INTO `course_information` (`CID`, `FIELD`, `ACRONYM`, `COURSE_NAME`, `INFORMATION`, `HEADER_PICTURE`, `DATE`) VALUES
-('CID_1', 'Computer Sciences ', 'BSCS', 'Bachelor of Science in Computer Science ', 'Bachelor of Science in Computer Science is a four-year degree program in the Philippines that is generally concerned with the effective use of computation methods to analyze, solve, and come up with practical solutions for different problems, often throug', '1.jpg', '02/02/02'),
+('CID_1', 'Computer Sciences ', 'BSCS', 'Bachelor of Science in Computer Science ', 'Bachelor of Science in Computer Science is a four-year degree program in the Philippines that is generally concerned with the effective use of computation methods to analyze, solve, and come up with practical solutions for different problems, often throug', 'BSCS Computer science.jpg', '02/02/02'),
 ('CID_10', 'Criminology', 'BS Criminology', 'Bachelor of Science in Criminology', 'The Bachelor of Science in Criminology (BS Crim) is a four-year degree program in the Philippines that is mainly concerned with the nature of crimes and criminals. Taking up this course will help you understand what is crime, how do crimes occur, and what', 'BS CRIMINOLOGY.jpg', '04/17/23'),
 ('CID_11', 'Political Science', 'AB Political Science', 'Bachelor of Arts in Political Science', 'Bachelor of Arts in Political Science (AB PS or AB Pol Sci) is a four-year degree program in the Philippines that will help you gain the skills needed to make political and policy analyses that can be used to introduce changes that will be beneficial to b', 'AB POLITICAL SCIENCE.jpg', '04/17/23'),
 ('CID_12', 'English', 'AB English', 'Bachelor of Arts in English', 'The Bachelor of Arts in English (AB English) is a four-year degree program in the Philippines that will teach you about the structure; development; theories; and applications of languages, and how to use your knowledge of them to write and speak effective', 'AB ENGLISH.jpg', '04/17/23'),
@@ -197,37 +197,35 @@ CREATE TABLE `eq_english` (
   `Choice_B` varchar(255) NOT NULL,
   `Choice_C` varchar(255) NOT NULL,
   `Choice_D` varchar(255) NOT NULL,
-  `Choice_E` varchar(255) NOT NULL,
-  `Choice_F` varchar(255) NOT NULL,
   `Answer` varchar(255) NOT NULL,
-  `EID` varchar(255) NOT NULL
+  `EFID` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `eq_english`
 --
 
-INSERT INTO `eq_english` (`EQEID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C`, `Choice_D`, `Choice_E`, `Choice_F`, `Answer`, `EID`) VALUES
-('EQEID_1', 'Former astronaut Ellen Ochoa says that although she doesn’t have a definite idea of when it might happen, she _______ that humans will someday need to be able to live in other environments than those found on Earth. This conjecture informs her interest in', 'demands ', 'speculates', 'doubts ', 'establishes', '', '', 'speculates', 'EID_1'),
-('EQEID_10', 'Researchers studying magneto sensation have determined why some soil-dwelling roundworms in the Southern Hemisphere move in the opposite direction of Earth’s magnetic field when searching for _______ in the Northern Hemisphere, the magnetic field points d', 'food:', 'food, ', 'food while ', 'food', '', '', 'food:', 'EID_10'),
-('EQEID_11', 'Scientists believe that, unlike most other species of barnacle, turtle barnacles (Chelonibia      testudinari) can dissolve the cement-like secretions they use to attach _______ to a sea turtle shell, enabling the barnacles to move short distances across ', 'It', 'themselves ', 'them', 'itself', '', '', 'themselves ', 'EID_11'),
-('EQEID_12', 'The classic children’s board game Chutes and Ladders is a version of an ancient Nepalese game, Paramapada Sopanapata. In both games, players encounter “good” or “bad” spaces while traveling along a path; landing on one of the good spaces _______ a player ', 'allows', 'are allowing ', 'have allowed ', 'allow', '', '', 'allows', 'EID_12'),
-('EQEID_13', 'Although novels and poems are considered distinct literary forms, many authors have created hybrid works that incorporate elements of both. Bernardine Evaristo’s the Emperor\'s Babe, _______ is a verse novel, a book-length narrative complete with character', 'by contrast,', 'consequently, ', 'secondly,', 'for example,', '', '', 'for example,', 'EID_13'),
-('EQEID_14', 'At two weeks old, the time their critical socialization period begins, wolves can smell but cannot yet see or hear. Domesticated dogs, _______ can see, hear, and smell by the end of two weeks. This relative lack of sensory input may help explain why wolve', 'in other words, ', 'for instance, ', 'by contrast, ', 'accordingly,', '', '', 'by contrast, ', 'EID_14'),
-('EQEID_15', 'Researchers Helena Mihaljević-Brandt, Lucía Santamaría, and Marco Tullney report that while mathematicians may have traditionally worked alone, evidence points to a shift in the opposite direction. _______ mathematicians are choosing to collaborate with t', 'Similarly,', 'For this reason, ', 'Furthermore, ', 'Increasingly,', '', '', 'Increasingly,', 'EID_15'),
-('EQEID_16', 'Researchers have struggled to pinpoint specific causes for hiccups, which happen when a person’s diaphragm contracts _______. However, neuroscientist Kimberley Whitehead has found that these uncontrollable contractions may play an important role in helpin', 'Involuntarily', 'Beneficially', 'strenuously ', 'smoothly', '', '', 'Involuntarily', 'EID_16'),
-('EQEID_17', 'Critics have asserted that fine art and fashion rarely _______ in a world where artists create timeless works for exhibition and designers periodically produce new styles for the public to buy. Luiseño/ Shoshone-Bannock beadwork artist and designer Jamie ', 'Prevail', 'Succumb', 'Diverge', 'Intersect', '', '', 'Intersect', 'EID_17'),
-('EQEID_18', 'Scholarly discussions of gender in Shakespeare’s comedies often celebrate the rebellion of the playwright’s characters against the rigid expectations _______ by Elizabethan society. Most of the comedies end in marriage, with characters returning to their ', 'Interjected', 'Committed', 'Illustrated', 'Prescribed', '', '', 'Prescribed', 'EID_18'),
-('EQEID_19', 'In studying the use of external stimuli to reduce the itching sensation caused by an allergic histamine response, Louise Ward and colleagues found that while harmless applications of vibration or warming can provide a temporary distraction, such _______ s', 'Deceptive', 'Innocuous', 'Novel', 'Impractical', '', '', 'Innocuous', 'EID_19'),
-('EQEID_2', 'Beginning in the 1950s, Navajo Nation legislator Annie Dodge Wauneka continuously worked to promote public health; this _______ effort involved traveling throughout the vast Navajo homeland and writing a medical dictionary for speakers of Diné bizaad, the', 'demands', 'speculates ', 'doubts ', 'establishes', '', '', 'speculates ', 'EID_2'),
-('EQEID_20', 'The province of Xoconochco was situated on the Pacific coast, hundreds of kilometers southeast of Tenochtitlan, the capital of the Aztec Empire. Because Xoconochco’s location within the empire was so _______, cacao and other trade goods produced there cou', 'Unobtrusive', 'Concealed', 'Approximate', 'peripheral', '', '', 'peripheral', 'EID_20'),
-('EQEID_3', 'Following the principles of community-based participatory research, tribal nations and research institutions are equal partners in health studies conducted on reservations. A collaboration between the Crow Tribe and Montana State University _______ this m', 'Circumvents', 'Eclipses', 'Fabricates', 'Exemplifies', '', '', 'Exemplifies', 'EID_3'),
-('EQEID_4', 'The parasitic dodder plant increases its reproductive success by flowering at the same time as the host plant it has latched onto. In 2020, Jianqiang Wu and his colleagues determined that the tiny dodder achieves this _______ with its host by absorbing an', 'Synchronization', 'Hibernation', 'Prediction', 'Moderation', '', '', 'Synchronization', 'EID_4'),
-('EQEID_5', 'Given that the conditions in binary star systems should make planetary formation nearly impossible, it’s not surprising that the existence of planets in such systems has lacked _______ explanation. Roman Rafikov and Kedron Silsbee shed light on the subjec', 'a discernible', 'a straightforward ', 'an inconclusive', 'an unbiased', '', '', 'a straightforward ', 'EID_5'),
-('EQEID_6', 'Seminole/Muscogee director Sterlin Harjo _______ television’s tendency to situate Native characters in the distant past: this rejection is evident in his series Reservation Dogs, which revolves around teenagers who dress in contemporary styles and whose d', 'repudiates ', 'proclaims ', 'foretells ', 'recants', '', '', 'repudiates ', 'EID_6'),
-('EQEID_7', 'Public-awareness campaigns about the need to reduce single-use plastics can be successful, says researcher Kim Borg of Monash University in Australia, when these campaigns give consumers a choice: for example, Japan achieved a 40 percent reduction in plas', 'They', 'One', 'You', 'It', '', '', 'They', 'EID_7'),
-('EQEID_8', 'British scientists James Watson and Francis Crick won the Nobel Prize in part for their 1953 paper announcing the double helix structure of DNA, but it is misleading to say that Watson and Crick discovered the double helix. _______ findings were based on ', 'They’re', 'It’s', 'Their', 'Its', '', '', 'Their', 'EID_8'),
-('EQEID_9', 'In 1637, the price of tulips skyrocketed in Amsterdam, with single bulbs of rare varieties selling for up to the equivalent of $200,000 in today’s US dollars. Some historians _______ that this “tulip mania” was the first historical instance of an asset bu', 'Claiming', 'Claim', 'having claimed ', 'to claim', '', '', 'Claim', 'EID_9');
+INSERT INTO `eq_english` (`EQEID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C`, `Choice_D`, `Answer`, `EFID`) VALUES
+('EQEID_1', 'Former astronaut Ellen Ochoa says that although she doesn’t have a definite idea of when it might happen, she _______ that humans will someday need to be able to live in other environments than those found on Earth. This conjecture informs her interest in', 'demands ', 'speculates', 'doubts ', 'establishes', 'speculates', 'EFID_1'),
+('EQEID_10', 'Researchers studying magneto sensation have determined why some soil-dwelling roundworms in the Southern Hemisphere move in the opposite direction of Earth’s magnetic field when searching for _______ in the Northern Hemisphere, the magnetic field points d', 'food:', 'food, ', 'food while ', 'food', 'food:', 'EFID_1'),
+('EQEID_11', 'Scientists believe that, unlike most other species of barnacle, turtle barnacles (Chelonibia      testudinari) can dissolve the cement-like secretions they use to attach _______ to a sea turtle shell, enabling the barnacles to move short distances across ', 'It', 'themselves ', 'them', 'itself', 'themselves ', 'EFID_1'),
+('EQEID_12', 'The classic children’s board game Chutes and Ladders is a version of an ancient Nepalese game, Paramapada Sopanapata. In both games, players encounter “good” or “bad” spaces while traveling along a path; landing on one of the good spaces _______ a player ', 'allows', 'are allowing ', 'have allowed ', 'allow', 'allows', 'EFID_1'),
+('EQEID_13', 'Although novels and poems are considered distinct literary forms, many authors have created hybrid works that incorporate elements of both. Bernardine Evaristo’s the Emperor\'s Babe, _______ is a verse novel, a book-length narrative complete with character', 'by contrast,', 'consequently, ', 'secondly,', 'for example,', 'for example,', 'EFID_1'),
+('EQEID_14', 'At two weeks old, the time their critical socialization period begins, wolves can smell but cannot yet see or hear. Domesticated dogs, _______ can see, hear, and smell by the end of two weeks. This relative lack of sensory input may help explain why wolve', 'in other words, ', 'for instance, ', 'by contrast, ', 'accordingly,', 'by contrast, ', 'EFID_1'),
+('EQEID_15', 'Researchers Helena Mihaljević-Brandt, Lucía Santamaría, and Marco Tullney report that while mathematicians may have traditionally worked alone, evidence points to a shift in the opposite direction. _______ mathematicians are choosing to collaborate with t', 'Similarly,', 'For this reason, ', 'Furthermore, ', 'Increasingly,', 'Increasingly,', 'EFID_1'),
+('EQEID_16', 'Researchers have struggled to pinpoint specific causes for hiccups, which happen when a person’s diaphragm contracts _______. However, neuroscientist Kimberley Whitehead has found that these uncontrollable contractions may play an important role in helpin', 'Involuntarily', 'Beneficially', 'strenuously ', 'smoothly', 'Involuntarily', 'EFID_1'),
+('EQEID_17', 'Critics have asserted that fine art and fashion rarely _______ in a world where artists create timeless works for exhibition and designers periodically produce new styles for the public to buy. Luiseño/ Shoshone-Bannock beadwork artist and designer Jamie ', 'Prevail', 'Succumb', 'Diverge', 'Intersect', 'Intersect', 'EFID_1'),
+('EQEID_18', 'Scholarly discussions of gender in Shakespeare’s comedies often celebrate the rebellion of the playwright’s characters against the rigid expectations _______ by Elizabethan society. Most of the comedies end in marriage, with characters returning to their ', 'Interjected', 'Committed', 'Illustrated', 'Prescribed', 'Prescribed', 'EFID_1'),
+('EQEID_19', 'In studying the use of external stimuli to reduce the itching sensation caused by an allergic histamine response, Louise Ward and colleagues found that while harmless applications of vibration or warming can provide a temporary distraction, such _______ s', 'Deceptive', 'Innocuous', 'Novel', 'Impractical', 'Innocuous', 'EFID_1'),
+('EQEID_2', 'Beginning in the 1950s, Navajo Nation legislator Annie Dodge Wauneka continuously worked to promote public health; this _______ effort involved traveling throughout the vast Navajo homeland and writing a medical dictionary for speakers of Diné bizaad, the', 'demands', 'speculates ', 'doubts ', 'establishes', 'speculates ', 'EFID_1'),
+('EQEID_20', 'The province of Xoconochco was situated on the Pacific coast, hundreds of kilometers southeast of Tenochtitlan, the capital of the Aztec Empire. Because Xoconochco’s location within the empire was so _______, cacao and other trade goods produced there cou', 'Unobtrusive', 'Concealed', 'Approximate', 'peripheral', 'peripheral', 'EFID_1'),
+('EQEID_3', 'Following the principles of community-based participatory research, tribal nations and research institutions are equal partners in health studies conducted on reservations. A collaboration between the Crow Tribe and Montana State University _______ this m', 'Circumvents', 'Eclipses', 'Fabricates', 'Exemplifies', 'Exemplifies', 'EFID_1'),
+('EQEID_4', 'The parasitic dodder plant increases its reproductive success by flowering at the same time as the host plant it has latched onto. In 2020, Jianqiang Wu and his colleagues determined that the tiny dodder achieves this _______ with its host by absorbing an', 'Synchronization', 'Hibernation', 'Prediction', 'Moderation', 'Synchronization', 'EFID_1'),
+('EQEID_5', 'Given that the conditions in binary star systems should make planetary formation nearly impossible, it’s not surprising that the existence of planets in such systems has lacked _______ explanation. Roman Rafikov and Kedron Silsbee shed light on the subjec', 'a discernible', 'a straightforward ', 'an inconclusive', 'an unbiased', 'a straightforward ', 'EFID_1'),
+('EQEID_6', 'Seminole/Muscogee director Sterlin Harjo _______ television’s tendency to situate Native characters in the distant past: this rejection is evident in his series Reservation Dogs, which revolves around teenagers who dress in contemporary styles and whose d', 'repudiates ', 'proclaims ', 'foretells ', 'recants', 'repudiates ', 'EFID_1'),
+('EQEID_7', 'Public-awareness campaigns about the need to reduce single-use plastics can be successful, says researcher Kim Borg of Monash University in Australia, when these campaigns give consumers a choice: for example, Japan achieved a 40 percent reduction in plas', 'They', 'One', 'You', 'It', 'They', 'EFID_1'),
+('EQEID_8', 'British scientists James Watson and Francis Crick won the Nobel Prize in part for their 1953 paper announcing the double helix structure of DNA, but it is misleading to say that Watson and Crick discovered the double helix. _______ findings were based on ', 'They’re', 'It’s', 'Their', 'Its', 'Their', 'EFID_1'),
+('EQEID_9', 'In 1637, the price of tulips skyrocketed in Amsterdam, with single bulbs of rare varieties selling for up to the equivalent of $200,000 in today’s US dollars. Some historians _______ that this “tulip mania” was the first historical instance of an asset bu', 'Claiming', 'Claim', 'having claimed ', 'to claim', 'Claim', 'EFID_1');
 
 -- --------------------------------------------------------
 
@@ -242,37 +240,35 @@ CREATE TABLE `eq_math` (
   `Choice_B` varchar(255) NOT NULL,
   `Choice_C` varchar(255) NOT NULL,
   `Choice_D` varchar(255) NOT NULL,
-  `Choice_E` varchar(255) NOT NULL,
-  `ChoiceF` varchar(255) NOT NULL,
   `Answer` varchar(255) NOT NULL,
-  `EID` varchar(255) NOT NULL
+  `EFID` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `eq_math`
 --
 
-INSERT INTO `eq_math` (`EQMID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C`, `Choice_D`, `Choice_E`, `ChoiceF`, `Answer`, `EID`) VALUES
-('EQMID_1', 'Kathy is a repair technician for a phone company. Each week, she receives a batch of phones that need repairs. The number of phones that she has left to fix at the end of each day can be estimated with the equation P d = 108 − 23, where P is the number', 'Kathy will complete the repairs within 108 days.', 'Kathy starts each week with 108 phones to fix.', 'Kathy repairs phones at a rate of 108 per hour.', 'Kathy repairs phones at a rate of 108 per day.', '', '', 'Kathy starts each week with 108 phones to fix.', 'EID_1'),
-('EQMID_10', 'Which of the following numbers is NOT a solution of the inequality \r\n3x — 5 ≥ 4x — 3  \r\n', '—1 ', '—2', '—3', '—5', '', '', '—1 ', 'EID_10'),
-('EQMID_11', 'A food truck sells salads for $6.50 each and drinks for$2.00 each. The food truck’s revenue from selling a total of 209 salads and drinks in one day was $836.50. How many salads were sold that day', '77', '93', '99', '105', '', '', '93', 'EID_11'),
-('EQMID_12', 'Katarina is a botanist studying the production of pears by two types of pear trees. She noticed that Type A trees produced 20 percent more pears than Type B trees did. Based on Katarina\'s observation, if the Type A trees produced 144 pears, how many pears', '115', '120', '124', '173', '', '', '120', 'EID_12'),
-('EQMID_13', 'h = - 4.9t^2 + 25t \r\nThe equation above expresses the approximate height h, in meters, of a ball t seconds after it is launched vertically upward from the ground with an initial velocity of 25 meters per second. After approximately how many seconds will t', '3.5', '4.0', '4.5', '5.0', '', '', '5.0', 'EID_13'),
-('EQMID_14', 'For a polynomial p(x), the value of p(3) is -2. Which of the following must be true about p(x)? ', 'x - 5 is a factor of p(x). ', 'x - 2 is a factor of p(x). ', 'x + 2 is a factor of p(x). ', 'The remainder when p(x) is divided by x - 3 is - 2.', '', '', 'The remainder when p(x) is divided by x - 3 is - 2.', 'EID_14'),
-('EQMID_15', 'g(x) = ax^2 + 24 \r\nFor the function g defined above, a is a constant and g(4) = 8. What is the value of g (-4)? \r\n', '8', '0', '-1', '-8', '', '', '8', 'EID_15'),
-('EQMID_16', '3x = 12, -3x +y = -6 \r\nThe solution to the given system of equations is (x, y). What is the value of y? \r\n', '-3', '6', '18', '30', '', '', '6', 'EID_16'),
-('EQMID_17', 's = 40 + 3t \r\nThe equation gives the speed s, in miles per hour, of a certain car t seconds after it began to accelerate. What is the speed, in miles per hour, of the car 5 seconds after it began to accelerate? \r\n', '40', '43', '45', '55', '', '', '55', 'EID_17'),
-('EQMID_18', 'x + 7 = 10, (x+7) ^2 = y\r\nWhich ordered pair (x, y) is a solution to the given system of equations?\r\n', '(3, 100)', '(3,3)', '(3, 10)', '(3,70)', '', '', '(3, 100)', 'EID_18'),
-('EQMID_19', 'g(x) = x^2 + 55\r\nWhat is the minimum value of the given function?\r\n', '0', '55', '110', '3,025', '', '', '55', 'EID_19'),
-('EQMID_2', 'h = a = 3 + 28.6\r\nA pediatrician uses the model above to estimate the height h of a boy, in inches, in terms of the boy’s age a, in years, between the ages of 2 and 5. Based on the model, what is the estimated increase, in inches, of a boy’s height each y', '3', '5.7', '9.5', '14.3', '', '', '3', 'EID_2'),
-('EQMID_20', 'Each year, the value of an investment increases by 0.49% of its value the previous year. Which of the following functions best models how the value of the investment changes over time?', 'Decreasing exponential ', 'Decreasing linear', 'Increasing exponential ', 'Increasing linear', '', '', 'Increasing exponential ', 'EID_20'),
-('EQMID_3', 'b = 2.35 + 0.25x   c = 1.75 + 0.40x\r\nIn the equations above, b and c represent the price per pound, in dollars, of beef and chicken, respectively, x weeks after July 1 during last summer. What was the price per pound of beef when it was equal to the price', '$2.60', '$2.85', '$2.95', '$3.35', '', '', '$3.35', 'EID_3'),
-('EQMID_4', '3x+ 4y = −23   2y − x = −19\r\nWhat is the solution (x, y) to the system of equations above?\r\n', '(−5, −2)', '(3, −8)', '(4, −6)', '(9, −6)', '', '', '(3, −8)', 'EID_4'),
-('EQMID_5', 'A line in the xy-plane passes through the origin and has a slope of 1/7 Which of the following points lies on the line? ', '(0,7)', '(1,7) ', '(7,7)', '(14,2)', '', '', '(14,2)', 'EID_5'),
-('EQMID_6', 'If (ax + 2) (bx +7) = 15x^2 + cx + 14 for all values of x, and a + b = 8, what are the two possible values for c?', '3 and 5 ', '6 and 35 ', '10 and 21', '31 and 41', '', '', '31 and 41', 'EID_6'),
-('EQMID_7', 'If 16 + 4x is 10 more than 14, what is the value of 8x?', '2 ', '6 ', '16 ', '80', '', '', '16 ', 'EID_7'),
-('EQMID_8', 'If y = kx, where k is a constant, and y = 24 when x = 6, what is the value of y when x = 5? ', '6 ', '15', '20 ', '23', '', '', '20 ', 'EID_8'),
-('EQMID_9', 'For what value of n is | n — 1 | + 1 equal to 0? ', '0 ', 'I ', '2 ', 'There is no such value of n.', '', '', 'There is no such value of n.', 'EID_9');
+INSERT INTO `eq_math` (`EQMID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C`, `Choice_D`, `Answer`, `EFID`) VALUES
+('EQMID_1', 'Kathy is a repair technician for a phone company. Each week, she receives a batch of phones that need repairs. The number of phones that she has left to fix at the end of each day can be estimated with the equation P d = 108 − 23, where P is the number', 'Kathy will complete the repairs within 108 days.', 'Kathy starts each week with 108 phones to fix.', 'Kathy repairs phones at a rate of 108 per hour.', 'Kathy repairs phones at a rate of 108 per day.', 'Kathy starts each week with 108 phones to fix.', 'EFID_1'),
+('EQMID_10', 'Which of the following numbers is NOT a solution of the inequality \r\n3x — 5 ≥ 4x — 3  \r\n', '—1 ', '—2', '—3', '—5', '—1 ', 'EFID_1'),
+('EQMID_11', 'A food truck sells salads for $6.50 each and drinks for$2.00 each. The food truck’s revenue from selling a total of 209 salads and drinks in one day was $836.50. How many salads were sold that day', '77', '93', '99', '105', '93', 'EFID_1'),
+('EQMID_12', 'Katarina is a botanist studying the production of pears by two types of pear trees. She noticed that Type A trees produced 20 percent more pears than Type B trees did. Based on Katarina\'s observation, if the Type A trees produced 144 pears, how many pears', '115', '120', '124', '173', '120', 'EFID_1'),
+('EQMID_13', 'h = - 4.9t^2 + 25t \r\nThe equation above expresses the approximate height h, in meters, of a ball t seconds after it is launched vertically upward from the ground with an initial velocity of 25 meters per second. After approximately how many seconds will t', '3.5', '4.0', '4.5', '5.0', '5.0', 'EFID_1'),
+('EQMID_14', 'For a polynomial p(x), the value of p(3) is -2. Which of the following must be true about p(x)? ', 'x - 5 is a factor of p(x). ', 'x - 2 is a factor of p(x). ', 'x + 2 is a factor of p(x). ', 'The remainder when p(x) is divided by x - 3 is - 2.', 'The remainder when p(x) is divided by x - 3 is - 2.', 'EFID_1'),
+('EQMID_15', 'g(x) = ax^2 + 24 \r\nFor the function g defined above, a is a constant and g(4) = 8. What is the value of g (-4)? \r\n', '8', '0', '-1', '-8', '8', 'EFID_1'),
+('EQMID_16', '3x = 12, -3x +y = -6 \r\nThe solution to the given system of equations is (x, y). What is the value of y? \r\n', '-3', '6', '18', '30', '6', 'EFID_1'),
+('EQMID_17', 's = 40 + 3t \r\nThe equation gives the speed s, in miles per hour, of a certain car t seconds after it began to accelerate. What is the speed, in miles per hour, of the car 5 seconds after it began to accelerate? \r\n', '40', '43', '45', '55', '55', 'EFID_1'),
+('EQMID_18', 'x + 7 = 10, (x+7) ^2 = y\r\nWhich ordered pair (x, y) is a solution to the given system of equations?\r\n', '(3, 100)', '(3,3)', '(3, 10)', '(3,70)', '(3, 100)', 'EFID_1'),
+('EQMID_19', 'g(x) = x^2 + 55\r\nWhat is the minimum value of the given function?\r\n', '0', '55', '110', '3,025', '55', 'EFID_1'),
+('EQMID_2', 'h = a = 3 + 28.6\r\nA pediatrician uses the model above to estimate the height h of a boy, in inches, in terms of the boy’s age a, in years, between the ages of 2 and 5. Based on the model, what is the estimated increase, in inches, of a boy’s height each y', '3', '5.7', '9.5', '14.3', '3', 'EFID_1'),
+('EQMID_20', 'Each year, the value of an investment increases by 0.49% of its value the previous year. Which of the following functions best models how the value of the investment changes over time?', 'Decreasing exponential ', 'Decreasing linear', 'Increasing exponential ', 'Increasing linear', 'Increasing exponential ', 'EFID_1'),
+('EQMID_3', 'b = 2.35 + 0.25x   c = 1.75 + 0.40x\r\nIn the equations above, b and c represent the price per pound, in dollars, of beef and chicken, respectively, x weeks after July 1 during last summer. What was the price per pound of beef when it was equal to the price', '$2.60', '$2.85', '$2.95', '$3.35', '$3.35', 'EFID_1'),
+('EQMID_4', '3x+ 4y = −23   2y − x = −19\r\nWhat is the solution (x, y) to the system of equations above?\r\n', '(−5, −2)', '(3, −8)', '(4, −6)', '(9, −6)', '(3, −8)', 'EFID_1'),
+('EQMID_5', 'A line in the xy-plane passes through the origin and has a slope of 1/7 Which of the following points lies on the line? ', '(0,7)', '(1,7) ', '(7,7)', '(14,2)', '(14,2)', 'EFID_1'),
+('EQMID_6', 'If (ax + 2) (bx +7) = 15x^2 + cx + 14 for all values of x, and a + b = 8, what are the two possible values for c?', '3 and 5 ', '6 and 35 ', '10 and 21', '31 and 41', '31 and 41', 'EFID_1'),
+('EQMID_7', 'If 16 + 4x is 10 more than 14, what is the value of 8x?', '2 ', '6 ', '16 ', '80', '16 ', 'EFID_1'),
+('EQMID_8', 'If y = kx, where k is a constant, and y = 24 when x = 6, what is the value of y when x = 5? ', '6 ', '15', '20 ', '23', '20 ', 'EFID_1'),
+('EQMID_9', 'For what value of n is | n — 1 | + 1 equal to 0? ', '0 ', 'I ', '2 ', 'There is no such value of n.', 'There is no such value of n.', 'EFID_1');
 
 -- --------------------------------------------------------
 
@@ -287,8 +283,6 @@ CREATE TABLE `eq_reading_comprehension` (
   `Choice_B` varchar(255) NOT NULL,
   `Choice_C` varchar(255) NOT NULL,
   `Choice_D` varchar(255) NOT NULL,
-  `Choice_E` varchar(255) NOT NULL,
-  `Choice_F` varchar(255) NOT NULL,
   `Answer` varchar(255) NOT NULL,
   `EID` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -297,27 +291,27 @@ CREATE TABLE `eq_reading_comprehension` (
 -- Dumping data for table `eq_reading_comprehension`
 --
 
-INSERT INTO `eq_reading_comprehension` (`EQRCID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C`, `Choice_D`, `Choice_E`, `Choice_F`, `Answer`, `EID`) VALUES
-('EQRCID_1', 'Which choice best describes what happens in the passage?', 'One character argues with another character who intrudes on her home.', 'One character receives a surprising request from another character.', 'One character reminisces about choices she has made over the years.', 'One character criticizes another character for pursuing an unexpected course of action', '', '', 'One character receives a surprising request from another character.', 'EID_1'),
-('EQRCID_10', 'Which choice provides the best evidence for the answer to the previous question?', 'Line 39 (“I don’t... you”)', 'Lines 39 - 42 (“Normally... community”)', 'Lines 58 - 59 (“Depending... Japan”)', 'Lines 72 - 73 (“I see... you”)', '', '', 'Lines 39 - 42 (“Normally... community”)', 'EID_10'),
-('EQRCID_11', 'The authors most likely use the examples in lines 1-9 of the passage (“Every... showers”) to highlight the', 'regularity with which people shop for gifts.', 'recent increase in the amount of money spent on gifts.\r\n', 'anxiety gift shopping causes for consumers.', 'number of special occasions involving gift-giving\r\n', '', '', 'regularity with which people shop for gifts.', 'EID_11'),
-('EQRCID_12', 'In line 10, the word “ambivalent” most nearly means', 'unrealistic.', 'conflicted.', 'apprehensive.', 'supportive.', '', '', 'conflicted.', 'EID_12'),
-('EQRCID_13', 'The authors indicate that people value gift-giving because they feel it', 'functions as a form of self-expression.', 'is an inexpensive way to show appreciation.', 'requires the gift-recipient to reciprocate.', 'can serve to strengthen a relationship.', '', '', 'can serve to strengthen a relationship.', 'EID_13'),
-('EQRCID_14', 'Which choice provides the best evidence for the answer to the previous question?', 'Lines 10-13 (“Many... peers”)', 'Lines 22-23 (“People... own”)', 'Lines 31-32 (“Research... perspectives”)', 'Lines 44-47 (“Although... unfounded”)', '', '', 'Lines 10-13 (“Many... peers”)', 'EID_14'),
-('EQRCID_15', 'The “social psychologists” mentioned in paragraph 2 (lines 17-34) would likely describe the “deadweight loss” phenomenon as', 'predictable.', 'questionable.', 'disturbing.', 'unprecedented.', '', '', 'predictable.', 'EID_15'),
-('EQRCID_16', 'The passage indicates that the assumption made by gift-givers in lines 41-44 may be\r\n', 'insincere.', 'unreasonable.', 'incorrect.', 'substantiated.', '', '', 'incorrect.', 'EID_16'),
-('EQRCID_17', 'Which choice provides the best evidence for the answer to the previous question?', 'Lines 53-55 (“Perhaps... consideration”)', 'Lines 55-60 (“According... relationship”)', 'Lines 63-65 (“As... consideration”)', 'Lines 75-78 (“In... relations”)', '', '', 'Lines 63-65 (“As... consideration”)', 'EID_17'),
-('EQRCID_18', 'As it is used in line 54, “convey” most nearly means', 'transport.', 'counteract.', 'exchange.', 'communicate.', '', '', 'communicate.', 'EID_18'),
-('EQRCID_19', 'The authors refer to work by Camerer and others (line 56) in order to', 'offer an explanation.', 'introduce an argument.', 'question a motive.', 'support a conclusion', '', '', 'offer an explanation.', 'EID_19'),
-('EQRCID_2', 'Which choice best describes the developmental pattern of the passage?', 'A careful analysis of a traditional practice', 'A detailed depiction of a meaningful encounter', 'A definitive response to a series of questions', 'A cheerful recounting of an amusing anecdote', '', '', 'A detailed depiction of a meaningful encounter', 'EID_2'),
-('EQRCID_20', 'The authors would likely attribute the differences in gift-giver and recipient mean appreciation as represented in the graph to', 'an inability to shift perspective.', 'an increasingly materialistic culture.', 'a growing opposition to gift-giving.', 'a misunderstanding of intentions.', '', '', 'an inability to shift perspective.', 'EID_20'),
-('EQRCID_3', 'As used in line 1 and line 65, “directly” most nearly means', 'frankly.', 'confidently.', 'without mediation.', 'with precision.', '', '', 'without mediation.', 'EID_3'),
-('EQRCID_4', 'Which reaction does Akira most fear from Chie?', 'She will consider his proposal inappropriate.', 'She will mistake his earnestness for immaturity.', 'She will consider his unscheduled visit an imposition.', 'She will underestimate the sincerity of his emotions', '', '', 'She will consider his proposal inappropriate.', 'EID_4'),
-('EQRCID_5', 'Which choice provides the best evidence for the answer to the previous question?', 'Line 33 (“His voice... refined”)', 'Lines 49-51 (“You... mind”)', 'Lines 63-64 (“Please... proposal”)', 'Lines 71-72 (“Eager... face”)', '', '', 'Lines 63-64 (“Please... proposal”)', 'EID_5'),
-('EQRCID_6', 'In the passage, Akira addresses Chie with', 'affection but not genuine love.', 'objectivity but not complete impartiality.', 'amusement but not mocking disparagement.', 'respect but not utter deference', '', '', 'respect but not utter deference', 'EID_6'),
-('EQRCID_7', 'The main purpose of the first paragraph is to', 'describe a culture.', 'criticize a tradition.', 'question a suggestion.', 'analyze a reaction', '', '', 'analyze a reaction', 'EID_7'),
-('EQRCID_8', 'As used in line 2, “form” most nearly means', 'appearance.', 'custom.', 'structure.', 'nature', '', '', 'custom.', 'EID_8'),
-('EQRCID_9', 'Why does Akira say his meeting with Chie is “a matter of urgency” (line 32)?', 'He fears that his own parents will disapprove of Naomi.', 'He worries that Naomi will reject him and marry someone else.', 'He has been offered an attractive job in another country.', 'He knows that Chie is unaware of his feelings for Naomi.', '', '', 'He has been offered an attractive job in another country.', 'EID_9');
+INSERT INTO `eq_reading_comprehension` (`EQRCID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C`, `Choice_D`, `Answer`, `EID`) VALUES
+('EQRCID_1', 'Which choice best describes what happens in the passage?', 'One character argues with another character who intrudes on her home.', 'One character receives a surprising request from another character.', 'One character reminisces about choices she has made over the years.', 'One character criticizes another character for pursuing an unexpected course of action', 'One character receives a surprising request from another character.', 'EFID_1'),
+('EQRCID_10', 'Which choice provides the best evidence for the answer to the previous question?', 'Line 39 (“I don’t... you”)', 'Lines 39 - 42 (“Normally... community”)', 'Lines 58 - 59 (“Depending... Japan”)', 'Lines 72 - 73 (“I see... you”)', 'Lines 39 - 42 (“Normally... community”)', 'EFID_1'),
+('EQRCID_11', 'The authors most likely use the examples in lines 1-9 of the passage (“Every... showers”) to highlight the', 'regularity with which people shop for gifts.', 'recent increase in the amount of money spent on gifts.\r\n', 'anxiety gift shopping causes for consumers.', 'number of special occasions involving gift-giving\r\n', 'regularity with which people shop for gifts.', 'EFID_1'),
+('EQRCID_12', 'In line 10, the word “ambivalent” most nearly means', 'unrealistic.', 'conflicted.', 'apprehensive.', 'supportive.', 'conflicted.', 'EFID_1'),
+('EQRCID_13', 'The authors indicate that people value gift-giving because they feel it', 'functions as a form of self-expression.', 'is an inexpensive way to show appreciation.', 'requires the gift-recipient to reciprocate.', 'can serve to strengthen a relationship.', 'can serve to strengthen a relationship.', 'EFID_1'),
+('EQRCID_14', 'Which choice provides the best evidence for the answer to the previous question?', 'Lines 10-13 (“Many... peers”)', 'Lines 22-23 (“People... own”)', 'Lines 31-32 (“Research... perspectives”)', 'Lines 44-47 (“Although... unfounded”)', 'Lines 10-13 (“Many... peers”)', 'EFID_1'),
+('EQRCID_15', 'The “social psychologists” mentioned in paragraph 2 (lines 17-34) would likely describe the “deadweight loss” phenomenon as', 'predictable.', 'questionable.', 'disturbing.', 'unprecedented.', 'predictable.', 'EFID_1'),
+('EQRCID_16', 'The passage indicates that the assumption made by gift-givers in lines 41-44 may be\r\n', 'insincere.', 'unreasonable.', 'incorrect.', 'substantiated.', 'incorrect.', 'EFID_1'),
+('EQRCID_17', 'Which choice provides the best evidence for the answer to the previous question?', 'Lines 53-55 (“Perhaps... consideration”)', 'Lines 55-60 (“According... relationship”)', 'Lines 63-65 (“As... consideration”)', 'Lines 75-78 (“In... relations”)', 'Lines 63-65 (“As... consideration”)', 'EFID_1'),
+('EQRCID_18', 'As it is used in line 54, “convey” most nearly means', 'transport.', 'counteract.', 'exchange.', 'communicate.', 'communicate.', 'EFID_1'),
+('EQRCID_19', 'The authors refer to work by Camerer and others (line 56) in order to', 'offer an explanation.', 'introduce an argument.', 'question a motive.', 'support a conclusion', 'offer an explanation.', 'EFID_1'),
+('EQRCID_2', 'Which choice best describes the developmental pattern of the passage?', 'A careful analysis of a traditional practice', 'A detailed depiction of a meaningful encounter', 'A definitive response to a series of questions', 'A cheerful recounting of an amusing anecdote', 'A detailed depiction of a meaningful encounter', 'EFID_1'),
+('EQRCID_20', 'The authors would likely attribute the differences in gift-giver and recipient mean appreciation as represented in the graph to', 'an inability to shift perspective.', 'an increasingly materialistic culture.', 'a growing opposition to gift-giving.', 'a misunderstanding of intentions.', 'an inability to shift perspective.', 'EFID_1'),
+('EQRCID_3', 'As used in line 1 and line 65, “directly” most nearly means', 'frankly.', 'confidently.', 'without mediation.', 'with precision.', 'without mediation.', 'EFID_1'),
+('EQRCID_4', 'Which reaction does Akira most fear from Chie?', 'She will consider his proposal inappropriate.', 'She will mistake his earnestness for immaturity.', 'She will consider his unscheduled visit an imposition.', 'She will underestimate the sincerity of his emotions', 'She will consider his proposal inappropriate.', 'EFID_1'),
+('EQRCID_5', 'Which choice provides the best evidence for the answer to the previous question?', 'Line 33 (“His voice... refined”)', 'Lines 49-51 (“You... mind”)', 'Lines 63-64 (“Please... proposal”)', 'Lines 71-72 (“Eager... face”)', 'Lines 63-64 (“Please... proposal”)', 'EFID_1'),
+('EQRCID_6', 'In the passage, Akira addresses Chie with', 'affection but not genuine love.', 'objectivity but not complete impartiality.', 'amusement but not mocking disparagement.', 'respect but not utter deference', 'respect but not utter deference', 'EFID_1'),
+('EQRCID_7', 'The main purpose of the first paragraph is to', 'describe a culture.', 'criticize a tradition.', 'question a suggestion.', 'analyze a reaction', 'analyze a reaction', 'EFID_1'),
+('EQRCID_8', 'As used in line 2, “form” most nearly means', 'appearance.', 'custom.', 'structure.', 'nature', 'custom.', 'EFID_1'),
+('EQRCID_9', 'Why does Akira say his meeting with Chie is “a matter of urgency” (line 32)?', 'He fears that his own parents will disapprove of Naomi.', 'He worries that Naomi will reject him and marry someone else.', 'He has been offered an attractive job in another country.', 'He knows that Chie is unaware of his feelings for Naomi.', 'He has been offered an attractive job in another country.', 'EFID_1');
 
 -- --------------------------------------------------------
 
@@ -332,8 +326,6 @@ CREATE TABLE `eq_science` (
   `Choice_B` varchar(255) NOT NULL,
   `Choice_C` varchar(255) NOT NULL,
   `Choice_D` varchar(255) NOT NULL,
-  `Choice_E` varchar(255) NOT NULL,
-  `Choice_F` varchar(255) NOT NULL,
   `Answer` varchar(255) NOT NULL,
   `EID` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -342,17 +334,17 @@ CREATE TABLE `eq_science` (
 -- Dumping data for table `eq_science`
 --
 
-INSERT INTO `eq_science` (`EQSID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C`, `Choice_D`, `Choice_E`, `Choice_F`, `Answer`, `EID`) VALUES
-('EQSID_1', 'The authors use the word “backbone” in lines 3 and 39 to indicate that ', 'only very long chains of DNA can be taken from', 'the main structure of a chain in a DNA molecule is composed of repeating units.', 'a chain in a DNA molecule consists entirely of phosphate groups or of sugars.', 'nitrogenous bases form the main structural unit of DNA.', '', '', 'the main structure of a chain in a DNA molecule is composed of repeating units.', 'EID_1'),
-('EQSID_10', 'Based on the table, is the percentage of adenine in each organism’s DNA the same or does it vary, and which statement made by the authors is most consistent with that data?', 'The same; “Two of... pyrimidines” (lines 6-8)', 'The same; “The important... structure” (lines 25-26)', 'It varies; “Adenine... thymine” (lines 36-38)', 'It varies; “It follows... information” (lines 41-45)', '', '', 'It varies; “It follows... information” (lines 41-45)', 'EID_10'),
-('EQSID_2', 'A student claims that nitrogenous bases pair randomly with one another. Which of the following statements in the passage contradicts the student’s claim?', 'Lines 5-6 (“To each... types”)', 'Lines 9-10 (“So far... irregular”)', 'Lines 23-25 (“The bases... other”)', 'Lines 27-29 (“One member... chains”)', '', '', 'Lines 27-29 (“One member... chains”)', 'EID_2'),
-('EQSID_3', 'In the second paragraph (lines 12-19), what do the authors claim to be a feature of biological interest?', 'The chemical formula of DNA', 'The common fiber axis', 'The X-ray evidences', 'DNA consisting of two chains', '', '', 'DNA consisting of two chains', 'EID_3'),
-('EQSID_4', 'The authors’ main purpose of including the information about X-ray evidence and density is to', 'establish that DNA is the molecule that carries the genetic information.', 'present an alternate hypothesis about the composition of a nucleotide.', 'provide support for the authors’ claim about the number of chains in a molecule of DNA.', 'confirm the relationship between the density of DNA and the known chemical formula of DNA.', '', '', 'provide support for the authors’ claim about the number of chains in a molecule of DNA.', 'EID_4'),
-('EQSID_5', 'Based on the passage, the authors’ statement “If a pair consisted of two purines, for example, there would not be room for it” (lines 29-30) implies that a pair', 'of purines would be larger than the space between a sugar and a phosphate group.', 'of purines would be larger than a pair consisting of a purine and a pyrimidine.', 'of pyrimidines would be larger than a pair of purines.', 'consisting of a purine and a pyrimidine would be larger than a pair of pyrimidines.', '', '', 'of purines would be larger than a pair consisting of a purine and a pyrimidine.', 'EID_5'),
-('EQSID_6', 'The authors’ use of the words “exact,” “specific,” and “complement” in lines 47-49 in the final paragraph functions mainly to', 'confirm that the nucleotide sequences are known for most molecules of DNA.', 'counter the claim that the sequences of bases along a chain can occur in any order.', 'support the claim that the phosphate-sugar backbone of the authors’ model is completely regular.', 'emphasize how one chain of DNA may serve as a template to be copied during DNA replication.', '', '', 'emphasize how one chain of DNA may serve as a template to be copied during DNA replication.', 'EID_6'),
-('EQSID_7', 'Based on the table and passage, which choice gives the correct percentages of the purines in yeast DNA? ', '17.1% and 18.7%', '17.1% and 32.9%', '18.7% and 31.3%', '31.3% and 32.9%', '', '', '18.7% and 31.3%', 'EID_7'),
-('EQSID_8', 'Do the data in the table support the authors’ proposed pairing of bases in DNA? ', 'Yes, because for each given organism, the percentage of adenine is closest to the percentage of thymine, and the percentage of guanine is closest to the percentage of cytosine', 'Yes, because for each given organism, the percentage of adenine is closest to the percentage of guanine, and the percentage of cytosine is closest to the percentage of thymine.', 'No, because for each given organism, the percentage of adenine is closest to the percentage of thymine, and the percentage of guanine is closest to the percentage of cytosine. ', 'No, because for each given organism, the percentage of adenine is closest to the percentage of guanine, and the percentage of cytosine is closest to the percentage of thymine.', '', '', 'Yes, because for each given organism, the percentage of adenine is closest to the percentage of thymine, and the percentage of guanine is closest to the percentage of cytosine', 'EID_8'),
-('EQSID_9', 'According to the table, which of the following pairs of base percentages in sea urchin DNA provides evidence in support of the answer to the previous question?', '17.3% and 17.7%', '17.3% and 32.1%', '17.3% and 32.8%', '17.7% and 32.8%', '', '', '17.3% and 17.7%', 'EID_9');
+INSERT INTO `eq_science` (`EQSID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C`, `Choice_D`, `Answer`, `EID`) VALUES
+('EQSID_1', 'The authors use the word “backbone” in lines 3 and 39 to indicate that ', 'only very long chains of DNA can be taken from', 'the main structure of a chain in a DNA molecule is composed of repeating units.', 'a chain in a DNA molecule consists entirely of phosphate groups or of sugars.', 'nitrogenous bases form the main structural unit of DNA.', 'the main structure of a chain in a DNA molecule is composed of repeating units.', 'EFID_1'),
+('EQSID_10', 'Based on the table, is the percentage of adenine in each organism’s DNA the same or does it vary, and which statement made by the authors is most consistent with that data?', 'The same; “Two of... pyrimidines” (lines 6-8)', 'The same; “The important... structure” (lines 25-26)', 'It varies; “Adenine... thymine” (lines 36-38)', 'It varies; “It follows... information” (lines 41-45)', 'It varies; “It follows... information” (lines 41-45)', 'EFID_1'),
+('EQSID_2', 'A student claims that nitrogenous bases pair randomly with one another. Which of the following statements in the passage contradicts the student’s claim?', 'Lines 5-6 (“To each... types”)', 'Lines 9-10 (“So far... irregular”)', 'Lines 23-25 (“The bases... other”)', 'Lines 27-29 (“One member... chains”)', 'Lines 27-29 (“One member... chains”)', 'EFID_1'),
+('EQSID_3', 'In the second paragraph (lines 12-19), what do the authors claim to be a feature of biological interest?', 'The chemical formula of DNA', 'The common fiber axis', 'The X-ray evidences', 'DNA consisting of two chains', 'DNA consisting of two chains', 'EFID_1'),
+('EQSID_4', 'The authors’ main purpose of including the information about X-ray evidence and density is to', 'establish that DNA is the molecule that carries the genetic information.', 'present an alternate hypothesis about the composition of a nucleotide.', 'provide support for the authors’ claim about the number of chains in a molecule of DNA.', 'confirm the relationship between the density of DNA and the known chemical formula of DNA.', 'provide support for the authors’ claim about the number of chains in a molecule of DNA.', 'EFID_1'),
+('EQSID_5', 'Based on the passage, the authors’ statement “If a pair consisted of two purines, for example, there would not be room for it” (lines 29-30) implies that a pair', 'of purines would be larger than the space between a sugar and a phosphate group.', 'of purines would be larger than a pair consisting of a purine and a pyrimidine.', 'of pyrimidines would be larger than a pair of purines.', 'consisting of a purine and a pyrimidine would be larger than a pair of pyrimidines.', 'of purines would be larger than a pair consisting of a purine and a pyrimidine.', 'EFID_1'),
+('EQSID_6', 'The authors’ use of the words “exact,” “specific,” and “complement” in lines 47-49 in the final paragraph functions mainly to', 'confirm that the nucleotide sequences are known for most molecules of DNA.', 'counter the claim that the sequences of bases along a chain can occur in any order.', 'support the claim that the phosphate-sugar backbone of the authors’ model is completely regular.', 'emphasize how one chain of DNA may serve as a template to be copied during DNA replication.', 'emphasize how one chain of DNA may serve as a template to be copied during DNA replication.', 'EFID_1'),
+('EQSID_7', 'Based on the table and passage, which choice gives the correct percentages of the purines in yeast DNA? ', '17.1% and 18.7%', '17.1% and 32.9%', '18.7% and 31.3%', '31.3% and 32.9%', '18.7% and 31.3%', 'EFID_1'),
+('EQSID_8', 'Do the data in the table support the authors’ proposed pairing of bases in DNA? ', 'Yes, because for each given organism, the percentage of adenine is closest to the percentage of thymine, and the percentage of guanine is closest to the percentage of cytosine', 'Yes, because for each given organism, the percentage of adenine is closest to the percentage of guanine, and the percentage of cytosine is closest to the percentage of thymine.', 'No, because for each given organism, the percentage of adenine is closest to the percentage of thymine, and the percentage of guanine is closest to the percentage of cytosine. ', 'No, because for each given organism, the percentage of adenine is closest to the percentage of guanine, and the percentage of cytosine is closest to the percentage of thymine.', 'Yes, because for each given organism, the percentage of adenine is closest to the percentage of thymine, and the percentage of guanine is closest to the percentage of cytosine', 'EFID_1'),
+('EQSID_9', 'According to the table, which of the following pairs of base percentages in sea urchin DNA provides evidence in support of the answer to the previous question?', '17.3% and 17.7%', '17.3% and 32.1%', '17.3% and 32.8%', '17.7% and 32.8%', '17.3% and 17.7%', 'EFID_1');
 
 -- --------------------------------------------------------
 
@@ -361,12 +353,17 @@ INSERT INTO `eq_science` (`EQSID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C
 --
 
 CREATE TABLE `exams_form` (
-  `EFID` int(11) NOT NULL,
-  `EID` int(255) NOT NULL,
-  `IAFID` int(255) NOT NULL,
+  `EFID` varchar(255) NOT NULL,
   `STATUS` varchar(255) NOT NULL,
   `DATE` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `exams_form`
+--
+
+INSERT INTO `exams_form` (`EFID`, `STATUS`, `DATE`) VALUES
+('EFID_1', 'ACTIVE', '01/02/23');
 
 -- --------------------------------------------------------
 
@@ -375,14 +372,23 @@ CREATE TABLE `exams_form` (
 --
 
 CREATE TABLE `exam_informations` (
-  `EID` int(11) NOT NULL,
-  `TITLE` varchar(255) NOT NULL,
-  `MATH_TOTAL_ITEM` varchar(255) NOT NULL,
-  `ENGLISH_TOTAL_ITEM` varchar(255) NOT NULL,
-  `SCIENCE_TOTAL_ITEM` varchar(255) NOT NULL,
-  `READING_COMPREHENSION_TOTAL_ITEM` varchar(255) NOT NULL,
-  `TOTAL_ITEM` varchar(255) NOT NULL
+  `EID` varchar(255) NOT NULL,
+  `SUBJECT` varchar(255) NOT NULL,
+  `INSTRUCTION` varchar(255) NOT NULL,
+  `TIMELIMIT_HOUR` varchar(255) NOT NULL,
+  `TIMELIMIT_MINUTE` varchar(255) NOT NULL,
+  `EFID` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `exam_informations`
+--
+
+INSERT INTO `exam_informations` (`EID`, `SUBJECT`, `INSTRUCTION`, `TIMELIMIT_HOUR`, `TIMELIMIT_MINUTE`, `EFID`) VALUES
+('EID_1', 'MATH', 'Choose the correct answer by solving each problem and \r\nselecting only the best answer from the options provided below.', '00', '40', 'EFID_1'),
+('EID_2', 'SCIENCE', 'Analyze the given table and sentence before the questions and select the appropriate answer for the questions below.', '00', '40', 'EFID_1'),
+('EID_3', 'ENGLISH', 'Each sentence is followed by a series of questions. You will evaluate how the passage could be altered to improve the expression of concepts for some questions. Other questions will need you to examine how the piece could be altered to fix flaws in senten', '00', '40', 'EFID_1'),
+('EID_4', 'READING COMPREHENSION', 'A series of questions follows each sentence or set of texts below. Choose the best response to each question based on what is stated or suggested in the passage after reading each passage or pair.', '00', '40', 'EFID_1');
 
 -- --------------------------------------------------------
 
@@ -416,8 +422,9 @@ INSERT INTO `exam_result` (`ERID`, `MATH_SCORE`, `ENGLISH_SCORE`, `SCIENCE_SCORE
 --
 
 CREATE TABLE `ia_informations` (
-  `IAFID` int(11) NOT NULL,
-  `TOTAL_ITEMS` int(11) NOT NULL
+  `IAIID` varchar(255) NOT NULL,
+  `INSTRUCTION` varchar(255) NOT NULL,
+  `EFID` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -428,7 +435,8 @@ CREATE TABLE `ia_informations` (
 
 CREATE TABLE `ia_questions` (
   `IAQID` varchar(255) NOT NULL,
-  `Question` varchar(255) NOT NULL,
+  `QUESTION` varchar(255) NOT NULL,
+  `HIP` varchar(255) NOT NULL,
   `IAIID` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -436,49 +444,49 @@ CREATE TABLE `ia_questions` (
 -- Dumping data for table `ia_questions`
 --
 
-INSERT INTO `ia_questions` (`IAQID`, `Question`, `IAIID`) VALUES
-('IAQID_1', 'do puzzles', 'IAIID_1'),
-('IAQID_10', 'influence or persuade people', 'IAIID_10'),
-('IAQID_11', 'do experiments', 'IAIID_11'),
-('IAQID_12', 'teach or train people', 'IAIID_12'),
-('IAQID_13', 'help people solve their problems', 'IAIID_13'),
-('IAQID_14', 'take care of animals', 'IAIID_14'),
-('IAQID_15', 'have my day structured', 'IAIID_15'),
-('IAQID_16', 'sell things', 'IAIID_16'),
-('IAQID_17', 'do creative writing', 'IAIID_17'),
-('IAQID_18', 'work on science projects', 'IAIID_18'),
-('IAQID_19', 'take on new responsibilities', 'IAIID_19'),
-('IAQID_2', 'work on cars', 'IAIID_2'),
-('IAQID_20', 'heal people', 'IAIID_20'),
-('IAQID_21', 'figure out how things work', 'IAIID_21'),
-('IAQID_22', 'put things together or assemble models', 'IAIID_22'),
-('IAQID_23', 'be creative', 'IAIID_23'),
-('IAQID_24', 'pay attention to details', 'IAIID_24'),
-('IAQID_25', 'do filing or typing', 'IAIID_25'),
-('IAQID_26', 'learn about other cultures', 'IAIID_26'),
-('IAQID_27', 'analyze things like problems, situations or trends', 'IAIID_27'),
-('IAQID_28', 'play instruments or sing', 'IAIID_28'),
-('IAQID_29', 'dream about starting my own business', 'IAIID_29'),
-('IAQID_3', 'attend concerts, theaters or art exhibits', 'IAIID_3'),
-('IAQID_30', 'cook', 'IAIID_30'),
-('IAQID_31', 'act in plays', 'IAIID_31'),
-('IAQID_32', 'think things through before making decisions', 'IAIID_32'),
-('IAQID_33', 'work with numbers or charts', 'IAIID_33'),
-('IAQID_34', 'have discussions about issues like politics or current events', 'IAIID_34'),
-('IAQID_35', 'keep records of my work', 'IAIID_35'),
-('IAQID_36', 'be a leader', 'IAIID_36'),
-('IAQID_37', 'work outdoors', 'IAIID_37'),
-('IAQID_38', 'work in an office', 'IAIID_38'),
-('IAQID_39', 'work on math problems', 'IAIID_39'),
-('IAQID_4', 'work in teams', 'IAIID_4'),
-('IAQID_40', 'help people', 'IAIID_40'),
-('IAQID_41', 'draw', 'IAIID_41'),
-('IAQID_42', 'give speeches', 'IAIID_42'),
-('IAQID_5', 'organize things like files, offices or activities', 'IAIID_5'),
-('IAQID_6', 'set goals for myself', 'IAIID_6'),
-('IAQID_7', 'build things', 'IAIID_7'),
-('IAQID_8', 'read fiction, poetry or plays', 'IAIID_8'),
-('IAQID_9', 'have clear instructions to follow', 'IAIID_9');
+INSERT INTO `ia_questions` (`IAQID`, `QUESTION`, `HIP`, `IAIID`) VALUES
+('IAQID_1', 'do puzzles', 'Investigative', 'IAIID_1'),
+('IAQID_10', 'influence or persuade people', 'Enterprising', 'IAIID_1'),
+('IAQID_11', 'do experiments', 'Investigative', 'IAIID_1'),
+('IAQID_12', 'teach or train people', 'Social', 'IAIID_1'),
+('IAQID_13', 'help people solve their problems', 'Social', 'IAIID_1'),
+('IAQID_14', 'take care of animals', 'Realistic', 'IAIID_1'),
+('IAQID_15', 'have my day structured', 'Conventional', 'IAIID_1'),
+('IAQID_16', 'sell things', 'Enterprising', 'IAIID_1'),
+('IAQID_17', 'do creative writing', 'Artistic', 'IAIID_1'),
+('IAQID_18', 'work on science projects', 'Investigative', 'IAIID_1'),
+('IAQID_19', 'take on new responsibilities', 'Enterprising', 'IAIID_1'),
+('IAQID_2', 'work on cars', 'Realistic', 'IAIID_1'),
+('IAQID_20', 'heal people', 'Social', 'IAIID_1'),
+('IAQID_21', 'figure out how things work', 'Investigative', 'IAIID_1'),
+('IAQID_22', 'put things together or assemble models', 'Realistic', 'IAIID_1'),
+('IAQID_23', 'be creative', 'Artistic', 'IAIID_1'),
+('IAQID_24', 'pay attention to details', 'Conventional', 'IAIID_1'),
+('IAQID_25', 'do filing or typing', 'Conventional', 'IAIID_1'),
+('IAQID_26', 'learn about other cultures', 'Social', 'IAIID_1'),
+('IAQID_27', 'analyze things like problems, situations or trends', 'Investigative', 'IAIID_1'),
+('IAQID_28', 'play instruments or sing', 'Artistic', 'IAIID_1'),
+('IAQID_29', 'dream about starting my own business', 'Enterprising', 'IAIID_1'),
+('IAQID_3', 'attend concerts, theaters or art exhibits', 'Artistic', 'IAIID_1'),
+('IAQID_30', 'cook', 'Realistic', 'IAIID_1'),
+('IAQID_31', 'act in plays', 'Artistic', 'IAIID_1'),
+('IAQID_32', 'think things through before making decisions', 'Realistic', 'IAIID_1'),
+('IAQID_33', 'work with numbers or charts', 'Investigative', 'IAIID_1'),
+('IAQID_34', 'have discussions about issues like politics or current events', 'Social', 'IAIID_1'),
+('IAQID_35', 'keep records of my work', 'Conventional', 'IAIID_1'),
+('IAQID_36', 'be a leader', 'Enterprising', 'IAIID_1'),
+('IAQID_37', 'work outdoors', 'Realistic', 'IAIID_1'),
+('IAQID_38', 'work in an office', 'Conventional', 'IAIID_1'),
+('IAQID_39', 'work on math problems', 'Investigative', 'IAIID_1'),
+('IAQID_4', 'work in teams', 'Social', 'IAIID_1'),
+('IAQID_40', 'help people', 'Social', 'IAIID_1'),
+('IAQID_41', 'draw', 'Artistic', 'IAIID_1'),
+('IAQID_42', 'give speeches', 'Enterprising', 'IAIID_1'),
+('IAQID_5', 'organize things like files, offices or activities', 'Conventional', 'IAIID_1'),
+('IAQID_6', 'set goals for myself', 'Enterprising', 'IAIID_1'),
+('IAQID_7', 'build things', 'Realistic', 'IAIID_1'),
+('IAQID_8', 'read fiction, poetry or plays', 'Artistic', 'IAIID_1'),
+('IAQID_9', 'have clear instructions to follow', 'Conventional', 'IAIID_1');
 
 -- --------------------------------------------------------
 
@@ -644,7 +652,7 @@ ALTER TABLE `exam_result`
 -- Indexes for table `ia_informations`
 --
 ALTER TABLE `ia_informations`
-  ADD PRIMARY KEY (`IAFID`);
+  ADD PRIMARY KEY (`IAIID`);
 
 --
 -- Indexes for table `ia_questions`
@@ -673,12 +681,6 @@ ALTER TABLE `student_information`
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `exam_informations`
---
-ALTER TABLE `exam_informations`
-  MODIFY `EID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `exam_result`
