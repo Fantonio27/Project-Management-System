@@ -4,22 +4,23 @@ export default function Result() {
     const location = useLocation();
     const resultia = location.state.resultia;
     const resultexam = location.state.resultexam;
-    // console.log(result.resultdata)
+    console.log(resultexam)
 
-    const sortable = Object.fromEntries(
-        Object.entries(resultia).sort(([, a], [, b]) => b - a)
-    );
+    // const sortable = Object.fromEntries(
+    //     Object.entries(resultia).sort(([, a], [, b]) => b - a)
+    // );
 
     // console.log(Object.entries(sortable)[0])
     // console.log(sortable)
 
     return (
         <div>
-            <p><b>Result Exam:</b> {resultexam}</p>
-            <ul><b>Result IA</b>
-                <li>Top1: {Object.keys(sortable)[0]} : {Object.values(sortable)[0]}</li>
-                <li>Top2:  {Object.keys(sortable)[1]} : {Object.values(sortable)[1]}</li>
-                <li>Top3:  {Object.keys(sortable)[2]} : {Object.values(sortable)[2]}</li>
+            <p><b>Result IA:</b> {resultia}</p>
+            <ul><b>Result Exam:</b>
+                <li>Math: {resultexam.result.MATH}</li>
+                <li>Science: {resultexam.result.SCIENCE}</li>
+                <li>English:{resultexam.result.ENGLISH}</li>
+                <li>Reading: {resultexam.result.READING_COMPREHENSION}</li>
             </ul>
         </div>
     )

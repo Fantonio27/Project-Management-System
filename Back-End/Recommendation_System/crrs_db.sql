@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2023 at 07:37 PM
+-- Generation Time: Apr 24, 2023 at 06:55 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -44,7 +44,7 @@ CREATE TABLE `course_information` (
   `FIELD` varchar(255) NOT NULL,
   `ACRONYM` varchar(255) NOT NULL,
   `COURSE_NAME` varchar(255) NOT NULL,
-  `INFORMATION` varchar(255) NOT NULL,
+  `INFORMATION` text NOT NULL,
   `HEADER_PICTURE` varchar(255) NOT NULL,
   `DATE` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -54,58 +54,58 @@ CREATE TABLE `course_information` (
 --
 
 INSERT INTO `course_information` (`CID`, `FIELD`, `ACRONYM`, `COURSE_NAME`, `INFORMATION`, `HEADER_PICTURE`, `DATE`) VALUES
-('CID_1', 'Computer Sciences ', 'BSCS', 'Bachelor of Science in Computer Science ', 'Bachelor of Science in Computer Science is a four-year degree program in the Philippines that is generally concerned with the effective use of computation methods to analyze, solve, and come up with practical solutions for different problems, often throug', 'BSCS Computer science.jpg', '02/02/02'),
-('CID_10', 'Criminology', 'BS Criminology', 'Bachelor of Science in Criminology', 'The Bachelor of Science in Criminology (BS Crim) is a four-year degree program in the Philippines that is mainly concerned with the nature of crimes and criminals. Taking up this course will help you understand what is crime, how do crimes occur, and what', 'BS CRIMINOLOGY.jpg', '04/17/23'),
-('CID_11', 'Political Science', 'AB Political Science', 'Bachelor of Arts in Political Science', 'Bachelor of Arts in Political Science (AB PS or AB Pol Sci) is a four-year degree program in the Philippines that will help you gain the skills needed to make political and policy analyses that can be used to introduce changes that will be beneficial to b', 'AB POLITICAL SCIENCE.jpg', '04/17/23'),
-('CID_12', 'English', 'AB English', 'Bachelor of Arts in English', 'The Bachelor of Arts in English (AB English) is a four-year degree program in the Philippines that will teach you about the structure; development; theories; and applications of languages, and how to use your knowledge of them to write and speak effective', 'AB ENGLISH.jpg', '04/17/23'),
-('CID_13', 'Linguistics', 'AB Linguistics', 'Bachelor of Arts in Linguistics', 'The Bachelor of Arts in Linguistics (AB Linguistics) is a four-year degree program in the Philippines that will teach you about languages, their origins, development, and their social significance to man. It will also teach you about the structures and pr', 'AB LINGUISTICS.jpg', '04/17/23'),
-('CID_14', 'Literature', 'AB Literature', 'Bachelor of Arts in Literature', 'The Bachelor of Arts in Literature (AB Lit) is a four-year degree program in the Philippines that will teach you about the different literatures of the world, their history, forms, structures, modes, techniques, and how you can use your knowledge of them ', 'AB LITERATURE.jpg', '04/17/23'),
-('CID_15', 'Anthropology', 'AB Anthropology', 'Bachelor of Arts in Anthropology', 'The Bachelor of Arts in Anthropology (AB Anthropology) is a four-year degree program in the Philippines that will teach you about the origin and evolution of human beings including gradual changes in their genetic makeup, behavior, languages, and social r', 'AB ANTHROPOLOGY.jpg', '04/17/23'),
+('CID_1', 'Computer Sciences ', 'BSCS', 'Bachelor of Science in Computer Science ', 'Bachelor of Science in Computer Science is a four-year degree program in the Philippines that is generally concerned with the effective use of computation methods to analyze, solve, and come up with practical solutions for different problems, often through the use of computers or computer programs designed to perform specific tasks.', 'BSCS Computer science.jpg', '02/02/02'),
+('CID_10', 'Criminology', 'BS Criminology', 'Bachelor of Science in Criminology', 'The Bachelor of Science in Criminology (BS Crim) is a four-year degree program in the Philippines that is mainly concerned with the nature of crimes and criminals. Taking up this course will help you understand what is crime, how do crimes occur, and what makes people more likely to commit a crime or be a victim of it. It will also teach you how the justice system works, how alleged and convicted criminals should be handled, and the methods that can be used to reform them. ', 'BS CRIMINOLOGY.jpg', '04/17/23'),
+('CID_11', 'Political Science', 'AB Political Science', 'Bachelor of Arts in Political Science', 'Bachelor of Arts in Political Science (AB PS or AB Pol Sci) is a four-year degree program in the Philippines that will help you gain the skills needed to make political and policy analyses that can be used to introduce changes that will be beneficial to both the government and the general public. ', 'AB POLITICAL SCIENCE.jpg', '04/17/23'),
+('CID_12', 'English', 'AB English', 'Bachelor of Arts in English', 'The Bachelor of Arts in English (AB English) is a four-year degree program in the Philippines that will teach you about the structure; development; theories; and applications of languages, and how to use your knowledge of them to write and speak effectively, especially in English. ', 'AB ENGLISH.jpg', '04/17/23'),
+('CID_13', 'Linguistics', 'AB Linguistics', 'Bachelor of Arts in Linguistics', 'The Bachelor of Arts in Linguistics (AB Linguistics) is a four-year degree program in the Philippines that will teach you about languages, their origins, development, and their social significance to man. It will also teach you about the structures and properties of languages, and how you can apply the knowledge you\'ll gain from this on a wide variety of fields including sociology, psychology, neuroscience, and computer science to name a few. ', 'AB LINGUISTICS.jpg', '04/17/23'),
+('CID_14', 'Literature', 'AB Literature', 'Bachelor of Arts in Literature', 'The Bachelor of Arts in Literature (AB Lit) is a four-year degree program in the Philippines that will teach you about the different literatures of the world, their history, forms, structures, modes, techniques, and how you can use your knowledge of them to produce new literary works or review existing ones. ', 'AB LITERATURE.jpg', '04/17/23'),
+('CID_15', 'Anthropology', 'AB Anthropology', 'Bachelor of Arts in Anthropology', 'The Bachelor of Arts in Anthropology (AB Anthropology) is a four-year degree program in the Philippines that will teach you about the origin and evolution of human beings including gradual changes in their genetic makeup, behavior, languages, and social relations. ', 'AB ANTHROPOLOGY.jpg', '04/17/23'),
 ('CID_16', 'Sociology', 'AB Sociology', 'Bachelor of Arts in Sociology', 'The Bachelor of Arts in Sociology (AB Sociology) is a four-year degree program in the Philippines that will teach you about human society, its structure, history, development, and how different cultural groups vary from one to another. ', 'AB SOCIOLOGY.jpg', '04/17/23'),
-('CID_17', 'Filipino', 'AB Filipino', 'Bachelor of Arts in Filipino', 'Bachelor of Arts in Filipino (ABF) is a four-year degree program that will teach you about the structure of the Filipino language, the things that make it distinct from other languages, literary works that were written in the Filipino language, and how to', 'AB FILIPINO.jpg', '04/17/23'),
-('CID_18', 'Forensic Science', 'BSFS', 'Bachelor of Science in Forensic Science', 'The Bachelor of Forensic Science is a four-year degree program in the Philippines that will train you in using scientific principles and techniques to solve different crimes', 'BSFS FORENSIC SCIENCE.jpg', '04/17/23'),
-('CID_19', 'Islamic Studies', 'AB Islamic Studies', 'Bachelor of Arts in Islamic Studies', 'The Bachelor of Arts in Islamic Studies (ABIS) is a four-year degree program in the Philippines that is concerned with the study Islam as a way of life in the context of economic, social, cultural, political, and legal aspects. It has two specializations:', 'AB ISLAMIC STUDIES.jpg', '04/17/23'),
-('CID_2', 'History', 'BA History', 'Bachelor of Arts in History', 'Is a four-year degree program in the Philippines that deals with the study of events from the past. By taking this program you’ll learn about the different civilizations that existed throughout history the people that composed them, their basic structures', 'AB HISTORY.jpg', '04/17/23'),
-('CID_20', 'Environmental Science', 'BSES', 'Bachelor of Science in Environmental Science', 'The Bachelor of Science in Environmental Science (BSES) is a four-year degree program in the Philippines that is concerned with the environment and the effects of man\'s activities on it. It usually covers such issues as conservation of natural resources, ', 'BS ENVIROMENTAL SCIENCE.jpg', '04/17/23'),
-('CID_21', 'Forestry', 'BS Forestry', 'Bachelor of Science in Forestry', 'The Bachelor of Science in Forestry (BS Forestry) is a four-year degree program in the Philippines that will train you in managing the social, economic, and environmental dimensions of forestry resources, performing research that can advance the growth of', 'BS FORESTRY.jpg', '04/17/23'),
+('CID_17', 'Filipino', 'AB Filipino', 'Bachelor of Arts in Filipino', 'Bachelor of Arts in Filipino (ABF) is a four-year degree program that will teach you about the structure of the Filipino language, the things that make it distinct from other languages, literary works that were written in the Filipino language, and how to translate written works from a foreign language to Tagalog and vice versa. ', 'AB FILIPINO.jpg', '04/17/23'),
+('CID_18', 'Forensic Science', 'BSFS', 'Bachelor of Science in Forensic Science', 'The Bachelor of Forensic Science is a four-year degree program in the Philippines that will train you in using scientific principles and techniques to solve different crimes.', 'BSFS FORENSIC SCIENCE.jpg', '04/17/23'),
+('CID_19', 'Islamic Studies', 'AB Islamic Studies', 'Bachelor of Arts in Islamic Studies', 'The Bachelor of Arts in Islamic Studies (ABIS) is a four-year degree program in the Philippines that is concerned with the study Islam as a way of life in the context of economic, social, cultural, political, and legal aspects. It has two specializations: Political Economy and Islamic Arts and Multimedia Technologies. ', 'AB ISLAMIC STUDIES.jpg', '04/17/23'),
+('CID_2', 'History', 'BA History', 'Bachelor of Arts in History', 'Is a four-year degree program in the Philippines that deals with the study of events from the past. By taking this program you’ll learn about the different civilizations that existed throughout history the people that composed them, their basic structures, their relationship with one another, the transformations they went through, and their roles and impacts on the society we know today. ', 'AB HISTORY.jpg', '04/17/23'),
+('CID_20', 'Environmental Science', 'BSES', 'Bachelor of Science in Environmental Science', 'The Bachelor of Science in Environmental Science (BSES) is a four-year degree program in the Philippines that is concerned with the environment and the effects of man\'s activities on it. It usually covers such issues as conservation of natural resources, pollution, deforestation, and overpopulation among a couple of others.  ', 'BS ENVIROMENTAL SCIENCE.jpg', '04/17/23'),
+('CID_21', 'Forestry', 'BS Forestry', 'Bachelor of Science in Forestry', 'The Bachelor of Science in Forestry (BS Forestry) is a four-year degree program in the Philippines that will train you in managing the social, economic, and environmental dimensions of forestry resources, performing research that can advance the growth of forestry science, and educating the public of the proper conservation and development of forest resources through extension activities. ', 'BS FORESTRY.jpg', '04/17/23'),
 ('CID_22', 'Fisheries', 'BSFi', 'Bachelor of Science in Fisheries', 'The Bachelor of Science in Fisheries (BSFi) is a four-year degree program in the Philippines that will train you in aquaculture, capture fisheries, post-harvest fisheries, aquatic ecology, and fisheries- related research. ', 'BS FISHERIES.jpg', '04/17/23'),
-('CID_23', 'Geology', 'BS Geology', 'Bachelor of Science in Geology', 'The Bachelor of Science in Geology (BS Geology) is a four-year degree program in the Philippines that is concerned with the origins of the earth, its traits and characteristics, composition, and the changes that it goes through. It deals with issues such ', 'BS GEOLOGY.jpg', '04/17/23'),
-('CID_24', 'Biology', 'BS Biology', 'Bachelor of Science in Biology', 'The Bachelor of Science in Biology (BS Biology) is a four-year degree program in the Philippines that deals with the study of living things. Some of the things that you may learn as a biology student are the forms and structures of living things; their ge', 'BS BIOLOGY.jpg', '04/17/23'),
-('CID_25', 'Molecular Biology', 'BS Molecular Biology', 'Bachelor of Science in Molecular Biology', 'The Bachelor of Science in Molecular Biology is a four-year degree program in the Philippines that is primarily concerned with identifying, describing, and manipulating the components of cells and organisms including Deoxyribonucleic acid (DNA), Ribonucle', 'BS Molecular biology.jpg', '04/17/23'),
-('CID_26', 'Physics', 'BS Physics', 'Bachelor of Science in Physics', 'Bachelor of Science in Physics (BS Physics) is a four-year degree program in the Philippines that will teach you about the laws of nature and how to use these laws to understand and explain how the things around us work', 'BS PHYSICS.jpg', '04/17/23'),
-('CID_27', 'Applied Physics', 'BS Applied Physics', 'Bachelor of Science in Applied Physics', 'Bachelor of Science in Applied Physics (BS Applied Physics) is a four-year degree program in the Philippines that will train you in using the principles of Physics to come up with practical solutions to existing programs in a wide variety of fields includ', 'BS APPLIED PHYSICS.jpg', '04/17/23'),
-('CID_28', 'Chemistry', 'BS Chemistry', 'Bachelor of Science in Chemistry', 'The Bachelor of Science in Chemistry (BS Chem) is a four-year degree program in the Philippines that will teach you about the study of chemicals, their composition, their properties, the way they react with one another, and how you can use your knowledge ', 'BS CHEMISTRY.jpg', '04/17/23'),
-('CID_29', 'Information Technology', 'BSIT', 'Bachelor of Science in Information Technology', 'The Bachelor of Science in Information Technology (BSIT) is a four-year degree program in the Philippines that deals with the processing and distribution of data with emphasis on its application on businesses. By enrolling in this program, you will learn ', 'BSIT Information technology.jpg', '04/17/23'),
+('CID_23', 'Geology', 'BS Geology', 'Bachelor of Science in Geology', 'The Bachelor of Science in Geology (BS Geology) is a four-year degree program in the Philippines that is concerned with the origins of the earth, its traits and characteristics, composition, and the changes that it goes through. It deals with issues such as pollution and waste disposal, use and conservation of natural resources, and preventing or reducing the harmful effects of natural disasters. ', 'BS GEOLOGY.jpg', '04/17/23'),
+('CID_24', 'Biology', 'BS Biology', 'Bachelor of Science in Biology', 'The Bachelor of Science in Biology (BS Biology) is a four-year degree program in the Philippines that deals with the study of living things. Some of the things that you may learn as a biology student are the forms and structures of living things; their general characteristics; their origins; the places they live in; and their relationship with man, their environment, and with one another. ', 'BS BIOLOGY.jpg', '04/17/23'),
+('CID_25', 'Molecular Biology', 'BS Molecular Biology', 'Bachelor of Science in Molecular Biology', 'The Bachelor of Science in Molecular Biology is a four-year degree program in the Philippines that is primarily concerned with identifying, describing, and manipulating the components of cells and organisms including Deoxyribonucleic acid (DNA), Ribonucleic acid (RNA), and proteins. Among its many practical applications are the detection of diseases, gene therapy, in vitro fertilization, and DNA profiling to name a few. ', 'BS Molecular biology.jpg', '04/17/23'),
+('CID_26', 'Physics', 'BS Physics', 'Bachelor of Science in Physics', 'Bachelor of Science in Physics (BS Physics) is a four-year degree program in the Philippines that will teach you about the laws of nature and how to use these laws to understand and explain how the things around us work.', 'BS PHYSICS.jpg', '04/17/23'),
+('CID_27', 'Applied Physics', 'BS Applied Physics', 'Bachelor of Science in Applied Physics', 'Bachelor of Science in Applied Physics (BS Applied Physics) is a four-year degree program in the Philippines that will train you in using the principles of Physics to come up with practical solutions to existing programs in a wide variety of fields including but not limited to medicine, engineering, computer science, and business to name a few. ', 'BS APPLIED PHYSICS.jpg', '04/17/23'),
+('CID_28', 'Chemistry', 'BS Chemistry', 'Bachelor of Science in Chemistry', 'The Bachelor of Science in Chemistry (BS Chem) is a four-year degree program in the Philippines that will teach you about the study of chemicals, their composition, their properties, the way they react with one another, and how you can use your knowledge of this information to come up with helpful products in a wide variety of fields including medicine, food science, and engineering to name a few.  ', 'BS CHEMISTRY.jpg', '04/17/23'),
+('CID_29', 'Information Technology', 'BSIT', 'Bachelor of Science in Information Technology', 'The Bachelor of Science in Information Technology (BSIT) is a four-year degree program in the Philippines that deals with the processing and distribution of data with emphasis on its application on businesses. By enrolling in this program, you will learn how to write, design, and maintain computer programs; check them for errors; determine appropriate solutions to fix problems, and rewrite codes to accommodate necessary changes. Since this course is more about the business application of the systems or applications you will create, you may also be taking up a few business subjects such as Accounting and Human Resource Management.  ', 'BSIT Information technology.jpg', '04/17/23'),
 ('CID_3', 'Philosophy', 'BA Philosophy', 'Bachelor of Arts in Philosophy', 'Is a four-year degree program in the Philippines that is mostly concerned with the underlying principles of reality, knowledge, morality and existence and how they apply in the variety of real-world fields. ', 'AB PHILOSOPHY.jpg', '04/17/23'),
-('CID_30', 'Information Systems', 'BSIS', 'Bachelor of Science in Information Systems', 'Bachelor of Science in Information Systems (BSIS) is a four-year degree program in the Philippines that will train you in designing, developing, and managing information systems such as office automation systems, transaction processing systems, transport ', 'BSIS Information system.jpg', '04/17/23'),
-('CID_31', 'Mathematics', 'BS Mathematics', 'Bachelor of Science in Mathematics', 'Bachelor of Science in Mathematics (BS Math) is a four-year degree program in the Philippines that will expose you to the breadth and depth of mathematical theories, concepts, and applications in order to prepare you for future careers that require critic', 'BS MATHEMATICS.jpg', '04/17/23'),
-('CID_32', 'Applied Mathematics', 'BS Applied Math', 'Bachelor of Science in Applied Mathematics', 'Bachelor of Science in Applied Mathematics (BS Applied Mathematics) is a four-year degree program in the Philippines that will train you in using mathematical theories, concepts, and formulas to come up with practical solutions to problems in the fields o', 'BS APPLIED MATH.jpg', '04/17/23'),
+('CID_30', 'Information Systems', 'BSIS', 'Bachelor of Science in Information Systems', 'Bachelor of Science in Information Systems (BSIS) is a four-year degree program in the Philippines that will train you in designing, developing, and managing information systems such as office automation systems, transaction processing systems, transport information systems, navigation systems, and other systems that provide related services. ', 'BSIS Information system.jpg', '04/17/23'),
+('CID_31', 'Mathematics', 'BS Mathematics', 'Bachelor of Science in Mathematics', 'Bachelor of Science in Mathematics (BS Math) is a four-year degree program in the Philippines that will expose you to the breadth and depth of mathematical theories, concepts, and applications in order to prepare you for future careers that require critical and analytical thinking skills. ', 'BS MATHEMATICS.jpg', '04/17/23'),
+('CID_32', 'Applied Mathematics', 'BS Applied Math', 'Bachelor of Science in Applied Mathematics', 'Bachelor of Science in Applied Mathematics (BS Applied Mathematics) is a four-year degree program in the Philippines that will train you in using mathematical theories, concepts, and formulas to come up with practical solutions to problems in the fields of business, engineering, and information technology among other things. ', 'BS APPLIED MATH.jpg', '04/17/23'),
 ('CID_33', 'Statistics', 'BS Stat', 'Bachelor of Science in Statistics', 'The Bachelor of Science in Statistics (BS Statistics) is a four-year degree program in the Philippines that will teach you about different statistical methods and how to use them to analyze and interpret data. ', 'BS STAT.jpg', '04/17/23'),
-('CID_34', 'Agriculture', 'BSA', 'Bachelor of Science in Agriculture', 'Bachelor of Science in Agriculture  \r\n\r\nThe Bachelor of Science in Agriculture (BSA) is a four-year degree program in the Philippines that is concerned with applying the principles of science, ethics, and business management in the production, development', 'BSA AGRICULTURE.jpg', '04/17/23'),
-('CID_35', 'Agribusiness', 'BSAB', 'Bachelor of Science in Statistics', 'The Bachelor of Science in Agribusiness (BSAB) is a four-year degree program in the Philippines that will train you in in the manufacturing and distribution of farm supplies and other related products according to the country\'s bio-physical, socio-cultura', 'BS AGRIBUSINESS.jpg', '04/17/23'),
-('CID_36', 'Agroforestry', 'BSAF', 'Bachelor of Science in Agroforestry', 'Bachelor of Science in Agroforestry (BSAF) is a four-year degree program in the Philippines that will train you in producing, managing, and utilizing trees, agricultural crops, animals, and soils for the purpose of conservation and socio-economic producti', 'BS AGROFORESTRY.jpg', '04/17/23'),
-('CID_37', 'Architecture', 'BS Architecture', 'Bachelor of Science in Architecture', 'The Bachelor of Science in Architecture (BS Architecture) is a five-year degree program in the Philippines that is concerned with the design and planning of architectural structures such as residential and commercial buildings, roads, dams, tunnels, bridg', 'BS ARCHITECTURE.jpg', '04/17/23'),
-('CID_38', 'Landscape Architecture', 'BLA', 'Bachelor in Landscape Architecture', 'Bachelor in Landscape Architecture (BLA) is a four-year degree program in the Philippines that is mainly concerned with the design and planning of land areas. It is closely related with Bachelor of Science in Architecture, although BS Architecture is prim', 'BS LANDSCAPE ARCHITECTURE.jpg', '04/17/23'),
-('CID_39', 'Interior Design', 'BS Interior Design', 'Bachelor of Science in Interior Design', 'The Bachelor of Science in Interior Design (BS Interior Design) is a four-year degree program in the Philippines that will teach you about the principles of interior design, space planning, application of colors, basic furniture production, and budget man', 'BS INTERIOR DESIGN.jpg', '04/17/23'),
+('CID_34', 'Agriculture', 'BSA', 'Bachelor of Science in Agriculture', 'The Bachelor of Science in Agriculture (BSA) is a four-year degree program in the Philippines that is concerned with applying the principles of science, ethics, and business management in the production, development, and processing of plants and animals used for food, recreation, industrial, and medical purposes among others. ', 'BSA AGRICULTURE.jpg', '04/17/23'),
+('CID_35', 'Agribusiness', 'BSAB', 'Bachelor of Science in Agribusiness', 'The Bachelor of Science in Agribusiness (BSAB) is a four-year degree program in the Philippines that will train you in in the manufacturing and distribution of farm supplies and other related products according to the country\'s bio-physical, socio-cultural, political, economic, and development needs. ', 'BS AGRIBUSINESS.jpg', '04/17/23'),
+('CID_36', 'Agroforestry', 'BSAF', 'Bachelor of Science in Agroforestry', 'Bachelor of Science in Agroforestry (BSAF) is a four-year degree program in the Philippines that will train you in producing, managing, and utilizing trees, agricultural crops, animals, and soils for the purpose of conservation and socio-economic productivity. ', 'BS AGROFORESTRY.jpg', '04/17/23'),
+('CID_37', 'Architecture', 'BS Architecture', 'Bachelor of Science in Architecture', 'The Bachelor of Science in Architecture (BS Architecture) is a five-year degree program in the Philippines that is concerned with the design and planning of architectural structures such as residential and commercial buildings, roads, dams, tunnels, bridges, and the like. By studying Architecture, you will not only learn how to design buildings that are pleasing to the eyes, you will also learn how to plan structures and facilities that are functional, cost-effective, flexible to change, and most importantly, resilient against natural and man-made disasters. ', 'BS ARCHITECTURE.jpg', '04/17/23'),
+('CID_38', 'Landscape Architecture', 'BLA', 'Bachelor in Landscape Architecture', 'Bachelor in Landscape Architecture (BLA) is a four-year degree program in the Philippines that is mainly concerned with the design and planning of land areas. It is closely related with Bachelor of Science in Architecture, although BS Architecture is primarily concerned with the construction of buildings and infrastructures while Bachelor of Landscape Architecture is more focused on the planning and development of the land that surrounds a particular structure. By enrolling in this program, you will not only learn about the visual aspects of architectural design, you will also gain a deeper understanding of the factors that need to be considered when designing and developing land areas such as accessibility, functionality, amenability to future design changes, and overall safety among other things. ', 'BS LANDSCAPE ARCHITECTURE.jpg', '04/17/23'),
+('CID_39', 'Interior Design', 'BS Interior Design', 'Bachelor of Science in Interior Design', 'The Bachelor of Science in Interior Design (BS Interior Design) is a four-year degree program in the Philippines that will teach you about the principles of interior design, space planning, application of colors, basic furniture production, and budget management among other things. ', 'BS INTERIOR DESIGN.jpg', '04/17/23'),
 ('CID_4', 'Industrial Design', 'BFA Industrial Design', 'Bachelor of Fine Arts Major in Industrial Design', 'is a four-year degree program in the Philippines that is primarily concerned with the design and development of usable products as well as the designing packaging and systems. ', 'BFA INDUSTRIAL DESGIN.jpg', '04/17/23'),
-('CID_40', 'Accountancy', 'BSA', 'Bachelor of Science in Accountancy', 'The Bachelor of Science in Accountancy (BSA) is a four-year degree program in the Philippines that is primarily concerned with the effective management of a person\'s, group\'s, or company\'s financial resources including the proper ways of monitoring and do', 'BS ACCOUNTANCY.jpg', '04/17/23'),
-('CID_41', 'Accounting Technology', 'BSACT', 'Bachelor of Science in Accounting Technology', 'The Bachelor of Science in Accounting Technology (BSAcT) is a four-year degree program in the Philippines that will train you in maintaining systematic records of business transactions, verifying and recording them, using computers to calculate, prepare a', 'BS ACCOUNTING TECHNOLOGY.jpg', '04/17/23'),
-('CID_42', 'Business Economics', 'BSBA-BE', 'Bachelor of Science in Business Administration Major in Business Economics', 'The Bachelor of Science in Business Administration Major in Business Economics (BSBA- Business Economics) is a four-year business program in the Philippines that is concerned with the various factors that affect businesses. Through this major, you\'ll gain', 'BSBA MAJOR IN BUSINESS ECOM.jpg', '04/17/23'),
-('CID_43', 'Financial Management', 'BSBA-FM', 'Bachelor of Science in Business Administration Major in Financial Management', 'The Bachelor of Science in Business Administration Major in Financial Management (BSBA- Financial Management) is a four-year business program in the Philippines that focuses on the financial aspects of managing a business. As a BSBA Financial Management s', 'BSBA major in finance management.jpg', '04/17/23'),
-('CID_44', 'Human Resource Developmen', 'BSBA – HRDM', 'Bachelor of Science in Business Administration Major in Human Resource Development', 'The Bachelor of Science in Business Administration Major in Human Resource Development Management (BSBA – HRDM) is a four-year business program in the Philippines will prepare you for a career in Human Resource Management (HRM) in various organizations an', 'BSBA HUMAN RESOURCE.jpg', '04/17/23'),
-('CID_45', 'Marketing Management', 'BSBA-MM', 'Bachelor of Science in Business Administration Major in Marketing Management', 'The Bachelor of Science in Business Administration Major in Marketing Management (BSBA- Marketing Management) is a four-year business program in the Philippines that will prepare you for a Marketing career in various organizations and businesses. By enrol', 'BSBA MARKETING MANAGEMENT.jpg', '04/17/23'),
-('CID_46', 'Operations Management', 'BSBA-Operations Management', 'Bachelor of Science in Business Administration Major in Operations Management', 'The Bachelor of Science in Business Administration Major in Operations Management (BSBA-Operations Management) is a four-year degree program in the Philippines that revolves around the day-to-day operation of businesses. This includes the processes involv', 'BSBA OPERATIONS MANAGEMENT.jpg', '04/17/23'),
-('CID_47', 'Hotel and Restaurant Management', 'BS HRM', 'Bachelor of Science in Bachelor of Science in Hotel and Restaurant Management', 'The Bachelor of Science in Hotel and Restaurant Management (BS HRM) is a four-year degree program in the Philippines that will prepare you for working in the hotel and restaurant industry and managing your own hotel and restaurant business someday. With t', 'BS HRM HOTEL AND RESTAURANT MANAGEMENT.jpg', '04/17/23'),
+('CID_40', 'Accountancy', 'BSA', 'Bachelor of Science in Accountancy', 'The Bachelor of Science in Accountancy (BSA) is a four-year degree program in the Philippines that is primarily concerned with the effective management of a person\'s, group\'s, or company\'s financial resources including the proper ways of monitoring and documenting the flow of money or goods within the system and the applicable laws related to it. ', 'BS ACCOUNTANCY.jpg', '04/17/23'),
+('CID_41', 'Accounting Technology', 'BSACT', 'Bachelor of Science in Accounting Technology', 'The Bachelor of Science in Accounting Technology (BSAcT) is a four-year degree program in the Philippines that will train you in maintaining systematic records of business transactions, verifying and recording them, using computers to calculate, prepare and process financial records. ', 'BS ACCOUNTING TECHNOLOGY.jpg', '04/17/23'),
+('CID_42', 'Business Economics', 'BSBA-BE', 'Bachelor of Science in Business Administration Major in Business Economics', 'The Bachelor of Science in Business Administration Major in Business Economics (BSBA- Business Economics) is a four-year business program in the Philippines that is concerned with the various factors that affect businesses. Through this major, you\'ll gain a better understanding of economic development by learning the characteristics and problems of less developed countries, the criteria for growth and development, the obstacles to economic growth, and the policies for promoting it. ', 'BSBA MAJOR IN BUSINESS ECOM.jpg', '04/17/23'),
+('CID_43', 'Financial Management', 'BSBA-FM', 'Bachelor of Science in Business Administration Major in Financial Management', 'The Bachelor of Science in Business Administration Major in Financial Management (BSBA- Financial Management) is a four-year business program in the Philippines that focuses on the financial aspects of managing a business. As a BSBA Financial Management student, you will learn about financial institutions and how they make profits; how prices of goods and services are set; how to manage your assets and liabilities, and the different government regulations that have a direct effect on businesses. ', 'BSBA major in finance management.jpg', '04/17/23'),
+('CID_44', 'Human Resource Developmen', 'BSBA – HRDM', 'Bachelor of Science in Business Administration Major in Human Resource Development', 'The Bachelor of Science in Business Administration Major in Human Resource Development Management (BSBA – HRDM) is a four-year business program in the Philippines will prepare you for a career in Human Resource Management (HRM) in various organizations and businesses. HRM is the branch of Business Administration that will teach you how to manage your workforce. This includes teaching you how you can recruit the best individuals for your company, how to prepare them for the tasks they will be expected to perform, and how to help them blend in with their new environment. ', 'BSBA HUMAN RESOURCE.jpg', '04/17/23'),
+('CID_45', 'Marketing Management', 'BSBA-MM', 'Bachelor of Science in Business Administration Major in Marketing Management', 'The Bachelor of Science in Business Administration Major in Marketing Management (BSBA- Marketing Management) is a four-year business program in the Philippines that will prepare you for a Marketing career in various organizations and businesses. By enrolling in this program, you will learn how to identify business opportunities, assess their strengths and weaknesses, and devise plans that will help you make more profits while controlling your possible losses at the same time. You will also be taught how to create, introduce, and promote your own products using various tools and techniques ranging from the traditional to the more technologically advanced ones. ', 'BSBA MARKETING MANAGEMENT.jpg', '04/17/23'),
+('CID_46', 'Operations Management', 'BSBA-Operations Management', 'Bachelor of Science in Business Administration Major in Operations Management', 'The Bachelor of Science in Business Administration Major in Operations Management (BSBA-Operations Management) is a four-year degree program in the Philippines that revolves around the day-to-day operation of businesses. This includes the processes involved in the production and distribution of goods, the delivery of services, and managing the equipment and facilities used to run a business. ', 'BSBA OPERATIONS MANAGEMENT.jpg', '04/17/23'),
+('CID_47', 'Hotel and Restaurant Management', 'BS HRM', 'Bachelor of Science in Bachelor of Science in Hotel and Restaurant Management', 'The Bachelor of Science in Hotel and Restaurant Management (BS HRM) is a four-year degree program in the Philippines that will prepare you for working in the hotel and restaurant industry and managing your own hotel and restaurant business someday. With the help of this course, you\'ll learn not only how to manage the day-to-day operations of your hotel or restaurant. You\'ll also learn how to devise plans and strategies that can increase your company\'s profits. ', 'BS HRM HOTEL AND RESTAURANT MANAGEMENT.jpg', '04/17/23'),
 ('CID_48', 'Entrepreneurship', 'BS Entrep', 'Bachelor of Science in Entrepreneurship', 'The Bachelor of Science in Entrepreneurship (BS Entre) is a four-year degree program in the Philippines that will train you in identifying opportunities, developing and preparing business plans, and starting and managing your own business. ', 'BS ENTREP.jpg', '04/17/23'),
-('CID_49', 'Office Administration', 'BSOA', 'Bachelor of Science in Office Administration', 'Bachelor of Science in Office Administration (BSOA) is a four-year degree program in the Philippines that will train you in performing a wide variety of administrative tasks including but not limited to clerical duties, personnel management, events manage', 'BSOA OFFICE ADMINISTRATOR.jpg', '04/17/23'),
-('CID_5', 'Painting', 'BFA Painting', 'Bachelor of Fine Arts Major in Painting', 'is a four-year degree program in the Philippines that is concerned with producing artistic representations through the use of paint. This program focuses on developing the student\'s perceptual and technical skills in painting. Taking this major will help ', 'BFA PAINTING.jpg', '04/17/23'),
+('CID_49', 'Office Administration', 'BSOA', 'Bachelor of Science in Office Administration', 'Bachelor of Science in Office Administration (BSOA) is a four-year degree program in the Philippines that will train you in performing a wide variety of administrative tasks including but not limited to clerical duties, personnel management, events management, and customer service. ', 'BSOA OFFICE ADMINISTRATOR.jpg', '04/17/23'),
+('CID_5', 'Painting', 'BFA Painting', 'Bachelor of Fine Arts Major in Painting', 'is a four-year degree program in the Philippines that is concerned with producing artistic representations through the use of paint. This program focuses on developing the student\'s perceptual and technical skills in painting. Taking this major will help you learn about the basics of drawing, the different tools used in painting, the types of surfaces paintings are usually done in, and the use of visual perception in introducing different concepts in your paintings. ', 'BFA PAINTING.jpg', '04/17/23'),
 ('CID_50', 'Real Estate Management', 'BS REM', 'Bachelor of Science in Real Estate Management', 'The Bachelor of Science in Real Estate Management (BS REM) is a four-year degree program in the Philippines that will train you in real estate salesmanship, brokerage, appraisal, and consultancy including properties that fall within public domain. ', 'BS REM REAL ESTATE MANAGEMENT.jpg', '04/17/23'),
-('CID_51', 'Tourism Management', 'BSTM', 'Bachelor of Science in Tourism Management', 'The Bachelor of Science in Tourism Management (BSTM) is a four-year degree program in the Philippines that will train you in developing and implementing tourism campaigns, organizing and managing events, and following policies and standards related to inv', 'BSTM tourism management.jpg', '04/17/23'),
-('CID_52', 'Medical Technology', 'BS Med Tech', 'Bachelor of Science in Medical Technology', 'The Bachelor of Science in Medical Technology (BS Medical Technology) also known as Bachelor of Science in Medical Laboratory Science (BS Medical Laboratory Science) is a four-year degree program in the Philippines that deals with the use of modern techno', 'BS MED TECH.jpg', '04/17/23'),
-('CID_53', 'Midwifery', 'BS Midwifery', 'Bachelor of Science in Midwifery', 'The Bachelor of Science in Midwifery (BS Midwifery) is a four-year degree program in the Philippines that will train you in addressing the needs of expecting mothers and their children starting from the early stages of pregnancy up to the first few weeks ', 'BS MIDWIFERY.jpg', '04/17/23'),
-('CID_54', 'Nursing', 'BSN', 'Bachelor of Science in Nursing', 'Bachelor of Science in Nursing (BSN) is a four-year degree program in the Philippines that revolves around caring for the sick or injured. This does not only involve addressing immediate threats to the patient\'s health, but also guiding the patient all th', 'BS NURSING.jpg', '04/17/23'),
-('CID_55', 'Occupational Therapy', 'BSOT', 'Bachelor of Science in Occupational Therapy', 'The Bachelor of Science in Occupational Therapy (BSOT) is a five-year degree program in the Philippines that is concerned with using different methods and strategies to help people with serious physical, mental, or emotional conditions that keep them from', 'BS OCCUPATIONAL THERAPY.jpg', '04/17/23'),
-('CID_56', 'Pharmacy', 'BS Pharmacy', 'Bachelor of Science in Pharmacy', 'The Bachelor of Science in Pharmacy (BS Pharmacy) is a four-year degree program in the Philippines that is concerned with drugs and other related substances. These include medicinal drugs, cosmetics, and common household products. By enrolling in this pro', 'BS PHARMACIST.jpg', '04/17/23'),
+('CID_51', 'Tourism Management', 'BSTM', 'Bachelor of Science in Tourism Management', 'The Bachelor of Science in Tourism Management (BSTM) is a four-year degree program in the Philippines that will train you in developing and implementing tourism campaigns, organizing and managing events, and following policies and standards related to investments, business regulations, procurement, and other miscellaneous procedures. ', 'BSTM tourism management.jpg', '04/17/23'),
+('CID_52', 'Medical Technology', 'BS Med Tech', 'Bachelor of Science in Medical Technology', 'The Bachelor of Science in Medical Technology (BS Medical Technology) also known as Bachelor of Science in Medical Laboratory Science (BS Medical Laboratory Science) is a four-year degree program in the Philippines that deals with the use of modern technology in detecting, identifying, and predicting the possible course of diseases that can put a person\'s health at risk. Pursuing this degree will help you gain a better understanding of the nature of diseases, the things that cause them, the way they spread, and the way to stop them or slow their growth down. It will also give you some background information on the natural composition of the human body and how you can use that information to detect potential or existing problems. ', 'BS MED TECH.jpg', '04/17/23'),
+('CID_53', 'Midwifery', 'BS Midwifery', 'Bachelor of Science in Midwifery', 'The Bachelor of Science in Midwifery (BS Midwifery) is a four-year degree program in the Philippines that will train you in addressing the needs of expecting mothers and their children starting from the early stages of pregnancy up to the first few weeks following childbirth. By taking this course, you will learn everything you\'ll need to know about reproductive health; family planning; pregnancy, labor, and delivery; neonatal care; and the moral and legal principles involved in the practice of midwifery in the Philippines. ', 'BS MIDWIFERY.jpg', '04/17/23'),
+('CID_54', 'Nursing', 'BSN', 'Bachelor of Science in Nursing', 'Bachelor of Science in Nursing (BSN) is a four-year degree program in the Philippines that revolves around caring for the sick or injured. This does not only involve addressing immediate threats to the patient\'s health, but also guiding the patient all the way through physical, mental, and emotional recovery. As a nursing student you will be trained to conduct health assessments, provide patients with preoperative, intraoperative, and postoperative care, perform life-saving interventions, respond to disaster and emergency situations, and keep medical documentations. ', 'BS NURSING.jpg', '04/17/23'),
+('CID_55', 'Occupational Therapy', 'BSOT', 'Bachelor of Science in Occupational Therapy', 'The Bachelor of Science in Occupational Therapy (BSOT) is a five-year degree program in the Philippines that is concerned with using different methods and strategies to help people with serious physical, mental, or emotional conditions that keep them from functioning the way they are supposed to. It\'s mostly similar to Physical Therapy in the sense that it aims to help a person recover from an injury or learn to live with it if it can no longer be remedied, but contrary to Physical Therapy that is more focused on the physical functioning of a person such as walking or moving his body, Occupational Therapy is more focused on restoring or uplifting the mental or emotional well-being of a patient. ', 'BS OCCUPATIONAL THERAPY.jpg', '04/17/23'),
+('CID_56', 'Pharmacy', 'BS Pharmacy', 'Bachelor of Science in Pharmacy', '', 'BS PHARMACIST.jpg', '04/17/23'),
 ('CID_57', 'Physical Therapy', 'BSPT', 'Bachelor of Science in Physical Therapy', 'The Bachelor of Science in Physical Therapy (BSPT) is a five-year degree program in the Philippines that is concerned with using various treatments and exercises to restore the function of a broken bone or to compensate for the loss of a certain body part', 'BS PHYSICAL THERAPY.jpg', '04/17/23'),
 ('CID_58', 'Radiologic Technology', 'BS Rad Tech', 'Bachelor of Science in Radiologic Technology', 'The Bachelor of Science in Radiologic Technology (BSRT) is a four-year degree program in the Philippines that will train you in applying x-ray energy to assist in the diagnosis or treatment of diseases, performing radiographic or nuclear medicine procedur', 'BS RADIOLOGIC TECHNOLOGY.jpg', '04/17/23'),
 ('CID_59', 'Respiratory Therapy', 'BSRT', 'Bachelor of Science in Respiratory Therapy', 'The Bachelor of Science in Respiratory Therapy is a four-year degree program in the Philippines that will train you in providing clinical pulmonary care procedures that will help in the proper diagnosis, treatment, and prevention of diseases. ', 'Respiratory therapist.jpg', '04/17/23'),
@@ -183,6 +183,86 @@ INSERT INTO `course_information_job` (`CIJID`, `JOB_NAME`, `INFORMATION`, `CID`)
 ('CIJID_7', 'Professional Historian ', 'Professional historians typically work in colleges and universities, archival centers, government agencies, museums, and as freelance writers and consultants.', 'CID_2'),
 ('CIJID_8', 'School Administrator ', 'School Administrators oversee administrative tasks in schools, colleges or other educational institutions. They ensure that the organization runs smoothly and they also manage facilities and staff.', 'CID_2'),
 ('CIJID_9', 'Historical Researcher ', 'History researchers study past events, people, policies, and documents to gain an in-depth understanding of their significance and impact on modern and future societies.', 'CID_2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_percentage`
+--
+
+CREATE TABLE `course_percentage` (
+  `CPID` varchar(20) NOT NULL,
+  `MATH` varchar(20) NOT NULL,
+  `SCIENCE` varchar(20) NOT NULL,
+  `ENGLISH` varchar(20) NOT NULL,
+  `READING_COMPREHENSION` varchar(20) NOT NULL,
+  `CID` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `course_percentage`
+--
+
+INSERT INTO `course_percentage` (`CPID`, `MATH`, `SCIENCE`, `ENGLISH`, `READING_COMPREHENSION`, `CID`) VALUES
+('CPID_1', '15', '15', '30', '40', 'CID_2'),
+('CPID_10', '15', '20', '25', '40', 'CID_11'),
+('CPID_11', '10', '10', '60', '20', 'CID_12'),
+('CPID_12', '20', '20', '30', '30', 'CID_13'),
+('CPID_13', '20', '20', '30', '30', 'CID_14'),
+('CPID_14', '10', '20', '30', '40', 'CID_15'),
+('CPID_15', '10', '20', '35', '35', 'CID_16'),
+('CPID_16', '20', '20', '30', '30', 'CID_17'),
+('CPID_17', '99', '99', '99', '99', 'CID_18'),
+('CPID_18', '10', '20', '35', '35', 'CID_19'),
+('CPID_19', '30', '30', '20', '20', 'CID_20'),
+('CPID_2', '10', '10', '40', '40', 'CID_3'),
+('CPID_20', '30', '50', '10', '10', 'CID_21'),
+('CPID_21', '40', '30', '15', '15', 'CID_22'),
+('CPID_22', '40', '50', '5', '5', 'CID_23'),
+('CPID_23', '25', '60', '10', '15', 'CID_24'),
+('CPID_24', '35', '40', '10', '15', 'CID_25'),
+('CPID_25', '50', '40', '5', '5', 'CID_26'),
+('CPID_26', '50', '30', '5', '15', 'CID_27'),
+('CPID_27', '30', '30', '20', '20', 'CID_28'),
+('CPID_28', '30', '30', '20', '20', 'CID_29'),
+('CPID_29', '40', '30', '10', '20', 'CID_30'),
+('CPID_3', '20', '30', '20', '30', 'CID_4'),
+('CPID_30', '60', '20', '10', '10', 'CID_31'),
+('CPID_31', '70', '20', '5', '5', 'CID_32'),
+('CPID_32', '50', '30', '10', '10', 'CID_33'),
+('CPID_33', '30', '30', '20', '20', 'CID_34'),
+('CPID_34', '30', '40', '15', '15', 'CID_35'),
+('CPID_35', '25', '35', '20', '20', 'CID_36'),
+('CPID_36', '40', '30', '10', '20', 'CID_37'),
+('CPID_37', '30', '30', '20', '20', 'CID_38'),
+('CPID_38', '35', '35', '15', '15', 'CID_39'),
+('CPID_39', '40', '10', '20', '30', 'CID_40'),
+('CPID_4', '20', '30', '20', '30', 'CID_5'),
+('CPID_40', '40', '15', '30', '15', 'CID_41'),
+('CPID_41', '35', '25', '15', '25', 'CID_42'),
+('CPID_42', '40', '10', '30', '20', 'CID_43'),
+('CPID_43', '30', '20', '25', '25', 'CID_44'),
+('CPID_44', '20', '20', '30', '30', 'CID_45'),
+('CPID_45', '30', '25', '20', '25', 'CID_48'),
+('CPID_46', '20', '10', '30', '40', 'CID_49'),
+('CPID_47', '40', '10', '10', '40', 'CID_50'),
+('CPID_48', '35', '10', '15', '40', 'CID_51'),
+('CPID_49', '25', '40', '10', '15', 'CID_52'),
+('CPID_5', '20', '20', '30', '30', 'CID_6'),
+('CPID_50', '15', '40', '10', '35', 'CID_53'),
+('CPID_51', '10', '50', '20', '20', 'CID_54'),
+('CPID_52', '25', '40', '10', '25', 'CID_55'),
+('CPID_53', '30', '50', '10', '10', 'CID_56'),
+('CPID_54', '20', '50', '10', '20', 'CID_57'),
+('CPID_55', '30', '40', '15', '15', 'CID_58'),
+('CPID_56', '25', '50', '10', '15', 'CID_59'),
+('CPID_57', '25', '25', '25', '25', 'CID_60'),
+('CPID_58', '25', '25', '25', '25', 'CID_61'),
+('CPID_59', '10', '10', '40', '40', 'CID_62'),
+('CPID_6', '10', '10', '40', '40', 'CID_7'),
+('CPID_7', '40', '10', '20', '30', 'CID_8'),
+('CPID_8', '30', '40', '15', '15', 'CID_9'),
+('CPID_9', '20', '20', '30', '30', 'CID_10');
 
 -- --------------------------------------------------------
 
@@ -436,7 +516,8 @@ CREATE TABLE `ia_informations` (
 CREATE TABLE `ia_questions` (
   `IAQID` varchar(255) NOT NULL,
   `QUESTION` varchar(255) NOT NULL,
-  `HIP` varchar(255) NOT NULL,
+  `FIELD` varchar(255) NOT NULL,
+  `POSITION` varchar(255) NOT NULL,
   `IAIID` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -444,49 +525,55 @@ CREATE TABLE `ia_questions` (
 -- Dumping data for table `ia_questions`
 --
 
-INSERT INTO `ia_questions` (`IAQID`, `QUESTION`, `HIP`, `IAIID`) VALUES
-('IAQID_1', 'do puzzles', 'Investigative', 'IAIID_1'),
-('IAQID_10', 'influence or persuade people', 'Enterprising', 'IAIID_1'),
-('IAQID_11', 'do experiments', 'Investigative', 'IAIID_1'),
-('IAQID_12', 'teach or train people', 'Social', 'IAIID_1'),
-('IAQID_13', 'help people solve their problems', 'Social', 'IAIID_1'),
-('IAQID_14', 'take care of animals', 'Realistic', 'IAIID_1'),
-('IAQID_15', 'have my day structured', 'Conventional', 'IAIID_1'),
-('IAQID_16', 'sell things', 'Enterprising', 'IAIID_1'),
-('IAQID_17', 'do creative writing', 'Artistic', 'IAIID_1'),
-('IAQID_18', 'work on science projects', 'Investigative', 'IAIID_1'),
-('IAQID_19', 'take on new responsibilities', 'Enterprising', 'IAIID_1'),
-('IAQID_2', 'work on cars', 'Realistic', 'IAIID_1'),
-('IAQID_20', 'heal people', 'Social', 'IAIID_1'),
-('IAQID_21', 'figure out how things work', 'Investigative', 'IAIID_1'),
-('IAQID_22', 'put things together or assemble models', 'Realistic', 'IAIID_1'),
-('IAQID_23', 'be creative', 'Artistic', 'IAIID_1'),
-('IAQID_24', 'pay attention to details', 'Conventional', 'IAIID_1'),
-('IAQID_25', 'do filing or typing', 'Conventional', 'IAIID_1'),
-('IAQID_26', 'learn about other cultures', 'Social', 'IAIID_1'),
-('IAQID_27', 'analyze things like problems, situations or trends', 'Investigative', 'IAIID_1'),
-('IAQID_28', 'play instruments or sing', 'Artistic', 'IAIID_1'),
-('IAQID_29', 'dream about starting my own business', 'Enterprising', 'IAIID_1'),
-('IAQID_3', 'attend concerts, theaters or art exhibits', 'Artistic', 'IAIID_1'),
-('IAQID_30', 'cook', 'Realistic', 'IAIID_1'),
-('IAQID_31', 'act in plays', 'Artistic', 'IAIID_1'),
-('IAQID_32', 'think things through before making decisions', 'Realistic', 'IAIID_1'),
-('IAQID_33', 'work with numbers or charts', 'Investigative', 'IAIID_1'),
-('IAQID_34', 'have discussions about issues like politics or current events', 'Social', 'IAIID_1'),
-('IAQID_35', 'keep records of my work', 'Conventional', 'IAIID_1'),
-('IAQID_36', 'be a leader', 'Enterprising', 'IAIID_1'),
-('IAQID_37', 'work outdoors', 'Realistic', 'IAIID_1'),
-('IAQID_38', 'work in an office', 'Conventional', 'IAIID_1'),
-('IAQID_39', 'work on math problems', 'Investigative', 'IAIID_1'),
-('IAQID_4', 'work in teams', 'Social', 'IAIID_1'),
-('IAQID_40', 'help people', 'Social', 'IAIID_1'),
-('IAQID_41', 'draw', 'Artistic', 'IAIID_1'),
-('IAQID_42', 'give speeches', 'Enterprising', 'IAIID_1'),
-('IAQID_5', 'organize things like files, offices or activities', 'Conventional', 'IAIID_1'),
-('IAQID_6', 'set goals for myself', 'Enterprising', 'IAIID_1'),
-('IAQID_7', 'build things', 'Realistic', 'IAIID_1'),
-('IAQID_8', 'read fiction, poetry or plays', 'Artistic', 'IAIID_1'),
-('IAQID_9', 'have clear instructions to follow', 'Conventional', 'IAIID_1');
+INSERT INTO `ia_questions` (`IAQID`, `QUESTION`, `FIELD`, `POSITION`, `IAIID`) VALUES
+('IAQID_1', 'Humanities', 'Humanities', '0', 'IAIID_1'),
+('IAQID_10', 'Public Administration', 'Public Administration', '0', 'IAIID_1'),
+('IAQID_11', 'Transportation', 'Transportation', '0', 'IAIID_1'),
+('IAQID_12', 'Nutrition', 'Nutrition', '0', 'IAIID_1'),
+('IAQID_13', 'Do you like learning about different ideas and cultures, and understanding how people and societies work?', 'Humanities', '1', 'IAIID_1'),
+('IAQID_14', 'Do you have an interested in developing skills related to visual communication, creativity, and aesthetics? who enjoy art, design, and expressing their creativity.', 'Humanities', '1', 'IAIID_1'),
+('IAQID_15', 'Are you curious about how people live together and make rules for their communities? If you like thinking deeply about social and political issues, and enjoy learning about how people behave and interact with each other.', 'Social Sciences', '1', 'IAIID_1'),
+('IAQID_16', 'Are you interested in studying language, literature, and culture? who enjoy reading, writing, and analyzing different types of texts in a critical manner.', 'Social Sciences', '1', 'IAIID_1'),
+('IAQID_17', 'Are you interested in learning about people, their cultures, and how societies function?', 'Social Sciences', '1', 'IAIID_1'),
+('IAQID_18', 'Do you have an interest in studying culture, language, and religion? who explore other cultures and belief systems.', 'Social Sciences', '1', 'IAIID_1'),
+('IAQID_19', 'Do you have an interest in environmental conservation, sustainability, and protecting natural resources?', 'Natural Sciences', '1', 'IAIID_1'),
+('IAQID_2', 'Social Sciences', 'Social Sciences', '0', 'IAIID_1'),
+('IAQID_20', 'Are you interested in learning about rocks, minerals, and other materials that make up the Earth, as well as the natural resources we use from the planet?', 'Natural Sciences', '1', 'IAIID_1'),
+('IAQID_21', 'Do you like to learn about animals, plants, and other living things in the world around us?', 'Natural Sciences', '1', 'IAIID_1'),
+('IAQID_22', 'Do you enjoy learning about how things work in the physical world?', 'Natural Sciences', '1', 'IAIID_1'),
+('IAQID_23', 'Are you someone who likes to solve problems, think analytically, and work with technology? you might also enjoy designing, building, and working with computer systems.', 'Formal Sciences', '1', 'IAIID_1'),
+('IAQID_24', 'If you like working with numbers, logic, and patterns, and enjoy using math to solve problems and analyze data.', 'Formal Sciences', '1', 'IAIID_1'),
+('IAQID_25', 'Are you interested in learning about managing, producing, and marketing agricultural products?', 'Professions and Applied Sciences', '1', 'IAIID_1'),
+('IAQID_26', 'If you like learning about how buildings are made, the materials used, and how to make them look good and work well for people\'s needs.', 'Professions and Applied Sciences', '1', 'IAIID_1'),
+('IAQID_27', 'Are are interested in the field of business and management, who are interested in pursuing careers in business, finance, and management', 'Professions and Applied Sciences', '1', 'IAIID_1'),
+('IAQID_28', 'Are interested in books, reading, research, and organizing information, who enjoy helping others find information ', 'Education', '1', 'IAIID_1'),
+('IAQID_29', 'Do you want to teach, or are you passionate about teaching children the basic concept and theories?', 'Education', '1', 'IAIID_1'),
+('IAQID_3', 'Natural Sciences', 'Natural Sciences', '0', 'IAIID_1'),
+('IAQID_30', 'Do you want to teach adolescents student / secondary student that are interested in biology, TLE, MAPEH, English, and many more?', 'Education', '1', 'IAIID_1'),
+('IAQID_31', 'Do you have an interest in sports and fitness, enjoy teaching others about physical activity.', 'Education', '1', 'IAIID_1'),
+('IAQID_32', 'Are you interested in learning the production, processing, preservation, packaging, and distribution of food products? ', 'Nutrition', '1', 'IAIID_1'),
+('IAQID_33', 'Are you interested in developing recipes, creating meal plans, educating others on proper nutrition, or conducting research on the effects of certain diets or supplements?', 'Nutrition', '1', 'IAIID_1'),
+('IAQID_34', 'Are you Interested in developing and implementing community-based projects and programs focused on helping and improving a specific community or area? ', 'Public Administration', '1', 'IAIID_1'),
+('IAQID_35', 'Interested in understanding how different countries and cultures interact with one another, and how global issues are addressed.', 'Public Administration', '1', 'IAIID_1'),
+('IAQID_36', 'Interested in public service and administration.', 'Public Administration', '1', 'IAIID_1'),
+('IAQID_37', 'Interested in developing the knowledge and skills necessary to manage and respond to a range of public safety issues.', 'Public Administration', '1', 'IAIID_1'),
+('IAQID_38', 'Interested in studying of human behavior and social welfare.', 'Public Administration', '1', 'IAIID_1'),
+('IAQID_39', 'Interested in patient care and laboratory analysis.', 'Health Sciences', '1', 'IAIID_1'),
+('IAQID_4', 'Formal Sciences', 'Formal Sciences', '0', 'IAIID_1'),
+('IAQID_40', 'Interested in rehabilitation and physical therapy.', 'Health Sciences', '1', 'IAIID_1'),
+('IAQID_41', 'Interested in the care of expectant mothers and newborns.', 'Health Sciences', '1', 'IAIID_1'),
+('IAQID_42', 'Interested in diagnostic testing and medication administration', 'Health Sciences', '1', 'IAIID_1'),
+('IAQID_44', 'Interested in the design, construction, and maintenance of structures and machines.', 'Engineering', '1', 'IAIID_1'),
+('IAQID_45', 'Interested in the chemical and physical processes involved in the production of materials and energy.', 'Engineering', '1', 'IAIID_1'),
+('IAQID_46', 'Interested in the design and development of electronic and communication systems.', 'Engineering', '1', 'IAIID_1'),
+('IAQID_47', 'Interested in management of natural resources and environmental conservation', 'Engineering', '1', 'IAIID_1'),
+('IAQID_48', 'Interested in various aspects of media and communication, such as journalism, broadcasting, and mass communication. ', 'Media and Communication', '1', 'IAIID_1'),
+('IAQID_49', 'Interested in communication with a specific emphasis on the role of communication in development work. ', 'Media and Communication', '1', 'IAIID_1'),
+('IAQID_5', 'Professions and Applied Sciences', 'Professions and Applied Sciences', '0', 'IAIID_1'),
+('IAQID_6', 'Health Sciences', 'Health Sciences', '0', 'IAIID_1'),
+('IAQID_7', 'Education', 'Education', '0', 'IAIID_1'),
+('IAQID_8', 'Engineering', 'Engineering', '0', 'IAIID_1'),
+('IAQID_9', 'Media and Communication', 'Media and Communication', '0', 'IAIID_1');
 
 -- --------------------------------------------------------
 
@@ -605,6 +692,12 @@ ALTER TABLE `course_information`
 --
 ALTER TABLE `course_information_job`
   ADD PRIMARY KEY (`CIJID`);
+
+--
+-- Indexes for table `course_percentage`
+--
+ALTER TABLE `course_percentage`
+  ADD PRIMARY KEY (`CPID`);
 
 --
 -- Indexes for table `eq_english`

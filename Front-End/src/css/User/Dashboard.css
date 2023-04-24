@@ -1,4 +1,4 @@
-.Dashboard_main{
+.Dashboard_main {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7,8 +7,8 @@
     margin: auto;
 }
 
-/* 
 
+/* 
 .Course_Directory{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -32,9 +32,6 @@
     gap: 20px ;
 }
 
-.box_pic{
-   
-}
 
 .box_img1, .box_img{
     width: 100%;
@@ -68,4 +65,4 @@
 .p2{
     font-size: 14px;
     font-family: Poppins;
-} */
+}  */

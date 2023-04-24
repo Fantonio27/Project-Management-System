@@ -1,10 +1,10 @@
-.IA{
+.IA {
     margin: 100px 0px;
     /* background-color: red; */
     width: 100%;
 }
 
-.IA_p1{
+.IA_p1 {
     font-size: 30px;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
@@ -12,7 +12,7 @@
     letter-spacing: 1.5px;
 }
 
-.IA_p2{
+.IA_p2 {
     font-size: 16px;
     font-family: 'Poppins', sans-serif;
     color: #1a2c2aff;
@@ -21,10 +21,10 @@
     border-bottom: 2px solid rgba(26, 44, 43, 0.522);
 }
 
-.IA_questions{
+.IA_questions {
     width: 100%;
     background-color: #4578600e;
-    padding: 150px 0px;
+    padding: 100px 0px;
     margin: 0px 0px;
     display: flex;
     flex-direction: column;
@@ -36,7 +36,7 @@
     border-bottom-left-radius: 10px;
 }
 
-.IA_div0{
+.IA_div0 {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,7 +44,7 @@
     font-weight: bold;
 }
 
-.IA_q_p1{
+.IA_q_p1 {
     font-size: 16px;
     color: #457860ef;
     font-family: 'Poppins', sans-serif;
@@ -52,41 +52,59 @@
 
 }
 
-.IA_q_p2{
-    font-size: 34px;
-    color: rgba(32, 53, 59, 0.947);
+.IA_q_p2 {
+    font-size: 30px;
+    color: #20353bf1;
     font-family: 'QuickSand', sans-serif;
     text-align: center;
 }
 
-.IA_div{
-    display: flex;
-    gap: 30px;
+.IA_div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 15px 20px;
+    width: 80%;
 }
 
-.IA_button1, .IA_button2{
-    padding: 20px 0px;
-    width: 200px;
+.IA_button1,
+.IA_button2 {
+    padding: 10px 30px;
+    width: 100%;
     font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    background-color: #69b96eff;
+    font-size: 16px;
+    /* background-color: #69b96eff; */
+    background-color: white;
     border: 1px solid #E9ECEF;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
-    color: white;
+    border-radius: 5px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    color: #20353bf1;
     transition: 0.3s;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
-.IA_button2{
-    background-color: #db514cff;
+.IA_button2 {
+    width: max-content;
+    width: 150px;
+    background-color: #69b96eff;
+    color: white;
+    padding: 5px 0px;
 }
 
-.IA_button1:hover{
-    background-color: rgb(86, 157, 91);
+.IA_button1:hover {
+    background-color: rgba(203, 244, 205, 0.283);
 }
 
 .IA_button2:hover{
-    background-color: rgb(183, 67, 63);
+    background-color: rgb(86, 157, 91);
+}
+
+.IA_Button_Group{
+    display: flex;
+    gap: 20px;
+    position: relative;
 }

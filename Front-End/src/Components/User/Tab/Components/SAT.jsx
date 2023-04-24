@@ -7,6 +7,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Radiogroup = {
     '& .MuiSvgIcon-root': {
@@ -22,7 +23,10 @@ const radio = {
     transition: '0.3s',
     padding: '8px 0px',
 }
+
 export default function SAT() {
+
+    const navigate = useNavigate()
 
     const [questions, setquestions] = React.useState([])
     const [subject, setsubject] = React.useState({
@@ -61,9 +65,6 @@ export default function SAT() {
             setquestions(response.data)
         })
 
-        const d = window.localStorage.getItem('MATH_ANSWER')
-        setdataform(JSON.parse(d))
-
     }, [subject])
 
     let setsub = (setmathanswer)
@@ -87,7 +88,6 @@ export default function SAT() {
         eachsub = rcanswer
         reachsub = "READING_COMPREHENSION"
     }
-
     const handleClick = (i, ans) => (event) => {
         const { value, name } = event.target
 
@@ -99,8 +99,6 @@ export default function SAT() {
                 return a = a + 0
             }
         })
-
-        // console.log(a)
 
         if (a === 1) {
             setsub(current =>
@@ -118,16 +116,9 @@ export default function SAT() {
 
         setdataform((prev) => ({
             ...prev,
-            [reachsub] : eachsub
+            [reachsub]: eachsub
         }))
-    }
 
-    React.useEffect(() => {
-        window.localStorage.setItem('MATH_ANSWER', JSON.stringify(dataform))
-    }, [mathanswer])
-
-
-    const onSubmit = () => {
         let m = 0, e = 0, s = 0, r = 0
         mathanswer.map(prev => {
             if (prev.value === prev.answer) {
@@ -161,22 +152,55 @@ export default function SAT() {
             ENGLISH: e,
             READING_COMPREHENSION: r,
         }))
-        console.log(result)
-    }
-    // console.log(eachsub[1].value)
 
-    const setvalue = (data) => () => {
-        // if (eachsub.length === '0') {
-        //     return ('')
-        // } else {
-        //     dataform.find((da) => da.id== data[subject.id]).value
-        // }
-
-
-        // console.log(data)
     }
 
-    // console.log(data.find((da) => da.id=="EQMID_1").index)
+    // React.useEffect(() => {
+    //     window.localStorage.setItem('EXAM_RESULT', JSON.stringify(result))
+    // }, [eachsub])
+
+    const onSubmit = () => {
+        // let m = 0, e = 0, s = 0, r = 0
+        // mathanswer.map(prev => {
+        //     if (prev.value === prev.answer) {
+        //         m = m + 1
+        //     } else {
+        //         m = m + 0
+        //     }
+        // })
+
+        // scienceanswer.map(prev => {
+        //     if (prev.value === prev.answer) {
+        //         s = s + 1
+        //     }
+        // })
+
+        // englishanswer.map(prev => {
+        //     if (prev.value === prev.answer) {
+        //         e = e + 1
+        //     }
+        // })
+
+        // rcanswer.map(prev => {
+        //     if (prev.value === prev.answer) {
+        //         r = r + 1
+        //     }
+        // })
+
+        // setresult(prev => ({
+        //     MATH: m,
+        //     SCIENCE: s,
+        //     ENGLISH: e,
+        //     READING_COMPREHENSION: r,
+        // }))
+
+        if(result){
+            navigate("../Interest_Assessment", { state: { data: { result } } })
+        }
+
+        window.localStorage.setItem('EXAM_RESULT', JSON.stringify(result))
+    }
+    console.log(result)
 
     return (
         <div className="SAT">
@@ -197,7 +221,7 @@ export default function SAT() {
                                         <div className="SAT_form">
                                             <p className="SAT_q1">{data.Question}</p>
                                             <RadioGroup
-                                                defaultValue={setvalue(data)}
+                                                // defaultValue={setvalue(data)}
                                                 name="radio-buttons-group"
                                                 sx={Radiogroup}
                                             >
@@ -275,19 +299,15 @@ export default function SAT() {
                         </div>
                         <p><b>Subjects</b></p>
                         <div className="Status_div3">
-                            {/* <Link to="../Interest_Assessment" state={{ sub: "Math" }}><div className="Status_subjects">Math</div></Link>
-                            <Link to="../Interest_Assessment" state={{ sub: "Science" }}><div className="Status_subjects">Science</div></Link>
-                            <Link to="../Interest_Assessment" state={{ sub: "English" }}><div className="Status_subjects">English</div></Link>
-                            <Link to="../Interest_Assessment" state={{ sub: "Reading Comprehension" }}><div className="Status_subjects">Reading Comprehension</div></Link> */}
                             <button className="Status_subjects" value="eq_math" onClick={sub}>Math</button>
                             <button className="Status_subjects" value="eq_science" onClick={sub}>Science</button>
                             <button className="Status_subjects" value="eq_english" onClick={sub}>English</button>
                             <button className="Status_subjects" value="eq_reading_comprehension" onClick={sub}>Reading Comprehension</button>
                         </div>
-                        {/* <Link to="../Interest_Assessment">
+                        {/* <Link to="../Interest_Assessment" state={{ result: result }}>
                             <Button>Submit</Button>
                         </Link> */}
-                        <Button onClick={onSubmit}>Result</Button>
+                        <button onClick={onSubmit} className="sat_submit_btn">Submit</button>
                     </div>
                 </div>
             </div>
