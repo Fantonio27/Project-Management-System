@@ -3,41 +3,45 @@
     width: 100%;
     justify-content: center;
     align-items: center;
-    margin: 100px 0px;
+    /* background-color: red; */
+    margin-top: 150px;
 }
 
 .SAT_container {
     display: grid;
-    grid-template-columns: 1.4fr 0.6fr;
-    grid-template-rows: 1fr;
-    gap: 0px 35px;
+    grid-template-columns: 1.6fr 0.4fr;
+    grid-template-rows: 0.1fr 1fr;
+    gap: 40px 50px;
     grid-template-areas:
-        ". .";
+        "SAT_header Question_Status"
+        "SAT_Questions_container Question_Status";
+}
+
+.SAT_header { 
+    grid-area: SAT_header; 
 }
 
 .SAT_Questions_container {
     display: flex;
     flex-direction: column;
-    /* margin: 30px 0px; */
     gap: 30px;
-    border-top: 2px solid #458d6b7f;
-    padding: 30px 0px;
+    /* border-top: 2px solid #458d6b8b; */
+    width: 100%;
+    grid-area: SAT_Questions_container; 
 }
 
 .SAT_p1 {
     font-family: 'Poppins', sans-serif;
     font-size: 30px;
     font-weight: 600;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     color: #458d6b;
-    line-height: 1.2;
 }
 
 .SAT_p2 {
     font-family: 'QuickSand', sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
-    letter-spacing: 0.5px;
     color: rgb(26, 44, 42);
 }
 
@@ -45,21 +49,20 @@
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
     font-weight: 500;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     color: rgb(26, 44, 42);
-    margin: 5px 0px 15px;
+    margin: 0px 0px 0px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #458d6b8b;
 }
 
 .SAT_Questions {
-    /* background-color:#; */
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
     border-radius: 12px;
     border: 1px solid #E9ECEF;
 }
 
 .tile {
-    /* background-color: #458d6b; */
-    /* color: white; */
     border-top-right-radius: 12px;
     border-top-left-radius: 12px;
     font-size: 18px;
@@ -67,13 +70,13 @@
     font-weight: bold;
     letter-spacing: 1px;
     color: #457860;
-    padding: 12px 30px;
+    padding: 15px 40px;
     background-color: #458d6b16;
 }
 
 
 .SAT_form {
-    padding: 30px;
+    padding: 30px 40px;
 }
 
 .SAT_q1 {
@@ -90,18 +93,18 @@
     font-weight: bold;
     font-size: 15px;
     margin-left: 10px;
-    color: rgba(26, 44, 42, 0.971);
     display: flex;
-    gap: 10px
+    gap: 10px;
 }
 
 .Question_Status {
     height: max-content;
     position: relative;
+    grid-area: Question_Status;
 }
 
-.Status_div0{
-    position: fixed;
+.Status_div0 {
+    width: 100%;
     padding: 30px;
     border: 1px solid #4578600e;
     border-radius: 10px;
@@ -120,18 +123,17 @@
 
 .roundball {
     border-radius: 20px;
-    border: 1px solid #45786027;
+    border: 1px solid #45786064;
     height: 40px;
     width: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: #45786026; */
 }
 
-.Status_subjects{
+.Status_subjects {
     border: 1px solid #45786051;
-    padding:10px 0px;
+    padding: 10px 0px;
     text-align: center;
     border-radius: 5px;
     cursor: pointer;
@@ -139,19 +141,19 @@
     background-color: white;
 }
 
-.Status_div3{
+.Status_div3 {
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin: 15px 0px 40px;
 }
 
-.sat_submit_btn{
+/* .sat_submit_btn {
     width: 100%;
     padding: 10px 0px;
     border-radius: 5px;
     border: 1px solid #f8f9fa;
-    background-color: #69b96eff;
+    background-color: rgb(105, 185, 110);
     color: white;
     letter-spacing: 1px;
     font-size: 14px;
@@ -160,6 +162,41 @@
     transition: 0.3s;
 }
 
-.sat_submit_btn:hover{
+.sat_submit_btn:hover {
     background-color: rgb(90, 166, 96);
+} */
+
+.SAT_button_group{
+    display: flex;
+    justify-content: space-between;
+}
+
+.SAT_next_btn, .SAT_prev_btn{
+    font-family: 'QuickSand', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    padding: 10px;
+    width:120px;
+    border: 2px solid rgb(105, 185, 110);
+    border-radius: 5px;
+    background-color: rgb(105, 185, 110);
+    color: white;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    transition: 0.3s;
+}
+
+.SAT_prev_btn{
+    background-color: white;
+    color: #457860;
+    border: 2px solid #21553d65;
+}
+
+.SAT_prev_btn:hover{
+    background-color: #f8f9fa;
+}
+
+.SAT_next_btn:hover{
+    background-color: rgb(87, 165, 93)
 }

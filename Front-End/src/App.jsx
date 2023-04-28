@@ -72,7 +72,12 @@ function App() {
           <Route path="IA_Information" element={<IA_Information />} />
           <Route path="Examination">
             <Route path="" element={<Examination />} />
-            <Route path="Scholastic_Aptitude_Test" element={<SAT />} />
+            <Route path="Scholastic_Aptitude_Test">
+              <Route index path="" element={<SAT />} />
+              <Route path=":sub" element={<SAT />}>
+                <Route index path=":q" element={<SAT />}></Route>
+              </Route>
+            </Route>
             <Route path="Interest_Assessment" element={<IA />} />
             <Route path="Exam_Result" element={<Result />} />
           </Route>
@@ -80,7 +85,7 @@ function App() {
         </Route>
 
         <Route path="Admin_Login" element={<Admin_Login />} />
-        
+
         <Route path="Admin_Dashboard" element={<Admin_Dashboard />}>
           <Route path="" element={<Admin_Main />} />
           <Route path="Student_Information" element={<Student_Info />} />

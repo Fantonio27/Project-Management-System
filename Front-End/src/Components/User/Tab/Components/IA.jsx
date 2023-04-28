@@ -43,11 +43,9 @@ export default function IA() {
         setexamresult(state.data)
     }, [])
 
-    // console.log(examresult)
-
     const nextquestion = () => {
         setquestionno((prev) => prev + 1)
-
+W
         if (questionno === 3) {
             navigate("../Exam_Result", {state: {resultia: answer.id, resultexam: examresult}})
             // window.localStorage.setItem('IA_RESULT', JSON.stringify(result))

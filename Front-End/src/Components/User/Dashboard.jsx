@@ -38,11 +38,9 @@ export default function User_Dashboard() {
     return (
         <Box sx={{backgroundColor: 'white'}} >
             <CssBaseline />
-
             <div>
                 <User_Navbar tabindex={tab} handletab={handlesettab} userdata={datauser}/>
-            </div>
-                    
+            </div>               
             <Box component="main">
                 <Toolbar />
                 <div className='Dashboard_main'>

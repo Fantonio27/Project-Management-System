@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2023 at 06:55 PM
+-- Generation Time: Apr 28, 2023 at 05:53 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -455,6 +455,7 @@ CREATE TABLE `exam_informations` (
   `EID` varchar(255) NOT NULL,
   `SUBJECT` varchar(255) NOT NULL,
   `INSTRUCTION` varchar(255) NOT NULL,
+  `TOTAL_ITEMS` varchar(255) NOT NULL,
   `TIMELIMIT_HOUR` varchar(255) NOT NULL,
   `TIMELIMIT_MINUTE` varchar(255) NOT NULL,
   `EFID` varchar(255) NOT NULL
@@ -464,11 +465,11 @@ CREATE TABLE `exam_informations` (
 -- Dumping data for table `exam_informations`
 --
 
-INSERT INTO `exam_informations` (`EID`, `SUBJECT`, `INSTRUCTION`, `TIMELIMIT_HOUR`, `TIMELIMIT_MINUTE`, `EFID`) VALUES
-('EID_1', 'MATH', 'Choose the correct answer by solving each problem and \r\nselecting only the best answer from the options provided below.', '00', '40', 'EFID_1'),
-('EID_2', 'SCIENCE', 'Analyze the given table and sentence before the questions and select the appropriate answer for the questions below.', '00', '40', 'EFID_1'),
-('EID_3', 'ENGLISH', 'Each sentence is followed by a series of questions. You will evaluate how the passage could be altered to improve the expression of concepts for some questions. Other questions will need you to examine how the piece could be altered to fix flaws in senten', '00', '40', 'EFID_1'),
-('EID_4', 'READING COMPREHENSION', 'A series of questions follows each sentence or set of texts below. Choose the best response to each question based on what is stated or suggested in the passage after reading each passage or pair.', '00', '40', 'EFID_1');
+INSERT INTO `exam_informations` (`EID`, `SUBJECT`, `INSTRUCTION`, `TOTAL_ITEMS`, `TIMELIMIT_HOUR`, `TIMELIMIT_MINUTE`, `EFID`) VALUES
+('EID_1', 'MATH', 'Choose the correct answer by solving each problem and \r\nselecting only the best answer from the options provided below.', '30', '00', '40', 'EFID_1'),
+('EID_2', 'SCIENCE', 'Analyze the given table and sentence before the questions and select the appropriate answer for the questions below.', '30', '00', '40', 'EFID_1'),
+('EID_3', 'ENGLISH', 'Each sentence is followed by a series of questions. You will evaluate how the passage could be altered to improve the expression of concepts for some questions. Other questions will need you to examine how the piece could be altered to fix flaws in senten', '20', '00', '40', 'EFID_1'),
+('EID_4', 'READING COMPREHENSION', 'A series of questions follows each sentence or set of texts below. Choose the best response to each question based on what is stated or suggested in the passage after reading each passage or pair.', '20', '00', '40', 'EFID_1');
 
 -- --------------------------------------------------------
 
@@ -477,14 +478,14 @@ INSERT INTO `exam_informations` (`EID`, `SUBJECT`, `INSTRUCTION`, `TIMELIMIT_HOU
 --
 
 CREATE TABLE `exam_result` (
-  `ERID` int(11) NOT NULL,
+  `ERID` varchar(255) NOT NULL,
   `MATH_SCORE` int(255) NOT NULL,
   `ENGLISH_SCORE` int(255) NOT NULL,
   `SCIENCE_SCORE` int(255) NOT NULL,
   `READING_COMPREHENSION_SCORE` int(255) NOT NULL,
   `TOTAL_SCORE` int(255) NOT NULL,
   `EXAM_RESULT` varchar(255) NOT NULL,
-  `LRN` int(255) NOT NULL,
+  `LRN` varchar(255) NOT NULL,
   `DATE` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -493,7 +494,8 @@ CREATE TABLE `exam_result` (
 --
 
 INSERT INTO `exam_result` (`ERID`, `MATH_SCORE`, `ENGLISH_SCORE`, `SCIENCE_SCORE`, `READING_COMPREHENSION_SCORE`, `TOTAL_SCORE`, `EXAM_RESULT`, `LRN`, `DATE`) VALUES
-(1, 10, 10, 10, 10, 30, 'PASSED', 2147483647, '01/02/03');
+('1', 10, 0, 0, 10, 30, 'PASSED', '2147483647', '01/02/03'),
+('ERID_1', 0, 0, 0, 0, 0, '', '123456789012', '2023-04-28');
 
 -- --------------------------------------------------------
 
@@ -651,6 +653,21 @@ CREATE TABLE `picture` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `save_answer`
+--
+
+CREATE TABLE `save_answer` (
+  `SAID` int(255) NOT NULL,
+  `SUBJECT` varchar(255) NOT NULL,
+  `VALUE` varchar(255) NOT NULL,
+  `ANSWER` varchar(255) NOT NULL,
+  `EQID` varchar(255) NOT NULL,
+  `LRN` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `student_information`
 --
 
@@ -766,6 +783,12 @@ ALTER TABLE `interest_assessment_result`
   ADD PRIMARY KEY (`IARID`);
 
 --
+-- Indexes for table `save_answer`
+--
+ALTER TABLE `save_answer`
+  ADD PRIMARY KEY (`SAID`);
+
+--
 -- Indexes for table `student_information`
 --
 ALTER TABLE `student_information`
@@ -774,12 +797,6 @@ ALTER TABLE `student_information`
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `exam_result`
---
-ALTER TABLE `exam_result`
-  MODIFY `ERID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `instructions`
@@ -792,6 +809,12 @@ ALTER TABLE `instructions`
 --
 ALTER TABLE `interest_assessment_result`
   MODIFY `IARID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `save_answer`
+--
+ALTER TABLE `save_answer`
+  MODIFY `SAID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=277;
 
 --
 -- AUTO_INCREMENT for table `student_information`
