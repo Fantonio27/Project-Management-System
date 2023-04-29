@@ -7,7 +7,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
-import Chart from "chart.js/auto";
 import { Doughnut } from 'react-chartjs-2';
 
 export default function Admin_Main() {

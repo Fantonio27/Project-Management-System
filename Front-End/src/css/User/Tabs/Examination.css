@@ -1,0 +1,116 @@
+.Examination {
+    /* background-color: red; */
+    width: 95%;
+    height: 93vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+
+.Exam_img {
+    width: 100%;
+    animation-name: faderight;
+    animation-duration: 0.8s;
+    position: relative;
+    right: 0;
+    animation-timing-function: ease;
+}
+
+.examimg {
+    justify-content: center;
+}
+
+.examtext {
+    animation-name: fadeleft;
+    animation-duration: 0.8s;
+    position: relative;
+    left: 0;
+    animation-timing-function: ease;
+}
+
+.Examination_div {
+    flex: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Examination_p1 {
+    font-size: 65px;
+    font-family: 'QuickSand', sans-serif;
+    font-weight: bold;
+    text-shadow: -4px 0px 0px rgba(78, 127, 56, 0.396);
+    color: rgba(88, 127, 99, 0.948);
+    line-height: 1;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.Examination_p2,
+.Examination_p3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    text-align: justify;
+}
+
+.Examination_p3 {
+    margin: 10px 0px 5px;
+    font-size: 14.5px;
+    font-weight: bold;
+}
+
+
+.Exam_btn {
+    padding: 10px 30px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    background-color: #587f63;
+    border: 0px;
+    border-radius: 50px;
+    margin-top: 40px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    top: 0;
+    position: relative;
+}
+
+.Exam_btn:hover {
+    background-color: rgb(74, 118, 87);
+    top: -5px;
+
+}
+
+.Examination_div ul {
+    margin-left: 40px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14.5px;
+    text-align: justify;
+    font-weight: bold
+}
+
+@keyframes faderight {
+    from {
+        opacity: 0;
+        right: -50px;
+    }
+
+    to {
+        opacity: 1;
+        right: 0px;
+    }
+}
+
+@keyframes fadeleft {
+    from {
+        opacity: 0;
+        left: -50px;
+    }
+
+    to {
+        opacity: 1;
+        left: 0px;
+    }
+}

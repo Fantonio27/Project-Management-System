@@ -7,7 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 export default function IA() {
 
-    const {state} = useLocation();
+    // const {state} = useLocation();
 
     const [examresult, setexamresult] = React.useState()
 
@@ -40,7 +40,7 @@ export default function IA() {
         axios.get(`http://localhost/recommendation_system/api/user/IA_Questions.php`).then(function (response) {
             setquestions(response.data)
         })
-        setexamresult(state.data)
+        // setexamresult(state.data)
     }, [])
 
     const nextquestion = () => {

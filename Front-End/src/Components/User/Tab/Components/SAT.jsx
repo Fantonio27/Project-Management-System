@@ -7,11 +7,22 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+
 const Radiogroup = {
     '& .MuiSvgIcon-root': {
         fontSize: 20,
     },
 }
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function SAT() {
 
@@ -20,23 +31,22 @@ export default function SAT() {
     const d = window.localStorage.getItem('EXAM_QUESTION')
     const user = window.localStorage.getItem('USER_DATA')
 
+    const [open, setOpen] = React.useState({
+        dialog1: false,
+        dialog2: false
+    });
+
     const [questionno, setquestionno] = React.useState(0)
     const [questions, setquestions] = React.useState([{}])
-    const [subject, setsubject] = React.useState({
-        sub: 'eq_math',
-        id: 'EQMID',
-        limit: 30,
-    })
-
+    const [subject, setsubject] = React.useState([])
+    const [nextsub, setnextsub] = React.useState(false)
     const [choices, setchoices] = React.useState(['Choice_A', 'Choice_B', 'Choice_C', 'Choice_D'])
     const Letter = ['A', 'B', 'C', 'D']
 
-    const [mathanswer, setmathanswer] = React.useState([])
-    const [scienceanswer, setscienceanswer] = React.useState([])
-    const [englishanswer, setenglishanswer] = React.useState([])
-    const [rcanswer, setrcanswer] = React.useState([])
-
-    // const [questionans, setquestionans] = React.useState();
+    // const [mathanswer, setmathanswer] = React.useState([])
+    // const [scienceanswer, setscienceanswer] = React.useState([])
+    // const [englishanswer, setenglishanswer] = React.useState([])
+    // const [rcanswer, setrcanswer] = React.useState([])
 
     const [answer, setanswer] = React.useState([{
         id: '',
@@ -53,46 +63,26 @@ export default function SAT() {
     })
 
     const [saveans, setsaveans] = React.useState([])
-    const [saveindex, setsaveindex] = React.useState([])
-
-    let setsub = (setmathanswer)
-    let eachsub = mathanswer
-    let reachsub = ""
-
-    if (subject.sub === "eq_math") {
-        setsub = (setmathanswer)
-        eachsub = mathanswer
-        reachsub = "Math"
-    } else if (subject.sub === "eq_science") {
-        setsub = (setscienceanswer)
-        eachsub = scienceanswer
-        reachsub = "Science"
-    } else if (subject.sub === "eq_english") {
-        setsub = (setenglishanswer)
-        eachsub = englishanswer
-        reachsub = "English"
-    } else {
-        setsub = (setrcanswer)
-        eachsub = rcanswer
-        reachsub = "Reading_Comprehension"
-    }
 
     const sub = (value) => {
-        const s = (
-            value === 'eq_reading_comprehension' ? 'RC' : value[3].toUpperCase()
-        )
 
-        setsubject(() => ({
-            sub: value,
-            id: `EQ${value}ID`,
-            limit: '',
-        }))
+        if(value === "Interest_Assessment"){
+            navigate(`../../${value}`)
 
-        navigate(`../${value}/1`)
+            window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(""))
+        }else{
+            navigate(`../${value}/1`)
 
-        axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN='${JSON.parse(user).LRN}'&&RESULT=ALL`).then(function (response) {
-            window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(response.data))
-        })
+            axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN='${JSON.parse(user).LRN}'&&RESULT=ALL`).then(function (response) {
+                window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(response.data))
+            })
+        }
+
+        reload()
+    }
+
+    const reload = () => {
+        window.location.reload();
     }
 
     const parts1 = location.href.split('/').at(-1);
@@ -107,12 +97,16 @@ export default function SAT() {
         setquestions(JSON.parse(d))
         setquestionno(parts1 - 1)
 
-    }, [subject])
+        axios.get(`http://localhost/recommendation_system/api/user/Exam_Information.php?SUBJECT="${parts2}"`).then(function (response) {
+            setsubject(response.data)
+        });
+
+    }, [nextsub])
 
     React.useEffect(() => {
-        const idsub = JSON.parse(d)[parts1 - 1][subject.id]
+        const idsub = JSON.parse(d)[parts1 - 1].EQID
 
-        axios.get(`http://localhost/recommendation_system/api/user/Saves_Answer.php?ID="${idsub}"`).then(function (response) {
+        axios.get(`http://localhost/recommendation_system/api/user/Saves_Answer.php?ID="${idsub}"&&FETCH=EACH`).then(function (response) {
             let res = response.data === false
             setanswer(obj => ({
                 id: res ? "" : response.data.EQID,
@@ -123,13 +117,13 @@ export default function SAT() {
             ))
         });
 
-        axios.get(`http://localhost/recommendation_system/api/user/FetchAllAnser.php?SUBJECT="${reachsub}"`).then(function (response) {
+        axios.get(`http://localhost/recommendation_system/api/user/FetchAllAnser.php?SUBJECT="${parts2}"`).then(function (response) {
             setsaveans(response.data)
         })
     }, [questionno])
 
     const handleClick = (i, ans) => (event) => {
-        const { value, name } = event.target
+        const { value } = event.target
 
         setanswer(prev => ({
             ...prev,
@@ -138,28 +132,41 @@ export default function SAT() {
 
         if (answer.id === "" && answer.value == "") {
             axios.post('http://localhost/recommendation_system/api/user/Saves_Answer.php/saves', {
-                id: JSON.parse(d)[parts1 - 1][subject.id],
+                id: JSON.parse(d)[parts1 - 1].EQID,
                 subject: parts2,
                 value: value,
                 answer: JSON.parse(d)[parts1 - 1].Answer
             }).then(function (response) {
-
+                console.log(response.data)
             });
-        }else if (answer.value !== "") {
+        } else if (answer.value !== "") {
             axios.put('http://localhost/recommendation_system/api/user/Saves_Answer.php/saves', {
-                id: JSON.parse(d)[parts1 - 1][subject.id],
-                value: answer.value,
+                id: JSON.parse(d)[parts1 - 1].EQID,
+                value: value,
             }).then(function (response) {
             });
         }
     }
 
+    console.log(subject)
+
     const nextquestion = (data) => () => {
 
         if (data == "submit") {
-            axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN='${JSON.parse(user).LRN}'&&RESULT=s`).then(function (response) {
-                sub(response.data)
-            })
+            axios.get(`http://localhost/recommendation_system/api/user/Saves_Answer.php?ID="${parts2}"&&FETCH=SUBJECT"`).then(function (response) {
+
+                if (response.data.count === Number(subject[0].TOTAL_ITEMS)) {
+                    setOpen(prev => ({
+                        ...prev,
+                        dialog1: true
+                    }))
+                } else {
+                    setOpen(prev => ({
+                        ...prev,
+                        dialog2: true
+                    }))
+                }
+            });
         } else {
             setquestionno(prev => prev + 1)
             navigate(`${Number(parts1) + 1}`)
@@ -171,14 +178,25 @@ export default function SAT() {
         navigate(`${parts1 - 1}`)
     }
 
+    const nextsubject = () => {
+        axios.put(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN='${JSON.parse(user).LRN}'&&SUBJECT='${parts2}'`).then(function (response) {
+            console.log(response.data)
+            axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN='${JSON.parse(user).LRN}'&&RESULT=s`).then(function (response) {
+                sub(response.data)
+                console.log(response.data)
+            })
+        })
+    }
+
+    const total = subject.length === 0 ? 0 : subject[0].TOTAL_ITEMS
+
     return (
         <div className="SAT" >
             <div className="SAT_container">
                 <div className="SAT_header">
                     <p className="SAT_p1">Scholastic Aptitude Test</p>
-                    <p className="SAT_p2">Part I - Mathematics</p>
-                    <p className="SAT_p3"><b>Directions: </b>Choose the correct answer by solving each problem and
-                        selecting only the best answer from the options provided below.</p>
+                    <p className="SAT_p2">Part I - {subject.length === 0 ? '' : subject[0].SUBJECT}</p>
+                    <p className="SAT_p3"><b>Directions: </b>{subject.length === 0 ? '' : subject[0].INSTRUCTION}</p>
                 </div>
                 <div className="SAT_Questions_container">
                     <div className="SAT_Questions">
@@ -231,20 +249,21 @@ export default function SAT() {
                         <div>
                             {questionno > 0 && <button className="SAT_prev_btn" onClick={prevquestion}>Previous</button>}
                         </div>
-                        {questionno === 19 ?
+                        {questionno === total - 1 ?
                             <button onClick={nextquestion("submit")} className="SAT_next_btn">Submit</button>
                             :
                             <button className="SAT_next_btn" onClick={nextquestion(questionno)}>Next</button>
                         }
                     </div>
                 </div>
+
                 <div className="Question_Status">
                     <div className="Status_div0">
                         <p><b>Time Limit:</b> 00:50:00</p>
                         <p><b>Question Status</b></p>
                         <div className="Status_div">
                             {questions.map((val, index) => {
-                                const equal = (element) => element.EQID === val[subject.id]
+                                const equal = (element) => element.EQID === val.EQID
                                 const fill = saveans.some(equal)
                                 return (
                                     <div
@@ -266,20 +285,48 @@ export default function SAT() {
                             <button className="Status_subjects" value="eq_english" >English</button>
                             <button className="Status_subjects" value="eq_reading_comprehension">Reading Comprehension</button>
                         </div>
-                        {/* <button onClick={onSubmit} className="sat_submit_btn">Submit</button> */}
                     </div>
                 </div>
+
+                {/* FOR SUBMIT */}
+                <Dialog
+                    open={open.dialog1}
+                    TransitionComponent={Transition}
+                    keepMounted
+                    onClose={() => setOpen(prev => ({ ...prev, dialog1 : false}))}
+                    aria-describedby="alert-dialog-slide-description"
+                >
+                    <DialogTitle>{"Submit"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-slide-description">
+                            next subject
+                            <button onClick={nextsubject}>nextsubject</button>
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={() => setOpen(prev => ({ ...prev, dialog1: false }))}>Ok</Button>
+                    </DialogActions>
+                </Dialog>
+
+                {/* FOR Confirmation */}
+                <Dialog
+                    open={open.dialog2}
+                    TransitionComponent={Transition}
+                    keepMounted
+                    onClose={() => setOpen(prev => ({ ...prev, dialog2 : false}))}
+                    aria-describedby="alert-dialog-slide-description"
+                >
+                    <DialogTitle>{"Error"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-slide-description">
+                            not complete
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={() => setOpen(prev => ({ ...prev, dialog2: false }))}>Ok</Button>
+                    </DialogActions>
+                </Dialog>
             </div>
         </div>
     )
 }
-
-        // setanswer(obj => ({
-        //     ...obj,
-        //     id: JSON.parse(d)[parts1 - 1][subject.id],
-        //     subject: reachsub,
-        //     value: questionans,
-        //     answer: JSON.parse(d)[parts1 - 1].Answer
-        // }
-        // ))
-        // window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(saveindex))
