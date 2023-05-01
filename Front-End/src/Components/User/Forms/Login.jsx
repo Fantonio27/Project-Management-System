@@ -91,7 +91,7 @@ export default function Login(props) {
 
         } else {
             axios.get(`http://localhost/recommendation_system/api/user/Login.php?lrn=${Dataform.LRN}&pass=${Dataform.Password}`).then(function (response) {
-                console.log(response.data[0]);
+                // console.log(response.data[0]);
                 if (response.data.length == 1) {
                     const data = {
                             // STUDENTNO : response.data[0].STUDENT_NO,

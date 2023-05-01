@@ -23,6 +23,7 @@
     box-shadow: rgba(99, 99, 99, 0.15) 0px 2px 8px 0px;
     padding: 40px;
     border-radius: 20px;
+    height: max-content;
 }
 
 .Exam_Result_p2{
@@ -71,7 +72,6 @@
 
 .Exam_Result_tab{
     border-radius: 5px;
-    border: 2px solid #3f6a2bb2;
     padding: 10px 20px;
     text-align: center;
     display: flex;
@@ -80,6 +80,13 @@
     font-size: 14px;
     font-family: 'Poppins', sans-serif;
     color: #3f6a2b;
+    background-color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.Exam_Result_tab:hover{
+
 }
 
 .Exam_Review{
@@ -89,11 +96,11 @@
 }
 
 .Exam_Review_header{
-    border-bottom: 2px solid #4e7f3870;
+    /* border-bottom: 2px solid #4e7f3870; */
     padding: 30px;
 }
 .Exam_Review_question{
-    padding: 30px;
+    /* padding: 30px; */
 }
 
 .Exam_Review__choice{
@@ -108,4 +115,43 @@
     border-bottom: 0px;
     margin: 20px 0px 15px;
     border-radius: 10px;
+    width: 70%;
+}
+
+.Exam_chart{
+    margin: 20px auto 30px;
+    height: 225px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.Exam_chart_p1{
+    position: absolute;
+    left: 50;
+    top: 50%;
+    bottom: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    color: #252a35ff;
+    font-family: 'Poppins', sans-serif;
+    z-index: -1;
+    /* background-color: red; */
+}
+
+.Exam_Review_q1{
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: #3f6a2b;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.Exam_Review_q2{
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    
 }

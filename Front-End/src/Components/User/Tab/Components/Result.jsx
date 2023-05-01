@@ -2,58 +2,112 @@ import "../../../../css/User/Tabs/Components/Result.css"
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import LinearProgress from '@mui/material/LinearProgress';
-
-export const data = {
-    labels: ['Math', 'Science', 'English', 'Reading Comprehension', 'Incorrect Answer'],
-    datasets: [
-        {
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-            ],
-            borderWidth: 0,
-        },
-    ],
-};
+import axios from "axios";
+import React from "react";
+import Radio from '@mui/material/Radio';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 export default function Result() {
 
     ChartJS.register(ArcElement, Tooltip, Legend);
 
-
+    const user = window.localStorage.getItem('USER_DATA')
 
     const option = {
         animation: {
             duration: 1500,
         },
-        cutout: 80,
-        // borderWidth: 0,'
+        cutout: 65,
         plugins: {
             legend: {
+                display: false,
                 position: "bottom",
                 labels: {
-                    padding: 30
-                }
+                    padding: 15,
+                },
             }
         }
     }
 
     const subject = [
-        { subject: 'Math' },
-        { subject: 'Science' },
-        { subject: 'English' },
-        { subject: 'Reading Comprehension' },
+        { id: 'Math', subject: 'Math', choice: 'Choice_A', itemNo: '30' },
+        { id: 'Science', subject: 'Science', choice: 'Choice_B', itemNo: '30' },
+        { id: 'English', subject: 'English', choice: 'Choice_C', itemNo: '20' },
+        { id: 'Reading_Comprehension', subject: 'Reading Comprehension', choice: 'Choice_D', itemNo: '20' },
     ]
+
+    const [subjectans, setsubjectans] = React.useState('Math')
+    const [answer, setanswer] = React.useState([{}])
+    const [result, setresult] = React.useState([])
+    const [subscore, setsubscore] = React.useState({
+        Math: '',
+        Science: '',
+        English: '',
+        Reading_Comprehension: '',
+    })
+
+    const [iaresult, setiaresult] = React.useState([])
+
+    const [overall, setoverall] = React.useState([])
+
+    React.useEffect(() => {
+
+        axios.get(`http://localhost/recommendation_system/api/user/FetchAllAnser.php?SUBJECT="${subjectans}"&&FETCH=ALL`).then(function (response) {
+            setanswer(response.data)
+        })
+    }, [subjectans])
+
+    React.useEffect(() => {
+        axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN="${JSON.parse(user).LRN}"&&FETCH='EX'`).then(function (response) {
+            setresult(response.data)
+            // console.log(response.data)
+            setsubscore({
+                Math: response.data[0].MATH_SCORE,
+                Science: response.data[0].SCIENCE_SCORE,
+                English: response.data[0].ENGLISH_SCORE,
+                Reading_Comprehension: response.data[0].READING_COMPREHENSION_SCORE,
+            })
+        })
+
+        axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN="${JSON.parse(user).LRN}"&&FETCH='IA'`).then(function (response) {
+            setiaresult(response.data)
+        })
+        
+    }, [])
+
+
+    const handleClick = (event) => {
+        setsubjectans(event.target.value)
+    }
+
+    let res = result.length === 0
+    const data = {
+        labels: ['Correct Answer', 'Incorrect Answer'],
+        datasets: [
+            {
+                label: '# of Answer',
+                data: [res ? 0 : result[0].TOTAL_SCORE, res ? 0 : 100 - result[0].TOTAL_SCORE],
+                backgroundColor: [
+                    'rgba(105, 185, 110, 1)',
+                    'rgba(105, 185, 110,0.15)',
+                ],
+                borderWidth: 0,
+            },
+        ],
+    };
+
+    // console.log(iaresult)
+
+    const recommendation = () => {
+
+        // const high = Object.keys(subscore).reduce((a, b) => subscore[a] > subscore[b] ? a : b)
+        // // console.log(high)
+        axios.get(`http://localhost/recommendation_system/api/user/Overall.php?LRN="${JSON.parse(user).LRN}"`).then(function (response) {
+            setoverall(response.data)
+        })
+    }
+
+    recommendation()
 
     return (
         <div className="Exam_Result">
@@ -64,54 +118,52 @@ export default function Result() {
                     <div className="Exam_Result_div2">
                         <div>
                             <p className="Exam_Result_p3">SAT Total Score: </p>
-                            <p className="Exam_Result_p4">30</p>
+                            <p className="Exam_Result_p4">{res ? 0 : result[0].TOTAL_SCORE}</p>
                         </div>
                         <div>
                             <p className="Exam_Result_p3">IA Output: </p>
-                            <p className="Exam_Result_p4">Interested in Art</p>
+                            <p className="Exam_Result_p4">Interested in </p>
                         </div>
                         <div>
                             <p className="Exam_Result_p3">Exam Status: </p>
-                            <p className="Exam_Result_p4">Passed</p>
+                            <p className="Exam_Result_p4">{res ? 0 : result[0].EXAM_RESULT}</p>
                         </div>
                         <div>
                             <p className="Exam_Result_p3">Course Recommended: </p>
-                            <p className="Exam_Result_p4">Bachelor of Science in Information Technology</p>
+                            <p className="Exam_Result_p4">{overall.length ===0? '':overall[0].RECOMMENDED_COURSE}</p>
                         </div>
                     </div>
                     <p className="Exam_Result_p2">Scholastic Aptitude Test Result</p>
-                    <div style={{ margin: "20px 0px 30px" }}>
-                        <Doughnut data={data} />
-                    </div>
+                    {/* <div className="Exam_chart">
+                        <Doughnut data={data} options={option} />
+                        <p className="Exam_chart_p1">{result[0].TOTAL_SCORE}</p>
+                    </div> */}
                     <div className="Exam_Result_div2" style={{ gap: '25px' }}>
-
                         {
-                            subject.map((val) => {
-
+                            subject.map((val, index) => {
                                 return (
-                                    <div>
+                                    <div key={index}>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
                                             <p className="Exam_Result_p3">{val.subject}{val.subject === "Reading Comprehension" && <br></br>} Score :</p>
-                                            <p className="Exam_Result_p4">30 / 30</p>
+                                            <p className="Exam_Result_p4">{subscore[val.id]}/ {val.itemNo}</p>
                                         </div>
                                         <div style={{ width: '100%', marginTop: '10px' }}>
-                                            <LinearProgress variant="determinate" value={10} color="success" sx={{ borderRadius: '20px', height: '5px' }} />
+                                            <LinearProgress variant="determinate" value={subscore[val.id] / val.itemNo * 100} color="success" sx={{ borderRadius: '20px', height: '5px' }} />
                                         </div>
                                     </div>
                                 )
                             })
                         }
-
                     </div>
                     <p className="Exam_Result_p2">Interest Assessment Result</p>
                     <div className="Exam_Result_div2">
                         <div>
-                            <p className="Exam_Result_p3">Department Interest:</p>
-                            <p className="Exam_Result_p4">Humanities</p>
+                            <p className="Exam_Result_p3">Field Interest:</p>
+                            <p className="Exam_Result_p4">{iaresult.length === 0 ? '' : iaresult[0].DEPARTMENT}</p>
                         </div>
                         <div>
                             <p className="Exam_Result_p3">Interest:</p>
-                            <p className="Exam_Result_p4">Humanities</p>
+                            <p className="Exam_Result_p4">{iaresult.length === 0 ? '' : iaresult[0].ANSWER}</p>
                         </div>
                     </div>
                 </div>
@@ -121,9 +173,10 @@ export default function Result() {
                         {
                             subject.map((val) => {
                                 return (
-                                    <div className="Exam_Result_tab" key={val.subject}>
-                                        <p>{val.subject}</p>
-                                    </div>
+                                    <button className="Exam_Result_tab" key={val.subject} onClick={handleClick} value={val.subject}
+                                        style={{ border: val.subject === subjectans ? '2px solid #3f6a2bb2' : '2px solid rgba(164, 164, 164, 0.5)' }}>
+                                        {val.subject}
+                                    </button>
                                 )
                             })
                         }
@@ -138,23 +191,53 @@ export default function Result() {
                         </div>
                         <div className="Exam_Review_body">
                             <div className="Exam_Review_question">
-                                <p>Question 1</p>
-                                <p>blabla</p>
-                                <div className="Exam_Review_choice_div">
-                                    <div className="Exam_Review__choice">
-                                        A. BLbla
-                                    </div>
-                                    <div className="Exam_Review__choice">
-                                        B. BLbla
-                                    </div>
-                                    <div className="Exam_Review__choice">
-                                        C. BLbla
-                                    </div>
+                                {
+                                    answer.map((ans, index) => {
+                                        return (
+                                            <div style={{ borderTop: "2px solid #4e7f3870", padding: '30px' }} key={index}>
+                                                <p className="Exam_Review_q1">Question {index + 1}</p>
+                                                <p className="Exam_Review_q2">{ans.Question}</p>
+                                                <div className="Exam_Review_choice_div">
+                                                    {
+                                                        subject.map((val, index) => {
+                                                            let c = ans.VALUE === ans[val.choice]
+                                                            let d = ans.ANSWER === ans[val.choice]
+                                                            let a;
 
-                                    <div className="Exam_Review__choice">
-                                        D. BLbla
-                                    </div>
-                                </div>
+                                                            if ((ans.VALUE === ans.ANSWER) === ans[val.choice]) {
+                                                                a = 'blue'
+                                                            }
+                                                            // } else if ((ans.VALUE === ans.ANSWER)) {
+                                                            //     a = 'rgba(219, 81, 76, 1)'
+                                                            // }
+                                                            else {
+                                                                a = 'white'
+                                                            }
+
+                                                            return (
+                                                                <div className="Exam_Review__choice" key={index}
+                                                                    style={{
+                                                                        borderRadius: index === 3 ? '10px' : '0px'
+                                                                    }}
+                                                                >
+                                                                    <FormControlLabel
+                                                                        control={
+                                                                            <Radio
+                                                                                checked={c}
+                                                                                size="small"
+                                                                            // color="success"
+                                                                            />
+                                                                        }
+                                                                        label={ans[val.choice]} />
+                                                                </div>
+                                                            )
+                                                        })
+                                                    }
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
                         </div>
                     </div>

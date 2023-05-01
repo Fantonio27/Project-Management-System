@@ -8,27 +8,19 @@ import { useNavigate, useLocation } from "react-router-dom";
 export default function IA() {
 
     // const {state} = useLocation();
-
+    const user = window.localStorage.getItem('USER_DATA')
     const [examresult, setexamresult] = React.useState()
 
     const [questions, setquestions] = React.useState([])
     const [questionno, setquestionno] = React.useState(0)
     const [answer, setanswer] = React.useState(
         {
-            id:'',
+            lrn: JSON.parse(user).LRN,
+            id: '',
             value: '',
             field: '',
             position: 0,
-        }
-    )
-    const [result, setresult] = React.useState(
-        {
-            R: 0,
-            I: 0,
-            A: 0,
-            S: 0,
-            E: 0,
-            C: 0,
+            interest: '',
         }
     )
 
@@ -40,15 +32,42 @@ export default function IA() {
         axios.get(`http://localhost/recommendation_system/api/user/IA_Questions.php`).then(function (response) {
             setquestions(response.data)
         })
-        // setexamresult(state.data)
     }, [])
 
-    const nextquestion = () => {
-        setquestionno((prev) => prev + 1)
-W
-        if (questionno === 3) {
-            navigate("../Exam_Result", {state: {resultia: answer.id, resultexam: examresult}})
-            // window.localStorage.setItem('IA_RESULT', JSON.stringify(result))
+    const nextquestion = (event) => {
+
+        if (event.target.value === 'Submit') {
+            axios.post(`http://localhost/recommendation_system/api/user/IA_Questions.php`, answer).then(function (response) {
+            })
+
+            axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN="${JSON.parse(user).LRN}"&&FETCH='EX'`).then(function (response) {
+
+                const subjects = {
+                    Math: response.data[0].MATH_SCORE,
+                    Science: response.data[0].SCIENCE_SCORE,
+                    English: response.data[0].ENGLISH_SCORE,
+                    Reading_Comprehension: response.data[0].READING_COMPREHENSION_SCORE,
+                }
+                const id = response.data[0].ERID
+
+                const high = Object.keys(subjects).reduce((a, b) => subjects[a] > subjects[b] ? a : b)
+
+                axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN="${JSON.parse(user).LRN}"&&SUBJECT=${high}&&FETCH='VD'`).then(function (response) {
+                    const save = {
+                        lrn: JSON.parse(user).LRN,
+                        course: response.data[0].COURSE_NAME,
+                        irid: answer.id,
+                        erid: id,
+                    }
+                    axios.post(`http://localhost/recommendation_system/api/user/Result.php/saves`, save).then(function (response) {
+
+                    })
+                })
+            })
+
+            navigate("../Exam_Result")
+        } else {
+            setquestionno((prev) => prev + 1)
         }
     }
 
@@ -85,8 +104,9 @@ W
                                 const q = answer.value === QUESTION
                                 return (
                                     <button key={index} className="IA_button1" value={FIELD} onClick={
-                                        () => setanswer(() => ({
-                                            id: q? '' :IAQID,
+                                        () => setanswer((prev) => ({
+                                            ...prev,
+                                            id: q ? '' : IAQID,
                                             value: q ? '' : QUESTION,
                                             field: q ? '' : FIELD,
                                             position: q ? '' : POSITION
@@ -103,11 +123,21 @@ W
                     }
                 </div>
                 <div className="IA_Button_Group">
-                    <button className="IA_button2" disabled={answer.value == '' ? true : false}
+                    {questionno === 1 &&
+                        <button className="IA_button2"
+                            onClick={() => setquestionno(prev => prev - 1)}
+                        >
+                            Back
+                        </button>
+
+                    }
+                    <button className="IA_button2"
+                        value={questionno === 1 ? 'Submit' : 'Next'}
+                        disabled={answer.value == '' ? true : false}
                         style={{ opacity: answer.value == '' ? 0 : 1, cursor: answer.value == '' ? "default" : 'pointer' }}
                         onClick={nextquestion}
                     >
-                        Next
+                        {questionno === 1 ? 'Submit' : 'Next'}
                     </button>
                 </div>
             </div>

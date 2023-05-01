@@ -17,8 +17,8 @@
         "SAT_Questions_container Question_Status";
 }
 
-.SAT_header { 
-    grid-area: SAT_header; 
+.SAT_header {
+    grid-area: SAT_header;
 }
 
 .SAT_Questions_container {
@@ -27,7 +27,7 @@
     gap: 30px;
     /* border-top: 2px solid #458d6b8b; */
     width: 100%;
-    grid-area: SAT_Questions_container; 
+    grid-area: SAT_Questions_container;
 }
 
 .SAT_p1 {
@@ -129,16 +129,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
 }
 
 .Status_subjects {
     border: 1px solid #45786051;
-    padding: 10px 0px;
+    padding: 10px 15px;
     text-align: center;
     border-radius: 5px;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
     background-color: white;
+    font-size: 14px;
+    display: flex;
+
 }
 
 .Status_div3 {
@@ -166,37 +171,83 @@
     background-color: rgb(90, 166, 96);
 } */
 
-.SAT_button_group{
+.SAT_button_group {
     display: flex;
     justify-content: space-between;
 }
 
-.SAT_next_btn, .SAT_prev_btn{
+.SAT_next_btn,
+.SAT_prev_btn {
     font-family: 'QuickSand', sans-serif;
     font-weight: bold;
     font-size: 14px;
     letter-spacing: 1.5px;
     padding: 10px;
-    width:120px;
-    border: 2px solid rgb(105, 185, 110);
+    width: 120px;
+    border: 2px solid #4e7f38ff;
     border-radius: 5px;
-    background-color: rgb(105, 185, 110);
+    background-color: #4e7f38ff;
     color: white;
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
     transition: 0.3s;
 }
 
-.SAT_prev_btn{
+.SAT_prev_btn {
     background-color: white;
     color: #457860;
     border: 2px solid #21553d65;
 }
 
-.SAT_prev_btn:hover{
+.SAT_prev_btn:hover {
     background-color: #f8f9fa;
 }
 
-.SAT_next_btn:hover{
-    background-color: rgb(87, 165, 93)
+.SAT_next_btn:hover {
+    background-color: rgb(70, 112, 50)
+}
+
+.Confirm_p1 {
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    color: #3f6a2be7;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.Confirm_p2 {
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    color: #252a35ff;
+    margin-top: 20px;
+}
+
+.Confirm_submit,
+.Confirm_cancel {
+    background-color: #69b96eff;
+    color: white;
+    border: 1px solid #69b96eff;
+    padding: 10px 0px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 2px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+    width: 130px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+}
+
+.Confirm_cancel {
+    background-color: #f8f9fa;
+    color: #252a35ff;
+    border: 1px solid #dee2e6;
+    width: 100px;
+}
+
+.Confirm_cancel:hover{
+    background-color: #e9ecef;
+}
+
+.Confirm_submit:hover{
+    background-color: rgb(91, 165, 96);
 }

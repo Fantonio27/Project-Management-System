@@ -13,6 +13,7 @@ export default function Examination() {
     React.useEffect(() => {
         axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN="${JSON.parse(d).LRN}"&&RESULT=ALL`).then(function (response) {
             window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(response.data))
+
             axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN="${JSON.parse(d).LRN}"&&RESULT=j`).then(function (response) {
                 setsub(response.data)
                 if (response.data === "Interest_Assessment") {
@@ -26,7 +27,6 @@ export default function Examination() {
         axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN="${JSON.parse(d).LRN}"&&RESULT=USERVALID`).then(function (response) {
             if (response.data.length === 0) {
                 axios.post(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN="${JSON.parse(d).LRN}"`).then(function (response) {
-                    // console.log(response.data)
                 })
             }
         })
@@ -49,7 +49,7 @@ export default function Examination() {
                 </ul>
                 {
                     sub === "Interest_Assessment" ?
-                        <Link to={`../../Dashboard`}>
+                        <Link to={`../Examination/Exam_Result`}>
                             <button onClick={handleClick} className="Exam_btn">View Result</button>
                         </Link>
                         :

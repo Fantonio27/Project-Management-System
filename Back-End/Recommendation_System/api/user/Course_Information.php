@@ -5,19 +5,22 @@
     $objDb = new DbConnect;
     $conn = $objDb->connect();
 
-    $sql = "SELECT * FROM course_information";
-    // $a = $_SERVER['REQUEST_URI'];
     $url_components = parse_url($_SERVER['REQUEST_URI']);
     parse_str($url_components['query'], $params);
-    // $path = explode('/', $_SERVER['REQUEST_URI']);
 
-        $sql .= " WHERE CID = :course";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':course', $params['CID']);
-        // $stmt->bindParam(':pass', $params['pass']);
-        $stmt->execute();
-        $users = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+    $cid =  $params['CID'];
+    $fetch =  $params['FETCH'];
+
+    if($fetch === "JOB"){
+        $sql = "SELECT * FROM course_information_job WHERE CID = $cid";
+    }else{
+        $sql = "SELECT * FROM course_information WHERE CID = $cid";
+    }
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($users);
+
     // echo $params['pass'];
 ?>

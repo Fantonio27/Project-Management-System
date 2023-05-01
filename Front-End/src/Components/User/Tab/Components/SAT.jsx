@@ -31,10 +31,8 @@ export default function SAT() {
     const d = window.localStorage.getItem('EXAM_QUESTION')
     const user = window.localStorage.getItem('USER_DATA')
 
-    const [open, setOpen] = React.useState({
-        dialog1: false,
-        dialog2: false
-    });
+    const [open, setOpen] = React.useState(false);
+    const [part, setpart] = React.useState()
 
     const [questionno, setquestionno] = React.useState(0)
     const [questions, setquestions] = React.useState([{}])
@@ -43,11 +41,6 @@ export default function SAT() {
     const [choices, setchoices] = React.useState(['Choice_A', 'Choice_B', 'Choice_C', 'Choice_D'])
     const Letter = ['A', 'B', 'C', 'D']
 
-    // const [mathanswer, setmathanswer] = React.useState([])
-    // const [scienceanswer, setscienceanswer] = React.useState([])
-    // const [englishanswer, setenglishanswer] = React.useState([])
-    // const [rcanswer, setrcanswer] = React.useState([])
-
     const [answer, setanswer] = React.useState([{
         id: '',
         subject: '',
@@ -55,29 +48,66 @@ export default function SAT() {
         answer: '',
     }])
 
-    const [result, setresult] = React.useState({
-        MATH: 0,
-        SCIENCE: 0,
-        ENGLISH: 0,
-        READING_COMPREHENSION: 0,
-    })
+    const [minute, setminute] = React.useState(40)
+    const [second, setsecond] = React.useState(60)
+
+    React.useEffect(() => {
+        if (questions.length > 1) {
+            questions.map((data) => {
+                axios.post('http://localhost/recommendation_system/api/user/Saves_Answer.php/saves', {
+                    id: data.EQID,
+                    subject: parts2,
+                    value: '',
+                    answer: data.Answer,
+                    lrn: JSON.parse(user).LRN,
+                }).then(function (response) {
+                    console.log(response.data)
+                });
+            })
+        }
+    }, [questions])
+    
+    React.useEffect(() => {
+        if (minute > 0) {
+            setTimeout(() => {
+                if (second === 0) {
+                    setsecond(60)
+                    setminute(prev => prev - 1)
+                }
+
+                setsecond(prev => prev - 1)
+            }, 1000);
+        } else if (minute === 0 && second > 0) {
+            setTimeout(() => {
+                if (minute === 0 && second === 59) {
+                    alert("1 minute left")
+                }
+                setsecond(prev => prev - 1)
+            }, 1000);
+        } else {
+            setOpen(true)
+            setsecond(0)
+            setminute(0)
+        }
+    }, [second]);
 
     const [saveans, setsaveans] = React.useState([])
 
+    //Submit Handle
     const sub = (value) => {
-
-        if(value === "Interest_Assessment"){
+        if (value === "Interest_Assessment") {
+            axios.put(`http://localhost/recommendation_system/api/user/Result.php?LRN='${JSON.parse(user).LRN}'`).then(function (response) {
+            })
             navigate(`../../${value}`)
 
             window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(""))
-        }else{
+        } else {
             navigate(`../${value}/1`)
 
             axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN='${JSON.parse(user).LRN}'&&RESULT=ALL`).then(function (response) {
                 window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(response.data))
             })
         }
-
         reload()
     }
 
@@ -101,6 +131,16 @@ export default function SAT() {
             setsubject(response.data)
         });
 
+        if (parts2 === "Math") {
+            setpart("I")
+        } else if (parts2 === "Science") {
+            setpart("Ii")
+        } else if (parts2 === "English") {
+            setpart("III")
+        } else {
+            setpart("IV")
+        }
+
     }, [nextsub])
 
     React.useEffect(() => {
@@ -117,7 +157,7 @@ export default function SAT() {
             ))
         });
 
-        axios.get(`http://localhost/recommendation_system/api/user/FetchAllAnser.php?SUBJECT="${parts2}"`).then(function (response) {
+        axios.get(`http://localhost/recommendation_system/api/user/FetchAllAnser.php?SUBJECT="${parts2}"&&FETCH=EACH`).then(function (response) {
             setsaveans(response.data)
         })
     }, [questionno])
@@ -130,43 +170,41 @@ export default function SAT() {
             value: value
         }))
 
-        if (answer.id === "" && answer.value == "") {
-            axios.post('http://localhost/recommendation_system/api/user/Saves_Answer.php/saves', {
-                id: JSON.parse(d)[parts1 - 1].EQID,
-                subject: parts2,
-                value: value,
-                answer: JSON.parse(d)[parts1 - 1].Answer
-            }).then(function (response) {
-                console.log(response.data)
-            });
-        } else if (answer.value !== "") {
+        // if (answer.id === "" && answer.value == "") {
+        //     axios.post('http://localhost/recommendation_system/api/user/Saves_Answer.php/saves', {
+        //         id: JSON.parse(d)[parts1 - 1].EQID,
+        //         subject: parts2,
+        //         value: value,
+        //         answer: JSON.parse(d)[parts1 - 1].Answer
+        //     }).then(function (response) {
+        //     });
+        // } else 
+        // if (answer.value !== "" || ) {
             axios.put('http://localhost/recommendation_system/api/user/Saves_Answer.php/saves', {
                 id: JSON.parse(d)[parts1 - 1].EQID,
                 value: value,
             }).then(function (response) {
             });
-        }
+        
     }
 
-    console.log(subject)
-
     const nextquestion = (data) => () => {
-
         if (data == "submit") {
-            axios.get(`http://localhost/recommendation_system/api/user/Saves_Answer.php?ID="${parts2}"&&FETCH=SUBJECT"`).then(function (response) {
+            setOpen(prev => true)
+            // axios.get(`http://localhost/recommendation_system/api/user/Saves_Answer.php?ID="${parts2}"&&FETCH=SUBJECT"`).then(function (response) {
 
-                if (response.data.count === Number(subject[0].TOTAL_ITEMS)) {
-                    setOpen(prev => ({
-                        ...prev,
-                        dialog1: true
-                    }))
-                } else {
-                    setOpen(prev => ({
-                        ...prev,
-                        dialog2: true
-                    }))
-                }
-            });
+            //     if (response.data.count === Number(subject[0].TOTAL_ITEMS)) {
+            //         setOpen(prev => ({
+            //             ...prev,
+            //             dialog1: true
+            //         }))
+            //     } else {
+            //         setOpen(prev => ({
+            //             ...prev,
+            //             dialog2: true
+            //         }))
+            //     }
+            // });
         } else {
             setquestionno(prev => prev + 1)
             navigate(`${Number(parts1) + 1}`)
@@ -180,22 +218,28 @@ export default function SAT() {
 
     const nextsubject = () => {
         axios.put(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN='${JSON.parse(user).LRN}'&&SUBJECT='${parts2}'`).then(function (response) {
-            console.log(response.data)
+
             axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN='${JSON.parse(user).LRN}'&&RESULT=s`).then(function (response) {
                 sub(response.data)
-                console.log(response.data)
+
             })
         })
     }
 
     const total = subject.length === 0 ? 0 : subject[0].TOTAL_ITEMS
 
+    const setnumber = (index) => {
+        let i = index === 1 ? 1 : index
+        setquestionno(prev => index - 1)
+        navigate(`${i}`)
+    }
+
     return (
         <div className="SAT" >
             <div className="SAT_container">
                 <div className="SAT_header">
                     <p className="SAT_p1">Scholastic Aptitude Test</p>
-                    <p className="SAT_p2">Part I - {subject.length === 0 ? '' : subject[0].SUBJECT}</p>
+                    <p className="SAT_p2">Part {part} - {subject.length === 0 ? '' : subject[0].SUBJECT}</p>
                     <p className="SAT_p3"><b>Directions: </b>{subject.length === 0 ? '' : subject[0].INSTRUCTION}</p>
                 </div>
                 <div className="SAT_Questions_container">
@@ -259,20 +303,27 @@ export default function SAT() {
 
                 <div className="Question_Status">
                     <div className="Status_div0">
-                        <p><b>Time Limit:</b> 00:50:00</p>
+                        <p><b>Time Limit:</b> 00:{minute < 10 ? '0' : ''}{minute}:{second < 10 ? '0' : ''}{second}</p>
                         <p><b>Question Status</b></p>
                         <div className="Status_div">
                             {questions.map((val, index) => {
-                                const equal = (element) => element.EQID === val.EQID
+                                const equal = (element) => element.VALUE !=="" && element.EQID === val.EQID
                                 const fill = saveans.some(equal)
+                                // const equal = val.EQID === saveans.EQID
+                                // let save = 
+                                // saveans.length === 0? '':
+                                // saveans[index].EQID && saveans[index].VALUE !== ""
+                                // const fillss = (answer.EQID === save)
+
                                 return (
-                                    <div
+                                    <button
+                                        onClick={() => { setnumber(index + 1) }}
                                         className="roundball"
                                         style={{
-                                            backgroundColor: fill ? '#45786026' : 'none'
+                                            backgroundColor: fill? '#45786026' : '#458d6b0b'
                                         }} key={index}>
                                         {index + 1}
-                                    </div>
+                                    </button>
                                 )
                             })}
                         </div>
@@ -280,50 +331,34 @@ export default function SAT() {
                         </div>
                         <p><b>Subjects</b></p>
                         <div className="Status_div3">
-                            <button className="Status_subjects" value="eq_math">Math</button>
-                            <button className="Status_subjects" value="eq_science">Science</button>
-                            <button className="Status_subjects" value="eq_english" >English</button>
-                            <button className="Status_subjects" value="eq_reading_comprehension">Reading Comprehension</button>
+                            <div className="Status_subjects">Math</div>
+                            <div className="Status_subjects">Science</div>
+                            <div className="Status_subjects">English</div>
+                            <div className="Status_subjects">Reading Comprehension</div>
                         </div>
                     </div>
                 </div>
 
                 {/* FOR SUBMIT */}
                 <Dialog
-                    open={open.dialog1}
+                    open={open}
                     TransitionComponent={Transition}
                     keepMounted
-                    onClose={() => setOpen(prev => ({ ...prev, dialog1 : false}))}
+                    onClose={() => setOpen(prev => second === 0 && minute === 0 ? true : false)}
                     aria-describedby="alert-dialog-slide-description"
                 >
-                    <DialogTitle>{"Submit"}</DialogTitle>
+                    <DialogTitle style={{ borderBottom: '1px solid #dddfe4ff' }}><p className="Confirm_p1">{"Confirmation"}</p></DialogTitle>
                     <DialogContent>
-                        <DialogContentText id="alert-dialog-slide-description">
-                            next subject
-                            <button onClick={nextsubject}>nextsubject</button>
-                        </DialogContentText>
+                        <div className="Confirm_p2">
+                            Please take a moment to review your answers and ensure that you have provided a response for
+                            each question before submitting.Your answers cannot be changed once the form is submitted.
+                        </div>
                     </DialogContent>
-                    <DialogActions>
-                        <Button onClick={() => setOpen(prev => ({ ...prev, dialog1: false }))}>Ok</Button>
-                    </DialogActions>
-                </Dialog>
-
-                {/* FOR Confirmation */}
-                <Dialog
-                    open={open.dialog2}
-                    TransitionComponent={Transition}
-                    keepMounted
-                    onClose={() => setOpen(prev => ({ ...prev, dialog2 : false}))}
-                    aria-describedby="alert-dialog-slide-description"
-                >
-                    <DialogTitle>{"Error"}</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-slide-description">
-                            not complete
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={() => setOpen(prev => ({ ...prev, dialog2: false }))}>Ok</Button>
+                    <DialogActions sx={{ display: 'flex', gap: '5px', margin: '5px 15px 10px 0px' }}>
+                        {second != 0 && minute >= 0 &&
+                            <button className="Confirm_cancel" onClick={() => setOpen(prev => false)}>Cancel</button>
+                        }
+                        <button className="Confirm_submit" onClick={nextsubject}>Submit</button>
                     </DialogActions>
                 </Dialog>
             </div>

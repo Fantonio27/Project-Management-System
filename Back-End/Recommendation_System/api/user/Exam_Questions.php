@@ -20,34 +20,35 @@ switch($method) {
         $stmt->execute();
         $fetch = $stmt->fetchaLL(PDO::FETCH_ASSOC);
 
-        if($fetch === [] || $fetch[0]['MATH_SCORE'] === 0){
+        if($fetch === [] || $fetch[0]['MATH_SCORE'] === -1){
             $subject = "Math";
             $limit = 30;
             $sub = "eq_math";
-        }else if ($fetch[0]['SCIENCE_SCORE'] === 0){
+        }else if ($fetch[0]['SCIENCE_SCORE'] === -1){
             $subject = "Science";
             $limit = 30;
             $sub = "eq_science";
-        }else if ($fetch[0]['ENGLISH_SCORE'] === 0){
+        }else if ($fetch[0]['ENGLISH_SCORE'] === -1){
             $subject = "English";
             $limit = 20;
             $sub = "eq_english";
-        }else if ($fetch[0]['READING_COMPREHENSION_SCORE'] === 0){
+        }else if ($fetch[0]['READING_COMPREHENSION_SCORE'] === -1){
             $subject = "Reading_Comprehension";
             $limit = 20;
             $sub = "eq_reading_comprehension";
         }else{
-            echo("Finish");
+            $subject = "Interest_Assessment";
         }
 
         if($result === "ALL"){
-            $sql = "SELECT * FROM $sub";
+            $sql = "SELECT * FROM $sub LIMIT 10";
             // -- ORDER BY RAND()
-            // -- LIMIT $limit";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $users = $stmt->fetchaLL(PDO::FETCH_ASSOC);
             echo json_encode($users);
+        }else if($result === "USERVALID"){
+            echo json_encode($fetch);
         }else{
             echo json_encode($subject);
         }
@@ -66,7 +67,7 @@ switch($method) {
 
         $count = $fetch[0]['count'];
         $sql = "INSERT INTO `exam_result`(`ERID`, `MATH_SCORE`, `ENGLISH_SCORE`, `SCIENCE_SCORE`, `READING_COMPREHENSION_SCORE`, `TOTAL_SCORE`, `EXAM_RESULT`, `LRN`, `DATE`) 
-        VALUES (:id,'0','0','0','0','0','',$lrn,:date)";
+        VALUES (:id,'-1','-1','-1','-1','-1','',$lrn,:date)";
 
         $stmt = $conn->prepare($sql);
         $created_at = date('Y-m-d');
@@ -79,7 +80,7 @@ switch($method) {
         } else {
             $response = ['status' => 0, 'message' => 'Failed to create record.'];
         }
-        // echo json_encode($response);
+        echo json_encode($response);
         break;
     case "PUT":
         $url_components = parse_url($_SERVER['REQUEST_URI']);
@@ -88,39 +89,35 @@ switch($method) {
         $lrn =  $params['LRN'];
         $sub =  $params['SUBJECT'];
 
-        $sql = "SELECT MATH_SCORE + ENGLISH_SCORE + SCIENCE_SCORE + READING_COMPREHENSION_SCORE AS RESULT
-        FROM exam_result WHERE LRN = $lrn";
+        $sql = "SELECT SUBJECT, COUNT(SUBJECT) as count FROM save_answer 
+        WHERE SUBJECT = $sub AND ANSWER = VALUE";
 
-        // $sql = "SELECT SUBJECT, COUNT(SUBJECT) as count FROM save_answer GROUP BY SUBJECT";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $fetch = $stmt->fetchaLL(PDO::FETCH_ASSOC);
 
-        if($sub === "Math"){
+        if($sub == "'Math'"){
             $val = "MATH_SCORE";
-        }else if($sub === "Science"){
+        }else if($sub == "'Science'"){
             $val = "SCIENCE_SCORE";
-        }else if($sub === "English"){
+        }else if($sub == "'English'"){
             $val = "ENGLISH_SCORE";
         }else{
             $val = "READING_COMPREHENSION_SCORE";
         }
-        $sql = "UPDATE `exam_result` 
-        SET `MATH_SCORE`='',
-        `SCIENCE_SCORE`='',
-        `MATH_SCORE`='',
-        `ENGLISH_SCORE`='',
 
-        `TOTAL_SCORE`= $fetch[0][RESULT] WHERE LRN = $lrn";
+        $score = json_encode($fetch[0]['count']);
+        $sql = "UPDATE `exam_result` 
+        SET $val = $score WHERE LRN = $lrn";
 
         $stmt = $conn->prepare($sql);
 
         if($stmt->execute()) {
-            $response = ['status' => 1, 'message' => 'Record created successfully.'];
+            $response = true;
         } else {
-            $response = ['status' => 0, 'message' => 'Failed to create record.'];
+            $response = false;
         }
-        echo json_encode($response);
+        echo json_encode($score);
         break;
     }
 ?>
