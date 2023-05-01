@@ -67,6 +67,10 @@
     width: 80%;
 }
 
+.last-one{
+    grid-area: last-one;
+}
+
 .IA_button1,
 .IA_button2 {
     padding: 10px 30px;

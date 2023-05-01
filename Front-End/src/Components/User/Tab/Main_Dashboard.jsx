@@ -37,7 +37,7 @@ export default function Main_Dashboard() {
             }} />,
             title: "Course Directory",
             text: "Search and Read information about college courses",
-            link: "Course_Diretory",
+            link: "Course_Directory",
             buttontxt: "View Courses",
         },
 
@@ -82,10 +82,10 @@ export default function Main_Dashboard() {
                                 <div className="Main-Box">
                                     <h2>{e.title}</h2>
                                     <p className="Main-Text">{e.text}</p>
-                                    {/* <Link to={e.link} style={{textDecoration: "none"}} state={location.state}>
+                                    <Link to={e.link} style={{textDecoration: "none"}} state={location.state}>
                                         <Button sx={button_sx}>{e.buttontxt}</Button>
-                                    </Link> */}
-                                    <Button sx={button_sx}>{e.buttontxt}</Button>
+                                    </Link>
+                                    {/* <Button sx={button_sx}>{e.buttontxt}</Button> */}
                                 </div>
                             </div>
                         ))

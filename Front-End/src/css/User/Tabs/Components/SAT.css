@@ -123,7 +123,7 @@
 
 .roundball {
     border-radius: 20px;
-    border: 1px solid #45786064;
+    border: 1px solid #64ad8b64;
     height: 40px;
     width: 40px;
     display: flex;
@@ -131,6 +131,7 @@
     align-items: center;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
+    font-size: 15px;
 }
 
 .Status_subjects {
@@ -138,11 +139,11 @@
     padding: 10px 15px;
     text-align: center;
     border-radius: 5px;
-    cursor: pointer;
     font-family: 'Poppins', sans-serif;
     background-color: white;
     font-size: 14px;
     display: flex;
+    flex-direction: column;
 
 }
 

@@ -31,7 +31,8 @@
             
         echo json_encode($users);
     }else{
-        $sql = "SELECT * FROM save_answer WHERE SUBJECT =  $sub";
+        $lrn =  $params['LRN'];
+        $sql = "SELECT * FROM save_answer WHERE SUBJECT =  $sub AND LRN= $lrn";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);

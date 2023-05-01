@@ -30,10 +30,10 @@ export default function Result() {
     }
 
     const subject = [
-        { id: 'Math', subject: 'Math', choice: 'Choice_A', itemNo: '30' },
-        { id: 'Science', subject: 'Science', choice: 'Choice_B', itemNo: '30' },
-        { id: 'English', subject: 'English', choice: 'Choice_C', itemNo: '20' },
-        { id: 'Reading_Comprehension', subject: 'Reading Comprehension', choice: 'Choice_D', itemNo: '20' },
+        { id: 'Math', subject: 'Math', choice: 'Choice_A', itemNo: '10' },
+        { id: 'Science', subject: 'Science', choice: 'Choice_B', itemNo: '10' },
+        { id: 'English', subject: 'English', choice: 'Choice_C', itemNo: '10' },
+        { id: 'Reading_Comprehension', subject: 'Reading Comprehension', choice: 'Choice_D', itemNo: '10' },
     ]
 
     const [subjectans, setsubjectans] = React.useState('Math')

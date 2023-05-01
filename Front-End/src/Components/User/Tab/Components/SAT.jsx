@@ -10,9 +10,9 @@ import { useNavigate } from "react-router-dom";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import LinearProgress from '@mui/material/LinearProgress';
 
 const Radiogroup = {
     '& .MuiSvgIcon-root': {
@@ -49,8 +49,14 @@ export default function SAT() {
     }])
 
     const [minute, setminute] = React.useState(40)
-    const [second, setsecond] = React.useState(60)
+    const [second, setsecond] = React.useState(59)
 
+    const [counter, setcounter] = React.useState([
+        {Subject: "Math", answerno : 0},
+        {Subject: "Science", answerno : 0},
+        {Subject: "English", answerno : 0},
+        {Subject: "Reading Comprehension", answerno : 0},
+    ])
     React.useEffect(() => {
         if (questions.length > 1) {
             questions.map((data) => {
@@ -61,12 +67,11 @@ export default function SAT() {
                     answer: data.Answer,
                     lrn: JSON.parse(user).LRN,
                 }).then(function (response) {
-                    console.log(response.data)
                 });
             })
         }
     }, [questions])
-    
+
     React.useEffect(() => {
         if (minute > 0) {
             setTimeout(() => {
@@ -95,6 +100,7 @@ export default function SAT() {
 
     //Submit Handle
     const sub = (value) => {
+
         if (value === "Interest_Assessment") {
             axios.put(`http://localhost/recommendation_system/api/user/Result.php?LRN='${JSON.parse(user).LRN}'`).then(function (response) {
             })
@@ -102,11 +108,12 @@ export default function SAT() {
 
             window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(""))
         } else {
-            navigate(`../${value}/1`)
-
             axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN='${JSON.parse(user).LRN}'&&RESULT=ALL`).then(function (response) {
                 window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(response.data))
+                console.log(response.data)
             })
+
+            navigate(`../${value}/1`)
         }
         reload()
     }
@@ -157,9 +164,13 @@ export default function SAT() {
             ))
         });
 
-        axios.get(`http://localhost/recommendation_system/api/user/FetchAllAnser.php?SUBJECT="${parts2}"&&FETCH=EACH`).then(function (response) {
+        axios.get(`http://localhost/recommendation_system/api/user/FetchAllAnser.php?SUBJECT="${parts2}"&&FETCH=EACH&&LRN="${JSON.parse(user).LRN}"`).then(function (response) {
             setsaveans(response.data)
         })
+
+        // for (let i = 0; i < saveans.length; i++) {
+        //     if (saveans[i].VALUE !== '') counter++;
+        // }
     }, [questionno])
 
     const handleClick = (i, ans) => (event) => {
@@ -180,12 +191,12 @@ export default function SAT() {
         //     });
         // } else 
         // if (answer.value !== "" || ) {
-            axios.put('http://localhost/recommendation_system/api/user/Saves_Answer.php/saves', {
-                id: JSON.parse(d)[parts1 - 1].EQID,
-                value: value,
-            }).then(function (response) {
-            });
-        
+        axios.put('http://localhost/recommendation_system/api/user/Saves_Answer.php/saves', {
+            id: JSON.parse(d)[parts1 - 1].EQID,
+            value: value,
+        }).then(function (response) {
+        });
+
     }
 
     const nextquestion = (data) => () => {
@@ -233,6 +244,8 @@ export default function SAT() {
         setquestionno(prev => index - 1)
         navigate(`${i}`)
     }
+
+    // const ArraySubject = ['Math', 'Science', 'English', 'Reading Comprehension']
 
     return (
         <div className="SAT" >
@@ -307,7 +320,7 @@ export default function SAT() {
                         <p><b>Question Status</b></p>
                         <div className="Status_div">
                             {questions.map((val, index) => {
-                                const equal = (element) => element.VALUE !=="" && element.EQID === val.EQID
+                                const equal = (element) => element.VALUE !== "" && element.EQID === val.EQID
                                 const fill = saveans.some(equal)
                                 // const equal = val.EQID === saveans.EQID
                                 // let save = 
@@ -320,7 +333,9 @@ export default function SAT() {
                                         onClick={() => { setnumber(index + 1) }}
                                         className="roundball"
                                         style={{
-                                            backgroundColor: fill? '#45786026' : '#458d6b0b'
+                                            backgroundColor: fill ? 'rgba(100, 173, 139, 0.8)' : 'rgba(69, 141, 107, 0)',
+                                            color: fill ? 'white' : '#252a35ff',
+                                            border: fill ? '1px solid #64ad8b64' : '1px solid #64ad8b64',
                                         }} key={index}>
                                         {index + 1}
                                     </button>
@@ -331,10 +346,27 @@ export default function SAT() {
                         </div>
                         <p><b>Subjects</b></p>
                         <div className="Status_div3">
-                            <div className="Status_subjects">Math</div>
-                            <div className="Status_subjects">Science</div>
+                            {
+                                counter.map((sub, index) => {
+                                    // const equal = (element) => element.VALUE !== "" && element.VALUE === 
+                                    // const fill = saveans.some(equal)
+                                    return (
+                                        <div className="Status_subjects" key={index}>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                                <p>{sub.Subject}</p>
+                                                <p>{sub.answerno}/{questions.length}</p>
+                                            </div>
+                                            <div style={{ width: '100%', margin: '5px 0px' }}>
+                                                <LinearProgress variant="determinate" value={10} color="success" sx={{ borderRadius: '20px', height: '5px' }} />
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
+
+                            {/* <div className="Status_subjects">Science</div>
                             <div className="Status_subjects">English</div>
-                            <div className="Status_subjects">Reading Comprehension</div>
+                            <div className="Status_subjects">Reading Comprehension</div> */}
                         </div>
                     </div>
                 </div>

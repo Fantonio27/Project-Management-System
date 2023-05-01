@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2023 at 03:27 PM
+-- Generation Time: May 01, 2023 at 06:17 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -1037,46 +1037,46 @@ CREATE TABLE `save_answer` (
 --
 
 INSERT INTO `save_answer` (`SAID`, `SUBJECT`, `VALUE`, `ANSWER`, `EQID`, `LRN`) VALUES
-(3023, 'Math', '0.64', '0.64', 'EQMID_11', '123456789012'),
-(3024, 'Math', '0.50', '1.00', 'EQMID_10', '123456789012'),
-(3025, 'Math', '0.80', '0.80', 'EQMID_12', '123456789012'),
-(3026, 'Math', '0.39', '0.39', 'EQMID_16', '123456789012'),
-(3027, 'Math', 'Heart-shaped', 'Bell-shaped', 'EQMID_18', '123456789012'),
-(3028, 'Math', '4.0', '4.0', 'EQMID_14', '123456789012'),
-(3029, 'Math', '100 sq. unit', '1 sq. unit', 'EQMID_19', '123456789012'),
-(3030, 'Math', '0.60', '0.60', 'EQMID_13', '123456789012'),
-(3031, 'Math', '0.6879', '0.6879', 'EQMID_17', '123456789012'),
-(3032, 'Math', '4.15', '8.00', 'EQMID_15', '123456789012'),
-(3033, 'Science', 'Protostar', 'Supernova ', 'EQSID_11', '123456789012'),
-(3034, 'Science', 'Supernova ', 'White Dwarf', 'EQSID_10', '123456789012'),
-(3035, 'Science', 'Alpha Emission', 'Alpha Emission', 'EQSID_13', '123456789012'),
-(3036, 'Science', 'It is a Polar Molecule', 'It is a Polar Molecule', 'EQSID_16', '123456789012'),
-(3037, 'Science', 'Plato', 'Henry Mosely', 'EQSID_12', '123456789012'),
-(3038, 'Science', 'Fusion', 'Gamma Emission', 'EQSID_15', '123456789012'),
-(3039, 'Science', 'Beta Emission', 'Beta Emission', 'EQSID_14', '123456789012'),
-(3040, 'Science', 'Symmetrical', 'Symmetrical', 'EQSID_18', '123456789012'),
-(3041, 'Science', 'Evolution', 'Star Formation Theory', 'EQSID_1', '123456789012'),
-(3042, 'Science', 'Water', 'Non-Polar', 'EQSID_17', '123456789012'),
-(3043, 'English', 'Position Paper', 'Concept Paper	', 'EQEID_11', '123456789012'),
-(3044, 'English', 'Use of Language', 'Physical Setting', 'EQEID_10', '123456789012'),
-(3045, 'English', 'Formality', 'Caution', 'EQEID_1', '123456789012'),
-(3046, 'English', 'Examination Report', 'Progress Report', 'EQEID_13', '123456789012'),
-(3047, 'English', 'Concept Paper', 'Technical Report', 'EQEID_12', '123456789012'),
-(3048, 'English', 'Wrap up of all the arguments and claims', 'Identification of the debatable issue.', 'EQEID_17', '123456789012'),
-(3049, 'English', 'Writing that emphasizes audience benefits.', 'Writing that requires a reader to gather additional information to comprehend the content.', 'EQEID_15', '123456789012'),
-(3050, 'English', 'Planning', 'Collecting Data', 'EQEID_16', '123456789012'),
-(3051, 'English', 'Sophisticated', 'Exact', 'EQEID_14', '123456789012'),
-(3052, 'English', 'Examine all the claims of the author and find loopholes or flaws in the light of logical explanations.', 'Go through the article and refute each of the main points, explaining how stupid the author’s views are.', 'EQEID_18', '123456789012'),
-(3053, 'Reading_Comprehension', 'Philippine Literature during Japanese Colonization', 'Pre-colonial Literature', 'EQRCID_1', '123456789012'),
-(3054, 'Reading_Comprehension', 'Spanish and American Literature', '21ST Century Literature', 'EQRCID_10', '123456789012'),
-(3055, 'Reading_Comprehension', 'Manga', 'Digi-Fiction', 'EQRCID_12', '123456789012'),
-(3056, 'Reading_Comprehension', 'Doodle Fiction', 'Doodle Fiction', 'EQRCID_14', '123456789012'),
-(3057, 'Reading_Comprehension', 'Text Talk Novels', 'Graphic Novel', 'EQRCID_13', '123456789012'),
-(3058, 'Reading_Comprehension', 'Doodle Fiction', 'Illustrated Novel', 'EQRCID_11', '123456789012'),
-(3059, 'Reading_Comprehension', 'Chick Literature', 'Manga', 'EQRCID_15', '123456789012'),
-(3060, 'Reading_Comprehension', 'Blogs', 'Blogs', 'EQRCID_16', '123456789012'),
-(3061, 'Reading_Comprehension', 'Manga', 'Chick Literature', 'EQRCID_17', '123456789012'),
-(3062, 'Reading_Comprehension', 'Creative NonFiction', 'Science Fiction', 'EQRCID_18', '123456789012');
+(3203, 'Math', '0.64', '0.80', 'EQMID_12', '123456789012'),
+(3204, 'Math', '0.74', '0.60', 'EQMID_13', '123456789012'),
+(3205, 'Math', '0.80', '0.64', 'EQMID_11', '123456789012'),
+(3206, 'Math', '1.00', '1.00', 'EQMID_10', '123456789012'),
+(3207, 'Math', '2.0', '4.0', 'EQMID_14', '123456789012'),
+(3208, 'Math', '8.00', '8.00', 'EQMID_15', '123456789012'),
+(3209, 'Math', '0.5 sq. unit', '1 sq. unit', 'EQMID_19', '123456789012'),
+(3210, 'Math', 'Cone-shaped', 'Bell-shaped', 'EQMID_18', '123456789012'),
+(3211, 'Math', '0.39', '0.39', 'EQMID_16', '123456789012'),
+(3212, 'Math', '0.8679', '0.6879', 'EQMID_17', '123456789012'),
+(3213, 'Science', 'Red Giant', 'White Dwarf', 'EQSID_10', '123456789012'),
+(3214, 'Science', 'Big Bang Theory ', 'Star Formation Theory', 'EQSID_1', '123456789012'),
+(3215, 'Science', 'Non-Polar', 'Non-Polar', 'EQSID_17', '123456789012'),
+(3216, 'Science', 'John Newlands', 'Henry Mosely', 'EQSID_12', '123456789012'),
+(3217, 'Science', 'Asymmetrical', 'Symmetrical', 'EQSID_18', '123456789012'),
+(3218, 'Science', 'Gamma Emission', 'Gamma Emission', 'EQSID_15', '123456789012'),
+(3219, 'Science', 'Fusion', 'Beta Emission', 'EQSID_14', '123456789012'),
+(3220, 'Science', 'Alpha Emission', 'Alpha Emission', 'EQSID_13', '123456789012'),
+(3221, 'Science', 'Supernova ', 'Supernova ', 'EQSID_11', '123456789012'),
+(3222, 'Science', 'It is a Non-Polar Molecule', 'It is a Polar Molecule', 'EQSID_16', '123456789012'),
+(3223, 'English', 'Position Paper', 'Concept Paper	', 'EQEID_11', '123456789012'),
+(3224, 'English', 'Exposition of the strongest argument or claim.', 'Identification of the debatable issue.', 'EQEID_17', '123456789012'),
+(3225, 'English', 'Cohesiveness', 'Caution', 'EQEID_1', '123456789012'),
+(3226, 'English', 'Analyze and summarize the strong and weak points of the article, and then state your own position.', 'Go through the article and refute each of the main points, explaining how stupid the author’s views are.', 'EQEID_18', '123456789012'),
+(3227, 'English', 'Technical Report', 'Technical Report', 'EQEID_12', '123456789012'),
+(3228, 'English', 'Objects and Material Culture	', 'Physical Setting', 'EQEID_10', '123456789012'),
+(3229, 'English', 'Examination Report', 'Progress Report', 'EQEID_13', '123456789012'),
+(3230, 'English', 'Designing', 'Collecting Data', 'EQEID_16', '123456789012'),
+(3231, 'English', 'Writing that requires a reader to gather additional information to comprehend the content.', 'Writing that requires a reader to gather additional information to comprehend the content.', 'EQEID_15', '123456789012'),
+(3232, 'English', 'Exact', 'Exact', 'EQEID_14', '123456789012'),
+(3233, 'Reading_Comprehension', 'Philippine Literature during Spanish Colonization', 'Pre-colonial Literature', 'EQRCID_1', '123456789012'),
+(3234, 'Reading_Comprehension', 'Blogs', 'Doodle Fiction', 'EQRCID_14', '123456789012'),
+(3235, 'Reading_Comprehension', 'Spanish and American Literature', '21ST Century Literature', 'EQRCID_10', '123456789012'),
+(3236, 'Reading_Comprehension', 'Blogs', 'Manga', 'EQRCID_15', '123456789012'),
+(3237, 'Reading_Comprehension', 'Manga', 'Graphic Novel', 'EQRCID_13', '123456789012'),
+(3238, 'Reading_Comprehension', 'Manga', 'Blogs', 'EQRCID_16', '123456789012'),
+(3239, 'Reading_Comprehension', 'Graphic Novel', 'Illustrated Novel', 'EQRCID_11', '123456789012'),
+(3240, 'Reading_Comprehension', 'Science Fiction', 'Science Fiction', 'EQRCID_18', '123456789012'),
+(3241, 'Reading_Comprehension', 'Text Talk Novel', 'Chick Literature', 'EQRCID_17', '123456789012'),
+(3242, 'Reading_Comprehension', 'Manga', 'Digi-Fiction', 'EQRCID_12', '123456789012');
 
 -- --------------------------------------------------------
 
@@ -1227,7 +1227,7 @@ ALTER TABLE `interest_assessment_result`
 -- AUTO_INCREMENT for table `save_answer`
 --
 ALTER TABLE `save_answer`
-  MODIFY `SAID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3063;
+  MODIFY `SAID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3243;
 
 --
 -- AUTO_INCREMENT for table `student_information`

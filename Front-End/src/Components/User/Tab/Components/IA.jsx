@@ -108,7 +108,7 @@ export default function IA() {
                                             ...prev,
                                             id: q ? '' : IAQID,
                                             value: q ? '' : QUESTION,
-                                            field: q ? '' : FIELD,
+                                            field: q && questionno !== 1? '' : FIELD,
                                             position: q ? '' : POSITION
                                         }))}
                                         style={{
