@@ -21,12 +21,9 @@ export default function Course_Directory() {
 
     const department = [
         'Humanities',
-        'Social Sciences',
+        'Social Science',
         'Natural Sciences',
         'Formal Sciences',
-        'Agriculture',
-        'Architecture and Design',
-        'Business',
         'Health Sciences',
         'Education',
         'Engineering',

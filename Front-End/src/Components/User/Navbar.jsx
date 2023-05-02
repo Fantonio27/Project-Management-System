@@ -97,7 +97,7 @@ export default function User_Navbar(props) {
                             </div>
                             <div style={{ display: 'flex', justifyContent: 'center', gap: '30px' }}>
                                 {navItems.map((item, index) => {
-                                    let tabindex = props.tabindex === "Dashboard"? "" : props.tabindex
+                                    let tabindex = props.tabindex === "Dashboard" ? "" : props.tabindex
                                     let active = tabindex === navLinks[index]
                                     return (
                                         <Link to={{
@@ -141,9 +141,11 @@ export default function User_Navbar(props) {
                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                                     transformOrigin={{ vertical: 'top', horizontal: 'left' }}
                                 >
-                                    <MenuItem onClick={handleClose}>
-                                        <p className='Menu_p1'>Profile</p>
-                                    </MenuItem>
+                                    <Link to="User_Profile" style={{ textDecoration: 'none' }}>
+                                        <MenuItem onClick={handleClose}>
+                                            <p className='Menu_p1'>Profile</p>
+                                        </MenuItem>
+                                    </Link>
                                     <Link to="/" style={{ textDecoration: 'none' }}>
                                         <MenuItem onClick={handleClose}>
                                             <p className='Menu_p1'>Sign Out</p>

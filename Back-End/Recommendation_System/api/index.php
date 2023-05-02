@@ -42,7 +42,7 @@ switch($method) {
         $stmt->bindParam(':email', $user->Email);
         $stmt->bindParam(':password', $user->Password);
         $stmt->bindParam(':created_at', $created_at);
- 
+
         if($stmt->execute()) {
             $response = ['status' => 1, 'message' => 'Record created successfully.'];
         } else {
@@ -50,38 +50,24 @@ switch($method) {
         }
         echo json_encode($response);
         break;
- 
+
     case "PUT":
         $user = json_decode( file_get_contents('php://input') );
-        $sql = "UPDATE users SET name= :name, email =:email, mobile =:mobile, updated_at =:updated_at WHERE id = :id";
+        $sql = "UPDATE `student_information` SET `STUDENT_FIRSTNAME`=:fname,
+        `STUDENT_LASTNAME`=:lname,`EMAIL_ADDRESS`=:email,`PASSWORD`=:password,`SHS_TRACK`=:strand 
+        WHERE LRN = :lrn";
         $stmt = $conn->prepare($sql);
-        $updated_at = date('Y-m-d');
-        $stmt->bindParam(':id', $user->id);
-        $stmt->bindParam(':name', $user->name);
-        $stmt->bindParam(':email', $user->email);
-        $stmt->bindParam(':mobile', $user->mobile);
-        $stmt->bindParam(':updated_at', $updated_at);
- 
+        $stmt->bindParam(':lrn', $user->LRN);
+        $stmt->bindParam(':fname', $user->FirstName);
+        $stmt->bindParam(':lname', $user->LastName);
+        $stmt->bindParam(':email', $user->Email);
+        $stmt->bindParam(':password', $user->Password);
+        $stmt->bindParam(':strand', $user->SHSstrand);
+
         if($stmt->execute()) {
             $response = ['status' => 1, 'message' => 'Record updated successfully.'];
         } else {
             $response = ['status' => 0, 'message' => 'Failed to update record.'];
-        }
-        echo json_encode($response);
-        break;
- 
- 
-    case "DELETE":
-        $sql = "DELETE FROM users WHERE id = :id";
-        $path = explode('/', $_SERVER['REQUEST_URI']);
- 
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':id', $path[3]);
- 
-        if($stmt->execute()) {
-            $response = ['status' => 1, 'message' => 'Record deleted successfully.'];
-        } else {
-            $response = ['status' => 0, 'message' => 'Failed to delete record.'];
         }
         echo json_encode($response);
         break;

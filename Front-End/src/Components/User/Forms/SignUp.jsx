@@ -351,7 +351,7 @@ export default function Login() {
                             name="Email"
                             value={Dataform.Email}
                             onChange={handlechange}
-                            maxLength={62}
+                            maxLength={30}
                         />
                         <p
                             className="label_sm"

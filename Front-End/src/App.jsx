@@ -82,6 +82,7 @@ function App() {
             <Route path="Exam_Result" element={<Result />} />
           </Route>
           <Route path="Help" element={<Help />} />
+          <Route path="User_Profile" element={<Profile />} />
         </Route>
 
         <Route path="Admin_Login" element={<Admin_Login />} />

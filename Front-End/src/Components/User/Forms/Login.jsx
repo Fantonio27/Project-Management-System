@@ -53,9 +53,6 @@ export default function Login(props) {
     const [Dataform, setDataform] = useState({
         LRN: "",
         Password: "",
-        // FirstName: "Francis",
-        // LastName: "Antonio",
-        // Email: "example@gmail.com"
     })
 
     const [showPassword, setShowPassword] = useState(false);
@@ -91,7 +88,6 @@ export default function Login(props) {
 
         } else {
             axios.get(`http://localhost/recommendation_system/api/user/Login.php?lrn=${Dataform.LRN}&pass=${Dataform.Password}`).then(function (response) {
-                // console.log(response.data[0]);
                 if (response.data.length == 1) {
                     const data = {
                             // STUDENTNO : response.data[0].STUDENT_NO,
@@ -102,16 +98,7 @@ export default function Login(props) {
 
                     window.localStorage.setItem('USER_DATA', JSON.stringify(data))
                     
-                    navigate("/Dashboard",
-                        {
-                            // state: {
-                            //     // STUDENTNO : response.data[0].STUDENT_NO,
-                            //     LRN : response.data[0].LRN,
-                            //     FIRSTNAME : response.data[0].STUDENT_FIRSTNAME,
-                            //     LASTNAME : response.data[0].STUDENT_LASTNAME,
-                            // }
-                            
-                        });
+                    navigate("/Dashboard");
 
                 } else if (response.data.length == 0) {
                     setnotif(() => ({

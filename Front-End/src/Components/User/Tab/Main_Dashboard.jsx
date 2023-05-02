@@ -27,7 +27,7 @@ export default function Main_Dashboard() {
             }} />,
             title: "User Profile",
             text: "View and Edit your personal student information ",
-            link: "Profile",
+            link: "User_Profile",
             buttontxt: "View Profile",
         },
 

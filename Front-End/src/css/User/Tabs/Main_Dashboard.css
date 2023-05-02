@@ -1,5 +1,8 @@
 .Main{
-    margin-top: 100px;
+    height: 93vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .Main_container {
     color: #003857;
@@ -42,7 +45,7 @@
     grid-template-areas:
         "mc m1 m3"
         "mc m2 m4";
-    /* background-color: red; */
+    height: max-content;
 }
 
 .mc {
