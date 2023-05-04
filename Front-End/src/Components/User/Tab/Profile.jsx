@@ -121,26 +121,89 @@ export default function Profile() {
 
     const handlechange = (event) => {
         const { name, value } = event.target
+        const email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        var password_val = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/
+        const letter = /^[a-z A-Z \b]+$/
 
         setDataform((prev) => ({
             ...prev,
             [name]: value
         }))
 
-        if (name === "") {
+        if (value == "") {
             setvalidation(prev => ({
                 ...prev,
                 [name]: "Please fill in this required field."
             }))
-        }
+        }else  if (name == "FirstName" || name == "LastName") {
+            if (!letter.test(value)) {
+                setvalidation(prev => ({
+                    ...prev,
+                    [name]: "Please Letter only this required field."
+                }))
+            }else{
+                setvalidation(prev => ({
+                    ...prev,
+                    [name]: ""
+                }))
+            }
+        }else  if (name == "Email") {
+            if (!email.test(value)) {
+                setvalidation(prev => ({
+                    ...prev,
+                    [name]: "Invalid Email Address(example@gmail.com)"
+                }))
+            }else{
+                setvalidation(prev => ({
+                    ...prev,
+                    [name]: ""
+                }))
+            }
+        }else  if (name == "Password") {
+            if (!password_val.test(value)) {
+                setvalidation(prev => ({
+                    ...prev,
+                    [name]: "Password should be contain: at least 8 characters, one uppercase letter, one lowercase letter, and one number"
+                }))
+            }else{
+                setvalidation(prev => ({
+                    ...prev,
+                    [name]: ""
+                }))
+            }
+        }else  if (name == "Confirm") {
+            if (!password_val.test(value)) {
+                setvalidation(prev => ({
+                    ...prev,
+                    [name]: "Password did not match"
+                }))
+            }else{
+                setvalidation(prev => ({
+                    ...prev,
+                    [name]: ""
+                }))
+            }
+        } 
+
+        console.log(validation)
     }
 
     const onSubmit = (name) => {
+        let a
+        // validation.map(prev=>
+        //     prev.map((value)=>{
+        //         if(value === ""){
+        //             return a = a + 1
+        //         }else{
+        //             return a = a + 0
+        //         }
+        //     }))
+        console.log(a)
         // axios.put(`http://localhost/recommendation_system/api/update`, Dataform).then(function (response) {
         //     // console.log(response.data)
         //     setedit(prev => !prev)
         // })
-        // console.log(validation)
+        console.log(validation)
 
     }
     useEffect(() => {
@@ -180,8 +243,8 @@ export default function Profile() {
                             <div className="Profile-layout">
                                 <div className="Profile-Avatar">
                                     <div className="Profile_Avatar">
-                                        <p>{Dataform.FirstName[0]}</p>
-                                        <p>{Dataform.LastName[0]}</p>
+                                        <p>{JSON.parse(user).FIRSTNAME[0]}</p>
+                                        <p>{JSON.parse(user).LASTNAME[0]}</p>
                                     </div>
                                 </div>
                                 <div className="Profile-info-box">
