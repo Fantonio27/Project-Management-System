@@ -8,22 +8,19 @@
 $method = $_SERVER['REQUEST_METHOD'];
 switch($method) {
     case "GET":
-        $sql = "SELECT * FROM course_information";
-
-        $url = basename($_SERVER['REQUEST_URI']);
-        if($url === "Course_Information.php"){
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $url_components = parse_url($_SERVER['REQUEST_URI']);
+        parse_str($url_components['query'], $params);
+    
+        $fetch = $params['FETCH'];
+        if($fetch === "'SUBJECT'"){
+            $sql = "SELECT * FROM exam_informations";
         }else{
-            $url_components = parse_url($_SERVER['REQUEST_URI']);
-            parse_str($url_components['query'], $params);
-            $sql .= " WHERE CID = :cid ";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':cid', $params['cid']);
-            $stmt->execute();
-            $users = $stmt->fetch(PDO::FETCH_ASSOC);
+            $sql = "SELECT * FROM $fetch";
         }
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($users);
         break;
     case "POST":

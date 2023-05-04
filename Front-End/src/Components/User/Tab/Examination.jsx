@@ -18,6 +18,7 @@ export default function Examination() {
 
             axios.get(`http://localhost/recommendation_system/api/user/OverAll.php?LRN="${JSON.parse(d).LRN}"&&RESULT=j`).then(function (response) {
                 setview(response.data)
+                console.log(response.data)
 
                 axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN="${JSON.parse(d).LRN}"&&RESULT=j`).then(function (response) {
                     setsub(`Scholastic_Aptitude_Test/${response.data}/1`)
@@ -33,8 +34,10 @@ export default function Examination() {
 
     const handleClick = () => {
         axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN="${JSON.parse(d).LRN}"&&RESULT=USERVALID`).then(function (response) {
-            if (response.data.length === 0) {
+            console.log(response.data)
+        if (response.data.length === 0) {
                 axios.post(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN="${JSON.parse(d).LRN}"`).then(function (response) {
+                console.log(response.data)
                 })
             }
         })

@@ -38,6 +38,7 @@ export default function IA() {
 
         if (event.target.value === 'Submit') {
             axios.post(`http://localhost/recommendation_system/api/user/IA_Questions.php`, answer).then(function (response) {
+                console.log(response.data)
             })
 
             axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN="${JSON.parse(user).LRN}"&&FETCH='EX'`).then(function (response) {
@@ -53,6 +54,7 @@ export default function IA() {
                 const high = Object.keys(subjects).reduce((a, b) => subjects[a] > subjects[b] ? a : b)
 
                 axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN="${JSON.parse(user).LRN}"&&SUBJECT=${high}&&FETCH='VD'`).then(function (response) {
+                    // console.log(response.data)
                     const save = {
                         lrn: JSON.parse(user).LRN,
                         course: response.data[0].COURSE_NAME,
@@ -60,7 +62,7 @@ export default function IA() {
                         erid: id,
                     }
                     axios.post(`http://localhost/recommendation_system/api/user/Result.php/saves`, save).then(function (response) {
-
+                        // console.log(response.data)
                     })
                 })
             })

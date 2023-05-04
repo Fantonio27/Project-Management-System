@@ -58,6 +58,7 @@ export default function SAT() {
         {Subject: "Reading Comprehension", answerno : 0},
     ])
     React.useEffect(() => {
+        console.log(questions)
         if (questions.length > 1) {
             questions.map((data) => {
                 axios.post('http://localhost/recommendation_system/api/user/Saves_Answer.php/saves', {
@@ -134,7 +135,7 @@ export default function SAT() {
         setquestions(JSON.parse(d))
         setquestionno(parts1 - 1)
 
-        axios.get(`http://localhost/recommendation_system/api/user/Exam_Information.php?SUBJECT="${parts2}"`).then(function (response) {
+        axios.get(`http://localhost/recommendation_system/api/user/Exam_Information.php?SUBJECT='${parts2}'`).then(function (response) {
             setsubject(response.data)
         });
 
@@ -153,7 +154,7 @@ export default function SAT() {
     React.useEffect(() => {
         const idsub = JSON.parse(d)[parts1 - 1].EQID
 
-        axios.get(`http://localhost/recommendation_system/api/user/Saves_Answer.php?ID="${idsub}"&&FETCH=EACH`).then(function (response) {
+        axios.get(`http://localhost/recommendation_system/api/user/Saves_Answer.php?ID="${idsub}"&&FETCH=EACH&&LRN="${JSON.parse(user).LRN}"`).then(function (response) {
             let res = response.data === false
             setanswer(obj => ({
                 id: res ? "" : response.data.EQID,
@@ -166,11 +167,9 @@ export default function SAT() {
 
         axios.get(`http://localhost/recommendation_system/api/user/FetchAllAnser.php?SUBJECT="${parts2}"&&FETCH=EACH&&LRN="${JSON.parse(user).LRN}"`).then(function (response) {
             setsaveans(response.data)
+            // console.log(response.data)
         })
 
-        // for (let i = 0; i < saveans.length; i++) {
-        //     if (saveans[i].VALUE !== '') counter++;
-        // }
     }, [questionno])
 
     const handleClick = (i, ans) => (event) => {
@@ -195,6 +194,7 @@ export default function SAT() {
             id: JSON.parse(d)[parts1 - 1].EQID,
             value: value,
         }).then(function (response) {
+            console.log(response.data)
         });
 
     }

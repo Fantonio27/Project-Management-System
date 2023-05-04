@@ -92,13 +92,14 @@ function App() {
           <Route path="Student_Information" element={<Student_Info />} />
           <Route path="Course_Information">
             <Route index path="" element={<Course_Information />} />
-            <Route path=":name" element={<Course_Information />} />
+            {/* <Route path=":name" element={<Course_Information />} /> */}
             <Route path="Edit/:cid" element={<Form />} />
+            <Route path="Add" element={<Form />} />
           </Route>
           <Route path="Student_Results/:name" element={<Student_Results />} />
-          <Route path="Entrance_Exam">
-            <Route path="" element={<Entrance_Exam />} />
-            <Route path="Add" element={<Add_Entrance_Exam />} />
+          <Route path="Scholastic_Aptitude_Test">
+            {/* <Route path="" element={<Entrance_Exam />} /> */}
+            <Route path="" element={<Add_Entrance_Exam />} />
           </Route>
         </Route>
 

@@ -87,3 +87,10 @@
     color: #292d3dff;
     padding: 10px 0px;
 }
+
+.Form_Job{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    margin-bottom: 20px;
+}

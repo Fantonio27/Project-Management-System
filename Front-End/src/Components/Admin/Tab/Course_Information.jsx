@@ -1,7 +1,6 @@
 import Data_Table from "./Components/Table"
 import React from "react";
 import { useOutletContext } from "react-router-dom";
-import axios from "axios"
 import { IconButton } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
@@ -9,6 +8,7 @@ import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import axios from "axios";
 //For Dialog delete
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -51,7 +51,7 @@ export default function Course_Information() {
 
     const [opendelete, setOpendelete] = React.useState(false);
 
-    const[id, setid] = React.useState()
+    const [id, setid] = React.useState()
 
     const handleClickAction = (id) => (event) => {
         setAnchorEl(event.currentTarget);
@@ -71,12 +71,17 @@ export default function Course_Information() {
         setAnchorEl(null);
     };
 
-    const text = (
-        <div style={{ width: "100%", display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <p className="titlepertable">Course Information</p>
-            <Link to="Add" style={{ textDecoration: "none" }}><button className="button_add"><AddIcon sx={{ fontSize: "22px" }} />Add Course</button></Link>
-        </div>
-    )
+    const deleterecord = () => {
+        setOpendelete(false);
+
+        axios.delete(`http://localhost/recommendation_system/api/admin/Course_Information.php?id="${id}"`).then(function (response) {
+            // console.log(response.data)
+            axios.delete(`http://localhost/recommendation_system/api/admin/Course_Job.php?id="${id}"`).then(function (response) {
+                // console.log(response.data)
+            })
+        })
+    }
+
     const column = [
         { id: 'CID', label: 'CID', align: 'center', minWidth: 50 },
         { id: 'FIELD', label: 'Field', minWidth: 100 },
@@ -85,6 +90,13 @@ export default function Course_Information() {
         { id: 'DATE', label: 'Date', align: 'center' },
         { id: 'ACTION', label: 'Actions', align: 'center', minWidth: 50 },
     ]
+
+    const text = (
+        <div style={{ width: "100%", display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <p className="titlepertable">Course Information</p>
+            <Link to="Add" style={{ textDecoration: "none" }}><button className="button_add"><AddIcon sx={{ fontSize: "22px" }} />Add Course</button></Link>
+        </div>
+    )
 
     const option = (a) => {
         return (
@@ -104,8 +116,8 @@ export default function Course_Information() {
                         style: {
                             padding: '0px 5px',
                             borderRadius: "10px",
-                            border: '1px solid #F8F9FA',
-                            boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
+                            border: '1px solid #e9ecef',
+                            boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
                         }
                     }}
                 >
@@ -117,14 +129,12 @@ export default function Course_Information() {
                             </MenuItem>
                         </span>
                     </Link>
-                    <Link to="Delete" style={{ textDecoration: "none" }}>
-                        <span style={{ color: '#db514cff' }}>
-                            <MenuItem sx={menuitem_sx} onClick={handleClickdelete}>
-                                <DeleteRoundedIcon sx={{ fontSize: "19px" }} />
-                                Delete
-                            </MenuItem>
-                        </span>
-                    </Link>
+                    <span style={{ color: '#db514cff' }}>
+                        <MenuItem sx={menuitem_sx} onClick={handleClickdelete}>
+                            <DeleteRoundedIcon sx={{ fontSize: "19px" }} />
+                            Delete
+                        </MenuItem>
+                    </span>
                 </Menu>
             </div>
         )
@@ -144,19 +154,17 @@ export default function Course_Information() {
             open={opendelete}
             TransitionComponent={Transition}
             keepMounted
-            onClose={handleClosedelete}
             aria-describedby="alert-dialog-slide-description"
         >
-            <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+            <DialogTitle>{"Delete this record?"}</DialogTitle>
             <DialogContent>
                 <DialogContentText id="alert-dialog-slide-description">
-                    Let Google help apps determine location. This means sending anonymous
-                    location data to Google, even when no apps are running.
+                    Are you sure you want to delete this?
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClosedelete}>Disagree</Button>
-                <Button onClick={handleClosedelete}>Agree</Button>
+                <Button onClick={handleClosedelete}>Cancel</Button>
+                <Button onClick={deleterecord}>Agree</Button>
             </DialogActions>
         </Dialog>
     )

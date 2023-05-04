@@ -7,9 +7,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
+// import { Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
 export default function Admin_Main() {
+
+    ChartJS.register(ArcElement, Tooltip, Legend);
 
     const group = [
         {

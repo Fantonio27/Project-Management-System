@@ -32,15 +32,15 @@ export default function Admin_Sidebar(props) {
             Icon: <ArticleRoundedIcon />,
             Link: "Course_Information",
         },
+        // {
+        //     Title: "Interest Information",
+        //     Icon: <InterestsRoundedIcon />,
+        //     Link: "Interest_Information",
+        // },
         {
-            Title: "Interest Information",
-            Icon: <InterestsRoundedIcon />,
-            Link: "Interest_Information",
-        },
-        {
-            Title: "Entrance Exam",
+            Title: "Scholastic Aptitude Test",
             Icon: <FeedRoundedIcon />,
-            Link: "Entrance_Exam",
+            Link: "Scholastic_Aptitude_Test",
         },
         {
             Title: "Interest Assessment",

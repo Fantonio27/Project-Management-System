@@ -43,7 +43,7 @@ switch($method) {
         $stmt->execute();
         $fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $score = json_encode($fetch[0]['count']);
-
+        $score = $score + 1;
         $user = json_decode( file_get_contents('php://input') );
         
         $sql = "INSERT INTO `overall_result`(`RID`, `ERID`, `IRID`, `RECOMMENDED_COURSE`, `LRN`, `DATE`) 

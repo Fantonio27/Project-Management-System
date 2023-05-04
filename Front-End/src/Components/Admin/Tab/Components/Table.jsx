@@ -184,59 +184,59 @@ export default function Data_Table(props) {
         setanchorsort(null);
     };
 
-    const filtertabs = [
-        {
-            id: "Sortby", label: "Sort by", icon: <ImportExportRoundedIcon />,
-            sub: [
-                {
-                    idlabel: "Column", sublabel: "Column", list: [
-                        { item: "Student Name" },
-                        { item: "LRN" },
-                        { item: "Email Address" },
-                    ]
-                },
-                { idlabel: "Sortby", sublabel: "Ascending", list: [{ item: "Descending" }] }
-            ],
-        },
-        {
-            id: "LRN", label: "LRN", icon: <ArticleOutlinedIcon />,
-            sub: [
-                {
-                    idlabel: "LRN", sublabel: "LRN"
-                }
-            ],
-        },
-        {
-            id: "EmailAddress", label: "Email Address", icon: <EmailOutlinedIcon />,
-            sub: [
-                {
-                    idlabel: "Email", sublabel: "Email Address"
-                }
-            ],
-        },
-        {
-            id: "ExamStatus", label: "Exam Status", icon: <DescriptionOutlinedIcon />,
-            sub: [
-                {
-                    idlabel: "ExamTaken", sublabel: "Exam Taken"
-                },
-                {
-                    idlabel: "ExamNotTaken", sublabel: "Exam Not Taken"
-                }
-            ],
-        },
-        {
-            id: "Date", label: "Date", icon: <CalendarMonthOutlinedIcon />,
-            sub: [
-                {
-                    idlabel: "Min", sublabel: "Date"
-                },
-                {
-                    idlabel: "Max", sublabel: "Date"
-                },
-            ],
-        }
-    ]
+    // const filtertabs = [
+    //     {
+    //         id: "Sortby", label: "Sort by", icon: <ImportExportRoundedIcon />,
+    //         sub: [
+    //             {
+    //                 idlabel: "Column", sublabel: "Column", list: [
+    //                     { item: "Student Name" },
+    //                     { item: "LRN" },
+    //                     { item: "Email Address" },
+    //                 ]
+    //             },
+    //             { idlabel: "Sortby", sublabel: "Ascending", list: [{ item: "Descending" }] }
+    //         ],
+    //     },
+    //     {
+    //         id: "LRN", label: "LRN", icon: <ArticleOutlinedIcon />,
+    //         sub: [
+    //             {
+    //                 idlabel: "LRN", sublabel: "LRN"
+    //             }
+    //         ],
+    //     },
+    //     {
+    //         id: "EmailAddress", label: "Email Address", icon: <EmailOutlinedIcon />,
+    //         sub: [
+    //             {
+    //                 idlabel: "Email", sublabel: "Email Address"
+    //             }
+    //         ],
+    //     },
+    //     {
+    //         id: "ExamStatus", label: "Exam Status", icon: <DescriptionOutlinedIcon />,
+    //         sub: [
+    //             {
+    //                 idlabel: "ExamTaken", sublabel: "Exam Taken"
+    //             },
+    //             {
+    //                 idlabel: "ExamNotTaken", sublabel: "Exam Not Taken"
+    //             }
+    //         ],
+    //     },
+    //     {
+    //         id: "Date", label: "Date", icon: <CalendarMonthOutlinedIcon />,
+    //         sub: [
+    //             {
+    //                 idlabel: "Min", sublabel: "Date"
+    //             },
+    //             {
+    //                 idlabel: "Max", sublabel: "Date"
+    //             },
+    //         ],
+    //     }
+    // ]
 
     const handleopentab = (i) => () => {
         setExpanded((prev) => prev === i ? -1 : i)
@@ -284,67 +284,67 @@ export default function Data_Table(props) {
         }
     }
 
-    const menu = (
-        <Menu
-            elevation={0}
-            anchorEl={anchorsort}
-            open={sortmenu}
-            onClose={sortmenuclose}
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            PaperProps={{
-                style: {
-                    marginTop: "10px",
-                    borderRadius: "10px",
-                    border: '1px solid #F8F9FA',
-                    boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px'
-                }
-            }}
-        >
-            <List
-                sx={{ width: '250px', padding: "10px", bgcolor: 'background.paper' }}
-                component="nav"
-                subheader={
-                    <div style={{ display: 'flex', alignItems: "center", justifyContent: 'space-between' }}>
-                        <p className="Filter_header_p1">
-                            Filters
-                        </p>
-                        <p className="Filter_header_p2">
-                            Clear All
-                        </p>
-                    </div>
-                }
-            >
-                {
-                    filtertabs.map((tab, index) => {
-                        const { id, icon, label, } = tab
-                        return (
-                            <div key={id}>
-                                <ListItemButton onClick={handleopentab(index)} sx={accordion_filter_sx}>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                        {icon}
-                                        <p className="filter_p2">{label}</p>
-                                    </div>
-                                    {expanded === index ? <ExpandLess /> : <ExpandMore />}
-                                </ListItemButton>
-                                <Collapse in={expanded === index} timeout="auto" unmountOnExit>
-                                    {tab.sub.map((val, index) => {
-                                        const { sublabel, idlabel, list } = val
-                                        return (
-                                            <List key={index} component="div" disablePadding sx={{ pl: 4, display: 'flex', alignItems: 'center' }}>
+    // const menu = (
+    //     <Menu
+    //         elevation={0}
+    //         anchorEl={anchorsort}
+    //         open={sortmenu}
+    //         onClose={sortmenuclose}
+    //         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+    //         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+    //         PaperProps={{
+    //             style: {
+    //                 marginTop: "10px",
+    //                 borderRadius: "10px",
+    //                 border: '1px solid #F8F9FA',
+    //                 boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px'
+    //             }
+    //         }}
+    //     >
+    //         <List
+    //             sx={{ width: '250px', padding: "10px", bgcolor: 'background.paper' }}
+    //             component="nav"
+    //             subheader={
+    //                 <div style={{ display: 'flex', alignItems: "center", justifyContent: 'space-between' }}>
+    //                     <p className="Filter_header_p1">
+    //                         Filters
+    //                     </p>
+    //                     <p className="Filter_header_p2">
+    //                         Clear All
+    //                     </p>
+    //                 </div>
+    //             }
+    //         >
+    //             {
+    //                 filtertabs.map((tab, index) => {
+    //                     const { id, icon, label, } = tab
+    //                     return (
+    //                         <div key={id}>
+    //                             <ListItemButton onClick={handleopentab(index)} sx={accordion_filter_sx}>
+    //                                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+    //                                     {icon}
+    //                                     <p className="filter_p2">{label}</p>
+    //                                 </div>
+    //                                 {expanded === index ? <ExpandLess /> : <ExpandMore />}
+    //                             </ListItemButton>
+    //                             <Collapse in={expanded === index} timeout="auto" unmountOnExit>
+    //                                 {tab.sub.map((val, index) => {
+    //                                     const { sublabel, idlabel, list } = val
+    //                                     return (
+    //                                         <List key={index} component="div" disablePadding sx={{ pl: 4, display: 'flex', alignItems: 'center' }}>
 
-                                                {Filterrow(sublabel, idlabel, list)}
-                                            </List>
-                                        )
-                                    })}
-                                </Collapse>
-                            </div>
-                        )
-                    })
-                }
-            </List>
-        </Menu >
-    )
+    //                                             {Filterrow(sublabel, idlabel, list)}
+    //                                         </List>
+    //                                     )
+    //                                 })}
+    //                             </Collapse>
+    //                         </div>
+    //                     )
+    //                 })
+    //             }
+    //         </List>
+    //     </Menu >
+    // )
 
     return (
         <Grow in={true} timeout={600}>
@@ -356,10 +356,10 @@ export default function Data_Table(props) {
                             <input className="Student_Info_Search" placeholder="Search"></input>
                             <SearchRoundedIcon sx={search_sx} />
                         </div>
-                        <IconButton onClick={handlefilter}>
+                        {/* <IconButton onClick={handlefilter}>
                             <FilterListRoundedIcon/>
-                        </IconButton>
-                        {menu}
+                        </IconButton> */}
+                        {/* {menu} */}
                     </div>
                     <div className="chip-container">
                         {

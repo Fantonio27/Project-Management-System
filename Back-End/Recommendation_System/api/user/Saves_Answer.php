@@ -33,7 +33,8 @@ switch($method) {
         $fetch =  $params['FETCH'];
 
         if($fetch === "EACH"){
-            $sql = "SELECT * FROM save_answer WHERE EQID = $id";
+            $lrn =  $params['LRN'];
+            $sql = "SELECT * FROM save_answer WHERE EQID = $id AND LRN = $lrn";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $users = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -53,9 +54,10 @@ switch($method) {
     case "POST":
             $user = json_decode( file_get_contents('php://input') );
 
-            $sql = "SELECT COUNT(*) as count FROM save_answer WHERE EQID = :eqid";
+            $sql = "SELECT COUNT(*) as count FROM save_answer WHERE EQID = :eqid AND LRN = :lrn";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':eqid', $user->id);
+            $stmt->bindParam(':lrn', $user->lrn);
             $stmt->execute();
             $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
 

@@ -71,7 +71,7 @@ switch($method) {
 
         $stmt = $conn->prepare($sql);
         $created_at = date('Y-m-d');
-        $idcreate =  "ERID_".$count;
+        $idcreate =  "ERID_".$count+1;
         $stmt->bindParam(':id', $idcreate);
         $stmt->bindParam(':date', $created_at);
 

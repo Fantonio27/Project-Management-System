@@ -4,7 +4,11 @@ import AddIcon from '@mui/icons-material/Add';
 import { IconButton, Button, Fade } from "@mui/material";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const save_sx = {
     textTransform: "none",
@@ -35,47 +39,109 @@ const cancel_sx = {
 export default function CI_Form() {
 
     const [Dataform, setDataform] = React.useState({})
+    const [Coursejob, setCoursejob] = React.useState([])
+    const [open, setOpen] = React.useState(false);
+    const [count, setcount] = React.useState({
+        course: 0,
+        job: 0
+    });
+    const url = location.href.split('/').at(-1);
+    let add = url === "Add"
 
     React.useEffect(() => {
-        const id = location.href.split('/').at(-1);
 
-        axios.get(`http://localhost/recommendation_system/api/admin/Course_Information.php?cid=${id}`).then(function (response) {
-            setDataform(response.data)
-        })
+        if (add) {
+            axios.get(`http://localhost/recommendation_system/api/admin/Count.php?table=course_information`).then(function (response) {
+                setcount(prev => ({
+                    ...prev,
+                    course: response.data
+                }))
+                setDataform(prev => ({
+                    ...prev,
+                    CID: `CID_${response.data + 1}`
+                }))
+            })
+
+            axios.get(`http://localhost/recommendation_system/api/admin/Count.php?table=course_information_job`).then(function (response) {
+                setcount(prev => ({
+                    ...prev,
+                    job: response.data
+                }))
+
+                setCoursejob(prev => ([
+                    { CIJID: `CIJID_${response.data + 1}`, JOB_NAME: '', INFORMATION: '', CID: '' },
+                    { CIJID: `CIJID_${response.data + 2}`, JOB_NAME: '', INFORMATION: '', CID: '' },
+                    { CIJID: `CIJID_${response.data + 3}`, JOB_NAME: '', INFORMATION: '', CID: '' },
+                ]))
+            })
+        } else {
+            axios.get(`http://localhost/recommendation_system/api/admin/Course_Information.php?cid=${url}`).then(function (response) {
+                setDataform(response.data)
+            })
+
+            axios.get(`http://localhost/recommendation_system/api/admin/Course_Job.php?cid="${url}"`).then(function (response) {
+                setCoursejob(response.data)
+            })
+        }
     }, [])
 
-    // console.log(Dataform['CID'])
-
-    const { CID, FIELD, ACRONYM, COURSE_NAME, INFORMATION, HEADER_PICTURE, DATE } = Dataform
-
-    // const array = [CID, FIELD, ACRONYM, COURSE_NAME, INFORMATION, HEADER_PICTURE, DATE]
     const field = [
-        { id: "CID", label: "Course Information ID", text: "lorem ipsum" },
+        { id: "CID", label: "Course Information ID", text: "lorem ipsum", disabled: true },
         { id: "FIELD", label: "Field", text: "lorem ipsum" },
         { id: "ACRONYM", label: "Acronym", text: "lorem ipsum" },
         { id: "COURSE_NAME", label: "Course Name", text: "lorem ipsum" },
         { id: "INFORMATION", label: "Information", text: "lorem ipsum" },
         { id: "HEADER_PICTURE", label: "Header Picture", text: "lorem ipsum" },
-        { id: "DATE", label: "Date", text: "lorem ipsum" },
+        // { id: "DATE", label: "Date", text: "lorem ipsum" },
         { id: "JOB", label: "Job", text: "lorem ipsum" },
     ]
 
-    const tab = (val, value) => {
+    const tab = (val, job, loop) => {
         if (val.id === "INFORMATION") {
-            return <textarea 
+            return <textarea
+                id="COURSE"
                 name={val.id}
-                className="CI_Form_input" 
-                style={{ height: "100px" }} 
-                placeholder={val.label} 
+                className="CI_Form_input"
+                style={{ height: "120px" }}
+                placeholder={val.label}
                 value={Dataform[`${val.id}`] || ''}
                 onChange={onChange}
+                required
             />
         } else if (val.id === "JOB") {
             return (
-                <>
-                    <input className="CI_Form_input" placeholder={val.label} />
-                    <div className="CI_Form_Add_Job"><AddIcon sx={{ color: "#252a35ff", fontSize: "22px" }} />Add Another</div>
-                </>
+                job.map((course, index) => {
+                    return (
+                        <div key={index} className="Form_Job">
+                            <input
+                                className="CI_Form_input"
+                                placeholder="Job Title"
+                                id="JOB_NAME"
+                                value={course.JOB_NAME || ""}
+                                onChange={onChange}
+                                // name={course.CIJID || `CIJID_${count.job + 1}`}
+                                name={course.CIJID}
+                                minLength={val.min}
+                                maxLength={val.max}
+                                pattern={val.pattern}
+                                title={val.title}
+                                required
+                            />
+                            <textarea
+                                id="INFORMATION"
+                                name={course.CIJID}
+                                className="CI_Form_input"
+                                style={{ height: "100px" }}
+                                placeholder="Job Description"
+                                value={course.INFORMATION || ""}
+                                onChange={onChange}
+                                // minLength={7}
+                                // maxLength={16}
+                                required
+                            />
+                        </div>
+                    )
+                })
             )
         } else {
             return <input
@@ -83,55 +149,119 @@ export default function CI_Form() {
                 type="text"
                 className="CI_Form_input"
                 placeholder={val.label}
-                value={Dataform[`${val.id}`] || ''}
+                value={Dataform[`${val.id}`] || ""}
                 onChange={onChange}
+                id="COURSE"
+                minLength={val.min}
+                maxLength={val.max}
+                pattern={val.pattern}
+                title={val.title}
+                disabled={val.disabled}
+                required
             />
         }
     }
 
-    // console.log(Dataform)
-
     const onChange = (event) => {
-        const { name, value } = event.target
-        setDataform((prev) => ({
-            ...prev,
-            [name]: value
-        }))
+        const { name, value, id } = event.target
+
+        if (id === "COURSE") {
+            setDataform((prev) => ({
+                ...prev,
+                [name]: value
+            }))
+        } else {
+            setCoursejob(current =>
+                current.map(obj => {
+                    if (obj.CIJID === name) {
+                        return { ...obj, [id]: value , CID: Dataform.CID};
+                    }
+
+                    return obj;
+                }))
+        }
     }
 
+    const handleSubmit = () => {
+        if (add) {
+            axios.post(`http://localhost/recommendation_system/api/admin/Course_Information.php`, Dataform).then(function (response) {
+                console.log(response.data)
+                {
+                    Coursejob.map((prev) => {
+                        axios.post(`http://localhost/recommendation_system/api/admin/Course_Job.php?cid="${Dataform.CID}"`, prev).then(function (response) {
+                            console.log(response.data)
+                        })
+                    })
+                }
+            })
+            console.log(Dataform)
+            console.log(Coursejob)
+        } else {
+            axios.put(`http://localhost/recommendation_system/api/admin/Course_Information.php`, Dataform).then(function (response) {
+                // console.log(response.data)
+                {
+                    Coursejob.map((prev) => {
+                        axios.put(`http://localhost/recommendation_system/api/admin/Course_Job.php?cid="${Dataform.CID}"`, prev).then(function (response) {
+                            // console.log(response.data)
+                        })
+                    })
+                }
+            })
+        }
+
+        setOpen(false)
+    }
     return (
         <Fade in={true} timeout={1000}>
             <div className="CI_Form">
-                <div className="CI_Form_Title">
-                    <div>
-                        <p>Edit Course Information</p>
-                        <p className="CI_Form_subTitle">Update the details and other information of a Course</p>
-                    </div>
-                    <div style={{ display: 'flex', gap: '10px' }}>
+                <form onSubmit={(event) => { event.preventDefault(), setOpen(true) }}>
+                    <div className="CI_Form_Title">
                         <div>
-                            <Button sx={save_sx}>Save</Button>
+                            <p>{add ? "Add" : "Edit"} Course Information</p>
+                            <p className="CI_Form_subTitle">Update the details and other information of a Course</p>
                         </div>
-                        <Link to="../" style={{ textDecoration: 'none' }}>
-                            <Button sx={cancel_sx}>Cancel</Button>
-                        </Link>
-                    </div>
-                </div>
-
-                {
-                    field.map((val, index) => {
-                        return (
-                            <div className="CI_Form_container" key={index}>
-                                <div>
-                                    <p className="CI_Form_p1">{val.label}</p>
-                                    <p className="CI_Form_p2">{val.text}</p>
-                                </div>
-                                <div>
-                                    {tab(val)}
-                                </div>
+                        <div style={{ display: 'flex', gap: '10px' }}>
+                            <div>
+                                <input type="submit" value={add ? "Add" : "Save"} />
                             </div>
-                        )
-                    })
-                }
+                            <Link to="../" style={{ textDecoration: 'none' }}>
+                                <Button sx={cancel_sx}>Cancel</Button>
+                            </Link>
+                        </div>
+                    </div>
+                    {
+                        field.map((val, index) => {
+                            return (
+                                <div className="CI_Form_container" key={index}>
+                                    <div>
+                                        <p className="CI_Form_p1">{val.label}</p>
+                                        <p className="CI_Form_p2">{val.text}</p>
+                                    </div>
+                                    <div>
+                                        {tab(val, Coursejob)}
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </form>
+                <Dialog
+                    open={open}
+                // onClose={()=>setOpen(false)}
+                >
+                    <DialogTitle id="alert-dialog-title">
+                        {"Update a Record"}
+                    </DialogTitle>
+                    <DialogContent>
+                        Are you sure you want to {add ? "Add" : "Update"} this?
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={() => setOpen(false)}>Cancel</Button>
+                        <Button onClick={handleSubmit} autoFocus>
+                            Update
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
         </Fade>
     )
