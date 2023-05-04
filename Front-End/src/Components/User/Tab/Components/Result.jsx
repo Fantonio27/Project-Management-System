@@ -1,248 +1,625 @@
 import "../../../../css/User/Tabs/Components/Result.css"
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
-import LinearProgress from '@mui/material/LinearProgress';
+import { Avatar, Badge, Box, LinearProgress, Zoom, FormControl, Select, MenuItem } from "@mui/material";
+import EditIcon from '@mui/icons-material/Edit';
+import CameraIcon from '@mui/icons-material/CameraAltRounded';
+import Button from '@mui/material/Button';
+import React, { useState, useEffect } from "react";
+import CircularProgress from '@mui/material/CircularProgress';
+import { useLocation } from "react-router-dom";
 import axios from "axios";
-import React from "react";
-import Radio from '@mui/material/Radio';
-import FormControlLabel from '@mui/material/FormControlLabel';
-
-export default function Result() {
-
-    ChartJS.register(ArcElement, Tooltip, Legend);
+export default function Profile() {
 
     const user = window.localStorage.getItem('USER_DATA')
+    const [satresult, setsatresult] = React.useState([])
+    const [overall, setoverall] = React.useState([])
+    const [iaresult, setiaresult] = React.useState([])
+    const [subscore, setsubscore] = React.useState([])
 
-    const option = {
-        animation: {
-            duration: 1500,
-        },
-        cutout: 65,
-        plugins: {
-            legend: {
-                display: false,
-                position: "bottom",
-                labels: {
-                    padding: 15,
-                },
-            }
-        }
-    }
-
+    const sat = satresult.length === 0
+    const ia = iaresult.length === 0
     const subject = [
-        { id: 'Math', subject: 'Math', choice: 'Choice_A', itemNo: '10' },
-        { id: 'Science', subject: 'Science', choice: 'Choice_B', itemNo: '10' },
-        { id: 'English', subject: 'English', choice: 'Choice_C', itemNo: '10' },
-        { id: 'Reading_Comprehension', subject: 'Reading Comprehension', choice: 'Choice_D', itemNo: '10' },
+        {
+            Subject: "Math",
+            Score: "30",
+            Item: "",
+            bg: "#0096c7",
+            result: sat ? 0 : satresult[0].MATH_SCORE
+        },
+        {
+            Subject: "Science",
+            Score: "30",
+            Item: "",
+            bg: "#52b788",
+            result: sat ? 0 : satresult[0].SCIENCE_SCORE
+        },
+        {
+            Subject: "English",
+            Score: "20",
+            Item: "",
+            bg: "#f13030",
+            result: sat ? 0 : satresult[0].ENGLISH_SCORE
+        },
+        {
+            Subject: "History",
+            Score: "20",
+            Item: "",
+            bg: "#f4a261",
+            result: sat ? 0 : satresult[0].READING_COMPREHENSION_SCORE
+        },
     ]
 
-    const [subjectans, setsubjectans] = React.useState('Math')
-    const [answer, setanswer] = React.useState([{}])
-    const [result, setresult] = React.useState([])
-    const [subscore, setsubscore] = React.useState({
-        Math: '',
-        Science: '',
-        English: '',
-        Reading_Comprehension: '',
-    })
+    const interest = [
+        {
+            Interest: "Realistic",
+            Score: 0,
+            Item: "",
+            Color: "#ff4d6d",
+            Bg: "#ff4d6d4b",
+            result: ia ? 0 : iaresult[0].REALISTIC_SCORE
+        },
+        {
+            Interest: "Investigative",
+            Score: 10,
+            Item: "",
+            Color: "#fb8500",
+            Bg: "#fb85004b",
+            result: ia ? 0 : iaresult[0].INVESTIGATIVE_SCORE
+        },
+        {
+            Interest: "Artistic",
+            Score: 20,
+            Item: "",
+            Color: "#ffc300",
+            Bg: "#ffc3004b",
+            result: ia ? 0 : iaresult[0].ARTISTIC_SCORE
+        },
+        {
+            Interest: "Social",
+            Score: 30,
+            Item: "",
+            Color: "#52b788",
+            Bg: "#52b7884d",
+            result: ia ? 0 : iaresult[0].SOCIAL_SCORE
+        },
+        {
+            Interest: "Enterprising",
+            Score: 40,
+            Item: "",
+            Color: "#00b4d8",
+            Bg: "#00b4d84d",
+            result: ia ? 0 : iaresult[0].ENTERPRISING_SCORE
+        },
+        {
+            Interest: "Conventional",
+            Score: 50,
+            Item: "",
+            Color: "#858ae3",
+            Bg: "858ae34d",
+            result: ia ? 0 : iaresult[0].CONVENTIONAL_SCORE
+        },
+    ]
 
-    const [iaresult, setiaresult] = React.useState([])
-
-    const [overall, setoverall] = React.useState([])
-
-    React.useEffect(() => {
-
-        axios.get(`http://localhost/recommendation_system/api/user/FetchAllAnser.php?SUBJECT="${subjectans}"&&FETCH=ALL`).then(function (response) {
-            setanswer(response.data)
-        })
-    }, [subjectans])
-
-    React.useEffect(() => {
+    useEffect(() => {
         axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN="${JSON.parse(user).LRN}"&&FETCH='EX'`).then(function (response) {
-            setresult(response.data)
+            setsatresult(response.data)
             // console.log(response.data)
-            setsubscore({
+            const subject = {
                 Math: response.data[0].MATH_SCORE,
                 Science: response.data[0].SCIENCE_SCORE,
                 English: response.data[0].ENGLISH_SCORE,
                 Reading_Comprehension: response.data[0].READING_COMPREHENSION_SCORE,
+            }
+            const high = Object.keys(subject).reduce((a, b) => subject[a] > subject[b] ? a : b)
+            // setsubscore(high)
+
+            axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN="${JSON.parse(user).LRN}"&&FETCH='IA'`).then(function (response) {
+                setiaresult(response.data)
+                // console.log(high)
+                axios.get(`http://localhost/recommendation_system/api/user/Result.php?IA='${response.data[0].IA_RESULT}'&&FETCH='reco'&&SUBJECT=${high}`).then(function (response) {
+                    setsubscore(response.data)
+                    console.log(response.data)
+                })
             })
         })
 
-        axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN="${JSON.parse(user).LRN}"&&FETCH='IA'`).then(function (response) {
-            setiaresult(response.data)
-        })
-        
     }, [])
+    let i = 0
+    function recommend(a) {
+        // return (<p>Hello</p>)
+        // const high = subscore.length ===0? "" :Object.keys(subscore).reduce((a, b) => subscore[a] > subscore[b] ? a : b)
+        // console.log(high)
+        // console.log(subscore)
 
-
-    const handleClick = (event) => {
-        setsubjectans(event.target.value)
+        if (a === "I AND S") {
+            return (
+                <div>
+                    <p className="ul">Health Science</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Health Science"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                        
+                    }
+                    </ul>
+                    <p className="ul">Education & Training</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Education & Training"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                    }
+                    </ul>
+                </div>
+            )
+        }
+        else if (a === "R AND S") {
+            return (
+                <div>
+                    <p className="ul">Health Science</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Health Science"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                        
+                    }
+                    </ul>
+                    <p className="ul">Human Service</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Human Service"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                    }
+                    </ul>
+                    <p className="ul">Law & Public Safety</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Law & Public Safety"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                    }
+                    </ul>
+                </div>
+            )
+        }
+        else if (a === "R AND E") {
+            return (
+                <div>
+                    <p className="ul">Arts & Communications</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Arts & Communications"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                        
+                    }
+                    </ul>
+                    <p className="ul">Hospitality & Tourism</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Hospitality & Tourism"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                    }
+                    </ul>
+                </div>
+            )
+        }
+        else if (a === "I AND R") {
+            return (
+                <div>
+                    <p className="ul">Agriculture</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Agriculture"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                        
+                    }
+                    </ul>
+                    <p className="ul">Health Science</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Health Science"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                    }
+                    </ul>
+                    <p className="ul">Information Technology</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Information Technology"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                    }
+                    </ul>
+                    <p className="ul">Science, Technology & Math</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Science, Technology & Math"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                    }
+                    </ul>
+                </div>
+            )
+        }
+        else if (a === "A AND S") {
+            return (
+                <div>
+                    <p className="ul">Education & Training</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Education & Training"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                        
+                    }
+                    </ul>
+                    <p className="ul">Arts & Communications</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Arts & Communications"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                    }
+                    </ul> 
+                    <p className="ul">Marketing & Sales</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Marketing & Sales"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                    }
+                    </ul>
+                </div>
+            )
+        }
+        else if (a === "A AND R") {
+            return (
+                <div>
+                    <p className="ul">Arts & Communications</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Arts & Communications"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                        
+                    }
+                    </ul>
+                    <p className="ul">Education & Training</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Education & Training"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                    }
+                    </ul>
+                </div>
+            )
+        }
+        else if (a === "S AND E") {
+            return (
+                <div>
+                    <p className="ul">Government</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Government"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                        
+                    }
+                    </ul>
+                    <p className="ul">Law & Public Safety</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Law & Public Safety"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                    }
+                    </ul>
+                    <p className="ul">Marketing & Sales</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Marketing & Sales"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                    }
+                    </ul>
+                </div>
+            )
+        }
+        else if (a === "E AND C") {
+            return (
+                <div>
+                    <p className="ul">Business & Management</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Business & Management"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                        
+                    }
+                    </ul>
+                    <p className="ul">Finance</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Finance"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                    }
+                    </ul>
+                </div>
+            )
+        }
+        else if (a === "E AND A") {
+            return (
+                <div>
+                    <p className="ul">Arts & Communications</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Arts & Communications"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                        
+                    }
+                    </ul>
+                    <p className="ul">Marketing & Sales</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Marketing & Sales"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                    }
+                    </ul>
+                </div>
+            )
+        }
+        else if (a === "C AND R") {
+            return (
+                <div>
+                    <p className="ul">Architecture & Construction</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Architecture & Construction"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                        
+                    }
+                    </ul>
+                    <p className="ul">Manufacturing</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Manufacturing"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                    }
+                    </ul>
+                    <p className="ul">Transportation</p>
+                    <ul>
+                    {
+                        subscore.map((prev, index)=>{
+                            if(prev.INTEREST === "Transportation"){
+                                return(
+                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                )
+                            }
+                        })
+                    }
+                    </ul>
+                </div>
+            )
+        }
     }
-
-    let res = result.length === 0
-    const data = {
-        labels: ['Correct Answer', 'Incorrect Answer'],
-        datasets: [
-            {
-                label: '# of Answer',
-                data: [res ? 0 : result[0].TOTAL_SCORE, res ? 0 : 100 - result[0].TOTAL_SCORE],
-                backgroundColor: [
-                    'rgba(105, 185, 110, 1)',
-                    'rgba(105, 185, 110,0.15)',
-                ],
-                borderWidth: 0,
-            },
-        ],
-    };
-
-    // console.log(iaresult)
-
-    const recommendation = () => {
-
-        // const high = Object.keys(subscore).reduce((a, b) => subscore[a] > subscore[b] ? a : b)
-        // // console.log(high)
-        axios.get(`http://localhost/recommendation_system/api/user/Overall.php?LRN="${JSON.parse(user).LRN}"`).then(function (response) {
-            setoverall(response.data)
-        })
-    }
-
-    recommendation()
 
     return (
-        <div className="Exam_Result">
-            <p className="Exam_Result_p1">Exam Result</p>
-            <div className="Exam_Result_div">
-                <div className="Exam_Result_div1">
-                    <p className="Exam_Result_p2">OverAll Result</p>
-                    <div className="Exam_Result_div2">
-                        <div>
-                            <p className="Exam_Result_p3">SAT Total Score: </p>
-                            <p className="Exam_Result_p4">{res ? 0 : result[0].TOTAL_SCORE}</p>
-                        </div>
-                        <div>
-                            <p className="Exam_Result_p3">IA Output: </p>
-                            <p className="Exam_Result_p4">Interested in </p>
-                        </div>
-                        <div>
-                            <p className="Exam_Result_p3">Exam Status: </p>
-                            <p className="Exam_Result_p4">{res ? 0 : result[0].EXAM_RESULT}</p>
-                        </div>
-                        <div>
-                            <p className="Exam_Result_p3">Course Recommended: </p>
-                            <p className="Exam_Result_p4">{overall.length ===0? '':overall[0].RECOMMENDED_COURSE}</p>
-                        </div>
+        <Zoom in={true} timeout={500}>
+            <div className="Profile">
+                <div className="Profile-box">
+                    <p className="Result_p1">OverAll Results</p>
+                    <div>
+                        <p className="Result_p2">SAT total Score: </p>
+                        <p className="Result_p3">{satresult.length === 0 ? "" : satresult[0].TOTAL_SCORE}</p>
                     </div>
-                    <p className="Exam_Result_p2">Scholastic Aptitude Test Result</p>
-                    {/* <div className="Exam_chart">
-                        <Doughnut data={data} options={option} />
-                        <p className="Exam_chart_p1">{result[0].TOTAL_SCORE}</p>
-                    </div> */}
-                    <div className="Exam_Result_div2" style={{ gap: '25px' }}>
-                        {
-                            subject.map((val, index) => {
-                                return (
-                                    <div key={index}>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
-                                            <p className="Exam_Result_p3">{val.subject}{val.subject === "Reading Comprehension" && <br></br>} Score :</p>
-                                            <p className="Exam_Result_p4">{subscore[val.id]}/ {val.itemNo}</p>
-                                        </div>
-                                        <div style={{ width: '100%', marginTop: '10px' }}>
-                                            <LinearProgress variant="determinate" value={subscore[val.id] / val.itemNo * 100} color="success" sx={{ borderRadius: '20px', height: '5px' }} />
+
+                    <div>
+                        <p className="Result_p2">Interest Assement Result: </p>
+                        <p className="Result_p3">{iaresult.length === 0 ? "" : iaresult[0].IA_RESULT}</p>
+                    </div>
+
+                    <div>
+                        <p className="Result_p2">Exam Result: </p>
+                        <p className="Result_p3">{satresult.length === 0 ? "" : satresult[0].EXAM_RESULT}</p>
+                    </div>
+
+                    <div>
+                        <p className="Result_p2">Recommeded Course: </p>
+                        <div>{recommend(iaresult.length === 0 ? "" : iaresult[0].IA_RESULT)}</div>
+                    </div>
+
+                </div>
+                <div className="Profile-result-exam">
+                    <div style={{ padding: "50px" }}>
+                        <h1 className="result-title">Scholastic Assessment Test</h1>
+                        <p className="result-p">Result:</p>
+                        <div className="Profile-subjects">
+                            {
+                                subject.map((sub) => (
+                                    <div key={sub.Subject} className={`sub ${sub.Subject}`}>
+                                        <h1>{sub.Subject}</h1>
+
+                                        <Box sx={{ position: 'relative' }}>
+                                            <CircularProgress
+                                                variant="determinate"
+                                                sx={{
+                                                    color: "#e9ecef",
+                                                }}
+                                                size={90}
+                                                thickness={3}
+                                                value={100}
+                                            />
+                                            <CircularProgress
+                                                variant="determinate"
+
+                                                sx={{
+                                                    color: `${sub.bg}`,
+                                                    position: "absolute",
+                                                    left: 0
+                                                }}
+                                                size={90}
+                                                thickness={3}
+                                                value={sub.result / sub.Score * 100}
+                                            />
+                                        </Box>
+                                        <div className="sub_score_box">
+                                            <p className="sub_score">{sub.result}</p>
+                                            <p className="sub_score_txt">Score</p>
                                         </div>
                                     </div>
-                                )
-                            })
-                        }
-                    </div>
-                    <p className="Exam_Result_p2">Interest Assessment Result</p>
-                    <div className="Exam_Result_div2">
-                        <div>
-                            <p className="Exam_Result_p3">Field Interest:</p>
-                            <p className="Exam_Result_p4">{iaresult.length === 0 ? '' : iaresult[0].DEPARTMENT}</p>
-                        </div>
-                        <div>
-                            <p className="Exam_Result_p3">Interest:</p>
-                            <p className="Exam_Result_p4">{iaresult.length === 0 ? '' : iaresult[0].ANSWER}</p>
+                                ))
+                            }
                         </div>
                     </div>
                 </div>
-                <div className="Exam_Result_div3">
-                    <p className="Exam_Result_p2">Subjects</p>
-                    <div className="Exam_Result_div4">
-                        {
-                            subject.map((val) => {
-                                return (
-                                    <button className="Exam_Result_tab" key={val.subject} onClick={handleClick} value={val.subject}
-                                        style={{ border: val.subject === subjectans ? '2px solid #3f6a2bb2' : '2px solid rgba(164, 164, 164, 0.5)' }}>
-                                        {val.subject}
-                                    </button>
-                                )
-                            })
-                        }
-                    </div>
-                    <p className="Exam_Result_p2">Review</p>
-                    <div className="Exam_Review">
-                        <div className="Exam_Review_header">
-                            <p>Scholastic Aptitude Test - Math</p>
-                            <p>Score: 30/20</p>
-                            <p>Attempted on Dec 12, 2022</p>
-                            <p>Time Taken: 0:20:17</p>
-                        </div>
-                        <div className="Exam_Review_body">
-                            <div className="Exam_Review_question">
-                                {
-                                    answer.map((ans, index) => {
-                                        return (
-                                            <div style={{ borderTop: "2px solid #4e7f3870", padding: '30px' }} key={index}>
-                                                <p className="Exam_Review_q1">Question {index + 1}</p>
-                                                <p className="Exam_Review_q2">{ans.Question}</p>
-                                                <div className="Exam_Review_choice_div">
-                                                    {
-                                                        subject.map((val, index) => {
-                                                            let c = ans.VALUE === ans[val.choice]
-                                                            let d = ans.ANSWER === ans[val.choice]
-                                                            let a;
-
-                                                            if ((ans.VALUE === ans.ANSWER) === ans[val.choice]) {
-                                                                a = 'blue'
-                                                            }
-                                                            // } else if ((ans.VALUE === ans.ANSWER)) {
-                                                            //     a = 'rgba(219, 81, 76, 1)'
-                                                            // }
-                                                            else {
-                                                                a = 'white'
-                                                            }
-
-                                                            return (
-                                                                <div className="Exam_Review__choice" key={index}
-                                                                    style={{
-                                                                        borderRadius: index === 3 ? '10px' : '0px'
-                                                                    }}
-                                                                >
-                                                                    <FormControlLabel
-                                                                        control={
-                                                                            <Radio
-                                                                                checked={c}
-                                                                                size="small"
-                                                                            // color="success"
-                                                                            />
-                                                                        }
-                                                                        label={ans[val.choice]} />
-                                                                </div>
-                                                            )
-                                                        })
+                <div className="Profile-result-ia">
+                    <div style={{ padding: "50px" }}>
+                        <h1 className="result-title">Interest Assessment</h1>
+                        <p className="result-p">Result:</p>
+                        <div className="Profile-interest">
+                            {
+                                interest.map((e) => (
+                                    <div key={e.Interest} className="interest-div">
+                                        <h1>{e.Interest}</h1>
+                                        <Box sx={{ width: '100%' }}>
+                                            <LinearProgress
+                                                sx={{
+                                                    backgroundColor: `${e.Bg}`,
+                                                    '& .MuiLinearProgress-bar': {
+                                                        backgroundColor: `${e.Color}`
                                                     }
-                                                </div>
-                                            </div>
-                                        )
-                                    })
-                                }
-                            </div>
+                                                }}
+                                                variant="determinate"
+                                                value={e.result / 7 * 100}
+                                            />
+                                        </Box>
+                                        <p>{e.result}</p>
+                                    </div>
+                                ))
+                            }
+
+                            {/* <div><p>Realistic</p></div>
+                            <div><p>Investigative</p></div>
+                            <div><p>Artistic</p></div>
+                            <div><p>Social</p></div>
+                            <div><p>Enterprising</p></div>
+                            <div><p>Conventional</p></div> */}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+        </Zoom>
     )
 }

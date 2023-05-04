@@ -54,57 +54,60 @@
 
 .IA_q_p2 {
     font-size: 30px;
-    color: #20353bf1;
+    color: rgba(37, 42, 53, 0.848);
     font-family: 'QuickSand', sans-serif;
     text-align: center;
 }
 
 .IA_div {
-    display: grid;
+    /* display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     gap: 15px 20px;
-    width: 80%;
-}
-
-.last-one{
-    grid-area: last-one;
+    width: 80%; */
+    display: flex;
+    gap: 20px;
 }
 
 .IA_button1,
 .IA_button2 {
-    padding: 10px 30px;
-    width: 100%;
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    /* background-color: #69b96eff; */
-    background-color: white;
+    padding: 20px 30px;
+    width: 300px;
+    font-family: 'QuickSand', sans-serif;
+    font-weight: bold;
+    font-size:30px;
+    background-color: #69b96eff;
     border: 1px solid #E9ECEF;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    color: #20353bf1;
+    color: white;
     transition: 0.3s;
     letter-spacing: 1px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    gap: 5px;
+    flex-direction: column;
+    letter-spacing: 5px;
+
 }
 
 .IA_button2 {
-    width: max-content;
-    width: 150px;
-    background-color: #69b96eff;
+    background-color: #db514cff;
     color: white;
     padding: 5px 0px;
+    display: flex;
 }
 
 .IA_button1:hover {
-    background-color: rgba(203, 244, 205, 0.283);
+    /* background-color: rgba(203, 244, 205, 0.283); */
+    background-color: rgb(86, 157, 91);
 }
 
 .IA_button2:hover{
-    background-color: rgb(86, 157, 91);
+    /* background-color: rgb(86, 157, 91); */
+    background-color: rgb(199, 71, 66);
 }
 
 .IA_Button_Group{

@@ -11,23 +11,49 @@ switch($method) {
         $url_components = parse_url($_SERVER['REQUEST_URI']);
         parse_str($url_components['query'], $params);
     
-        $lrn =  $params['LRN'];
         $fetch =  $params['FETCH'];
         
         if($fetch === "'IA'"){
-            $sql = "SELECT * FROM ia_result WHERE LRN = $lrn";
+            $lrn =  $params['LRN'];
+            $sql = "SELECT * FROM interest_assessment_result WHERE LRN = $lrn";
         }else if($fetch === "'EX'"){
+            $lrn =  $params['LRN'];
             $sql = "SELECT * FROM exam_result WHERE LRN = $lrn";
         }else{
-            $sub =  strtoupper($params['SUBJECT']);
-
-            $sql = "SELECT course_information.CID, course_information.COURSE_NAME, ia_result.IAQID, course_percentage.MATH, course_percentage.SCIENCE, 
-            course_percentage.ENGLISH, course_percentage.READING_COMPREHENSION
-            FROM ia_result
-            INNER JOIN course_information ON ia_result.IAQID=course_information.IAQID
-            INNER JOIN course_percentage ON course_information.cid  = course_percentage.cid 
-            WHERE ia_result.LRN = $lrn
-            ORDER BY course_percentage.$sub ASC";
+            $ia =  strtoupper($params['IA']);
+            $subject =  strtoupper($params['SUBJECT']);
+            $sql = "SELECT * 
+            FROM `course_information` 
+            INNER JOIN course_percentage on course_percentage.CID = course_information.CID";
+            // -- WHERE course_percentage.$subject >= '30' AND (course_information.INTEREST = 'Health Science' OR course_information.INTEREST = 'Education & Training')";
+            if($ia === "'R AND S'"){
+                $sql .= " WHERE course_percentage.$subject. >= 30 AND (course_information.INTEREST = 'Health Science' OR course_information.INTEREST = 'Human Service' OR course_information.INTEREST = 'Law & Public Safety')";
+            }else if($ia === "R AND E"){
+                $sql .= " WHERE course_percentage.$subject >= 30 AND (course_information.INTEREST = 'Arts & Communications' OR course_information.INTEREST = 'Hospitality & Tourism')";
+            }else if($ia === "'I AND S'"){
+                $sql .= " WHERE course_percentage.$subject >= 30  AND (course_information.INTEREST = 'Health Science' OR course_information.INTEREST = 'Education & Training')";
+            }else if($ia === "I AND R"){
+                $sql .= " WHERE course_percentage.$subject >= '30' AND (course_information.INTEREST = 'Agriculture' OR course_information.INTEREST = 'Health Science' OR course_information.INTEREST = 'Information Technology' OR course_information.INTEREST = 'Science, Technology & Math')";
+            }else if($ia === "A AND S"){
+                $sql .= " WHERE course_percentage.$subject >= '30' AND (course_information.INTEREST = 'Education & Training' OR course_information.INTEREST = 'Arts & Communications' OR course_information.INTEREST = 'Marketing & Sales')";
+            }else if($ia === "A AND R"){
+                $sql .= " WHERE course_percentage.$subject >= '30' AND (course_information.INTEREST = 'Arts & Communications' OR course_information.INTEREST = 'Education & Training')";
+            }else if($ia === "S AND E"){
+                $sql .= " WHERE course_percentage.$subject >= '30' AND (course_information.INTEREST = 'Government' OR course_information.INTEREST = 'Marketing & Sales' OR course_information.INTEREST = 'Law & Public Safety')";
+            }else if($ia === "E AND C"){
+                $sql .= " WHERE course_percentage.$subject >= '30' AND (course_information.INTEREST = 'Business & Management' OR course_information.INTEREST = 'Finance')";
+            }else if($ia === "E AND A"){
+                $sql .= " WHERE course_percentage.$subject >= '30' AND (course_information.INTEREST = 'Arts & Communications' OR course_information.INTEREST = 'Marketing & Sales')";
+            }else if($ia === "C AND R"){
+                $sql .= " WHERE course_percentage.$subject >= '30' AND (course_information.INTEREST = 'Architecture & Construction' OR course_information.INTEREST = 'Manufacturing' OR course_information.INTEREST = 'Transportation')";
+            }
+            // $sql = "SELECT course_information.CID, course_information.COURSE_NAME, ia_result.IAQID, course_percentage.MATH, course_percentage.SCIENCE, 
+            // course_percentage.ENGLISH, course_percentage.READING_COMPREHENSION
+            // FROM ia_result
+            // INNER JOIN course_information ON ia_result.IAQID=course_information.IAQID
+            // INNER JOIN course_percentage ON course_information.cid  = course_percentage.cid 
+            // WHERE ia_result.LRN = $lrn
+            // ORDER BY course_percentage.$sub ASC";
         }
 
         $stmt = $conn->prepare($sql);

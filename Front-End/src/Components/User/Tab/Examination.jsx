@@ -16,9 +16,12 @@ export default function Examination() {
         axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN="${JSON.parse(d).LRN}"&&RESULT=ALL`).then(function (response) {
             window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(response.data))
 
-            axios.get(`http://localhost/recommendation_system/api/user/OverAll.php?LRN="${JSON.parse(d).LRN}"&&RESULT=j`).then(function (response) {
+            // axios.get(`http://localhost/recommendation_system/api/user/OverAll.php?LRN="${JSON.parse(d).LRN}"&&RESULT=j`).then(function (response) {
+            //     setview(response.data)
+            //     console.log(response.data)
+            axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN="${JSON.parse(d).LRN}"&&FETCH='IA'`).then(function (response) {
                 setview(response.data)
-                console.log(response.data)
+                // console.log(response.data)
 
                 axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN="${JSON.parse(d).LRN}"&&RESULT=j`).then(function (response) {
                     setsub(`Scholastic_Aptitude_Test/${response.data}/1`)
