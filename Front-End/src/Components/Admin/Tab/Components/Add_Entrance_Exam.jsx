@@ -249,10 +249,10 @@ export default function Add_Entrance_Exam() {
                 </div>
                 <div className="tab3_form">
                     <p>{no ? "" : question[questionno].Question}</p>
-                    <p>{no ? "" :question[questionno].Choice_A}</p>
-                    <p>{no ? "" :question[questionno].Choice_B}</p>
-                    <p>{no ? "" :question[questionno].Choice_C}</p>
-                    <p>{no ? "" :question[questionno].Choice_D}</p>
+                    <div>{no ? "" :question[questionno].Choice_A}</div>
+                    <div>{no ? "" :question[questionno].Choice_B}</div>
+                    <div>{no ? "" :question[questionno].Choice_C}</div>
+                    <div>{no ? "" :question[questionno].Choice_D}</div>
                     <button onClick={()=>setquestionno(prev => prev - 1)}>Back</button>
                     <button onClick={()=>setquestionno(prev => prev + 1)}>Next</button>
                 </div>

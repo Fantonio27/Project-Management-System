@@ -35,40 +35,6 @@ import Checkbox from '@mui/material/Checkbox';
 import MenuItem from '@mui/material/MenuItem';
 import FilterListRoundedIcon from '@mui/icons-material/FilterListRounded';
 
-// const dialog_sx = {
-//     style: {
-//         backgroundColor: 'white',
-//         boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
-//         borderRadius: '15px',
-//         padding: '20px',
-//         width: '100%',
-//     },
-// }
-
-// const icon_dialog_sx = {
-//     backgroundColor: 'rgb(202, 240, 248,0.6)',
-//     padding: '15px',
-//     borderRadius: '30px',
-//     color: 'rgb(30, 96, 145, 0.9)',
-//     border: '1px solid #F8F9FA'
-// }
-
-// const button_sx = {
-//     padding: '6px 35px',
-//     backgroundColor: '#0096c7',
-//     color: 'white',
-//     borderRadius: '5px',
-//     textTransform: "none",
-//     fontSize: '13px',
-//     fontFamily: "'QuickSand', sans-serif",
-//     fontWeight: 'bold',
-//     letterSpacing: '2px',
-//     boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
-//     "&:hover": {
-//         backgroundColor: '#0077b6',
-//     }
-// }
-
 const search_sx = {
     position: "absolute",
     left: 10,
@@ -76,21 +42,6 @@ const search_sx = {
     color: "#252a3578",
     fontSize: "24px"
 }
-
-// const iconbutton_sx = {
-//     borderRadius: "10px",
-//     margin: "5px 1px",
-//     transition: "0.3s",
-//     "&:hover": {
-//         backgroundColor: "rgb(67, 160, 71,0.22)",
-//         transform: 'scale(1.1)'
-//     }
-// }
-
-// const icon_sx = {
-//     fontSize: "19px",
-//     color: "rgb(67, 160, 71)"
-// }
 
 const accordion_filter_sx = {
     padding: '5px 5px',
@@ -111,30 +62,6 @@ const select_sx = {
     '.MuiOutlinedInput-notchedOutline': { border: 0 },
 }
 
-// const columns = [   //Column in Table
-//     { id: 'RID', label: 'RID', minWidth: 20, align: 'center' },
-//     { id: 'LRN', label: 'LRN', minWidth: 160 },
-//     { id: 'EERID', label: 'Entrance Exam Result ID', minWidth: 100 },
-//     { id: 'IRID', label: 'Interest Assessment Result ID', minWidth: 100 },
-//     { id: 'Recommend_course', label: 'Recommend Course', minWidth: 20, align: 'center' },
-//     { id: 'ExamStatus', label: 'Exam_Status', minWidth: 20, align: 'center' },
-//     { id: 'Date', label: 'Date', minWidth: 50, align: 'center' },
-//     // { id: 'Action', label: 'Actions', minWidth: 0, align: 'center' },
-// ];
-
-
-// const field = [          //Field in dialog
-//     { id: 'FirstName', label: 'First Name', value: 'Francis' },
-//     { id: 'LastName', label: 'Last Name', value: 'Antonio' },
-//     { id: 'Email', label: 'Email Address', value: 'francis.antonio@yahoo.com' },
-//     { id: 'Password', label: 'Password', value: 'password' },
-//     { id: 'ExamStatus', label: 'Exam Status', value: 'Passed' },
-//     { id: 'SHSTrack', label: 'SHS Track', value: 'ICT' },
-// ]
-
-// const Transition = React.forwardRef(function Transition(props, ref) {
-//     return <Fade ref={ref} {...props} />;
-// });
 
 export default function Data_Table(props) {
 

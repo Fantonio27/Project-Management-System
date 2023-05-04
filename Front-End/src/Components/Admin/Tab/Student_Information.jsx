@@ -170,7 +170,7 @@ export default function Student_Results() {
                 <span style={{ color: '#db514cff' }}>
                     <MenuItem sx={menuitem_sx} onClick={handleCloseAction}>
                         <DeleteRoundedIcon sx={{ fontSize: "19px"}} />
-                        Delete
+                        Inactive
                     </MenuItem>
                 </span>
             </Menu>
