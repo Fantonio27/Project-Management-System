@@ -9,7 +9,7 @@
 
     $table = $params['table'];
 
-    $sql .= "SELECT COUNT(*) AS count FROM $table";
+    $sql = "SELECT COUNT(*) AS count FROM $table";
 
     $stmt = $conn->prepare($sql);
     $stmt->execute();

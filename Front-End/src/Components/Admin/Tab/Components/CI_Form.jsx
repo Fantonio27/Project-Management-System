@@ -56,7 +56,7 @@ export default function CI_Form() {
                     ...prev,
                     course: response.data
                 }))
-                console.log(response.data)
+                // console.log(response.data)
                 setDataform(prev => ({
                     ...prev,
                     CID: `CID_${response.data + 1}`
