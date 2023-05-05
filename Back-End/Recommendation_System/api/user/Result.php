@@ -26,25 +26,25 @@ switch($method) {
             FROM `course_information` 
             INNER JOIN course_percentage on course_percentage.CID = course_information.CID";
             // -- WHERE course_percentage.$subject >= '30' AND (course_information.INTEREST = 'Health Science' OR course_information.INTEREST = 'Education & Training')";
-            if($ia === "'R AND S'"){
+            if($ia === "'R AND S'" || $ia === "'S AND R'"){
                 $sql .= " WHERE course_percentage.$subject. >= 30 AND (course_information.INTEREST = 'Health Science' OR course_information.INTEREST = 'Human Service' OR course_information.INTEREST = 'Law & Public Safety')";
-            }else if($ia === "R AND E"){
+            }else if($ia === "R AND E" || $ia === "'R AND E'"){
                 $sql .= " WHERE course_percentage.$subject >= 30 AND (course_information.INTEREST = 'Arts & Communications' OR course_information.INTEREST = 'Hospitality & Tourism')";
-            }else if($ia === "'I AND S'"){
-                $sql .= " WHERE course_percentage.$subject >= 30  AND (course_information.INTEREST = 'Health Science' OR course_information.INTEREST = 'Education & Training')";
-            }else if($ia === "I AND R"){
-                $sql .= " WHERE course_percentage.$subject >= '30' AND (course_information.INTEREST = 'Agriculture' OR course_information.INTEREST = 'Health Science' OR course_information.INTEREST = 'Information Technology' OR course_information.INTEREST = 'Science, Technology & Math')";
-            }else if($ia === "A AND S"){
+            }else if($ia === "'I AND S'"|| $ia === "'S AND I'"){
+                $sql .= " WHERE course_percentage.$subject >= 30 AND (course_information.INTEREST = 'Health Science' OR course_information.INTEREST = 'Education & Training')";
+            }else if($ia === "I AND R" || $ia === "'R AND I'"){
+                $sql .= " WHERE course_percentage.$subject >= '30' AND (course_information.INTEREST = 'Agriculture' OR course_information.INTEREST = 'Health Science' OR course_information.INTEREST = 'Information Technology' OR course_information.INTEREST = 'Science, Technology, Math')";
+            }else if($ia === "A AND S" || $ia === "'S AND A'"){
                 $sql .= " WHERE course_percentage.$subject >= '30' AND (course_information.INTEREST = 'Education & Training' OR course_information.INTEREST = 'Arts & Communications' OR course_information.INTEREST = 'Marketing & Sales')";
-            }else if($ia === "A AND R"){
+            }else if($ia === "A AND R" || $ia === "'R AND A'"){
                 $sql .= " WHERE course_percentage.$subject >= '30' AND (course_information.INTEREST = 'Arts & Communications' OR course_information.INTEREST = 'Education & Training')";
-            }else if($ia === "S AND E"){
+            }else if($ia === "S AND E" || $ia === "'E AND S'"){
                 $sql .= " WHERE course_percentage.$subject >= '30' AND (course_information.INTEREST = 'Government' OR course_information.INTEREST = 'Marketing & Sales' OR course_information.INTEREST = 'Law & Public Safety')";
-            }else if($ia === "E AND C"){
+            }else if($ia === "E AND C"|| $ia === "'C AND E'"){
                 $sql .= " WHERE course_percentage.$subject >= '30' AND (course_information.INTEREST = 'Business & Management' OR course_information.INTEREST = 'Finance')";
-            }else if($ia === "E AND A"){
+            }else if($ia === "E AND A"|| $ia === "'A AND E'"){
                 $sql .= " WHERE course_percentage.$subject >= '30' AND (course_information.INTEREST = 'Arts & Communications' OR course_information.INTEREST = 'Marketing & Sales')";
-            }else if($ia === "C AND R"){
+            }else if($ia === "C AND R"|| $ia === "'R AND C'"){
                 $sql .= " WHERE course_percentage.$subject >= '30' AND (course_information.INTEREST = 'Architecture & Construction' OR course_information.INTEREST = 'Manufacturing' OR course_information.INTEREST = 'Transportation')";
             }
             // $sql = "SELECT course_information.CID, course_information.COURSE_NAME, ia_result.IAQID, course_percentage.MATH, course_percentage.SCIENCE, 

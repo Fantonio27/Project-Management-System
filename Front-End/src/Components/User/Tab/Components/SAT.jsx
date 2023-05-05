@@ -40,7 +40,12 @@ export default function SAT() {
     const [nextsub, setnextsub] = React.useState(false)
     const [choices, setchoices] = React.useState(['Choice_A', 'Choice_B', 'Choice_C', 'Choice_D'])
     const Letter = ['A', 'B', 'C', 'D']
-
+    const [count, setcount] = React.useState({
+        Math: 0,
+        Science: 0,
+        English: 0,
+        Reading_Comprehension: 0,
+    })
     const [answer, setanswer] = React.useState([{
         id: '',
         subject: '',
@@ -48,17 +53,16 @@ export default function SAT() {
         answer: '',
     }])
 
-    const [minute, setminute] = React.useState(40)
+    const [minute, setminute] = React.useState(5)
     const [second, setsecond] = React.useState(59)
 
     const [counter, setcounter] = React.useState([
-        {Subject: "Math", answerno : 0},
-        {Subject: "Science", answerno : 0},
-        {Subject: "English", answerno : 0},
-        {Subject: "Reading Comprehension", answerno : 0},
+        { Subject: "Math", answerno: 0 },
+        { Subject: "Science", answerno: 0 },
+        { Subject: "English", answerno: 0 },
+        { Subject: "Reading_Comprehension", answerno: 0 },
     ])
-    React.useEffect(() => {
-        console.log(questions)
+    React.useEffect(() => {  
         if (questions.length > 1) {
             questions.map((data) => {
                 axios.post('http://localhost/recommendation_system/api/user/Saves_Answer.php/saves', {
@@ -111,7 +115,7 @@ export default function SAT() {
         } else {
             axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN='${JSON.parse(user).LRN}'&&RESULT=ALL`).then(function (response) {
                 window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(response.data))
-                console.log(response.data)
+                // console.log(response.data)
             })
 
             navigate(`../${value}/1`)
@@ -137,19 +141,21 @@ export default function SAT() {
 
         axios.get(`http://localhost/recommendation_system/api/user/Exam_Information.php?SUBJECT='${parts2}'`).then(function (response) {
             setsubject(response.data)
+            setsecond(response.data[0].TIMELIMIT_SECOND)
+            setminute(response.data[0].TIMELIMIT_MINUTE)
         });
 
         if (parts2 === "Math") {
             setpart("I")
         } else if (parts2 === "Science") {
-            setpart("Ii")
+            setpart("II")
         } else if (parts2 === "English") {
             setpart("III")
         } else {
             setpart("IV")
         }
-
     }, [nextsub])
+
 
     React.useEffect(() => {
         const idsub = JSON.parse(d)[parts1 - 1].EQID
@@ -167,8 +173,27 @@ export default function SAT() {
 
         axios.get(`http://localhost/recommendation_system/api/user/FetchAllAnser.php?SUBJECT="${parts2}"&&FETCH=EACH&&LRN="${JSON.parse(user).LRN}"`).then(function (response) {
             setsaveans(response.data)
-            // console.log(response.data)
         })
+
+
+        axios.get(`http://localhost/recommendation_system/api/user/Count.php?SUBJECT="${counter.Subject}"&&LRN="${JSON.parse(user).LRN}"`).then(function (response) {
+        
+        })
+
+        counter.map((ACAC, index)=>{
+            axios.get(`http://localhost/recommendation_system/api/user/Count.php?SUBJECT="${ACAC.Subject}"&&LRN="${JSON.parse(user).LRN}"`).then(function (response) {
+            
+                if(response.data[index] !== undefined){
+                    setcount(prev=>({
+                        ...prev,
+                        [response.data[index].SUBJECT] : response.data[index].count
+                    }))
+                }
+            })
+        })
+
+
+
 
     }, [questionno])
 
@@ -194,7 +219,7 @@ export default function SAT() {
             id: JSON.parse(d)[parts1 - 1].EQID,
             value: value,
         }).then(function (response) {
-            console.log(response.data)
+    
         });
 
     }
@@ -354,10 +379,10 @@ export default function SAT() {
                                         <div className="Status_subjects" key={index}>
                                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                 <p>{sub.Subject}</p>
-                                                <p>{sub.answerno}/{questions.length}</p>
+                                                <p>{count[sub.Subject]}/{questions.length}</p>
                                             </div>
                                             <div style={{ width: '100%', margin: '5px 0px' }}>
-                                                <LinearProgress variant="determinate" value={10} color="success" sx={{ borderRadius: '20px', height: '5px' }} />
+                                                <LinearProgress variant="determinate" value={count[sub.Subject] / questions.length * 100} color="success" sx={{ borderRadius: '20px', height: '5px' }} />
                                             </div>
                                         </div>
                                     )

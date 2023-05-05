@@ -304,4 +304,10 @@
     font-size: 15px;
     font-weight: bold;
     margin: 10px 10px 5px;
+    color: #4e7f38ff;
+}
+
+.Link{
+    text-decoration: none;
+    color: #252a35ff;
 }

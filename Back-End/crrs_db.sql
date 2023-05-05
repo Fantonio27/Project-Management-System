@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2023 at 01:39 AM
+-- Generation Time: May 05, 2023 at 02:15 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -107,33 +107,33 @@ INSERT INTO `course_information` (`CID`, `FIELD`, `ACRONYM`, `COURSE_NAME`, `INF
 ('CID_53', 'Health Sciences', 'BS Midwifery', 'Bachelor of Science in Midwifery', 'The Bachelor of Science in Midwifery (BS Midwifery) is a four-year degree program in the Philippines that will train you in addressing the needs of expecting mothers and their children starting from the early stages of pregnancy up to the first few weeks following childbirth. By taking this course, you will learn everything you\'ll need to know about reproductive health; family planning; pregnancy, labor, and delivery; neonatal care; and the moral and legal principles involved in the practice of midwifery in the Philippines. ', 'BS MIDWIFERY.jpg', 'Health Science', '04/17/23', ''),
 ('CID_54', 'Health Sciences', 'BSN', 'Bachelor of Science in Nursing', 'Bachelor of Science in Nursing (BSN) is a four-year degree program in the Philippines that revolves around caring for the sick or injured. This does not only involve addressing immediate threats to the patient\'s health, but also guiding the patient all the way through physical, mental, and emotional recovery. As a nursing student you will be trained to conduct health assessments, provide patients with preoperative, intraoperative, and postoperative care, perform life-saving interventions, respond to disaster and emergency situations, and keep medical documentations. ', 'BS NURSING.jpg', 'Health Science', '04/17/23', ''),
 ('CID_55', 'Health Sciences', 'BSOT', 'Bachelor of Science in Occupational Therapy', 'The Bachelor of Science in Occupational Therapy (BSOT) is a five-year degree program in the Philippines that is concerned with using different methods and strategies to help people with serious physical, mental, or emotional conditions that keep them from functioning the way they are supposed to. It\'s mostly similar to Physical Therapy in the sense that it aims to help a person recover from an injury or learn to live with it if it can no longer be remedied, but contrary to Physical Therapy that is more focused on the physical functioning of a person such as walking or moving his body, Occupational Therapy is more focused on restoring or uplifting the mental or emotional well-being of a patient. ', 'BS OCCUPATIONAL THERAPY.jpg', 'Health Science', '04/17/23', ''),
-('CID_56', 'Health Sciences', 'BS Pharmacy', 'Bachelor of Science in Pharmacy', '', 'BS PHARMACIST.jpg', 'Health Science', '04/17/23', ''),
-('CID_57', 'Health Sciences', 'BSPT', 'Bachelor of Science in Physical Therapy', 'The Bachelor of Science in Physical Therapy (BSPT) is a five-year degree program in the Philippines that is concerned with using various treatments and exercises to restore the function of a broken bone or to compensate for the loss of a certain body part', 'BS PHYSICAL THERAPY.jpg', 'Health Science', '04/17/23', ''),
-('CID_58', 'Health Sciences', 'BS Rad Tech', 'Bachelor of Science in Radiologic Technology', 'The Bachelor of Science in Radiologic Technology (BSRT) is a four-year degree program in the Philippines that will train you in applying x-ray energy to assist in the diagnosis or treatment of diseases, performing radiographic or nuclear medicine procedur', 'BS RADIOLOGIC TECHNOLOGY.jpg', 'Health Science', '04/17/23', ''),
+('CID_56', 'Health Sciences', 'BS Pharmacy', 'Bachelor of Science in Pharmacy', 'is a four-year degree program in the Philippines that is concerned with drugs and other related substances. These include medicinal drugs, cosmetics, and common household products. By enrolling in this program you will learn how to develop and manufacture drugs for the diagnosis, prevention, and treatment of diseases.', 'BS PHARMACIST.jpg', 'Health Science', '04/17/23', ''),
+('CID_57', 'Health Sciences', 'BSPT', 'Bachelor of Science in Physical Therapy', 'The Bachelor of Science in Physical Therapy (BSPT) is a five-year degree program in the Philippines that is concerned with using various treatments and exercises to restore the function of a broken bone or to compensate for the loss of a certain body part.', 'BS PHYSICAL THERAPY.jpg', 'Health Science', '04/17/23', ''),
+('CID_58', 'Health Sciences', 'BS Rad Tech', 'Bachelor of Science in Radiologic Technology', 'is a four-year degree program in the Philippines that will train you in applying x-ray energy to assist in the diagnosis or treatment of diseases, performing radiographic or nuclear medicine procedures and to produce images for the interpretation of a licensed medical practitioner.', 'BS RADIOLOGIC TECHNOLOGY.jpg', 'Health Science', '04/17/23', ''),
 ('CID_59', 'Health Sciences', 'BSRT', 'Bachelor of Science in Respiratory Therapy', 'The Bachelor of Science in Respiratory Therapy is a four-year degree program in the Philippines that will train you in providing clinical pulmonary care procedures that will help in the proper diagnosis, treatment, and prevention of diseases. ', 'Respiratory therapist.jpg', 'Health Science', '04/17/23', ''),
-('CID_6', 'Humanities', 'BFA Sculpture', 'Bachelor of Fine Arts Major in Sculpture', 'is a four-year degree program in the Philippines that is concerned with expressing interests and ideas in three-dimensional (3-D) art. As a branch of Fine Arts, it shares a lot of similar courses with BFA Major in Painting; however, contrary to the latter', 'BFA SCULPTURES.jpg', 'Arts & Communications', '04/17/23', ''),
+('CID_6', 'Humanities', 'BFA Sculpture', 'Bachelor of Fine Arts Major in Sculpture', 'is a four-year degree program in the Philippines that is concerned with expressing interests and ideas in three-dimensional (3-D) art. As a branch of Fine Arts, it shares a lot of similar courses with BFA Major in Painting.', 'BFA SCULPTURES.jpg', 'Arts & Communications', '04/17/23', ''),
 ('CID_60', 'Education', 'BSED', 'Bachelor in Secondary Education', 'The Bachelor of Secondary Education (BSEd) is a four-year degree program in the Philippines that will prepare you in teaching in secondary school. It has several areas of specialization: English, Filipino, Islamic Studies, Mathematics, Music, Arts, Physic', 'BSED SECONDARY EDUCATION.jpg', 'Education & Training', '04/17/23', ''),
-('CID_61', 'Education', 'BEED', 'Bachelor in Elementary Education', 'The Bachelor of Elementary Education (BEED) is a four-year degree program in the Philippines that will train you in teaching grade school students. BEED has two specializations: Bachelor in Elementary Education Major in Preschool Education and Bachelor in', 'BEED ELEMENTARY EDUCATION.jpg', 'Education & Training', '04/17/23', ''),
-('CID_62', 'Education', 'BLIS', 'Bachelor of Library and Information Science in the Philippines', 'The Bachelor of Library and Information Science (BLIS) is a four-year degree program in the Philippines that will teach you about the different sources of information, how to acquire them, and how to develop and maintain a collection of reference material', 'BLIS Library and information science.jpg', 'Education & Training', '04/17/23', ''),
-('CID_63', 'Engineering', 'BPE', 'Bachelor of Physical Education', 'The Bachelor of Physical Education is a four-year degree program in the Philippines that will train you in developing and maintaining the optimal physical fitness and functionality individuals. It has two majors: School Physical Education which is a teach', 'BPE PHYSICAL EDUCATION.jpg', 'Education & Training', '04/17/23', ''),
+('CID_61', 'Education', 'BEED', 'Bachelor in Elementary Education', 'is a four-year degree program in the Philippines that will train you in teaching grade school students. Enrolling in this program will help you learn about the basic concepts and theories of teaching, the techniques for simplifying learning and adolescent development on students\' ability to learn.', 'BEED ELEMENTARY EDUCATION.jpg', 'Education & Training', '04/17/23', ''),
+('CID_62', 'Education', 'BLIS', 'Bachelor of Library and Information Science in the Philippines', 'The Bachelor of Library and Information Science (BLIS) is a four-year degree program in the Philippines that will teach you about the different sources of information, how to acquire them, and how to develop and maintain a collection of reference materials.', 'BLIS Library and information science.jpg', 'Education & Training', '04/17/23', ''),
+('CID_63', 'Engineering', 'BPE', 'Bachelor of Physical Education', 'is a four-year degree program in the Philippines that will train you in developing and maintaining the optimal physical fitness and functionality individuals. It has two majors: School Physical Education which is a teacher education training program and Sports and Wellness Management which is program that caters to the needs of the corporate industry.', 'BPE PHYSICAL EDUCATION.jpg', 'Education & Training', '04/17/23', ''),
 ('CID_64', 'Engineering', 'BS AeroE', 'Bachelor of Science in Aeronautical Engineering', 'The Bachelor of Science in Aeronautical Engineering (BS AeroE) is a five-year degree program in the Philippines that is concerned with aircrafts and air transportation. Some of the things you will learn through this program are aircraft design; aircraft', 'BSAERO AERONATICAL ENGINEER.jpg', 'Architecture & Construction', '04/17/23', ''),
 ('CID_65', 'Engineering', 'BSCerE', 'Bachelor of Science in Ceramic Engineering', 'The Bachelor of Science in Ceramic Engineering (BS CerE) is a five-year degree program in the Philippines that will train you in applying knowledge of mathematics, physical sciences, and engineering sciences to the practice of ceramic engineering.', 'BSCERE CERAMIC ENGINEER.jpg', 'Manufacturing', '04/17/23', ''),
-('CID_66', 'Engineering', 'BSChE', 'Bachelor of Science in Chemical Engineering', 'The Bachelor of Science in Chemical Engineering (BS ChE) is a five-year degree program in the Philippines that is concerned with the application of different sciences (ie. natural, social, formal, applied sciences) to come up with safe, ethical and econom', 'BSCHE CHEMICAL ENGINEER.jpg', 'Science, Technology, Math', '04/17/23', ''),
-('CID_67', 'Engineering', 'BSCE', 'Bachelor of Science in Civil Engineering', 'The Bachelor of Science in Civil Engineering (BSCE) is a five-year degree program in the Philippines that is concerned with the use of scientific and mathematical principles in the construction of buildings and infrastructures such as roads, bridges, tunn', 'Civil engineer.jpg', 'Architecture & Construction', '04/17/23', ''),
-('CID_68', 'Engineering', 'BSCpE', 'Bachelor of Science in Computer Engineering', 'Bachelor of Science in Computer Engineering (BS CPE) is a five-year degree program in the Philippines that will train you in the design, development, and maintenance of computer systems including both hardware and software.Aside from the technical aspects', 'BSCPE COMPUTER ENGINEER.jpg', 'Information Technology', '04/17/23', ''),
-('CID_69', 'Media and Communication', 'AB Broadcasting', 'Bachelor of Arts in Broadcasting', 'The Bachelor of Arts in Broadcasting (AB Broadcasting) is a four-year degree program in the Philippines that will prepare you for a career in the media industry, particularly in television and radio networks. Being a subfield of Class Communication, AB Br', 'AB BROADCASTING.jpg', 'Arts & Communications', '04/17/23', ''),
-('CID_7', 'Humanities', 'BFA Visual Communication', 'Bachelor of Fine Arts Major in Visual Communication', 'is a four-year degree program in the Philippines that is concerned with using both traditional and modern technology to create effective advertisements, web and new media designs. Through this major you will learn about the types of letters and their stru', 'BFA VISUAL COMM.jpg', 'Arts & Communications', '04/17/23', ''),
-('CID_70', 'Media and Communication', 'AB Communication', 'Bachelor of Arts in Communication', 'The Bachelor of Arts in Communication (AB Communication) is a four-year degree program in the Philippines that will prepare you for a career in the media or similar industries — advertising agencies and public relations firms in particular ', 'AB COMMUNICATION.jpg', 'Arts & Communications', '04/17/23', ''),
-('CID_71', 'Public Administration', 'BS Community Development', 'Bachelor of Science in Community Development', 'The Bachelor of Science in Community Development is a four-year degree program in the Philippines that will train you in building and developing communities by providing their inhabitants with knowledge and resources that they can use to improve the quali', 'BS COMMUNITY DEVELOPMENT.jpg', 'Human Service', '04/17/23', ''),
-('CID_72', 'Public Administration', 'BSCA', 'Bachelor of Science in Customs Administration', 'The Bachelor of Science in Customs Administration is a four-year degree program in the Philippines that will train you in handling import and export operations. Some examples of courses that you may take while enrolled in this program include: Principles ', 'BSCA CUSTOMS ADMINISTRATOR.jpg', 'Government', '04/17/23', ''),
-('CID_73', 'Transportation', 'BSMT', 'Bachelor of Science in Marine Transportation', 'The Bachelor of Science in Marine Transportation (BSMT) is a four-year degree program in the Philippines that will train you in performing and fulfilling the duties and responsibilities of a marine deck officer including navigation, radio communication, a', 'BSMT MARINE TRASPORATATIO.jpg', 'Transportation ', '04/17/23', ''),
-('CID_74', 'Nutrition', 'BSFT', 'Bachelor of Science in Food Technology', 'The Bachelor of Science in Food Technology (BSFT) is a four-year degree program in the Philippines that will train you in applying principles of science and other related fields in the handling, preparation, processing, packaging, storage, and distributio', 'BS FOOD TECH.jpg', 'Agriculture', '04/17/23', ''),
-('CID_75', 'Nutrition', 'BS Nutrition and Dietetics', 'Bachelor of Science in Nutrition and Dietetics', 'The Bachelor of Science in Nutrition and Dietetics (BS ND) is a four-year degree program in the Philippines that will train you in planning, implementing, monitoring, and documenting nutrition programs for a given individual, group or community. It will a', 'BS NUTRITION AND DIETETICS.jpg', 'Health Science', '04/17/23', ''),
+('CID_66', 'Engineering', 'BSChE', 'Bachelor of Science in Chemical Engineering', 'is a five-year degree program in the Philippines that is concerned with the application of different sciences (ie. natural, social, formal, applied sciences) to come up with safe, ethical and economic ways of converting raw materials into more valuable products.', 'BSCHE CHEMICAL ENGINEER.jpg', 'Science, Technology, Math', '04/17/23', ''),
+('CID_67', 'Engineering', 'BSCE', 'Bachelor of Science in Civil Engineering', 'is a five-year degree program in the Philippines that is concerned with the use of scientific and mathematical principles in the construction of buildings and infrastructures such as roads, bridges, tunnels, dams, airports, and the like. By enrolling in this program, you will learn the things you need to consider when constructing buildings and infrastructures.', 'Civil engineer.jpg', 'Architecture & Construction', '04/17/23', ''),
+('CID_68', 'Engineering', 'BSCpE', 'Bachelor of Science in Computer Engineering', 'is a five-year degree program in the Philippines that will train you in the design, development, and maintenance of computer systems including both hardware and software. Aside from the technical aspects of the program, it will also equip you with knowledge of business principles and practices.', 'BSCPE COMPUTER ENGINEER.jpg', 'Information Technology', '04/17/23', ''),
+('CID_69', 'Media and Communication', 'AB Broadcasting', 'Bachelor of Arts in Broadcasting', 'is a four-year degree program in the Philippines that will prepare you for a career in the media industry, particularly in television and radio networks. Being a subfield of Class Communication, AB Broadcasting has similar courses with Communication and AB Journalism', 'AB BROADCASTING.jpg', 'Arts & Communications', '04/17/23', ''),
+('CID_7', 'Humanities', 'BFA Visual Communication', 'Bachelor of Fine Arts Major in Visual Communication', 'is a four-year degree program in the Philippines that is concerned with using both traditional and modern technology to create effective advertisements, web and new media designs. ', 'BFA VISUAL COMM.jpg', 'Arts & Communications', '04/17/23', ''),
+('CID_70', 'Media and Communication', 'AB Communication', 'Bachelor of Arts in Communication', 'The Bachelor of Arts in Communication (AB Communication) is a four-year degree program in the Philippines that will prepare you for a career in the media or similar industries — advertising agencies and public relations firms in particular.', 'AB COMMUNICATION.jpg', 'Arts & Communications', '04/17/23', ''),
+('CID_71', 'Public Administration', 'BS Community Development', 'Bachelor of Science in Community Development', 'is a four-year degree program in the Philippines that will train you in building and developing communities by providing their inhabitants with knowledge and resources that they can use to improve the quality of their lives. not only economically but socially and politically speaking as well.', 'BS COMMUNITY DEVELOPMENT.jpg', 'Human Service', '04/17/23', ''),
+('CID_72', 'Public Administration', 'BSCA', 'Bachelor of Science in Customs Administration', 'is a four-year degree program in the Philippines that will train you in handling import and export operations', 'BSCA CUSTOMS ADMINISTRATOR.jpg', 'Government', '04/17/23', ''),
+('CID_73', 'Transportation', 'BSMT', 'Bachelor of Science in Marine Transportation', 'is a four-year degree program in the Philippines that will train you in performing and fulfilling the duties and responsibilities of a marine deck officer including navigation, radio communication, and basic safety among other things.', 'BSMT MARINE TRASPORATATIO.jpg', 'Transportation ', '04/17/23', ''),
+('CID_74', 'Nutrition', 'BSFT', 'Bachelor of Science in Food Technology', 'is a four-year degree program in the Philippines that will train you in applying principles of science and other related fields in the handling, preparation, processing, packaging, storage, and distribution of food to ensure that they remain safe and nutritious.', 'BS FOOD TECH.jpg', 'Agriculture', '04/17/23', ''),
+('CID_75', 'Nutrition', 'BS Nutrition and Dietetics', 'Bachelor of Science in Nutrition and Dietetics', 'is a four-year degree program in the Philippines that will train you in planning, implementing, monitoring, and documenting nutrition programs for a given individual, group or community. It will also teach you how to plan and implement all aspects of nutrition care including identification of short- and long-term goals.', 'BS NUTRITION AND DIETETICS.jpg', 'Health Science', '04/17/23', ''),
 ('CID_76', 'Engineering', 'BSME', 'Bachelor of Science in Mechanical Engineering', 'is a five-year degree program in the Philippines that focuses on the fundamental knowledge and skills of mechanical engineering. This revolves around the design, production, and maintenance of machines from simple home appliances, gadgets, and automobiles, to more complicated industrial equipment, robots, and jet engines.', 'mech eng.jpg', 'Architecture & Construction', '04/30/23', ''),
-('CID_77', 'Engineering', 'BSMetE', 'Bachelor of Science in Metallurgical Engineering', 'is a five-year degree program in the Philippines that is mainly concerned with metals and their conversion into useful products. Among the things that you may learn while enrolled in this program are the characteristics of metals and minerals, the processes involved in converting them into new products, the equipment and testing devices used in these processes', 'metal eng.jpg', 'Architecture & Construction', '04/30/23', ''),
+('CID_77', 'Engineering', 'BSMetE', 'Bachelor of Science in Metallurgical Engineering', 'is a five-year degree program in the Philippines that is mainly concerned with metals and their conversion into useful products. Among the things that you may learn while enrolled in this program are the characteristics of metals and minerals, the processes involved in converting them into new products, the equipment and testing devices used in these processes.', 'metal eng.jpg', 'Architecture & Construction', '04/30/23', ''),
 ('CID_78', 'Engineering', 'BSMatE', 'Bachelor of Science in Materials Engineering', 'is a five-year degree program in the Philippines that will teach you about the different materials that are used or can be used to produce a wide array of products including their characteristics, uses, and advantages or disadvantages over the others.', 'mat eng.jpg', 'Manufacturing', '04/30/23', ''),
 ('CID_79', 'Engineering', 'BSPetE', 'Bachelor of Science in Petroleum Engineering', 'is a five-year degree program that is concerned with the extraction of oil, petroleum, and other natural gases from the earth and their subsequent delivery to processing facilities as well as the design and development of new technology that will speed up the process while keeping the operational cost to a minimum.', 'pet eng.jpg', 'Manufacturing', '04/30/23', ''),
-('CID_8', 'Social Science', 'AB Economics', 'Bachelor of Arts in Economics', 'The Bachelor of Arts in Economics (AB Economics) is a four-year degree program in the Philippines that will help you gain a better understanding of economic systems and their structure. This includes the entities that compose them, their relationship with', 'AB ECONOMICS.jpg', 'Finance', '04/17/23', ''),
+('CID_8', 'Social Science', 'AB Economics', 'Bachelor of Arts in Economics', 'is a four-year degree program in the Philippines that will help you gain a better understanding of economic systems and their structure. This includes the entities that compose them, their relationship with one another, and how the introduction of external factors can affect not only them but the entire system as well. ', 'AB ECONOMICS.jpg', 'Finance', '04/17/23', ''),
 ('CID_80', 'Engineering', 'BSEE', 'Bachelor of Science in Electrical Engineering', 'is a five-year degree program in the Philippines that is concerned with electricity, its production, transmission, distribution, and usage. Its curriculum covers everything from the design of electrical systems up to their operation and maintenance as well as cheaper and safer ways of completing engineering projects.', 'electric man.jpeg', 'Architecture & Construction', '04/30/23', ''),
 ('CID_81', 'Engineering', 'BSECE', 'Bachelor of Science in Electronics and Communications Engineering', 'is a five-year degree program in the Philippines that is mainly concerned with the conceptualization, design and development of any electronic, computer or communication products, systems, services and processes.', 'electric com eng.jpg', 'Information Technology', '04/30/23', ''),
 ('CID_82', 'Engineering', 'BSGE', 'Bachelor of Science in Geodetic Engineering', 'is a five-year degree program in the Philippines that is concerned with gathering data related to the earth\'s surface and using them to produce spatial information systems, maps, plans, charts and other products.', 'geo eng.jpg', 'Architecture & Construction', '04/30/23', ''),
@@ -144,7 +144,7 @@ INSERT INTO `course_information` (`CID`, `FIELD`, `ACRONYM`, `COURSE_NAME`, `INF
 ('CID_87', 'Engineering', 'BSSE', 'Bachelor of Science in Sanitary Engineering', 'a five-year degree program in the Philippines that is primarily concerned with the designing, planning, operation, and maintenance of sanitation facilities; soil, water, and air pollution control; and the general hygienic projects of residential, commercial, and industrial buildings.', 'sanitary eng.jpg', 'Architecture & Construction', '04/30/23', ''),
 ('CID_88', 'Media and Communication', 'AB Journalism', 'Bachelor of Arts in Journalism', 'is a four-year degree program in the Philippines that will prepare you for a career in the media industry. Like AB Broadcasting and AB Communication, which are sub-fields of Mass Communication, AB in Journalism revolves around the communication process and the role mass media plays in it.', 'journalist.jpg', 'Arts & Communications', '04/30/23', ''),
 ('CID_89', 'Media and Communication', 'AB MassComm', 'Bachelor of Arts in Mass Communication', 'is a four-year degree program in the Philippines that will train you in the effective use of different media in order to send out specific messages to targeted audiences.', 'mas comm.jpg', 'Arts & Communications', '04/30/23', ''),
-('CID_9', 'Social Science', 'BS Psychology', 'Bachelor of Science in Psychology', 'The Bachelor of Science in Psychology (BS Psychology) is a four-year degree program in the Philippines that is concerned with the way humans think and behave. By taking this course, you will learn how to conduct and interpret different tests such as those', 'BS PSYCHOLOGY.jpg', 'Human Service', '04/17/23', ''),
+('CID_9', 'Social Science', 'BS Psychology', 'Bachelor of Science in Psychology', 'is a four-year degree program in the Philippines that is concerned with the way humans think and behave. By taking this course, you will learn how to conduct and interpret different tests such as those aiming at evaluating a person\'s intelligence (IQ test), skills (aptitude tests), and personality (personality test); and how you can apply your findings in different settings.', 'BS PSYCHOLOGY.jpg', 'Human Service', '04/17/23', ''),
 ('CID_90', 'Media and Communication', 'BS DevComm', 'Bachelor of Science in Development Communication', 'is a four-year degree program in the Philippines that revolves around the role of communication in the pursuit of development. As a Development Communication student, you will learn about the different communication theories and how you can use them to plan, implement, and manage information campaigns targeted at specific audiences.', 'dev com.jpg', 'Human Service', '04/30/23', ''),
 ('CID_91', 'Public Administration', 'BS Foreign Service', 'Bachelor of Science in Foreign Service', 'is a four-year degree program that will will train you in maintaining peaceful relations with other countries, facilitating the flow of investments from international sources, promoting tourism, and addressing the needs of Filipinos working overseas among other things.', 'foreign service.jpg', 'Government', '04/30/23', ''),
 ('CID_92', 'Public Administration', 'BSIS', 'Bachelor of Science in International Studies', 'is a four-year degree program in the Philippines that will teach you about different government systems and the social, economic, cultural, geographical, and political factors that dictate or affect the way they operate.', 'int studies.jpg', 'Government', '04/30/23', ''),
@@ -226,7 +226,7 @@ INSERT INTO `course_information_job` (`CIJID`, `JOB_NAME`, `INFORMATION`, `CID`)
 ('CIJID_147', 'Executive Assistant', 'Is responsible for managing the schedules and communications of key company executives. Their duties include prioritizing emails and phone calls, gathering documents to prepare for meetings and coordinating travel arrangements.', 'CID_49'),
 ('CIJID_148', 'Real Estate Consultant', 'Provides clients with assistance throughout the buying and selling process of properties. Their duties include providing lease management services, performing market analysis and helping clients find the best properties to invest in.', 'CID_50'),
 ('CIJID_149', 'Real Estate Appraiser', 'Assess the value of a property after a thorough inspection, by researching comparable homes, properties, buildings, public records, legal descriptions, and tax records.', 'CID_50'),
-('CIJID_15', 'Art Critics ', 'An art critic write reviews of individual art works or art exhibitions for the general public or for a more specialized audience. His or her articles are then published in newspapers, magazines, academic journals, and on art blogs. Art critics base their ', 'CID_5'),
+('CIJID_15', 'Art Critics ', 'An art critic write reviews of individual art works or art exhibitions for the general public or for a more specialized audience. His or her articles are then published in newspapers, magazines, academic journals, and on art blogs. ', 'CID_5'),
 ('CIJID_150', 'Accounts Personnel', 'Duties include recording transactions, payments and expenses and processing invoices. They also send out bills and invoices, follow up on overdue payments and ensure that a company\'s invoices.', 'CID_50'),
 ('CIJID_151', 'Travel Account Representative', 'Advises clients regarding destinations, cultures, customs, weather and activities. Collects payments, books travel arrangements and pays applicable fees. Handles travel issues, conflicts, complaints, cancelations and refunds.', 'CID_51'),
 ('CIJID_152', 'Local Tourism Officer', 'Are responsible for promoting tourism and devising tourist development initiatives/campaigns with the aim of generating and increasing revenue.', 'CID_51'),
@@ -237,7 +237,7 @@ INSERT INTO `course_information_job` (`CIJID`, `JOB_NAME`, `INFORMATION`, `CID`)
 ('CIJID_157', 'Midwife', 'Deliver babies and provide antenatal and postnatal advice, care and support to women, their babies, their partners and families.', 'CID_53'),
 ('CIJID_158', 'Health Facility Administrator', 'Oversee the day-to-day administrative operations of hospitals and other healthcare facilities. Their responsibilities include planning and supervising all medical services including monitoring budgets and updating health records.', 'CID_53'),
 ('CIJID_159', 'Clinic Manager', 'Oversee the day-to-day management of medical clinics and outpatient facilities. They liaise with patients and healthcare professionals, and coordinate patient care plans. Their duties include managing budgets and billing, appointing staff, and assigning tasks.', 'CID_53'),
-('CIJID_16', 'Sculptor ', 'Sculptors design and shape three-dimensional works of art, either by molding and joining materials such as clay, glass, plastic, and metal or by cutting and carving forms from a block of plaster, wood, or stone. Some sculptors combine various materials to', 'CID_6'),
+('CIJID_16', 'Sculptor ', 'Sculptors design and shape three-dimensional works of art, either by molding and joining materials such as clay, glass, plastic, and metal or by cutting and carving forms from a block of plaster, wood, or stone. Some sculptors combine various materials to create mixed-media displays called installations.', 'CID_6'),
 ('CIJID_160', 'College Professor', 'Developing curricula and delivering course material. Conducting research, fieldwork, and investigations, and writing up reports. Publishing research, attending conferences, delivering presentations, and networking with others in the field.', 'CID_54'),
 ('CIJID_161', 'Clinic Nurse', 'Assessing patients, ordering medical tests and developing treatment plans. Providing clinical expertise for complex cases and medical emergencies.', 'CID_54'),
 ('CIJID_162', 'Community Health Nurse', 'Develop intervention plans to address the health, safety, and quality of life needs of individuals and communities. They may also identify health concerns that impact a specific population, conduct community assessments to identify potential problems', 'CID_54'),
@@ -248,7 +248,7 @@ INSERT INTO `course_information_job` (`CIJID`, `JOB_NAME`, `INFORMATION`, `CID`)
 ('CIJID_167', 'Ultrasound Technologist', 'Uses specialized equipment to examine parts of the human body including the abdomen, reproductive systems, prostate, heart and blood vessels.', 'CID_58'),
 ('CIJID_168', 'Radiation Therapy Technologist', 'Operate machines, such as linear accelerators, to deliver concentrated radiation therapy to the region of a patient\'s tumor.', 'CID_58'),
 ('CIJID_169', 'Respiratory Therapist', 'Interview and examine patients with breathing or cardiopulmonary disorders. Respiratory therapists care for patients who have trouble breathing—for example, because of conditions such as asthma or chronic obstructive pulmonary disease (COPD).', 'CID_59'),
-('CIJID_17', 'Food Stylist ', 'A food stylist designs, prepares and styles food for photography or on-air demonstration. They will consult with marketing and food production as to which foods should be photographed. They also may at times conduct live demonstrations at industry or priv', 'CID_6'),
+('CIJID_17', 'Food Stylist ', 'Food stylists prepare and arrange food for the photography seen in cookbooks, magazines, commercials, and more.', 'CID_6'),
 ('CIJID_170', 'Medical Service Practitioner', 'Provides medical services to individuals in their local community. Their duties include conducting physical examinations of patients, creating treatment plans and giving general health advice.', 'CID_59'),
 ('CIJID_171', 'Product Specialist', 'Is to ensure the profitability and continued growth of a product for an organization. Working with the design engineering team, a product specialist reviews a product design, suggests enhancements, and oversees development to ensure marketability of the product.', 'CID_59'),
 ('CIJID_172', 'Librarian', 'In charge of collecting, organizing, and issuing library resources such as books, films, and audio files. They work in a range of settings including public libraries, schools, and museums.', 'CID_62'),
@@ -259,7 +259,7 @@ INSERT INTO `course_information_job` (`CIJID`, `JOB_NAME`, `INFORMATION`, `CID`)
 ('CIJID_177', 'Fitness and Wellness Supervisor', 'Plans, coordinates, and supervises a variety of programs and activities for residents. The employee modifies programs in response to the needs of the community; publicizes program activities; and supervises the implementation of programs.', 'CID_63'),
 ('CIJID_178', 'Aircraft Structural Engineer', 'Will perform a variety of engineering work including technical project management, design / analysis of aircraft repairs, and of the modifications that integrate sensors and equipment onto aircraft.', 'CID_64'),
 ('CIJID_179', 'Aircraft Design Engineer', 'Involved primarily in designing aircraft and propulsion systems and in studying the aerodynamic performance of aircraft and construction materials. They work with the theory, technology, and practice of flight within the Earth\'s atmosphere.', 'CID_64'),
-('CIJID_18', 'Visual Communicators ', 'Visual communications designers conceive and design visual concepts to best convey clients\' messages to their intended audiences. In other words, as a visual communications designer you\'ll use visual stimuli to persuade your audience to do or feel somethi', 'CID_6'),
+('CIJID_18', 'Visual Communicators ', 'Visual communications designers conceive and design visual concepts to best convey clients\' messages to their intended audiences.', 'CID_6'),
 ('CIJID_180', 'Aircraft Power Plant Engineer', 'Role will be a multi-functional role responsible for Aircraft Engine technical control and management. You will report to the Powerplant Manager under the responsibility of the CAMO.', 'CID_64'),
 ('CIJID_181', 'Quality Assurance Engineer', 'Creates tests that identify issues with software before a product launch. These tests entail other tasks such as developing and running new tests and reporting their results to stakeholders, who will collaborate to fix program bugs or problems.', 'CID_65'),
 ('CIJID_182', 'Sales Engineer', 'Provides product, service, or equipment technical and engineering information by answering questions and requests. Establishes new accounts and services accounts by identifying potential customers and planning and organizing sales call schedule.', 'CID_65'),
@@ -301,7 +301,7 @@ INSERT INTO `course_information_job` (`CIJID`, `JOB_NAME`, `INFORMATION`, `CID`)
 ('CIJID_214', 'Power and Energy Engineering ', 'develop solutions for improving energy consumption and use. Through research, design, documentation, and construction they implement green solutions, cutting down environmental impact and cost.', 'CID_76'),
 ('CIJID_215', 'Automotive Engineering ', 'Common responsibilities of an automotive engineer include designing and testing various components of vehicles, including fuel technologies and safety systems.', 'CID_76'),
 ('CIJID_216', 'Manufacturing Engineering ', 'They develop efficient systems, processes and machines that result in high-quality products. They may also take into account how manufacturing processes impact the environment.', 'CID_76'),
-('CIJID_217', 'Research and Development Engineer ', 'conducts research in a field or specialization of an engineering discipline to discover facts, or performs research directed toward investigation, evaluation, and application of known engineering theories and principles', 'CID_77'),
+('CIJID_217', 'Research and Development Engineer ', 'conducts research in a field or specialization of an engineering discipline to discover facts, or performs research directed toward investigation, evaluation, and application of known engineering theories and principles; plans and conducts, or directs engineering personnel', 'CID_77'),
 ('CIJID_218', 'Failure Analysis and Reliability Engineer ', 'Failure analysis engineers check and identify problems associated with business processes. These errors primarily take place in electrical systems.', 'CID_77'),
 ('CIJID_219', 'Quality Assurance Engineer ', 'A QA engineer creates tests that identify issues with software before a product launch. These tests entail other tasks such as developing and running new tests and reporting their results to stakeholders, who will collaborate to fix program bugs or problems.', 'CID_77'),
 ('CIJID_22', 'Auditor ', 'Auditors review the accounting records, operational data, and financial records of companies to ensure their financial records are accurate and in line with generally accepted accounting principles. Auditors might inspect the accounts of the company they work for or those of other organizations.', 'CID_8'),
@@ -364,9 +364,9 @@ INSERT INTO `course_information_job` (`CIJID`, `JOB_NAME`, `INFORMATION`, `CID`)
 ('CIJID_271', 'Program Developer ', 'Researching, designing, implementing, and managing software programs. Identifying areas for modification in existing programs and subsequently developing these modifications. Writing and implementing efficient code.', 'CID_95'),
 ('CIJID_272', 'Project Manager ', 'plan and develop the project idea. They need to create and lead the team, monitor project progress, set deadlines, solve issues that arise, manage money, ensure stakeholder satisfaction, and evaluate project performance, including the performance of their team members.', 'CID_95'),
 ('CIJID_28', 'Law Enforcer ', 'Deterring crimes and assure community through high-visibility policing. Patrolling assigned areas and monitor activities to protect people/property. Investigating crimes and apprehending suspected law violators.', 'CID_10'),
-('CIJID_29', 'Forensic Scientist ', 'Forensic scientists analyse evidence from crime scenes and create detailed scientific reports for legal proceedings. They spend much time in laboratories examining traces of evidence; their findings can then be used to associate or disassociate suspects with victims or crime scenes.', 'CID_10');
+('CIJID_29', 'Forensic Scientist ', 'Forensic scientists analyse evidence from crime scenes and create detailed scientific reports for legal proceedings. They spend much time in laboratories examining traces of evidence; their findings can then be used to associate or disassociate suspects with victims or crime scenes.', 'CID_10'),
+('CIJID_3', 'Software Developer  ', 'A systems developer is a type of software developer. They develop and implement applications and programs for the backend processing systems used in businesses and organizations.', 'CID_1');
 INSERT INTO `course_information_job` (`CIJID`, `JOB_NAME`, `INFORMATION`, `CID`) VALUES
-('CIJID_3', 'Software Developer  ', 'Software developers create the computer applications that allow users to do specific tasks and the underlying systems that run the devices or control networks. Software quality assurance analysts and testers design and execute software tests to identify p', 'CID_1'),
 ('CIJID_30', 'Correctional Officer ', 'Correctional officers typically do the following: Enforce rules and keep order within jails or prisons. Supervise activities of people in custody. Inspect facilities to ensure that they meet security and safety standards. Conduct searches in the facility, such as of persons and property, for rule violations.', 'CID_10'),
 ('CIJID_31', 'Political Analyst ', 'Political analysts (also known as political scientists) study how political systems originate, develop, and operate. They research and analyze governments, political ideas, policies, political trends, and foreign relations.', 'CID_11'),
 ('CIJID_32', 'Program Coordinator ', 'A Program Coordinator is a professional who is responsible for overseeing projects and programs within an organization. They will plan and implement these projects with strong time management skills and team synergy with their assistants.', 'CID_11'),
@@ -407,7 +407,7 @@ INSERT INTO `course_information_job` (`CIJID`, `JOB_NAME`, `INFORMATION`, `CID`)
 ('CIJID_64', 'Fisheries Management ', 'Fishery Managers oversee the activities that occur at a fishery, which includes but is not limited to: screening cultivation areas, monitoring fish growth, maintaining equipment, prepping food, distributing medications, and coordinate with other managers in affiliated fisheries.', 'CID_22'),
 ('CIJID_65', 'Fisheries Research ', 'Conducting, analysing and validating results of research projects and developing new research projects by undertaking forward planning and consultation that will meet anticipated information needs into the future.', 'CID_22'),
 ('CIJID_66', 'Fisheries Instruction ', 'As a fishing instructor, your duties are to provide your clients with fishing lessons. This includes showing them the basics of how to properly bait a hook and helping them to understand how to pick the appropriate lure for a given type of fishing.', 'CID_22'),
-('CIJID_67', 'Volcanologist Seismologist ', 'Volcanologists monitor activity around active volcanoes, looking for signs that the magma chamber is expanding or that pressure is building up. They use a variety of tools, such as seismographs to measure earthquakes or other seismic activity and GPS devices to measure changes in a volcano\'s height.\r\n', 'CID_23'),
+('CIJID_67', 'Volcanologist Seismologist ', 'Volcanologists monitor activity around active volcanoes, looking for signs that the magma chamber is expanding or that pressure is building up. They use a variety of tools, such as seismographs to measure earthquakes or other seismic activity and GPS devices to measure changes in a volcano\'s height.', 'CID_23'),
 ('CIJID_68', 'Geological Engineer ', 'Geological engineers search for mineral deposits and evaluate possible sites. Once a site is identified, they plan how the metals or minerals will be extracted in efficient and environmentally sound ways. Mining engineers often specialize in one particular mineral or metal, such as coal or gold.', 'CID_23'),
 ('CIJID_69', 'Environmental Lawyer ', 'An environmental lawyer works to represent clients in legal issues such as in clean technology, water law, climate change law and the management of land subject to native title and other public land. Environment laws are a large and complex specialty within the practice of law.', 'CID_23'),
 ('CIJID_7', 'Management Trainee ', 'A management trainee works under the supervision of managers and executives in organizations. Their goal is to acquire all essential knowledge to become future managers, often in particular fields, such as marketing, sales, or operations.', 'CID_3'),
@@ -427,7 +427,7 @@ INSERT INTO `course_information_job` (`CIJID`, `JOB_NAME`, `INFORMATION`, `CID`)
 ('CIJID_82', 'Analytical Chemist ', 'Analytical chemists assess the chemical structure and nature of substances. Their skills are needed for a variety of purposes including drug development, forensic analysis and toxicology. Analytical chemists can specialise in areas as varied as toxicology, pharmaceuticals and forensics.', 'CID_28'),
 ('CIJID_83', 'Laboratory Chemist', 'Laboratory Chemists conduct experiments in labs in order to analyze substances, develop new products or improve existing ones. They may specialize in one or more areas, such as organic chemistry, inorganic chemistry and biochemistry.', 'CID_28'),
 ('CIJID_84', 'Research and Development Specialist', 'A research specialist provides research and analysis for industry-specific labor and employee relations information. The research specialist designs, executes, and interprets research projects, and performs complex laboratory and data collection techniques.', 'CID_28'),
-('CIJID_85', 'Network Administrator', 'Network administrators are responsible for maintaining computer networks and solving any problems that may occur with them. Typical responsibilities of the job include: installing and configuring computer networks and systems. identifying and solving any problems that arise with computer networks and systems.\r\n', 'CID_29'),
+('CIJID_85', 'Network Administrator', 'Network administrators are responsible for maintaining computer networks and solving any problems that may occur with them. Typical responsibilities of the job include: installing and configuring computer networks and systems. identifying and solving any problems that arise with computer networks and systems.', 'CID_29'),
 ('CIJID_86', 'Database Manager ', 'Database managers develop and maintain organizations\' databases. They create data storage and retrieval systems, troubleshoot database issues, and implement database recovery procedures and safety protocols. They also supervise the daily activities of database teams.', 'CID_29'),
 ('CIJID_87', 'Technical Support Specialist  ', 'Technical support specialists are responsible for providing assistance for technical problems, including software and hardware issues. They are troubleshooting experts and handle a broad range of technical complications such as connection issues and unresponsive applications.', 'CID_29'),
 ('CIJID_88', 'Database Designer ', 'The database designer is responsible for defining the detailed database design, including tables, indexes, views, constraints, triggers, stored procedures, and other database-specific constructs needed to store, retrieve, and delete persistent objects. This information is maintained in the Artifact: Data Model.', 'CID_30'),
@@ -557,7 +557,7 @@ INSERT INTO `course_percentage` (`CPID`, `MATH`, `SCIENCE`, `ENGLISH`, `READING_
 ('CPID_91', 15, 15, 50, 20, 'CID_91'),
 ('CPID_92', 15, 15, 30, 40, 'CID_92'),
 ('CPID_93', 15, 15, 30, 40, 'CID_93'),
-('CPID_94', 40, 30, 10, 20, 'CID_94'),
+('CPID_94', 30, 30, 20, 20, 'CID_94'),
 ('CPID_95', 10, 30, 20, 40, 'CID_95');
 
 -- --------------------------------------------------------
@@ -878,8 +878,8 @@ CREATE TABLE `exam_informations` (
   `SUBJECT` varchar(255) NOT NULL,
   `INSTRUCTION` varchar(255) NOT NULL,
   `TOTAL_ITEMS` varchar(255) NOT NULL,
-  `TIMELIMIT_HOUR` varchar(255) NOT NULL,
   `TIMELIMIT_MINUTE` varchar(255) NOT NULL,
+  `TIMELIMIT_SECOND` varchar(255) NOT NULL,
   `EFID` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -887,11 +887,11 @@ CREATE TABLE `exam_informations` (
 -- Dumping data for table `exam_informations`
 --
 
-INSERT INTO `exam_informations` (`EID`, `SUBJECT`, `INSTRUCTION`, `TOTAL_ITEMS`, `TIMELIMIT_HOUR`, `TIMELIMIT_MINUTE`, `EFID`) VALUES
-('EID_1', 'Math', 'Choose the correct answer by solving each problem and \nselecting only the best answer from the options provided below.', '10', '00', '40', 'EFID_1'),
-('EID_2', 'Science', 'Analyze the given table and sentence before the questions and select the appropriate answer for the questions below.', '10', '00', '40', 'EFID_1'),
-('EID_3', 'English', 'Each sentence is followed by a series of questions. You will evaluate how the passage could be altered to improve the expression of concepts for some questions. Other questions will need you to examine how the piece could be altered to fix flaws in senten', '10', '00', '40', 'EFID_1'),
-('EID_4', 'Reading_Comprehension', 'A series of questions follows each sentence or set of texts below. Choose the best response to each question based on what is stated or suggested in the passage after reading each passage or pair.', '10', '00', '40', 'EFID_1');
+INSERT INTO `exam_informations` (`EID`, `SUBJECT`, `INSTRUCTION`, `TOTAL_ITEMS`, `TIMELIMIT_MINUTE`, `TIMELIMIT_SECOND`, `EFID`) VALUES
+('EID_1', 'Math', 'Choose the correct answer by solving each problem and \nselecting only the best answer from the options provided below.', '10', '15', '59', 'EFID_1'),
+('EID_2', 'Science', 'Analyze the given table and sentence before the questions and select the appropriate answer for the questions below.', '10', '15', '59', 'EFID_1'),
+('EID_3', 'English', 'Each sentence is followed by a series of questions. You will evaluate how the passage could be altered to improve the expression of concepts for some questions. Other questions will need you to examine how the piece could be altered to fix flaws in senten', '10', '15', '59', 'EFID_1'),
+('EID_4', 'Reading_Comprehension', 'A series of questions follows each sentence or set of texts below. Choose the best response to each question based on what is stated or suggested in the passage after reading each passage or pair.', '10', '0', '59', 'EFID_1');
 
 -- --------------------------------------------------------
 
@@ -910,6 +910,14 @@ CREATE TABLE `exam_result` (
   `LRN` varchar(255) NOT NULL,
   `DATE` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `exam_result`
+--
+
+INSERT INTO `exam_result` (`ERID`, `MATH_SCORE`, `ENGLISH_SCORE`, `SCIENCE_SCORE`, `READING_COMPREHENSION_SCORE`, `TOTAL_SCORE`, `EXAM_RESULT`, `LRN`, `DATE`) VALUES
+('ERID_1', 2, 1, 4, 3, 10, 'Failed', '123456789012', '2023-05-05'),
+('ERID_2', 4, -1, 6, 2, 18, 'Failed', '123123123123', '2023-05-05');
 
 -- --------------------------------------------------------
 
@@ -1019,6 +1027,13 @@ CREATE TABLE `interest_assessment_result` (
   `DATE` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `interest_assessment_result`
+--
+
+INSERT INTO `interest_assessment_result` (`IARID`, `REALISTIC_SCORE`, `INVESTIGATIVE_SCORE`, `ARTISTIC_SCORE`, `SOCIAL_SCORE`, `ENTERPRISING_SCORE`, `CONVENTIONAL_SCORE`, `IA_RESULT`, `LRN`, `DATE`) VALUES
+(11, 4, 6, 3, 3, 4, 5, 'R AND I', '123456789012', '2023-05-05');
+
 -- --------------------------------------------------------
 
 --
@@ -1072,6 +1087,92 @@ CREATE TABLE `save_answer` (
   `EQID` varchar(255) NOT NULL,
   `LRN` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `save_answer`
+--
+
+INSERT INTO `save_answer` (`SAID`, `SUBJECT`, `VALUE`, `ANSWER`, `EQID`, `LRN`) VALUES
+(3403, 'Math', '0.30', '1.00', 'EQMID_10', '123456789012'),
+(3404, 'Math', '0.51', '0.39', 'EQMID_16', '123456789012'),
+(3405, 'Math', '0.74', '0.60', 'EQMID_13', '123456789012'),
+(3406, 'Math', '0.74', '0.64', 'EQMID_11', '123456789012'),
+(3407, 'Math', '0.8679', '0.6879', 'EQMID_17', '123456789012'),
+(3408, 'Math', '8.00', '8.00', 'EQMID_15', '123456789012'),
+(3409, 'Math', '1.5', '4.0', 'EQMID_14', '123456789012'),
+(3410, 'Math', '0.60', '0.80', 'EQMID_12', '123456789012'),
+(3411, 'Math', '100 sq. unit', '1 sq. unit', 'EQMID_19', '123456789012'),
+(3412, 'Math', 'Bell-shaped', 'Bell-shaped', 'EQMID_18', '123456789012'),
+(3413, 'Science', 'White Dwarf', 'White Dwarf', 'EQSID_10', '123456789012'),
+(3414, 'Science', 'Big Bang Theory ', 'Star Formation Theory', 'EQSID_1', '123456789012'),
+(3415, 'Science', 'White Dwarf', 'Supernova ', 'EQSID_11', '123456789012'),
+(3416, 'Science', 'Plato', 'Henry Mosely', 'EQSID_12', '123456789012'),
+(3417, 'Science', 'Alpha Emission', 'Alpha Emission', 'EQSID_13', '123456789012'),
+(3418, 'Science', 'Fusion', 'Beta Emission', 'EQSID_14', '123456789012'),
+(3419, 'Science', 'Beta Emission', 'Gamma Emission', 'EQSID_15', '123456789012'),
+(3420, 'Science', 'Non-Polar', 'Non-Polar', 'EQSID_17', '123456789012'),
+(3421, 'Science', 'It has no Polarity', 'It is a Polar Molecule', 'EQSID_16', '123456789012'),
+(3422, 'Science', 'Square', 'Symmetrical', 'EQSID_18', '123456789012'),
+(3423, 'English', 'Cohesiveness', 'Caution', 'EQEID_1', '123456789012'),
+(3424, 'English', 'Concept Paper	', 'Concept Paper	', 'EQEID_11', '123456789012'),
+(3425, 'English', 'Preliminary Report', 'Progress Report', 'EQEID_13', '123456789012'),
+(3426, 'English', 'Abstract', 'Exact', 'EQEID_14', '123456789012'),
+(3427, 'English', 'Technical Report', 'Technical Report', 'EQEID_12', '123456789012'),
+(3428, 'English', 'Planning', 'Collecting Data', 'EQEID_16', '123456789012'),
+(3429, 'English', 'Writing that requires a reader to gather additional information to comprehend the content.', 'Writing that requires a reader to gather additional information to comprehend the content.', 'EQEID_15', '123456789012'),
+(3430, 'English', 'Analyze and summarize the strong and weak points of the article, and then state your own position.', 'Go through the article and refute each of the main points, explaining how stupid the author’s views are.', 'EQEID_18', '123456789012'),
+(3431, 'English', 'Physical Setting', 'Physical Setting', 'EQEID_10', '123456789012'),
+(3432, 'English', 'Statement of position on the issue.', 'Identification of the debatable issue.', 'EQEID_17', '123456789012'),
+(3433, 'Reading_Comprehension', 'Philippine Literature during Spanish Colonization', 'Pre-colonial Literature', 'EQRCID_1', '123456789012'),
+(3434, 'Reading_Comprehension', 'Illustrated Novel', 'Illustrated Novel', 'EQRCID_11', '123456789012'),
+(3435, 'Reading_Comprehension', 'Chick Lit', 'Digi-Fiction', 'EQRCID_12', '123456789012'),
+(3436, 'Reading_Comprehension', 'Blogs', 'Doodle Fiction', 'EQRCID_14', '123456789012'),
+(3437, 'Reading_Comprehension', 'Manga', 'Graphic Novel', 'EQRCID_13', '123456789012'),
+(3438, 'Reading_Comprehension', 'None of the above', '21ST Century Literature', 'EQRCID_10', '123456789012'),
+(3439, 'Reading_Comprehension', 'Text Talk Novel', 'Blogs', 'EQRCID_16', '123456789012'),
+(3440, 'Reading_Comprehension', 'Blogs', 'Manga', 'EQRCID_15', '123456789012'),
+(3441, 'Reading_Comprehension', 'Manga', 'Chick Literature', 'EQRCID_17', '123456789012'),
+(3442, 'Reading_Comprehension', 'Creative NonFiction', 'Science Fiction', 'EQRCID_18', '123456789012'),
+(3443, 'Math', '0.30', '1.00', 'EQMID_10', '123123123123'),
+(3444, 'Math', '0.74', '0.64', 'EQMID_11', '123123123123'),
+(3445, 'Math', '0.74', '0.60', 'EQMID_13', '123123123123'),
+(3446, 'Math', '1.5', '4.0', 'EQMID_14', '123123123123'),
+(3447, 'Math', '8.00', '8.00', 'EQMID_15', '123123123123'),
+(3448, 'Math', '0.51', '0.39', 'EQMID_16', '123123123123'),
+(3449, 'Math', 'Bell-shaped', 'Bell-shaped', 'EQMID_18', '123123123123'),
+(3450, 'Math', '0.60', '0.80', 'EQMID_12', '123123123123'),
+(3451, 'Math', '100 sq. unit', '1 sq. unit', 'EQMID_19', '123123123123'),
+(3452, 'Math', '0.8679', '0.6879', 'EQMID_17', '123123123123'),
+(3453, 'Science', 'Big Bang Theory ', 'Star Formation Theory', 'EQSID_1', '123123123123'),
+(3454, 'Science', 'White Dwarf', 'White Dwarf', 'EQSID_10', '123123123123'),
+(3455, 'Science', 'White Dwarf', 'Supernova ', 'EQSID_11', '123123123123'),
+(3456, 'Science', 'Plato', 'Henry Mosely', 'EQSID_12', '123123123123'),
+(3457, 'Science', 'Fusion', 'Beta Emission', 'EQSID_14', '123123123123'),
+(3458, 'Science', 'Alpha Emission', 'Alpha Emission', 'EQSID_13', '123123123123'),
+(3459, 'Science', 'Beta Emission', 'Gamma Emission', 'EQSID_15', '123123123123'),
+(3460, 'Science', 'Non-Polar', 'Non-Polar', 'EQSID_17', '123123123123'),
+(3461, 'Science', 'It has no Polarity', 'It is a Polar Molecule', 'EQSID_16', '123123123123'),
+(3462, 'Science', 'Square', 'Symmetrical', 'EQSID_18', '123123123123'),
+(3473, 'Reading_Comprehension', 'Philippine Literature during Spanish Colonization', 'Pre-colonial Literature', 'EQRCID_1', '123123123123'),
+(3474, 'Reading_Comprehension', 'Illustrated Novel', 'Illustrated Novel', 'EQRCID_11', '123123123123'),
+(3475, 'Reading_Comprehension', 'Chick Lit', 'Digi-Fiction', 'EQRCID_12', '123123123123'),
+(3476, 'Reading_Comprehension', 'Blogs', 'Doodle Fiction', 'EQRCID_14', '123123123123'),
+(3477, 'Reading_Comprehension', 'Manga', 'Graphic Novel', 'EQRCID_13', '123123123123'),
+(3478, 'Reading_Comprehension', 'Manga', 'Chick Literature', 'EQRCID_17', '123123123123'),
+(3479, 'Reading_Comprehension', 'Text Talk Novel', 'Blogs', 'EQRCID_16', '123123123123'),
+(3480, 'Reading_Comprehension', 'None of the above', '21ST Century Literature', 'EQRCID_10', '123123123123'),
+(3481, 'Reading_Comprehension', 'Blogs', 'Manga', 'EQRCID_15', '123123123123'),
+(3482, 'Reading_Comprehension', 'Creative NonFiction', 'Science Fiction', 'EQRCID_18', '123123123123'),
+(3488, 'English', 'Writing that requires a reader to gather additional information to comprehend the content.', 'Writing that requires a reader to gather additional information to comprehend the content.', 'EQEID_15', '123123123123'),
+(3489, 'English', '', 'Exact', 'EQEID_14', '123123123123'),
+(3490, 'English', 'Statement of position on the issue.', 'Identification of the debatable issue.', 'EQEID_17', '123123123123'),
+(3491, 'English', '', 'Go through the article and refute each of the main points, explaining how stupid the author’s views are.', 'EQEID_18', '123123123123'),
+(3492, 'English', '', 'Progress Report', 'EQEID_13', '123123123123'),
+(3493, 'English', '', 'Physical Setting', 'EQEID_10', '123123123123'),
+(3494, 'English', 'Cohesiveness', 'Caution', 'EQEID_1', '123123123123'),
+(3495, 'English', '', 'Concept Paper	', 'EQEID_11', '123123123123'),
+(3496, 'English', '', 'Collecting Data', 'EQEID_16', '123123123123'),
+(3497, 'English', '', 'Technical Report', 'EQEID_12', '123123123123');
 
 -- --------------------------------------------------------
 
@@ -1222,13 +1323,13 @@ ALTER TABLE `student_information`
 -- AUTO_INCREMENT for table `interest_assessment_result`
 --
 ALTER TABLE `interest_assessment_result`
-  MODIFY `IARID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `IARID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `save_answer`
 --
 ALTER TABLE `save_answer`
-  MODIFY `SAID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3403;
+  MODIFY `SAID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3498;
 
 --
 -- AUTO_INCREMENT for table `student_information`

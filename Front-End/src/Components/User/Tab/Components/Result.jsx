@@ -5,8 +5,9 @@ import CameraIcon from '@mui/icons-material/CameraAltRounded';
 import Button from '@mui/material/Button';
 import React, { useState, useEffect } from "react";
 import CircularProgress from '@mui/material/CircularProgress';
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
+import styled from "@emotion/styled";
 export default function Profile() {
 
     const user = window.localStorage.getItem('USER_DATA')
@@ -110,6 +111,7 @@ export default function Profile() {
                 Reading_Comprehension: response.data[0].READING_COMPREHENSION_SCORE,
             }
             const high = Object.keys(subject).reduce((a, b) => subject[a] > subject[b] ? a : b)
+
             // setsubscore(high)
 
             axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN="${JSON.parse(user).LRN}"&&FETCH='IA'`).then(function (response) {
@@ -130,384 +132,388 @@ export default function Profile() {
         // console.log(high)
         // console.log(subscore)
 
-        if (a === "I AND S") {
+        if (a === "I AND S" || a === "S AND I") {
             return (
                 <div>
                     <p className="ul">Health Science</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Health Science"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                        
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Health Science") {
+                                    return (
+                                        <Link   key={index} to={`../Course_Directory/${prev.COURSE_NAME}`}>
+                                            <li className="li">{prev.COURSE_NAME}</li>
+                                        </Link>
+                                    )
+                                }
+                            })
+
+                        }
                     </ul>
                     <p className="ul">Education & Training</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Education & Training"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Education & Training") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+                        }
                     </ul>
                 </div>
             )
         }
-        else if (a === "R AND S") {
+        else if (a === "R AND S" || a === "S AND R") {
             return (
                 <div>
                     <p className="ul">Health Science</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Health Science"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                        
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Health Science") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+
+                        }
                     </ul>
                     <p className="ul">Human Service</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Human Service"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Human Service") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+                        }
                     </ul>
                     <p className="ul">Law & Public Safety</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Law & Public Safety"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Law & Public Safety") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+                        }
                     </ul>
                 </div>
             )
         }
-        else if (a === "R AND E") {
+        else if (a === "R AND E" || a === "E AND R") {
             return (
                 <div>
                     <p className="ul">Arts & Communications</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Arts & Communications"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                        
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Arts & Communications") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+
+                        }
                     </ul>
                     <p className="ul">Hospitality & Tourism</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Hospitality & Tourism"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Hospitality & Tourism") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+                        }
                     </ul>
                 </div>
             )
         }
-        else if (a === "I AND R") {
+        else if (a === "I AND R" || a === "R AND I") {
             return (
                 <div>
                     <p className="ul">Agriculture</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Agriculture"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                        
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Agriculture") {
+                                    return (
+                                        <Link key={index} to={`../../Course_Directory/${prev.CID}`} className="Link">
+                                            <li className="li">{prev.COURSE_NAME}</li>
+                                        </Link>
+                                    )
+                                }
+                            })
+
+                        }
                     </ul>
                     <p className="ul">Health Science</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Health Science"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Health Science") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+                        }
                     </ul>
                     <p className="ul">Information Technology</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Information Technology"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Information Technology") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+                        }
                     </ul>
                     <p className="ul">Science, Technology & Math</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Science, Technology & Math"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Science, Technology & Math") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+                        }
                     </ul>
                 </div>
             )
         }
-        else if (a === "A AND S") {
+        else if (a === "A AND S" || a === "S AND A") {
             return (
                 <div>
                     <p className="ul">Education & Training</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Education & Training"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                        
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Education & Training") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+
+                        }
                     </ul>
                     <p className="ul">Arts & Communications</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Arts & Communications"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                    }
-                    </ul> 
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Arts & Communications") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+                        }
+                    </ul>
                     <p className="ul">Marketing & Sales</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Marketing & Sales"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Marketing & Sales") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+                        }
                     </ul>
                 </div>
             )
         }
-        else if (a === "A AND R") {
+        else if (a === "A AND R" || a === "R AND A") {
             return (
                 <div>
                     <p className="ul">Arts & Communications</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Arts & Communications"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                        
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Arts & Communications") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+
+                        }
                     </ul>
                     <p className="ul">Education & Training</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Education & Training"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Education & Training") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+                        }
                     </ul>
                 </div>
             )
         }
-        else if (a === "S AND E") {
+        else if (a === "S AND E" || a === "E AND S") {
             return (
                 <div>
                     <p className="ul">Government</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Government"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                        
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Government") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+
+                        }
                     </ul>
                     <p className="ul">Law & Public Safety</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Law & Public Safety"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Law & Public Safety") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+                        }
                     </ul>
                     <p className="ul">Marketing & Sales</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Marketing & Sales"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Marketing & Sales") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+                        }
                     </ul>
                 </div>
             )
         }
-        else if (a === "E AND C") {
+        else if (a === "E AND C" || a === "C AND E") {
             return (
                 <div>
                     <p className="ul">Business & Management</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Business & Management"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                        
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Business & Management") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+
+                        }
                     </ul>
                     <p className="ul">Finance</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Finance"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Finance") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+                        }
                     </ul>
                 </div>
             )
         }
-        else if (a === "E AND A") {
+        else if (a === "E AND A" || a === "A AND E") {
             return (
                 <div>
                     <p className="ul">Arts & Communications</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Arts & Communications"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                        
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Arts & Communications") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+
+                        }
                     </ul>
                     <p className="ul">Marketing & Sales</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Marketing & Sales"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Marketing & Sales") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+                        }
                     </ul>
                 </div>
             )
         }
-        else if (a === "C AND R") {
+        else if (a === "C AND R" || a === "R AND C") {
             return (
                 <div>
                     <p className="ul">Architecture & Construction</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Architecture & Construction"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                        
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Architecture & Construction") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+
+                        }
                     </ul>
                     <p className="ul">Manufacturing</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Manufacturing"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Manufacturing") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+                        }
                     </ul>
                     <p className="ul">Transportation</p>
                     <ul>
-                    {
-                        subscore.map((prev, index)=>{
-                            if(prev.INTEREST === "Transportation"){
-                                return(
-                                    <li key={index} className="li">{prev.COURSE_NAME}</li>
-                                )
-                            }
-                        })
-                    }
+                        {
+                            subscore.map((prev, index) => {
+                                if (prev.INTEREST === "Transportation") {
+                                    return (
+                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                    )
+                                }
+                            })
+                        }
                     </ul>
                 </div>
             )

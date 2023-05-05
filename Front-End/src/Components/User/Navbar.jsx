@@ -19,27 +19,33 @@ import { Link } from 'react-router-dom'
 import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
+import axios from 'axios';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const avatar_button = {
     textTransform: 'none',
     padding: '3px 10px',
-    // border: '1px solid #e9ecef', 
-    // backgroundColor: '#f8f9fa',
+
     '&:hover': {
         backgroundColor: '#f8f9fa',
     }
 }
 export default function User_Navbar(props) {
+    const user = window.localStorage.getItem('USER_DATA')
 
     const drawerWidth = 240;
     const navItems = ['Dashboard', 'Course', 'IA Information', 'Examination', 'Help']
 
     const navLinks = ["", 'Course_Directory', 'IA_Information', 'Examination', 'Help'];
 
-    const { window } = props;
+    // const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
+    const [opendialog, setopendialog] = React.useState(false);
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
     };
@@ -62,7 +68,7 @@ export default function User_Navbar(props) {
         </Box>
     );
 
-    const container = window !== undefined ? () => window().document.body : undefined;
+    // const container = window !== undefined ? () => window().document.body : undefined;
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -75,6 +81,16 @@ export default function User_Navbar(props) {
         setAnchorEl(null);
     };
 
+    React.useEffect(() => {
+        axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN="${JSON.parse(user).LRN}"&&FETCH='EX'`).then(function (response) {
+            console.log(response.data)
+
+        })
+    }, [])
+
+    const handleLeave = () => {
+
+    }
     return (
         <div>
             <AppBar component="nav" sx={{ backgroundColor: 'white', boxShadow: 'rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;' }} elevation={0}>
@@ -102,7 +118,6 @@ export default function User_Navbar(props) {
                                     return (
                                         <Link to={{
                                             pathname: navLinks[index],
-                                            // state: { data: 'hello' }
                                         }} style={{
                                             textDecoration: 'none',
                                             display: 'flex',
@@ -160,7 +175,7 @@ export default function User_Navbar(props) {
 
             <Box component="nav">
                 <Drawer
-                    container={container}
+                    // container={container}
                     variant="temporary"
                     open={mobileOpen}
                     onClose={handleDrawerToggle}
@@ -175,6 +190,25 @@ export default function User_Navbar(props) {
                     {drawer}
                 </Drawer>
             </Box>
+            <Dialog
+                open={opendialog}
+            // onClose={()=>setopendialog(false)}
+            >
+                <DialogTitle id="alert-dialog-title">
+                    {"Leaving"}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Are you sure you want to leave?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={()=>setopendialog(false)}>Cancel</Button>
+                    <Button onClick={handleLeave} autoFocus>
+                        Yes
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     )
 }
