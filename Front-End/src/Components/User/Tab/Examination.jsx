@@ -10,18 +10,15 @@ export default function Examination() {
     const [sub, setsub] = React.useState('Math')
     const d = window.localStorage.getItem('USER_DATA')
 
-    const [view, setview]= React.useState(0)
+    const [view, setview] = React.useState(0)
 
+    const Subject = ['Math', 'Science', 'English', 'Reading_Comprehension']
     React.useEffect(() => {
         axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN="${JSON.parse(d).LRN}"&&RESULT=ALL`).then(function (response) {
             window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(response.data))
 
-            // axios.get(`http://localhost/recommendation_system/api/user/OverAll.php?LRN="${JSON.parse(d).LRN}"&&RESULT=j`).then(function (response) {
-            //     setview(response.data)
-            //     console.log(response.data)
             axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN="${JSON.parse(d).LRN}"&&FETCH='IA'`).then(function (response) {
                 setview(response.data)
-                // console.log(response.data)
 
                 axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN="${JSON.parse(d).LRN}"&&RESULT=j`).then(function (response) {
                     setsub(`Scholastic_Aptitude_Test/${response.data}/1`)
@@ -37,11 +34,35 @@ export default function Examination() {
 
     const handleClick = () => {
         axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN="${JSON.parse(d).LRN}"&&RESULT=USERVALID`).then(function (response) {
-            console.log(response.data)
-        if (response.data.length === 0) {
+
+            if (response.data.length === 0) {
                 axios.post(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN="${JSON.parse(d).LRN}"`).then(function (response) {
-                console.log(response.data)
+
                 })
+
+                Subject.map((prev, index) => {
+                    axios.get(`http://localhost/recommendation_system/api/user/Exam_Information.php?SUBJECT='${prev}'`).then(function (response) {
+                        console.log(response.data)
+                        const saves = {
+                            sub: response.data[0].SUBJECT,
+                            minute: response.data[0].TIMELIMIT_MINUTE,
+                            second: response.data[0].TIMELIMIT_SECOND,
+                            lrn:JSON.parse(d).LRN ,
+                            id: response.data[0].EFID,
+                        }
+                        axios.post(`http://localhost/recommendation_system/api/user/AddTimelimit.php`, saves).then(function (response) {
+                            console.log(response.data)
+                        })
+                    });
+                })
+                // axios.get(`http://localhost/recommendation_system/api/user/Exam_Information.php?SUBJECT='${}'`).then(function (response) {
+                //     console.log(response.data)
+                // });
+                // Subject.map((prev, index) => {
+                //     axios.post(`http://localhost/recommendation_system/api/user/AddTimelimit.php?LRN="${JSON.parse(d).LRN}"`, saves).then(function (response) {
+                //         console.log(response.data)
+                //     })
+                // })
             }
         })
     }

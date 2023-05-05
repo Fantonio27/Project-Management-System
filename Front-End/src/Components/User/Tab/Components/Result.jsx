@@ -15,37 +15,57 @@ export default function Profile() {
     const [overall, setoverall] = React.useState([])
     const [iaresult, setiaresult] = React.useState([])
     const [subscore, setsubscore] = React.useState([])
-
+    const [timelimit, settimelimit] = React.useState([])
+    const [total, settotal] = React.useState([])
+    
     const sat = satresult.length === 0
     const ia = iaresult.length === 0
+    const ti = timelimit.length === 0
+    const to = total.length === 0
+
+    to? 0 : satresult[0].MATH_SCORE
+
+    const [overallsat, setoverallsat] = React.useState()
     const subject = [
         {
+            id:"Math",
             Subject: "Math",
-            Score: "30",
+            total: to? 0 : total[0].TOTAL_ITEMS,
             Item: "",
             bg: "#0096c7",
-            result: sat ? 0 : satresult[0].MATH_SCORE
+            result: sat ? 0 : satresult[0].MATH_SCORE,
+            minute: ti? 0 : timelimit[0].MINUTE,
+            second: ti? 0 : timelimit[0].SECOND,
         },
         {
+            id:"Science",
             Subject: "Science",
-            Score: "30",
+            total: to? 0 : total[0].TOTAL_ITEMS,
             Item: "",
             bg: "#52b788",
-            result: sat ? 0 : satresult[0].SCIENCE_SCORE
+            result: sat ? 0 : satresult[0].SCIENCE_SCORE,
+            minute: ti? 0 : timelimit[1].MINUTE,
+            second: ti? 0 : timelimit[1].SECOND,
         },
         {
+            id:"English",
             Subject: "English",
-            Score: "20",
+            total: to? 0 : total[0].TOTAL_ITEMS,
             Item: "",
             bg: "#f13030",
-            result: sat ? 0 : satresult[0].ENGLISH_SCORE
+            result: sat ? 0 : satresult[0].ENGLISH_SCORE,
+            minute: ti? 0 : timelimit[2].MINUTE,
+            second: ti? 0 : timelimit[2].SECOND,
         },
         {
-            Subject: "History",
-            Score: "20",
+            id:"Reading_Comprehension",
+            Subject: "Reading",
+            total: to? 0 : total[0].TOTAL_ITEMS,
             Item: "",
             bg: "#f4a261",
-            result: sat ? 0 : satresult[0].READING_COMPREHENSION_SCORE
+            result: sat ? 0 : satresult[0].READING_COMPREHENSION_SCORE,
+            minute: ti? 0 : timelimit[3].MINUTE,
+            second: ti? 0 : timelimit[3].SECOND,
         },
     ]
 
@@ -103,7 +123,7 @@ export default function Profile() {
     useEffect(() => {
         axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN="${JSON.parse(user).LRN}"&&FETCH='EX'`).then(function (response) {
             setsatresult(response.data)
-            // console.log(response.data)
+
             const subject = {
                 Math: response.data[0].MATH_SCORE,
                 Science: response.data[0].SCIENCE_SCORE,
@@ -112,25 +132,35 @@ export default function Profile() {
             }
             const high = Object.keys(subject).reduce((a, b) => subject[a] > subject[b] ? a : b)
 
-            // setsubscore(high)
-
             axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN="${JSON.parse(user).LRN}"&&FETCH='IA'`).then(function (response) {
                 setiaresult(response.data)
-                // console.log(high)
+
                 axios.get(`http://localhost/recommendation_system/api/user/Result.php?IA='${response.data[0].IA_RESULT}'&&FETCH='reco'&&SUBJECT=${high}`).then(function (response) {
                     setsubscore(response.data)
-                    console.log(response.data)
+
                 })
             })
         })
 
+        subject.map((sub, index) => {
+            axios.get(`http://localhost/recommendation_system/api/user/AddTimelimit.php?LRN='${JSON.parse(user).LRN}'&&SUBJECT='${sub.id}'`).then(function (response) {
+                settimelimit(prev=>[
+                    ...prev,
+                    response.data[0]
+                ])
+            });
+
+            axios.get(`http://localhost/recommendation_system/api/user/Exam_Information.php?SUBJECT='${sub.id}'`).then(function (response) {
+                settotal(prev=>[
+                    ...prev,
+                    response.data[0]
+                ])
+            })
+        })
     }, [])
+
     let i = 0
     function recommend(a) {
-        // return (<p>Hello</p>)
-        // const high = subscore.length ===0? "" :Object.keys(subscore).reduce((a, b) => subscore[a] > subscore[b] ? a : b)
-        // console.log(high)
-        // console.log(subscore)
 
         if (a === "I AND S" || a === "S AND I") {
             return (
@@ -141,7 +171,7 @@ export default function Profile() {
                             subscore.map((prev, index) => {
                                 if (prev.INTEREST === "Health Science") {
                                     return (
-                                        <Link   key={index} to={`../Course_Directory/${prev.COURSE_NAME}`}>
+                                        <Link key={index} to={`../../Course_Directory/${prev.CID}`} className="Link">
                                             <li className="li">{prev.COURSE_NAME}</li>
                                         </Link>
                                     )
@@ -174,7 +204,9 @@ export default function Profile() {
                             subscore.map((prev, index) => {
                                 if (prev.INTEREST === "Health Science") {
                                     return (
-                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                        <Link key={index} to={`../../Course_Directory/${prev.CID}`} className="Link">
+                                            <li className="li">{prev.COURSE_NAME}</li>
+                                        </Link>
                                     )
                                 }
                             })
@@ -217,7 +249,9 @@ export default function Profile() {
                             subscore.map((prev, index) => {
                                 if (prev.INTEREST === "Arts & Communications") {
                                     return (
-                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                        <Link key={index} to={`../../Course_Directory/${prev.CID}`} className="Link">
+                                            <li className="li">{prev.COURSE_NAME}</li>
+                                        </Link>
                                     )
                                 }
                             })
@@ -305,7 +339,9 @@ export default function Profile() {
                             subscore.map((prev, index) => {
                                 if (prev.INTEREST === "Education & Training") {
                                     return (
-                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                        <Link key={index} to={`../../Course_Directory/${prev.CID}`} className="Link">
+                                            <li className="li">{prev.COURSE_NAME}</li>
+                                        </Link>
                                     )
                                 }
                             })
@@ -348,7 +384,9 @@ export default function Profile() {
                             subscore.map((prev, index) => {
                                 if (prev.INTEREST === "Arts & Communications") {
                                     return (
-                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                        <Link key={index} to={`../../Course_Directory/${prev.CID}`} className="Link">
+                                            <li className="li">{prev.COURSE_NAME}</li>
+                                        </Link>
                                     )
                                 }
                             })
@@ -379,7 +417,9 @@ export default function Profile() {
                             subscore.map((prev, index) => {
                                 if (prev.INTEREST === "Government") {
                                     return (
-                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                        <Link key={index} to={`../../Course_Directory/${prev.CID}`} className="Link">
+                                            <li className="li">{prev.COURSE_NAME}</li>
+                                        </Link>
                                     )
                                 }
                             })
@@ -422,7 +462,9 @@ export default function Profile() {
                             subscore.map((prev, index) => {
                                 if (prev.INTEREST === "Business & Management") {
                                     return (
-                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                        <Link key={index} to={`../../Course_Directory/${prev.CID}`} className="Link">
+                                            <li className="li">{prev.COURSE_NAME}</li>
+                                        </Link>
                                     )
                                 }
                             })
@@ -453,7 +495,9 @@ export default function Profile() {
                             subscore.map((prev, index) => {
                                 if (prev.INTEREST === "Arts & Communications") {
                                     return (
-                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                        <Link key={index} to={`../../Course_Directory/${prev.CID}`} className="Link">
+                                            <li className="li">{prev.COURSE_NAME}</li>
+                                        </Link>
                                     )
                                 }
                             })
@@ -484,7 +528,9 @@ export default function Profile() {
                             subscore.map((prev, index) => {
                                 if (prev.INTEREST === "Architecture & Construction") {
                                     return (
-                                        <li key={index} className="li">{prev.COURSE_NAME}</li>
+                                        <Link key={index} to={`../../Course_Directory/${prev.CID}`} className="Link">
+                                            <li className="li">{prev.COURSE_NAME}</li>
+                                        </Link>
                                     )
                                 }
                             })
@@ -520,14 +566,67 @@ export default function Profile() {
         }
     }
 
+    const column = [
+        { id: "Subjects", },
+        { id: "Time Finish", },
+        { id: "Efficiancy + Accuracy", },
+        // { id: "Total Score", },
+    ]
+
+    const convert = (a) => {
+
+        let accuracy = a.result/a.total
+        let averagetime = (a.minute*60 + Number(a.second))/1
+        let efficiancy = accuracy * (1/averagetime)
+
+        // let second = a.minute * 60/1 + Number(a.second)
+        // let aversecond = second/a.result
+        // let overall = (Number(a.result)/Number(a.total)) * (1/aversecond)
+
+        return(
+            <div className="Result_Table_p1">{efficiancy.toFixed(4)}</div>
+        )
+    }
+
+    console.log(overallsat)
     return (
         <Zoom in={true} timeout={500}>
-            <div className="Profile">
-                <div className="Profile-box">
+            <div className="Result">
+                <div className="Result-box">
                     <p className="Result_p1">OverAll Results</p>
                     <div>
-                        <p className="Result_p2">SAT total Score: </p>
+                        <p className="Result_p2">SAT OverAll Result: </p>
+                        <div className="Result_Table_Column">
+                            {
+                                column.map((prev, index) => {
+                                    return (
+                                        <div key={index} className="Result_Table_Title">{prev.id}</div>
+                                    )
+                                })
+                            }
+                        </div>
+                        <div>
+                            {
+                                subject.map((prev, index) => {
+                                    return (
+                                        <div key={index} className="Result_Table_Row">
+                                            <div className="Result_Table_p1">{prev.Subject}</div>
+                                            <div className="Result_Table_p1">{prev.minute}:{prev.second}</div>
+                                            {convert(prev)}
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        <p className="Result_p2"> Total Score: </p>
                         <p className="Result_p3">{satresult.length === 0 ? "" : satresult[0].TOTAL_SCORE}</p>
+                    </div>
+
+                    <div>
+                        <p className="Result_p2"> Highest Subject: </p>
+                        <p className="Result_p3">Math</p>
                     </div>
 
                     <div>
@@ -546,84 +645,87 @@ export default function Profile() {
                     </div>
 
                 </div>
-                <div className="Profile-result-exam">
-                    <div style={{ padding: "50px" }}>
-                        <h1 className="result-title">Scholastic Assessment Test</h1>
-                        <p className="result-p">Result:</p>
-                        <div className="Profile-subjects">
-                            {
-                                subject.map((sub) => (
-                                    <div key={sub.Subject} className={`sub ${sub.Subject}`}>
-                                        <h1>{sub.Subject}</h1>
+                <div className="Result-box2">
+                    <div className="Profile-result-exam">
+                        <div style={{ padding: "50px" }}>
+                            <h1 className="result-title">Scholastic Assessment Test</h1>
+                            <p className="result-p">Result:</p>
+                            <div className="Profile-subjects">
+                                {
+                                    subject.map((sub) => (
+                                        <div key={sub.Subject} className={`sub ${sub.Subject}`}>
+                                            <h1>{sub.Subject}</h1>
 
-                                        <Box sx={{ position: 'relative' }}>
-                                            <CircularProgress
-                                                variant="determinate"
-                                                sx={{
-                                                    color: "#e9ecef",
-                                                }}
-                                                size={90}
-                                                thickness={3}
-                                                value={100}
-                                            />
-                                            <CircularProgress
-                                                variant="determinate"
+                                            <Box sx={{ position: 'relative' }}>
+                                                <CircularProgress
+                                                    variant="determinate"
+                                                    sx={{
+                                                        color: "#e9ecef",
+                                                    }}
+                                                    size={90}
+                                                    thickness={3}
+                                                    value={100}
+                                                />
+                                                <CircularProgress
+                                                    variant="determinate"
 
-                                                sx={{
-                                                    color: `${sub.bg}`,
-                                                    position: "absolute",
-                                                    left: 0
-                                                }}
-                                                size={90}
-                                                thickness={3}
-                                                value={sub.result / sub.Score * 100}
-                                            />
-                                        </Box>
-                                        <div className="sub_score_box">
-                                            <p className="sub_score">{sub.result}</p>
-                                            <p className="sub_score_txt">Score</p>
+                                                    sx={{
+                                                        color: `${sub.bg}`,
+                                                        position: "absolute",
+                                                        left: 0
+                                                    }}
+                                                    size={90}
+                                                    thickness={3}
+                                                    value={sub.result / sub.total * 100}
+                                                />
+                                            </Box>
+                                            <div className="sub_score_box">
+                                                <p className="sub_score">{sub.result}</p>
+                                                <p className="sub_score_txt">Score</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                ))
-                            }
+                                    ))
+                                }
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="Profile-result-ia">
-                    <div style={{ padding: "50px" }}>
-                        <h1 className="result-title">Interest Assessment</h1>
-                        <p className="result-p">Result:</p>
-                        <div className="Profile-interest">
-                            {
-                                interest.map((e) => (
-                                    <div key={e.Interest} className="interest-div">
-                                        <h1>{e.Interest}</h1>
-                                        <Box sx={{ width: '100%' }}>
-                                            <LinearProgress
-                                                sx={{
-                                                    backgroundColor: `${e.Bg}`,
-                                                    '& .MuiLinearProgress-bar': {
-                                                        backgroundColor: `${e.Color}`
-                                                    }
-                                                }}
-                                                variant="determinate"
-                                                value={e.result / 7 * 100}
-                                            />
-                                        </Box>
-                                        <p>{e.result}</p>
-                                    </div>
-                                ))
-                            }
+                    <div className="Profile-result-ia">
+                        <div style={{ padding: "50px" }}>
+                            <h1 className="result-title">Interest Assessment</h1>
+                            <p className="result-p">Result:</p>
+                            <div className="Profile-interest">
+                                {
+                                    interest.map((e) => (
+                                        <div key={e.Interest} className="interest-div">
+                                            <h1>{e.Interest}</h1>
+                                            <Box sx={{ width: '100%' }}>
+                                                <LinearProgress
+                                                    sx={{
+                                                        backgroundColor: `${e.Bg}`,
+                                                        '& .MuiLinearProgress-bar': {
+                                                            backgroundColor: `${e.Color}`
+                                                        }
+                                                    }}
+                                                    variant="determinate"
+                                                    value={e.result / 7 * 100}
+                                                />
+                                            </Box>
+                                            <p>{e.result}</p>
+                                        </div>
+                                    ))
+                                }
 
-                            {/* <div><p>Realistic</p></div>
+                                {/* <div><p>Realistic</p></div>
                             <div><p>Investigative</p></div>
                             <div><p>Artistic</p></div>
                             <div><p>Social</p></div>
                             <div><p>Enterprising</p></div>
                             <div><p>Conventional</p></div> */}
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
 
         </Zoom>

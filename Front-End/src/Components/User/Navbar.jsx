@@ -81,9 +81,11 @@ export default function User_Navbar(props) {
         setAnchorEl(null);
     };
 
+    const [result, setresult] = React.useState([])
+
     React.useEffect(() => {
-        axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN="${JSON.parse(user).LRN}"&&FETCH='EX'`).then(function (response) {
-            console.log(response.data)
+        axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN="${JSON.parse(user).LRN}"&&FETCH='LRN'`).then(function (response) {
+            setresult(response.data)
 
         })
     }, [])
@@ -91,6 +93,9 @@ export default function User_Navbar(props) {
     const handleLeave = () => {
 
     }
+
+    // const parts2 = location.href.split('/').at(-1);
+    // console.log(parts2)
     return (
         <div>
             <AppBar component="nav" sx={{ backgroundColor: 'white', boxShadow: 'rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;' }} elevation={0}>
@@ -115,6 +120,21 @@ export default function User_Navbar(props) {
                                 {navItems.map((item, index) => {
                                     let tabindex = props.tabindex === "Dashboard" ? "" : props.tabindex
                                     let active = tabindex === navLinks[index]
+                                    // if (item === "Examination" && parts2 >= 0 ) {
+                                    //     return (
+                                    //         <Button key={item} sx={{
+                                    //             padding: '8px 15px',
+                                    //             color: active ? 'white' : '#1a2c2aff',
+                                    //             backgroundColor: active ? '#458d6b' : 'none',
+                                    //             '&:hover': {
+                                    //                 backgroundColor: active ? '#407d61' : 'rgb(69, 141, 107,0.09)'
+                                    //             }
+                                    //         }}
+                                    //             onClick={() => {setopendialog(true)}}>
+                                    //             <p className='Navbar_p1'>{item}s</p>
+                                    //         </Button>
+                                    //     )
+                                    // }
                                     return (
                                         <Link to={{
                                             pathname: navLinks[index],
@@ -203,7 +223,7 @@ export default function User_Navbar(props) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={()=>setopendialog(false)}>Cancel</Button>
+                    <Button onClick={() => setopendialog(false)}>Cancel</Button>
                     <Button onClick={handleLeave} autoFocus>
                         Yes
                     </Button>

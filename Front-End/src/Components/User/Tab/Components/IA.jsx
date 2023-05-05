@@ -116,7 +116,7 @@ export default function IA() {
         // // console.log(saves)
 
         axios.post(`http://localhost/recommendation_system/api/user/IA_Questions.php`, saves).then(function (response) {
-            console.log(response.data)
+            // console.log(response.data)
         })
     }
     return (

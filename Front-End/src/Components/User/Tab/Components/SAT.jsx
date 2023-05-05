@@ -53,7 +53,7 @@ export default function SAT() {
         answer: '',
     }])
 
-    const [minute, setminute] = React.useState(5)
+    const [minute, setminute] = React.useState(-1)
     const [second, setsecond] = React.useState(59)
 
     const [counter, setcounter] = React.useState([
@@ -62,7 +62,7 @@ export default function SAT() {
         { Subject: "English", answerno: 0 },
         { Subject: "Reading_Comprehension", answerno: 0 },
     ])
-    React.useEffect(() => {  
+    React.useEffect(() => {
         if (questions.length > 1) {
             questions.map((data) => {
                 axios.post('http://localhost/recommendation_system/api/user/Saves_Answer.php/saves', {
@@ -94,10 +94,24 @@ export default function SAT() {
                 }
                 setsecond(prev => prev - 1)
             }, 1000);
-        } else {
+        } else if (minute === 0) {
             setOpen(true)
             setsecond(0)
             setminute(0)
+        }
+
+        if (minute != -1) {
+            const update = {
+                sub: parts2,
+                minute: minute,
+                second: second,
+                lrn: JSON.parse(user).LRN,
+            }
+            axios.put(`http://localhost/recommendation_system/api/user/AddTimelimit.php`, update).then(function (response) {
+                // setminute(response.data[0].MINUTE)
+                // setsecond(response.data[0].SECOND)
+                // console.log(response.data)
+            });
         }
     }, [second]);
 
@@ -115,7 +129,6 @@ export default function SAT() {
         } else {
             axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN='${JSON.parse(user).LRN}'&&RESULT=ALL`).then(function (response) {
                 window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(response.data))
-                // console.log(response.data)
             })
 
             navigate(`../${value}/1`)
@@ -141,8 +154,7 @@ export default function SAT() {
 
         axios.get(`http://localhost/recommendation_system/api/user/Exam_Information.php?SUBJECT='${parts2}'`).then(function (response) {
             setsubject(response.data)
-            setsecond(response.data[0].TIMELIMIT_SECOND)
-            setminute(response.data[0].TIMELIMIT_MINUTE)
+
         });
 
         if (parts2 === "Math") {
@@ -154,6 +166,12 @@ export default function SAT() {
         } else {
             setpart("IV")
         }
+
+        axios.get(`http://localhost/recommendation_system/api/user/AddTimelimit.php?LRN='${JSON.parse(user).LRN}'&&SUBJECT='${parts2}'`).then(function (response) {
+            setminute(response.data[0].MINUTE)
+            setsecond(response.data[0].SECOND)
+        });
+
     }, [nextsub])
 
 
@@ -177,16 +195,16 @@ export default function SAT() {
 
 
         axios.get(`http://localhost/recommendation_system/api/user/Count.php?SUBJECT="${counter.Subject}"&&LRN="${JSON.parse(user).LRN}"`).then(function (response) {
-        
+
         })
 
-        counter.map((ACAC, index)=>{
+        counter.map((ACAC, index) => {
             axios.get(`http://localhost/recommendation_system/api/user/Count.php?SUBJECT="${ACAC.Subject}"&&LRN="${JSON.parse(user).LRN}"`).then(function (response) {
-            
-                if(response.data[index] !== undefined){
-                    setcount(prev=>({
+
+                if (response.data[index] !== undefined) {
+                    setcount(prev => ({
                         ...prev,
-                        [response.data[index].SUBJECT] : response.data[index].count
+                        [response.data[index].SUBJECT]: response.data[index].count
                     }))
                 }
             })
@@ -205,21 +223,11 @@ export default function SAT() {
             value: value
         }))
 
-        // if (answer.id === "" && answer.value == "") {
-        //     axios.post('http://localhost/recommendation_system/api/user/Saves_Answer.php/saves', {
-        //         id: JSON.parse(d)[parts1 - 1].EQID,
-        //         subject: parts2,
-        //         value: value,
-        //         answer: JSON.parse(d)[parts1 - 1].Answer
-        //     }).then(function (response) {
-        //     });
-        // } else 
-        // if (answer.value !== "" || ) {
         axios.put('http://localhost/recommendation_system/api/user/Saves_Answer.php/saves', {
             id: JSON.parse(d)[parts1 - 1].EQID,
             value: value,
         }).then(function (response) {
-    
+
         });
 
     }
@@ -227,20 +235,6 @@ export default function SAT() {
     const nextquestion = (data) => () => {
         if (data == "submit") {
             setOpen(prev => true)
-            // axios.get(`http://localhost/recommendation_system/api/user/Saves_Answer.php?ID="${parts2}"&&FETCH=SUBJECT"`).then(function (response) {
-
-            //     if (response.data.count === Number(subject[0].TOTAL_ITEMS)) {
-            //         setOpen(prev => ({
-            //             ...prev,
-            //             dialog1: true
-            //         }))
-            //     } else {
-            //         setOpen(prev => ({
-            //             ...prev,
-            //             dialog2: true
-            //         }))
-            //     }
-            // });
         } else {
             setquestionno(prev => prev + 1)
             navigate(`${Number(parts1) + 1}`)
