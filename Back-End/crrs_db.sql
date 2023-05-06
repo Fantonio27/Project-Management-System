@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2023 at 07:28 PM
+-- Generation Time: May 06, 2023 at 11:43 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -888,10 +888,10 @@ CREATE TABLE `exam_informations` (
 --
 
 INSERT INTO `exam_informations` (`EID`, `SUBJECT`, `INSTRUCTION`, `TOTAL_ITEMS`, `TIMELIMIT_MINUTE`, `TIMELIMIT_SECOND`, `EFID`) VALUES
-('EID_1', 'Math', 'Choose the correct answer by solving each problem and \nselecting only the best answer from the options provided below.', '10', '15', '59', 'EFID_1'),
-('EID_2', 'Science', 'Analyze the given table and sentence before the questions and select the appropriate answer for the questions below.', '10', '15', '59', 'EFID_1'),
-('EID_3', 'English', 'Each sentence is followed by a series of questions. You will evaluate how the passage could be altered to improve the expression of concepts for some questions. Other questions will need you to examine how the piece could be altered to fix flaws in senten', '10', '15', '59', 'EFID_1'),
-('EID_4', 'Reading_Comprehension', 'A series of questions follows each sentence or set of texts below. Choose the best response to each question based on what is stated or suggested in the passage after reading each passage or pair.', '10', '15', '59', 'EFID_1');
+('EID_1', 'Math', 'Choose the correct answer by solving each problem and \nselecting only the best answer from the options provided below.', '10', '15', '0', 'EFID_1'),
+('EID_2', 'Science', 'Analyze the given table and sentence before the questions and select the appropriate answer for the questions below.', '10', '15', '0', 'EFID_1'),
+('EID_3', 'English', 'Each sentence is followed by a series of questions. You will evaluate how the passage could be altered to improve the expression of concepts for some questions. Other questions will need you to examine how the piece could be altered to fix flaws in senten', '10', '15', '0', 'EFID_1'),
+('EID_4', 'Reading_Comprehension', 'A series of questions follows each sentence or set of texts below. Choose the best response to each question based on what is stated or suggested in the passage after reading each passage or pair.', '10', '15', '0', 'EFID_1');
 
 -- --------------------------------------------------------
 
@@ -916,8 +916,10 @@ CREATE TABLE `exam_result` (
 --
 
 INSERT INTO `exam_result` (`ERID`, `MATH_SCORE`, `ENGLISH_SCORE`, `SCIENCE_SCORE`, `READING_COMPREHENSION_SCORE`, `TOTAL_SCORE`, `EXAM_RESULT`, `LRN`, `DATE`) VALUES
-('ERID_1', 2, 1, 4, 3, 10, 'Failed', '123456789012', '2023-05-05'),
-('ERID_2', 8, 5, 8, 10, 7, 'Failed', '123123123123', '2023-05-05');
+('ERID_1', 5, 3, 2, 3, 13, 'Failed', '123123123123', '2023-05-06'),
+('ERID_2', -1, -1, -1, -1, -1, '', '353535325525', '2023-05-06'),
+('ERID_3', 3, 3, 1, 5, 12, 'Failed', '123456789101', '2023-05-06'),
+('ERID_4', 6, 5, 4, 9, 24, 'Passed', '123456789012', '2023-05-06');
 
 -- --------------------------------------------------------
 
@@ -1032,8 +1034,9 @@ CREATE TABLE `interest_assessment_result` (
 --
 
 INSERT INTO `interest_assessment_result` (`IARID`, `REALISTIC_SCORE`, `INVESTIGATIVE_SCORE`, `ARTISTIC_SCORE`, `SOCIAL_SCORE`, `ENTERPRISING_SCORE`, `CONVENTIONAL_SCORE`, `IA_RESULT`, `LRN`, `DATE`) VALUES
-(11, 4, 6, 3, 3, 4, 5, 'R AND I', '123456789012', '2023-05-05'),
-(14, 4, 6, 4, 5, 4, 3, 'I AND S', '123123123123', '2023-05-05');
+(20, 6, 2, 5, 3, 4, 4, 'R AND A', '123123123123', '2023-05-06'),
+(21, 5, 4, 2, 4, 4, 4, 'R AND I', '123456789101', '2023-05-06'),
+(23, 2, 7, 3, 2, 5, 4, 'E AND C', '123456789012', '2023-05-06');
 
 -- --------------------------------------------------------
 
@@ -1042,13 +1045,23 @@ INSERT INTO `interest_assessment_result` (`IARID`, `REALISTIC_SCORE`, `INVESTIGA
 --
 
 CREATE TABLE `overall_result` (
-  `RID` varchar(255) NOT NULL,
-  `ERID` varchar(255) NOT NULL,
-  `IRID` varchar(255) NOT NULL,
-  `RECOMMENDED_COURSE` varchar(255) NOT NULL,
-  `LRN` varchar(255) NOT NULL,
-  `DATE` varchar(255) NOT NULL
+  `RID` int(255) NOT NULL,
+  `MATH_OVERALL` varchar(255) NOT NULL,
+  `SCIENCE_OVERALL` varchar(255) NOT NULL,
+  `ENGLISH_OVERALL` varchar(255) NOT NULL,
+  `READING_COMPREHENSION_OVERALL` varchar(255) NOT NULL,
+  `LRN` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `overall_result`
+--
+
+INSERT INTO `overall_result` (`RID`, `MATH_OVERALL`, `SCIENCE_OVERALL`, `ENGLISH_OVERALL`, `READING_COMPREHENSION_OVERALL`, `LRN`) VALUES
+(4, '0.0562', '0.0166', '0.0199', '0.0166', '123123123123'),
+(5, '1.7647', '0.5263', '2.1429', '3.5714', '123456789101'),
+(6, '0.3934', '3.4783', '3.3333', '6.6667', '123456789012'),
+(7, '0.1961', '40.0000', '50.0000', '90.0000', '123456789012');
 
 -- --------------------------------------------------------
 
@@ -1089,52 +1102,6 @@ CREATE TABLE `save_answer` (
   `LRN` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `save_answer`
---
-
-INSERT INTO `save_answer` (`SAID`, `SUBJECT`, `VALUE`, `ANSWER`, `EQID`, `LRN`) VALUES
-(3498, 'Math', '0.80', '0.64', 'EQMID_11', '123123123123'),
-(3499, 'Math', '0.64', '0.60', 'EQMID_13', '123123123123'),
-(3500, 'Math', '1.00', '1.00', 'EQMID_10', '123123123123'),
-(3501, 'Math', '0.64', '0.80', 'EQMID_12', '123123123123'),
-(3502, 'Math', '2.0', '4.0', 'EQMID_14', '123123123123'),
-(3503, 'Math', '4.15', '8.00', 'EQMID_15', '123123123123'),
-(3504, 'Math', '0.46', '0.39', 'EQMID_16', '123123123123'),
-(3505, 'Math', '0.9876', '0.6879', 'EQMID_17', '123123123123'),
-(3506, 'Math', '0.5 sq. unit', '1 sq. unit', 'EQMID_19', '123123123123'),
-(3507, 'Math', 'Heart-shaped', 'Bell-shaped', 'EQMID_18', '123123123123'),
-(3508, 'Science', 'Protostar', 'White Dwarf', 'EQSID_10', '123123123123'),
-(3509, 'Science', 'Supernova ', 'Supernova ', 'EQSID_11', '123123123123'),
-(3510, 'Science', 'Evolution', 'Star Formation Theory', 'EQSID_1', '123123123123'),
-(3511, 'Science', 'John Newlands', 'Henry Mosely', 'EQSID_12', '123123123123'),
-(3512, 'Science', 'Alpha Emission', 'Beta Emission', 'EQSID_14', '123123123123'),
-(3513, 'Science', 'Fusion', 'Gamma Emission', 'EQSID_15', '123123123123'),
-(3514, 'Science', 'Fusion', 'Alpha Emission', 'EQSID_13', '123123123123'),
-(3515, 'Science', 'It is a Non-Polar Molecule', 'It is a Polar Molecule', 'EQSID_16', '123123123123'),
-(3516, 'Science', 'Non-Polar', 'Non-Polar', 'EQSID_17', '123123123123'),
-(3517, 'Science', 'Octagonal', 'Symmetrical', 'EQSID_18', '123123123123'),
-(3518, 'English', 'Formality', 'Caution', 'EQEID_1', '123123123123'),
-(3519, 'English', 'Proposal Paper', 'Technical Report', 'EQEID_12', '123123123123'),
-(3520, 'English', 'Behavior Cycle	', 'Physical Setting', 'EQEID_10', '123123123123'),
-(3521, 'English', 'Research Paper', 'Concept Paper	', 'EQEID_11', '123123123123'),
-(3522, 'English', 'Subjective', 'Exact', 'EQEID_14', '123123123123'),
-(3523, 'English', 'Progress Report', 'Progress Report', 'EQEID_13', '123123123123'),
-(3524, 'English', 'Planning', 'Collecting Data', 'EQEID_16', '123123123123'),
-(3525, 'English', 'Exposition of the strongest argument or claim.', 'Identification of the debatable issue.', 'EQEID_17', '123123123123'),
-(3526, 'English', 'Analyze and summarize the strong and weak points of the article, and then state your own position.', 'Go through the article and refute each of the main points, explaining how stupid the author’s views are.', 'EQEID_18', '123123123123'),
-(3527, 'English', 'Writing that requires a reader to gather additional information to comprehend the content.', 'Writing that requires a reader to gather additional information to comprehend the content.', 'EQEID_15', '123123123123'),
-(3528, 'Reading_Comprehension', 'Philippine Literature during American Colonization', 'Pre-colonial Literature', 'EQRCID_1', '123123123123'),
-(3529, 'Reading_Comprehension', 'Creative NonFiction', 'Science Fiction', 'EQRCID_18', '123123123123'),
-(3530, 'Reading_Comprehension', 'Spanish and American Literature', '21ST Century Literature', 'EQRCID_10', '123123123123'),
-(3531, 'Reading_Comprehension', 'Chick Literature', 'Chick Literature', 'EQRCID_17', '123123123123'),
-(3532, 'Reading_Comprehension', 'Doodle Fiction', 'Illustrated Novel', 'EQRCID_11', '123123123123'),
-(3533, 'Reading_Comprehension', 'Science Fiction', 'Digi-Fiction', 'EQRCID_12', '123123123123'),
-(3534, 'Reading_Comprehension', 'Graphic Novel', 'Graphic Novel', 'EQRCID_13', '123123123123'),
-(3535, 'Reading_Comprehension', 'Text Talk Novel', 'Blogs', 'EQRCID_16', '123123123123'),
-(3536, 'Reading_Comprehension', 'Blogs', 'Manga', 'EQRCID_15', '123123123123'),
-(3537, 'Reading_Comprehension', 'Manga', 'Doodle Fiction', 'EQRCID_14', '123123123123');
-
 -- --------------------------------------------------------
 
 --
@@ -1161,8 +1128,9 @@ CREATE TABLE `student_information` (
 INSERT INTO `student_information` (`STUDENT_NO`, `STUDENT_FIRSTNAME`, `STUDENT_LASTNAME`, `LRN`, `EMAIL_ADDRESS`, `PASSWORD`, `SHS_TRACK`, `EXAM_STATUS`, `ACCOUNT_CREATED`, `ACCOUNT_STATUS`) VALUES
 (1, 'Vince', 'Braca', '123123123123', 'Vince@gmail.com', 'Vince72102', '', 'Not taken yet', '2023-03-27', 'ACTIVE'),
 (2, 'david', 'Braca', '321321321321', 'david@gmail.com', 'David72102', '', 'Not taken yet', '2023-03-27', 'ACTIVE'),
-(3, 'scsc', 'scsacsac', '353535325525', 'cascs@csa.com', 'D242ccsc', '', 'Not taken yet', '2023-04-17', 'ACTIVE'),
-(4, 'Francis', 'Antonio', '123456789012', 'francis@gmail.com', 'Fantonio123', '', 'Not taken yet', '2023-04-17', 'ACTIVE');
+(3, 'Gabriel', 'Louie', '353535325525', 'cascs@csa.com', 'D242ccsc', '', 'Not taken yet', '2023-04-17', 'ACTIVE'),
+(4, 'Francis', 'Antonio', '123456789012', 'francis@gmail.com', 'Fantonio123', '', 'Not taken yet', '2023-04-17', 'ACTIVE'),
+(5, 'Francis Louie', 'Antonio', '123456789101', 'francis@gmail.com', 'Francis123', 'STEM', 'Not taken yet', '2023-05-06', 'ACTIVE');
 
 -- --------------------------------------------------------
 
@@ -1172,22 +1140,29 @@ INSERT INTO `student_information` (`STUDENT_NO`, `STUDENT_FIRSTNAME`, `STUDENT_L
 
 CREATE TABLE `timelimit` (
   `TID` int(255) NOT NULL,
-  `SUBJECT` varchar(255) NOT NULL,
-  `MINUTE` varchar(255) NOT NULL,
-  `SECOND` varchar(255) NOT NULL,
-  `EFID` varchar(255) NOT NULL,
-  `LRN` varchar(255) NOT NULL
+  `LRN` varchar(255) NOT NULL,
+  `MATH_MINUTE` int(20) NOT NULL,
+  `MATH_SECOND` int(20) NOT NULL,
+  `SCIENCE_MINUTE` int(20) NOT NULL,
+  `SCIENCE_SECOND` int(20) NOT NULL,
+  `ENGLISH_MINUTE` int(20) NOT NULL,
+  `ENGLISH_SECOND` int(20) NOT NULL,
+  `READING_COMPREHENSION_MINUTE` int(20) NOT NULL,
+  `READING_COMPREHENSION_SECOND` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `timelimit`
 --
 
-INSERT INTO `timelimit` (`TID`, `SUBJECT`, `MINUTE`, `SECOND`, `EFID`, `LRN`) VALUES
-(1, 'Math', '20', '20', 'EFID_1', '123123123123'),
-(2, 'Reading_Comprehension', '25', '25', 'EFID_1', '123123123123'),
-(3, 'English', '22', '28', 'EFID_1', '123123123123'),
-(4, 'Science', '24', '27', 'EFID_1', '123123123123');
+INSERT INTO `timelimit` (`TID`, `LRN`, `MATH_MINUTE`, `MATH_SECOND`, `SCIENCE_MINUTE`, `SCIENCE_SECOND`, `ENGLISH_MINUTE`, `ENGLISH_SECOND`, `READING_COMPREHENSION_MINUTE`, `READING_COMPREHENSION_SECOND`) VALUES
+(68, '353535325525', 0, 3, 0, 0, 0, 0, 0, 0),
+(69, '123456789101', 0, 17, 0, 19, 0, 14, 0, 14),
+(70, '123456789012', 5, 6, 0, 1, 0, 1, 0, 1),
+(74, '123456789012', 5, 6, 0, 1, 0, 1, 0, 1),
+(75, '123456789012', 5, 6, 0, 1, 0, 1, 0, 1),
+(76, '123456789012', 5, 6, 0, 1, 0, 1, 0, 1),
+(77, '123456789012', 5, 6, 0, 1, 0, 1, 0, 1);
 
 --
 -- Indexes for dumped tables
@@ -1315,25 +1290,31 @@ ALTER TABLE `timelimit`
 -- AUTO_INCREMENT for table `interest_assessment_result`
 --
 ALTER TABLE `interest_assessment_result`
-  MODIFY `IARID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `IARID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `overall_result`
+--
+ALTER TABLE `overall_result`
+  MODIFY `RID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `save_answer`
 --
 ALTER TABLE `save_answer`
-  MODIFY `SAID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3538;
+  MODIFY `SAID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3748;
 
 --
 -- AUTO_INCREMENT for table `student_information`
 --
 ALTER TABLE `student_information`
-  MODIFY `STUDENT_NO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `STUDENT_NO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `timelimit`
 --
 ALTER TABLE `timelimit`
-  MODIFY `TID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `TID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

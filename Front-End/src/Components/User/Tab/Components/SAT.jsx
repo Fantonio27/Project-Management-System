@@ -53,8 +53,8 @@ export default function SAT() {
         answer: '',
     }])
 
-    const [minute, setminute] = React.useState(-1)
-    const [second, setsecond] = React.useState(59)
+    const [minute, setminute] = React.useState()
+    const [second, setsecond] = React.useState()
 
     const [counter, setcounter] = React.useState([
         { Subject: "Math", answerno: 0 },
@@ -77,57 +77,98 @@ export default function SAT() {
         }
     }, [questions])
 
-    // console.log(minute)
+    const mtime = subject.length === 0 ? 15 : subject[0].TIMELIMIT_MINUTE
+    const stime = subject.length === 0 ? 5 : subject[0].TIMELIMIT_SECOND
+    // console.log(mtime)
+    // console.log(stime)
     React.useEffect(() => {
-        if (minute > 0) {
+        if (minute === Number(mtime) && second === Number(20)) {
+            setOpen(true)
+            console.log("Hello")
+        }
+        else if(minute <= Number(mtime)){
             setTimeout(() => {
-                if (second === 0) {
-                    setsecond(60)
-                    setminute(prev => prev - 1)
+                if (second >= 59) {
+                    setminute(minute + 1)
+                    setsecond(0)
+                } else {
+                    setsecond(second + 1)
                 }
 
-                setsecond(prev => prev - 1)
+                update()
             }, 1000);
-        } else if (minute === 0 && second > 0) {
-            setTimeout(() => {
-                if (minute === 0 && second === 59) {
-                    alert("1 minute left")
-                }
-                setsecond(prev => prev - 1)
-            }, 1000);
-        } else if (minute === 0) {
-            // setOpen(true)
-            setsecond(0)
-            setminute(0)
-        } else {
-            setsecond(prev => prev - 1)
+            console.log("HI")
         }
+        //     // }if (second >= 59) {
+        //     //     setsecond(60)
+        //     //     setminute(prev => prev + 1)
+        //     // }
+        //     // if (minute === 0 && second === 49) {
+        //     //     setTimeout(() => {
+        //     //         if (minute === 0 && second === 49) {
+        //     //             alert("1 minute left")
+        //     //         }
+        //     //         setsecond(prev => prev + 1)
+        //     //     }, 1000);
+        //     // } 
+        //     // else {
+        //     //     setTimeout(() => {
+        //     //         if (second === 59) {
+        //     //             setsecond(60)
+        //     //             setminute(prev => prev + 1)
+        //     //         }
 
-        if (minute != -1) {
-            const update = {
-                sub: parts2,
-                minute: minute,
-                second: second,
-                lrn: JSON.parse(user).LRN,
-            }
+        //     //         setsecond(prev => prev + 1)
+        //     //         console.log("vdvd")
+        //     //     }, 1000);
+        //     // }
 
-            if (minute !== -5 && second !== -5) {
-                axios.put(`http://localhost/recommendation_system/api/user/AddTimelimit.php?MIN=${update.sub}_MINUTE&&SEC=${update.sub}_SECOND`, update).then(function (response) {
+        //     // if (minute != -1) {
+        //     //     const update = {
+        //     //         sub: parts2,
+        //     //         minute: minute,
+        //     //         second: second,
+        //     //         lrn: JSON.parse(user).LRN,
+        //     //     }
 
-                });
-            }
-            else {
-                axios.get(`http://localhost/recommendation_system/api/user/AddTimelimit.php?LRN='${JSON.parse(user).LRN}'&&SUBJECT='${parts2}'`).then(function (response) {
+        //     //     if (minute !== -5 && second !== -5) {
+        //     //         axios.put(`http://localhost/recommendation_system/api/user/AddTimelimit.php?MIN=${update.sub}_MINUTE&&SEC=${update.sub}_SECOND`, update).then(function (response) {
 
-                    const up = parts2.toUpperCase() + "_MINUTE"
-                    const up2 = parts2.toUpperCase() + "_SECOND"
-                    setminute(response.data[0][up])
-                    setsecond(response.data[0][up2])
-                });
-            }
-        }
-        console.log("resca")
+        //     //         });
+        //     //     }
+        //     //     else {
+        //     //         axios.get(`http://localhost/recommendation_system/api/user/AddTimelimit.php?LRN='${JSON.parse(user).LRN}'&&SUBJECT='${parts2}'`).then(function (response) {
+
+        //     //             const up = parts2.toUpperCase() + "_MINUTE"
+        //     //             const up2 = parts2.toUpperCase() + "_SECOND"
+        //     //             setminute(response.data[0][up])
+        //     //             setsecond(response.data[0][up2])
+        //     //         });
+        //     //     }
+        //     // }
+        //     // console.log("resca")
     }, [second]);
+
+    React.useEffect(() => {
+        axios.get(`http://localhost/recommendation_system/api/user/AddTimelimit.php?LRN='${JSON.parse(user).LRN}'&&SUBJECT='${parts2}'`).then(function (response) {
+            const up = parts2.toUpperCase() + "_MINUTE"
+            const up2 = parts2.toUpperCase() + "_SECOND"
+            setminute(response.data.length === 0 ? 0 : response.data[0][up])
+            setsecond(response.data.length === 0 ? 0 : response.data[0][up2])
+        });
+    }, [])
+
+    const update = () => {
+        const update = {
+            sub: parts2,
+            minute: minute,
+            second: second,
+            lrn: JSON.parse(user).LRN,
+        }
+        axios.put(`http://localhost/recommendation_system/api/user/AddTimelimit.php?MIN=${update.sub}_MINUTE&&SEC=${update.sub}_SECOND`, update).then(function (response) {
+            // console.log(response.data)
+        });
+    }
 
     const [saveans, setsaveans] = React.useState([])
 
@@ -140,7 +181,7 @@ export default function SAT() {
             navigate(`../../${value}`)
             window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(""))
             axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN='${JSON.parse(user).LRN}'&&FETCH='ALL'`).then(function (response) {
-                console.log(response.data)
+                // console.log(response.data)
                 const subjects = {
                     Math: response.data[0].MATH_SCORE,
                     Science: response.data[0].SCIENCE_SCORE,
@@ -178,7 +219,6 @@ export default function SAT() {
 
         axios.get(`http://localhost/recommendation_system/api/user/Exam_Information.php?SUBJECT='${parts2}'`).then(function (response) {
             setsubject(response.data)
-
         });
 
         if (parts2 === "Math") {
@@ -193,11 +233,11 @@ export default function SAT() {
 
         arr.map(() => {
             axios.get(`http://localhost/recommendation_system/api/user/AddTimelimit.php?LRN='${JSON.parse(user).LRN}'&&SUBJECT='${parts2}'`).then(function (response) {
-                console.log(response.data)
+                // console.log(response.data)
                 const up = parts2.toUpperCase() + "_MINUTE"
                 const up2 = parts2.toUpperCase() + "_SECOND"
-                setminute(response.data.length === 0 ? -5 : response.data[0][up])
-                setsecond(response.data.length === 0 ? -5 : response.data[0][up2])
+                // setminute(response.data.length === 0 ? -5 : response.data[0][up])
+                // setsecond(response.data.length === 0 ? -5 : response.data[0][up2])
             });
         })
 
@@ -421,8 +461,7 @@ export default function SAT() {
                         open={open}
                         TransitionComponent={Transition}
                         keepMounted
-                        onClose={() => setOpen(prev => second === 0 && minute === 0 ? true : false)}
-                        aria-describedby="alert-dialog-slide-description"
+                    // onClose={() => setOpen(prev => second === 0 && minute === 0 ? true : false)}
                     >
                         <DialogTitle style={{ borderBottom: '1px solid #dddfe4ff' }}><p className="Confirm_p1">{"Confirmation"}</p></DialogTitle>
                         <DialogContent>
@@ -432,7 +471,7 @@ export default function SAT() {
                             </div>
                         </DialogContent>
                         <DialogActions sx={{ display: 'flex', gap: '5px', margin: '5px 15px 10px 0px' }}>
-                            {second != 0 && minute >= 0 &&
+                            {second !== Number(stime) && minute !== Number(mtime) &&
                                 <button className="Confirm_cancel" onClick={() => setOpen(prev => false)}>Cancel</button>
                             }
                             <button className="Confirm_submit" onClick={nextsubject}>Submit</button>

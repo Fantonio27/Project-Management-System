@@ -90,7 +90,7 @@ switch($method) {
         $sub =  $params['SUBJECT'];
 
         $sql = "SELECT SUBJECT, COUNT(SUBJECT) as count FROM save_answer 
-        WHERE SUBJECT = $sub AND ANSWER = VALUE";
+        WHERE SUBJECT = $sub AND ANSWER = VALUE AND LRN = $lrn";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();

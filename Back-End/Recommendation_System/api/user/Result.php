@@ -19,7 +19,13 @@ switch($method) {
         }else if($fetch === "'EX'"){
             $lrn =  $params['LRN'];
             $sql = "SELECT * FROM exam_result WHERE LRN = $lrn";
-        }else{
+        }else if($fetch === "'ALL'"){
+            $lrn =  $params['LRN'];
+            $sql = "SELECT * FROM exam_result 
+            INNER JOIN timelimit on exam_result.LRN = timelimit.LRN
+            WHERE LRN = $lrn";
+        }
+        else{
             $ia =  strtoupper($params['IA']);
             $subject =  strtoupper($params['SUBJECT']);
             $sql = "SELECT * 
@@ -59,8 +65,10 @@ switch($method) {
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
+
         echo json_encode($users);
+        
+        // if($users.length)
         break;
     case "POST":
 
@@ -70,10 +78,10 @@ switch($method) {
         $fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $score = json_encode($fetch[0]['count']);
         $score = $score + 1;
-        $user = json_decode( file_get_contents('php://input') );
+        $user = json_decode( file_get_contents('php://input'));
         
-        $sql = "INSERT INTO `overall_result`(`RID`, `ERID`, `IRID`, `RECOMMENDED_COURSE`, `LRN`, `DATE`) 
-        VALUES ('RID_$score',:erid,:irid,:course,:lrn,:date)";
+        $sql = "INSERT INTO `overall_result`(`MATH_OVERALL`, `SCIENCE_OVERALL`, `ENGLISH_OVERALL`, `READING_COMPREHENSION_OVERALL`, `LRN`) 
+        VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]')";
 
         $stmt = $conn->prepare($sql);
         $created_at = date('Y-m-d');
@@ -105,7 +113,7 @@ switch($method) {
             
         $score = json_encode($fetch[0]['TOTAL']);
     
-        if($score >= 70){
+        if($score >= 20){
             $status = "Passed";
         }else{
             $status = "Failed";

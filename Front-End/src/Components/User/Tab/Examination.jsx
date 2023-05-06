@@ -37,19 +37,20 @@ export default function Examination() {
 
             if (response.data.length === 0) {
                 axios.post(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN="${JSON.parse(d).LRN}"`).then(function (response) {
-
+                    console.log(response.data)
                 })
                 axios.post(`http://localhost/recommendation_system/api/user/Add.php?LRN="${JSON.parse(d).LRN}"`).then(function (response) {
 
                 })
 
+                // console.log("Helllo")
                 Subject.map((prev, index) => {
                     axios.get(`http://localhost/recommendation_system/api/user/Exam_Information.php?SUBJECT='${prev}'`).then(function (response) {
 
                         const saves = {
                             sujec: response.data[0].SUBJECT,
-                            minute: response.data[0].TIMELIMIT_MINUTE,
-                            second: response.data[0].TIMELIMIT_SECOND,
+                            minute: 0,
+                            second: 0,
                             lrn: JSON.parse(d).LRN,
 
                         }
@@ -58,14 +59,6 @@ export default function Examination() {
                         })
                     });
                 })
-                // axios.get(`http://localhost/recommendation_system/api/user/Exam_Information.php?SUBJECT='${}'`).then(function (response) {
-                //     console.log(response.data)
-                // });
-                // Subject.map((prev, index) => {
-                //     axios.post(`http://localhost/recommendation_system/api/user/AddTimelimit.php?LRN="${JSON.parse(d).LRN}"`, saves).then(function (response) {
-                //         console.log(response.data)
-                //     })
-                // })
             }
         })
     }
