@@ -83,9 +83,12 @@ export default function IA() {
             lrn : JSON.parse(user).LRN
         }
         axios.post(`http://localhost/recommendation_system/api/user/AddOverAll.php`, saves).then(function (response) {
-            console.log(response.data)
+            // console.log(response.data)
         })
 
+        axios.put(`http://localhost/recommendation_system/api/user/updateexamtaken.php?LRN='${JSON.parse(user).LRN}'`).then(function (response) {
+            // console.log(response.data)
+        })
 
     }
 

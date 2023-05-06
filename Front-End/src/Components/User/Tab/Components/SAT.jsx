@@ -181,7 +181,7 @@ export default function SAT() {
             navigate(`../../${value}`)
             window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(""))
             axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN='${JSON.parse(user).LRN}'&&FETCH='ALL'`).then(function (response) {
-                // console.log(response.data)
+        
                 const subjects = {
                     Math: response.data[0].MATH_SCORE,
                     Science: response.data[0].SCIENCE_SCORE,

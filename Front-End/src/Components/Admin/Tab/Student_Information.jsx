@@ -98,7 +98,7 @@ export default function Student_Results() {
         { id: 'EXAM_STATUS', label: 'Exam Status', },
         { id: 'ACCOUNT_STATUS', label: 'Account Status', align: 'center' },
         { id: 'ACCOUNT_CREATED', label: 'Date', align: 'center' },
-        { id: 'ACTION1', label: 'Action', align: 'center' },
+        // { id: 'ACTION1', label: 'Action', align: 'center' },
     ]
 
     const field = [          //Field in dialog
@@ -110,26 +110,17 @@ export default function Student_Results() {
         { id: 'SHSTrack', label: 'SHS Track', value: 'ICT' },
     ]
 
+    // console.log(Dataform)
+
     React.useEffect(() => {
         axios.get(`http://localhost/recommendation_system/api/admin/Student_information.php`).then(function (response) {
-            // console.log(response.data);
-            // response.data.map((res) => {
-            //     setDataform((prev)=>[...prev, {
-            //         LRN: res.LRN,
-            //         STUDENT_FIRSTNAME: res.STUDENT_FIRSTNAME,
-            //         STUDENT_LASTNAME: res.STUDENT_LASTNAME,
-            //         EMAIL_ADDRESS: res.EMAIL_ADDRESS,
-            //         PASSWORD: res.PASSWORD,
-            //         SHS_TRACK: res.SHS_TRACK,
-            //         EXAM_STATUS: res.EXAM_STATUS,
-            //         ACCOUNT_STATUS: res.ACCOUNT_STATUS,
-            //         ACCOUNT_CREATED: res.ACCOUNT_CREATED,
-            //         ACTION1: "Edit",
-            //     }])
-            // })
             setDataform(response.data)
         })
     }, [tab])
+
+    // const onChange = () =>{
+
+    // }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -184,9 +175,10 @@ export default function Student_Results() {
                     {row.STUDENT_FIRSTNAME} {row.STUDENT_LASTNAME}
                 </p>
             )
-        } else if (columnid === "ACTION1") {
-            return (option)
         }
+        // } else if (columnid === "ACTION1") {
+        //     return (option)
+        // }
         else if (columnid === "ACCOUNT_STATUS") {
             if (val === "ACTIVE") {
                 return (columnid = val,
@@ -225,7 +217,7 @@ export default function Student_Results() {
                 <div>
                     <div className="dialog_body_p1">
                         <div className="dialog_body_div">
-                            <p>Date Created: 01/01/2001</p>
+                            <p>Date Created: </p>
                             LRN:
                             <span style={{ color: '#1e6091', marginLeft: '5px' }}>123456789012</span>
                         </div>

@@ -7,6 +7,8 @@ import { useState, useEffect } from "react";
 import { useRef } from "react";
 import axios from "axios";
 
+import React from "react";
+
 export default function Profile() {
     const windowHeight = useRef(window.innerHeight);
 
@@ -113,8 +115,8 @@ export default function Profile() {
         { id: "LastName", label: "Last name", max: "16" },
         { id: "LRN", label: "LRN", max: "12", validation: "" },
         { id: "Email", label: "Email Address", max: "30" },
-        { id: "Password", label: "Password", max: "16" },
-        { id: "Confirm", label: "Confirm Password", max: "16" },
+        // { id: "Confirm Password", label: "Confirm Password", max: "16" },
+        // { id: "New Password", label: "New Password", max: "16" },
         { id: "ExamResult", label: "Exam Result", max: "21" },
         { id: "SHSstrand", label: "SHS Strand (optional)" },
     ])
@@ -135,78 +137,70 @@ export default function Profile() {
                 ...prev,
                 [name]: "Please fill in this required field."
             }))
-        }else  if (name == "FirstName" || name == "LastName") {
+        } else if (name == "FirstName" || name == "LastName") {
             if (!letter.test(value)) {
                 setvalidation(prev => ({
                     ...prev,
                     [name]: "Please Letter only this required field."
                 }))
-            }else{
+            } else {
                 setvalidation(prev => ({
                     ...prev,
                     [name]: ""
                 }))
             }
-        }else  if (name == "Email") {
+        } else if (name == "Email") {
             if (!email.test(value)) {
                 setvalidation(prev => ({
                     ...prev,
                     [name]: "Invalid Email Address(example@gmail.com)"
                 }))
-            }else{
+            } else {
                 setvalidation(prev => ({
                     ...prev,
                     [name]: ""
                 }))
             }
-        }else  if (name == "Password") {
+        }
+        else if (name == "Password") {
             if (!password_val.test(value)) {
                 setvalidation(prev => ({
                     ...prev,
                     [name]: "Password should be contain: at least 8 characters, one uppercase letter, one lowercase letter, and one number"
                 }))
-            }else{
+            } else {
                 setvalidation(prev => ({
                     ...prev,
                     [name]: ""
                 }))
             }
-        }else  if (name == "Confirm") {
+        } else if (name == "Confirm") {
             if (!password_val.test(value)) {
                 setvalidation(prev => ({
                     ...prev,
                     [name]: "Password did not match"
                 }))
-            }else{
+            } else {
                 setvalidation(prev => ({
                     ...prev,
                     [name]: ""
                 }))
             }
-        } 
+        }
 
         console.log(validation)
     }
 
     const onSubmit = (name) => {
         let a
-        // validation.map(prev=>
-        //     prev.map((value)=>{
-        //         if(value === ""){
-        //             return a = a + 1
-        //         }else{
-        //             return a = a + 0
-        //         }
-        //     }))
-        // console.log(a)
+
         axios.put(`http://localhost/recommendation_system/api/update`, Dataform).then(function (response) {
             // console.log(response.data)
             setedit(prev => !prev)
             alert("Update Successfull")
         })
-        // console.log(validation)
-
     }
+
     useEffect(() => {
         axios.get(`http://localhost/recommendation_system/api/${JSON.parse(user).LRN}`).then(function (response) {
             setDataform((prev) => ({
@@ -214,7 +208,7 @@ export default function Profile() {
                 LastName: response.data.STUDENT_LASTNAME,
                 LRN: response.data.LRN,
                 Email: response.data.EMAIL_ADDRESS,
-                Password: response.data.PASSWORD,
+                // Password: response.data.PASSWORD,
                 ExamResult: response.data.EXAM_STATUS,
                 SHSstrand: response.data.SHS_TRACK,
                 Confirm: ""
@@ -222,18 +216,13 @@ export default function Profile() {
         })
     }, [edit === false])
 
-    // const field = [
-    //     { id: "FirstName", label: "First name", max: "21" },
-    //     { id: "LastName", label: "Last name", max: "16" },
-    //     { id: "LRN", label: "LRN", max: "12" },
-    //     { id: "Email", label: "Email Address", max: "30" },
-    //     { id: "Password", label: "Password", max: "16" },
-    //     { id: "Confirm", label: "Confirm Password", max: "16" },
-    //     { id: "ExamResult", label: "Exam Result", max: "21" },
-    //     { id: "SHSstrand", label: "SHS Strand (optional)", },
-    // ]
-
     const height = windowHeight.current - 70
+
+    const [value, setValue] = React.useState(2);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
     return (
         <Zoom in={true} timeout={500}>
             <div className="Profile" style={{ height: height }}>

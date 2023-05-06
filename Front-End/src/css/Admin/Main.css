@@ -1,12 +1,33 @@
 .Admin_Main {
-    /* padding: 50px 100px; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 50px;
+    grid-template-areas:
+        "A_Main_GroupBox A_Main_Diagrams"
+        "A_Main_GroupBox A_Main_Diagrams";
+    /* background-color: red; */
+
 }
 
 .A_Main_GroupBox {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
+    grid-area: A_Main_GroupBox;
 }
+
+.A_Main_Diagrams {
+    grid-area: A_Main_Diagrams;
+}
+
+.A_Main_GroupBox {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px 20px;
+
+}
+
+
+
 
 .A_Main_Container,
 .A_Main_Chart,
@@ -14,7 +35,7 @@
     flex: 20%;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgb(233, 236, 239, 0.2) 0px 0px 0px 1px;
     border-radius: 15px;
-    padding: 30px 25px; 
+    padding: 30px 25px;
 }
 
 .A_Main_p1 {

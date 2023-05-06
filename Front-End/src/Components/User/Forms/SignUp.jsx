@@ -84,7 +84,7 @@ export default function Login() {
         event.preventDefault()
         const { FirstName, LastName, LRN, Email, Password, Confirm, Checked } = Dataform
 
-        console.log(repeat)
+        // console.log(repeat)
         const email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
         var password_val = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/
 
@@ -167,7 +167,7 @@ export default function Login() {
 
         } else {
             axios.get(`http://localhost/recommendation_system/api/${Dataform.LRN}`).then(function (response) {
-                console.log(response.data);
+                // console.log(response.data);
                 if (response.data != false) {
                     setvaltext((prev) => ({
                         ...prev,
@@ -182,7 +182,7 @@ export default function Login() {
                     }))
                 } else {
                     axios.post('http://localhost/recommendation_system/api/user/Register.php/saves', Dataform).then(function (response) {
-                        // console.log(response.data);
+                        console.log(response.data);
                         const data = {
                             LRN :  Dataform.LRN,
                             FIRSTNAME : Dataform.FirstName,

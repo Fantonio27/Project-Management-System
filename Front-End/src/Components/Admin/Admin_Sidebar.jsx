@@ -17,15 +17,15 @@ import List from '@mui/material/List';
 export default function Admin_Sidebar(props) {
 
     const Menu = [
-        {
-            Title: "Overview",
-            Icon: <SignalCellularAltRoundedIcon />,
-            Link: "",
-        },
+        // {
+        //     Title: "Overview",
+        //     Icon: <SignalCellularAltRoundedIcon />,
+        //     Link: "",
+        // },
         {
             Title: "Student Information",
             Icon: <FolderSharedRoundedIcon />,
-            Link: "Student_Information",
+            Link: "",
         },
         {
             Title: "Course Information",
@@ -54,7 +54,7 @@ export default function Admin_Sidebar(props) {
             tab: [
                 { sub: "Entrance Exam Results", Link2: "Entrance_Exam_Results" },
                 { sub: "Interest Assessment Results", Link2: "Interest_Assessment_Results" },
-                { sub: "OverAll Results", Link2: "OverAll_Results" },
+                // { sub: "OverAll Results", Link2: "OverAll_Results" },
             ]
         }
     ]

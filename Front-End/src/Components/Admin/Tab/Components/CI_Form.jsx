@@ -236,7 +236,7 @@ export default function CI_Form() {
                                 <div className="CI_Form_container" key={index}>
                                     <div>
                                         <p className="CI_Form_p1">{val.label}</p>
-                                        <p className="CI_Form_p2">{val.text}</p>
+                                        {/* <p className="CI_Form_p2">{val.text}</p> */}
                                     </div>
                                     <div>
                                         {tab(val, Coursejob)}

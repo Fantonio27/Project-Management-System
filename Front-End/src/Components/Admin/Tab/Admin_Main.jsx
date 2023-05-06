@@ -113,49 +113,6 @@ export default function Admin_Main() {
                 }
             </div>
             <div className="A_Main_Diagrams">
-                <div className="A_Main_Table">
-                    <p className="A_Main_Table_p1">Latest Users</p>
-                    <TableContainer>
-                        <Table sx={{ boxShadow: 0 , maxwidth: "120px"}}>
-                            <TableHead sx={{ backgroundColor: "rgb(67, 160, 71,0.1)" }}>
-                                <TableRow sx={{ '& td, & th': { borderBottom: "1.5px solid rgb(233, 236, 239,0)" } }}>
-                                    <TableCell>Dessert (100g serving)</TableCell>
-                                    <TableCell align="right">Calories</TableCell>
-                                    <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                                    <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                                    <TableCell align="right">Protein&nbsp;(g)</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {rows.map((row) => (
-                                    <TableRow
-                                        key={row.name}
-                                        sx={{
-                                            '& td, & th': { borderBottom: "1.5px solid rgb(233, 236, 239,0.6)" },
-                                            "&:hover": {
-                                                backgroundColor: "rgb(67, 160, 71,0.04)"
-                                            }
-                                        }}
-                                    >
-                                        <TableCell component="th" scope="row" >
-                                            {row.name}
-                                        </TableCell>
-                                        <TableCell align="right">{row.calories}</TableCell>
-                                        <TableCell align="right">{row.fat}</TableCell>
-                                        <TableCell align="right">{row.carbs}</TableCell>
-                                        <TableCell align="right">{row.protein}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                    <div style={{ display: 'flex', justifyContent: "flex-end" }}>
-                        <div className="A_Main_Table_button">
-                            <p>View all</p>
-                            <ArrowForwardRoundedIcon sx={{ color: "#6f727e", fontSize: "20px" }} />
-                        </div>
-                    </div>
-                </div>
                 <div className="A_Main_Chart">
                     <p className="A_Main_Chart_p1">Students Result</p>
                     <div className="A_Main_Chart_box">
