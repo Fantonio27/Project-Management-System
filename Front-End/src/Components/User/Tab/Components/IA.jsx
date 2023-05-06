@@ -7,15 +7,15 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 export default function IA() {
 
-    // const {state} = useLocation();
+
     const user = window.localStorage.getItem('USER_DATA')
     const [iaresult, setiaresult] = React.useState([
-        { Interest: "Realistic", Score: 0, sub: ["R AND I", "R AND A", "R AND S", "R AND E","R AND C"] },
+        { Interest: "Realistic", Score: 0, sub: ["R AND I", "R AND A", "R AND S", "R AND E", "R AND C"] },
         { Interest: "Investigative", Score: 0, sub: ["R AND I", "I AND S"] },
         { Interest: "Artistic", Score: 0, sub: ["R AND A", "A AND S", "E AND A"] },
-        { Interest: "Social", Score: 0, sub: ["R AND S", "I AND S", "A AND S",  "S AND E"]  },
-        { Interest: "Enterprising", Score: 0, sub:  ["R AND E", "E AND A", "S AND E","E AND C"] },
-        { Interest: "Conventional", Score: 0, sub:  ["R AND C", "E AND C"]  }
+        { Interest: "Social", Score: 0, sub: ["R AND S", "I AND S", "A AND S", "S AND E"] },
+        { Interest: "Enterprising", Score: 0, sub: ["R AND E", "E AND A", "S AND E", "E AND C"] },
+        { Interest: "Conventional", Score: 0, sub: ["R AND C", "E AND C"] }
     ])
 
     const [questions, setquestions] = React.useState([])
@@ -35,15 +35,59 @@ export default function IA() {
 
     var totalq = Object.keys(questions).length;
 
+    const [timelimit, setlimit] = React.useState([])
+    const [examinfo, setexaminfo] = React.useState([])
+    const [examresult, setexamresult] = React.useState([])
+
     React.useEffect(() => {
-        // axios.get(`http://localhost/recommendation_system/api/user/IA_Questions.php`).then(function (response) {
-        //     setquestions(response.data)
-        // })
         axios.get(`http://localhost/recommendation_system/api/user/IA_Questions.php`).then(function (response) {
             setquestions(response.data)
-            // console.log(response.data)
         })
+
+        axios.get(`http://localhost/recommendation_system/api/user/AddTimelimit.php?LRN='${JSON.parse(user).LRN}'`).then(function (response) {
+            setlimit(response.data)
+        });
+
+        axios.get(`http://localhost/recommendation_system/api/user/GetExam_Information.php`).then(function (response) {
+            setexaminfo(response.data)
+        });
+
+        axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN="${JSON.parse(user).LRN}"&&FETCH='EX'`).then(function (response) {
+            setexamresult(response.data)
+        });
     }, [])
+
+    const exam_algo = () => {
+
+        let Maccuracy = examresult[0].MATH_SCORE / examinfo[0].TOTAL_ITEMS * 100
+        let Maveragetime = timelimit[0].MATH_MINUTE * 60 + timelimit[0].MATH_SECOND / 1
+        let Mefficiancy = Maccuracy * (1/Maveragetime)
+
+        let Saccuracy = examresult[0].SCIENCE_SCORE / examinfo[1].TOTAL_ITEMS * 100
+        let Saveragetime = timelimit[0].SCIENCE_MINUTE * 60 + timelimit[0].SCIENCE_SECOND / 1
+        let Sefficiancy = Saccuracy * (1/Saveragetime)
+
+        let Eaccuracy = examresult[0].ENGLISH_SCORE / examinfo[2].TOTAL_ITEMS * 100
+        let Eaveragetime = timelimit[0].ENGLISH_MINUTE * 60 + timelimit[0].ENGLISH_SECOND / 1
+        let Eefficiancy = Eaccuracy * (1/Eaveragetime)
+
+        let Raccuracy = examresult[0].READING_COMPREHENSION_SCORE / examinfo[3].TOTAL_ITEMS * 100
+        let Raveragetime = timelimit[0].READING_COMPREHENSION_MINUTE * 60 + timelimit[0].READING_COMPREHENSION_SECOND / 1
+        let Refficiancy = Raccuracy * (1/Raveragetime)
+
+        const saves = {
+            Math: Mefficiancy.toFixed(4),
+            Science: Sefficiancy.toFixed(4),
+            English: Eefficiancy.toFixed(4),
+            Reading: Refficiancy.toFixed(4),
+            lrn : JSON.parse(user).LRN
+        }
+        axios.post(`http://localhost/recommendation_system/api/user/AddOverAll.php`, saves).then(function (response) {
+            console.log(response.data)
+        })
+
+
+    }
 
     const nextquestion = (res) => (event) => {
         const { value } = event.target
@@ -61,8 +105,9 @@ export default function IA() {
             const ranking = iaresult.sort(function (a, b) {
                 return b.Score - a.Score;
             });
-            // ia_algo(iaresult[0].Interest[0], iaresult[1].Interest[0], iaresult[2].Interest[0])
+
             ia_algo(iaresult[0].sub, iaresult[1].sub, iaresult[2].sub)
+            exam_algo()
             navigate("../Exam_Result")
 
         } else if (res != undefined) {
@@ -78,20 +123,18 @@ export default function IA() {
 
     const ia_algo = (a, b, c) => {
 
-        // console.log(a, b, c)
-
         let result
 
         const ar = a.filter(element => b.includes(element));
-        if(ar.length === 0){
+        if (ar.length === 0) {
             const ab = a.filter(element => c.includes(element));
-            if(ab.length === 0){
+            if (ab.length === 0) {
                 const ar = b.filter(element => c.includes(element));
                 result = ar
-            }else{
+            } else {
                 result = ab
             }
-        }else{
+        } else {
             result = ar
         }
 
@@ -113,11 +156,11 @@ export default function IA() {
             lrn: JSON.parse(user).LRN,
         }
 
-        // // console.log(saves)
-
         axios.post(`http://localhost/recommendation_system/api/user/IA_Questions.php`, saves).then(function (response) {
             // console.log(response.data)
         })
+
+
     }
     return (
         <div className="IA">

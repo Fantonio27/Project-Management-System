@@ -195,6 +195,11 @@
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
+.Validation_user{
+    font-size: 12px;
+    margin: 5px 0px 0px 5px;
+}
+
 /* 
 .result-title {
     font-family: 'Quicksand', sans-serif;

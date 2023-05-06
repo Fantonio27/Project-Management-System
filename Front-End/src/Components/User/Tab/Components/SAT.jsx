@@ -1,7 +1,7 @@
 
 
 import "../../../../css/User/Tabs/Components/SAT.css"
-import { Radio, Button } from '@mui/material';
+import { Radio, Button, Fade } from '@mui/material';
 import * as React from 'react';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -77,6 +77,7 @@ export default function SAT() {
         }
     }, [questions])
 
+    // console.log(minute)
     React.useEffect(() => {
         if (minute > 0) {
             setTimeout(() => {
@@ -95,9 +96,11 @@ export default function SAT() {
                 setsecond(prev => prev - 1)
             }, 1000);
         } else if (minute === 0) {
-            setOpen(true)
+            // setOpen(true)
             setsecond(0)
             setminute(0)
+        } else {
+            setsecond(prev => prev - 1)
         }
 
         if (minute != -1) {
@@ -107,12 +110,23 @@ export default function SAT() {
                 second: second,
                 lrn: JSON.parse(user).LRN,
             }
-            axios.put(`http://localhost/recommendation_system/api/user/AddTimelimit.php`, update).then(function (response) {
-                // setminute(response.data[0].MINUTE)
-                // setsecond(response.data[0].SECOND)
-                // console.log(response.data)
-            });
+
+            if (minute !== -5 && second !== -5) {
+                axios.put(`http://localhost/recommendation_system/api/user/AddTimelimit.php?MIN=${update.sub}_MINUTE&&SEC=${update.sub}_SECOND`, update).then(function (response) {
+
+                });
+            }
+            else {
+                axios.get(`http://localhost/recommendation_system/api/user/AddTimelimit.php?LRN='${JSON.parse(user).LRN}'&&SUBJECT='${parts2}'`).then(function (response) {
+
+                    const up = parts2.toUpperCase() + "_MINUTE"
+                    const up2 = parts2.toUpperCase() + "_SECOND"
+                    setminute(response.data[0][up])
+                    setsecond(response.data[0][up2])
+                });
+            }
         }
+        console.log("resca")
     }, [second]);
 
     const [saveans, setsaveans] = React.useState([])
@@ -124,8 +138,17 @@ export default function SAT() {
             axios.put(`http://localhost/recommendation_system/api/user/Result.php?LRN='${JSON.parse(user).LRN}'`).then(function (response) {
             })
             navigate(`../../${value}`)
-
             window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(""))
+            axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN='${JSON.parse(user).LRN}'&&FETCH='ALL'`).then(function (response) {
+                console.log(response.data)
+                const subjects = {
+                    Math: response.data[0].MATH_SCORE,
+                    Science: response.data[0].SCIENCE_SCORE,
+                    English: response.data[0].ENGLISH_SCORE,
+                    Reading_Comprehension: response.data[0].READING_COMPREHENSION_SCORE,
+                }
+            })
+
         } else {
             axios.get(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN='${JSON.parse(user).LRN}'&&RESULT=ALL`).then(function (response) {
                 window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(response.data))
@@ -143,6 +166,7 @@ export default function SAT() {
     const parts1 = location.href.split('/').at(-1);
     const parts2 = location.href.split('/').at(-2);
 
+    const arr = [1, 2]
     React.useEffect(() => {
         const choicesrandom = choices.map(value => ({ value, sort: Math.random() }))
             .sort((a, b) => a.sort - b.sort)
@@ -167,13 +191,17 @@ export default function SAT() {
             setpart("IV")
         }
 
-        axios.get(`http://localhost/recommendation_system/api/user/AddTimelimit.php?LRN='${JSON.parse(user).LRN}'&&SUBJECT='${parts2}'`).then(function (response) {
-            setminute(response.data[0].MINUTE)
-            setsecond(response.data[0].SECOND)
-        });
+        arr.map(() => {
+            axios.get(`http://localhost/recommendation_system/api/user/AddTimelimit.php?LRN='${JSON.parse(user).LRN}'&&SUBJECT='${parts2}'`).then(function (response) {
+                console.log(response.data)
+                const up = parts2.toUpperCase() + "_MINUTE"
+                const up2 = parts2.toUpperCase() + "_SECOND"
+                setminute(response.data.length === 0 ? -5 : response.data[0][up])
+                setsecond(response.data.length === 0 ? -5 : response.data[0][up2])
+            });
+        })
 
     }, [nextsub])
-
 
     React.useEffect(() => {
         const idsub = JSON.parse(d)[parts1 - 1].EQID
@@ -209,9 +237,6 @@ export default function SAT() {
                 }
             })
         })
-
-
-
 
     }, [questionno])
 
@@ -267,152 +292,154 @@ export default function SAT() {
     // const ArraySubject = ['Math', 'Science', 'English', 'Reading Comprehension']
 
     return (
-        <div className="SAT" >
-            <div className="SAT_container">
-                <div className="SAT_header">
-                    <p className="SAT_p1">Scholastic Aptitude Test</p>
-                    <p className="SAT_p2">Part {part} - {subject.length === 0 ? '' : subject[0].SUBJECT}</p>
-                    <p className="SAT_p3"><b>Directions: </b>{subject.length === 0 ? '' : subject[0].INSTRUCTION}</p>
-                </div>
-                <div className="SAT_Questions_container">
-                    <div className="SAT_Questions">
-                        <div className="tile">
-                            Question No. {questionno + 1}
-                        </div>
-                        <div className="SAT_form">
-                            <p className="SAT_q1">{questions.length === 1 ? questions[0].Question : questions[questionno].Question}</p>
-                            <RadioGroup
-                                name={questions.id}
-                                sx={Radiogroup}
-                            >
-                                {
-                                    choices.map(((choices, index) => {
-                                        let q = questions.length === 1
-                                        let val = q ? questions[0] : questions[questionno]
-                                        let def = val[choices.value] === answer.value
-
-                                        return (
-                                            <FormControlLabel
-                                                key={index}
-                                                sx={{
-                                                    '&:hover': {
-                                                        backgroundColor: 'rgba(69, 141, 107, 0.04)'
-                                                    },
-                                                    borderRadius: '5px',
-                                                    transition: '0.3s',
-                                                    padding: '8px 0px',
-                                                    border: def ? '1px solid rgb(61, 148, 108,0.4)' : '1px solid rgb(61, 148, 108,0.3)',
-                                                    margin: '5px 0px',
-                                                    boxShadow: def ? 'rgb(61, 148, 108,0.4) 0px 0px 0px 2px' : 'none'
-                                                }}
-                                                control={
-                                                    <Radio
-                                                        checked={def ? true : false}
-                                                        name={val[choices.value]}
-                                                        onClick={handleClick(index)}
-                                                        value={val[choices.value]}
-                                                    />
-                                                }
-                                                label={<div className="SAT_c1" ><b>{Letter[index]}.</b><p>{val[choices.value]}</p></div>}
-                                            />
-                                        )
-                                    }))
-                                }
-                            </RadioGroup>
-                        </div>
+        <Fade in={true}>
+            <div className="SAT" >
+                <div className="SAT_container">
+                    <div className="SAT_header">
+                        <p className="SAT_p1">Scholastic Aptitude Test</p>
+                        <p className="SAT_p2">Part {part} - {subject.length === 0 ? '' : subject[0].SUBJECT}</p>
+                        <p className="SAT_p3"><b>Directions: </b>{subject.length === 0 ? '' : subject[0].INSTRUCTION}</p>
                     </div>
-                    <div className="SAT_button_group">
-                        <div>
-                            {questionno > 0 && <button className="SAT_prev_btn" onClick={prevquestion}>Previous</button>}
-                        </div>
-                        {questionno === total - 1 ?
-                            <button onClick={nextquestion("submit")} className="SAT_next_btn">Submit</button>
-                            :
-                            <button className="SAT_next_btn" onClick={nextquestion(questionno)}>Next</button>
-                        }
-                    </div>
-                </div>
+                    <div className="SAT_Questions_container">
+                        <div className="SAT_Questions">
+                            <div className="tile">
+                                Question No. {questionno + 1}
+                            </div>
+                            <div className="SAT_form">
+                                <p className="SAT_q1">{questions.length === 1 ? questions[0].Question : questions[questionno].Question}</p>
+                                <RadioGroup
+                                    name={questions.id}
+                                    sx={Radiogroup}
+                                >
+                                    {
+                                        choices.map(((choices, index) => {
+                                            let q = questions.length === 1
+                                            let val = q ? questions[0] : questions[questionno]
+                                            let def = val[choices.value] === answer.value
 
-                <div className="Question_Status">
-                    <div className="Status_div0">
-                        <p><b>Time Limit:</b> 00:{minute < 10 ? '0' : ''}{minute}:{second < 10 ? '0' : ''}{second}</p>
-                        <p><b>Question Status</b></p>
-                        <div className="Status_div">
-                            {questions.map((val, index) => {
-                                const equal = (element) => element.VALUE !== "" && element.EQID === val.EQID
-                                const fill = saveans.some(equal)
-                                // const equal = val.EQID === saveans.EQID
-                                // let save = 
-                                // saveans.length === 0? '':
-                                // saveans[index].EQID && saveans[index].VALUE !== ""
-                                // const fillss = (answer.EQID === save)
-
-                                return (
-                                    <button
-                                        onClick={() => { setnumber(index + 1) }}
-                                        className="roundball"
-                                        style={{
-                                            backgroundColor: fill ? 'rgba(100, 173, 139, 0.8)' : 'rgba(69, 141, 107, 0)',
-                                            color: fill ? 'white' : '#252a35ff',
-                                            border: fill ? '1px solid #64ad8b64' : '1px solid #64ad8b64',
-                                        }} key={index}>
-                                        {index + 1}
-                                    </button>
-                                )
-                            })}
+                                            return (
+                                                <FormControlLabel
+                                                    key={index}
+                                                    sx={{
+                                                        '&:hover': {
+                                                            backgroundColor: 'rgba(69, 141, 107, 0.04)'
+                                                        },
+                                                        borderRadius: '5px',
+                                                        transition: '0.3s',
+                                                        padding: '8px 0px',
+                                                        border: def ? '1px solid rgb(61, 148, 108,0.4)' : '1px solid rgb(61, 148, 108,0.3)',
+                                                        margin: '5px 0px',
+                                                        boxShadow: def ? 'rgb(61, 148, 108,0.4) 0px 0px 0px 2px' : 'none'
+                                                    }}
+                                                    control={
+                                                        <Radio
+                                                            checked={def ? true : false}
+                                                            name={val[choices.value]}
+                                                            onClick={handleClick(index)}
+                                                            value={val[choices.value]}
+                                                        />
+                                                    }
+                                                    label={<div className="SAT_c1" ><b>{Letter[index]}.</b><p>{val[choices.value]}</p></div>}
+                                                />
+                                            )
+                                        }))
+                                    }
+                                </RadioGroup>
+                            </div>
                         </div>
-                        <div className="Status_div2">
-                        </div>
-                        <p><b>Subjects</b></p>
-                        <div className="Status_div3">
-                            {
-                                counter.map((sub, index) => {
-                                    // const equal = (element) => element.VALUE !== "" && element.VALUE === 
-                                    // const fill = saveans.some(equal)
-                                    return (
-                                        <div className="Status_subjects" key={index}>
-                                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                                <p>{sub.Subject}</p>
-                                                <p>{count[sub.Subject]}/{questions.length}</p>
-                                            </div>
-                                            <div style={{ width: '100%', margin: '5px 0px' }}>
-                                                <LinearProgress variant="determinate" value={count[sub.Subject] / questions.length * 100} color="success" sx={{ borderRadius: '20px', height: '5px' }} />
-                                            </div>
-                                        </div>
-                                    )
-                                })
+                        <div className="SAT_button_group">
+                            <div>
+                                {questionno > 0 && <button className="SAT_prev_btn" onClick={prevquestion}>Previous</button>}
+                            </div>
+                            {questionno === total - 1 ?
+                                <button onClick={nextquestion("submit")} className="SAT_next_btn">Submit</button>
+                                :
+                                <button className="SAT_next_btn" onClick={nextquestion(questionno)}>Next</button>
                             }
+                        </div>
+                    </div>
 
-                            {/* <div className="Status_subjects">Science</div>
+                    <div className="Question_Status">
+                        <div className="Status_div0">
+                            <p><b>Time Limit:</b> 00:{minute < 10 ? '0' : ''}{minute}:{second < 10 ? '0' : ''}{second}</p>
+                            <p><b>Question Status</b></p>
+                            <div className="Status_div">
+                                {questions.map((val, index) => {
+                                    const equal = (element) => element.VALUE !== "" && element.EQID === val.EQID
+                                    const fill = saveans.some(equal)
+                                    // const equal = val.EQID === saveans.EQID
+                                    // let save = 
+                                    // saveans.length === 0? '':
+                                    // saveans[index].EQID && saveans[index].VALUE !== ""
+                                    // const fillss = (answer.EQID === save)
+
+                                    return (
+                                        <button
+                                            onClick={() => { setnumber(index + 1) }}
+                                            className="roundball"
+                                            style={{
+                                                backgroundColor: fill ? 'rgba(100, 173, 139, 0.8)' : 'rgba(69, 141, 107, 0)',
+                                                color: fill ? 'white' : '#252a35ff',
+                                                border: fill ? '1px solid #64ad8b64' : '1px solid #64ad8b64',
+                                            }} key={index}>
+                                            {index + 1}
+                                        </button>
+                                    )
+                                })}
+                            </div>
+                            <div className="Status_div2">
+                            </div>
+                            <p><b>Subjects</b></p>
+                            <div className="Status_div3">
+                                {
+                                    counter.map((sub, index) => {
+                                        // const equal = (element) => element.VALUE !== "" && element.VALUE === 
+                                        // const fill = saveans.some(equal)
+                                        return (
+                                            <div className="Status_subjects" key={index}>
+                                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                                    <p>{sub.Subject}</p>
+                                                    <p>{count[sub.Subject]}/{questions.length}</p>
+                                                </div>
+                                                <div style={{ width: '100%', margin: '5px 0px' }}>
+                                                    <LinearProgress variant="determinate" value={count[sub.Subject] / questions.length * 100} color="success" sx={{ borderRadius: '20px', height: '5px' }} />
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+
+                                {/* <div className="Status_subjects">Science</div>
                             <div className="Status_subjects">English</div>
                             <div className="Status_subjects">Reading Comprehension</div> */}
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                {/* FOR SUBMIT */}
-                <Dialog
-                    open={open}
-                    TransitionComponent={Transition}
-                    keepMounted
-                    onClose={() => setOpen(prev => second === 0 && minute === 0 ? true : false)}
-                    aria-describedby="alert-dialog-slide-description"
-                >
-                    <DialogTitle style={{ borderBottom: '1px solid #dddfe4ff' }}><p className="Confirm_p1">{"Confirmation"}</p></DialogTitle>
-                    <DialogContent>
-                        <div className="Confirm_p2">
-                            Please take a moment to review your answers and ensure that you have provided a response for
-                            each question before submitting.Your answers cannot be changed once the form is submitted.
-                        </div>
-                    </DialogContent>
-                    <DialogActions sx={{ display: 'flex', gap: '5px', margin: '5px 15px 10px 0px' }}>
-                        {second != 0 && minute >= 0 &&
-                            <button className="Confirm_cancel" onClick={() => setOpen(prev => false)}>Cancel</button>
-                        }
-                        <button className="Confirm_submit" onClick={nextsubject}>Submit</button>
-                    </DialogActions>
-                </Dialog>
+                    {/* FOR SUBMIT */}
+                    <Dialog
+                        open={open}
+                        TransitionComponent={Transition}
+                        keepMounted
+                        onClose={() => setOpen(prev => second === 0 && minute === 0 ? true : false)}
+                        aria-describedby="alert-dialog-slide-description"
+                    >
+                        <DialogTitle style={{ borderBottom: '1px solid #dddfe4ff' }}><p className="Confirm_p1">{"Confirmation"}</p></DialogTitle>
+                        <DialogContent>
+                            <div className="Confirm_p2">
+                                Please take a moment to review your answers and ensure that you have provided a response for
+                                each question before submitting.Your answers cannot be changed once the form is submitted.
+                            </div>
+                        </DialogContent>
+                        <DialogActions sx={{ display: 'flex', gap: '5px', margin: '5px 15px 10px 0px' }}>
+                            {second != 0 && minute >= 0 &&
+                                <button className="Confirm_cancel" onClick={() => setOpen(prev => false)}>Cancel</button>
+                            }
+                            <button className="Confirm_submit" onClick={nextsubject}>Submit</button>
+                        </DialogActions>
+                    </Dialog>
+                </div>
             </div>
-        </div>
+        </Fade>
     )
 }

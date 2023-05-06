@@ -344,3 +344,10 @@
     border-top: 0px;
     padding: 5px;
 }
+
+.Result_Failed{
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    margin-top: 5px;
+    color: #252a35ff;
+}

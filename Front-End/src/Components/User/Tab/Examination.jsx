@@ -39,19 +39,22 @@ export default function Examination() {
                 axios.post(`http://localhost/recommendation_system/api/user/Exam_Questions.php?LRN="${JSON.parse(d).LRN}"`).then(function (response) {
 
                 })
+                axios.post(`http://localhost/recommendation_system/api/user/Add.php?LRN="${JSON.parse(d).LRN}"`).then(function (response) {
+
+                })
 
                 Subject.map((prev, index) => {
                     axios.get(`http://localhost/recommendation_system/api/user/Exam_Information.php?SUBJECT='${prev}'`).then(function (response) {
-                        console.log(response.data)
+
                         const saves = {
-                            sub: response.data[0].SUBJECT,
+                            sujec: response.data[0].SUBJECT,
                             minute: response.data[0].TIMELIMIT_MINUTE,
                             second: response.data[0].TIMELIMIT_SECOND,
-                            lrn:JSON.parse(d).LRN ,
-                            id: response.data[0].EFID,
+                            lrn: JSON.parse(d).LRN,
+
                         }
-                        axios.post(`http://localhost/recommendation_system/api/user/AddTimelimit.php`, saves).then(function (response) {
-                            console.log(response.data)
+                        axios.put(`http://localhost/recommendation_system/api/user/AddTimelimit.php?MIN=${saves.sujec}_MINUTE&&SEC=${saves.sujec}_SECOND`, saves).then(function (response) {
+
                         })
                     });
                 })

@@ -198,12 +198,13 @@ export default function Profile() {
         //             return a = a + 0
         //         }
         //     }))
-        console.log(a)
-        // axios.put(`http://localhost/recommendation_system/api/update`, Dataform).then(function (response) {
-        //     // console.log(response.data)
-        //     setedit(prev => !prev)
-        // })
-        console.log(validation)
+        // console.log(a)
+        axios.put(`http://localhost/recommendation_system/api/update`, Dataform).then(function (response) {
+            // console.log(response.data)
+            setedit(prev => !prev)
+            alert("Update Successfull")
+        })
+        // console.log(validation)
 
     }
     useEffect(() => {
@@ -296,7 +297,7 @@ export default function Profile() {
                                                                             name={id}
                                                                             maxLength={max}
                                                                         />
-                                                                        <p>{validation[id]}</p>
+                                                                        <p className="Validation_user">{validation[id]}</p>
                                                                     </div>
                                                             }
                                                         </div>
