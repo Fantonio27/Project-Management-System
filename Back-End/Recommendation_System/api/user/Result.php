@@ -71,7 +71,6 @@ switch($method) {
         // if($users.length)
         break;
     case "POST":
-
         $sql = "SELECT COUNT(*) AS count FROM overall_result";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -100,6 +99,11 @@ switch($method) {
     
         break;
     case "PUT":
+        $sql = "SELECT SUM(TOTAL_ITEMS) AS count FROM exam_informations";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $count = $stmt->fetch(PDO::FETCH_ASSOC);
+
         $url_components = parse_url($_SERVER['REQUEST_URI']);
         parse_str($url_components['query'], $params);
     
@@ -113,7 +117,7 @@ switch($method) {
             
         $score = json_encode($fetch[0]['TOTAL']);
     
-        if($score >= 20){
+        if($score >= $count['count']){
             $status = "Passed";
         }else{
             $status = "Failed";

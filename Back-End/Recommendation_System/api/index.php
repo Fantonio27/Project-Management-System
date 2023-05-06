@@ -36,6 +36,7 @@ switch($method) {
 
         $stmt = $conn->prepare($sql);
         $created_at = date('Y-m-d');
+        
         $stmt->bindParam(':fname', $user->FirstName);
         $stmt->bindParam(':lname', $user->LastName);
         $stmt->bindParam(':lrn', $user->LRN);
@@ -48,20 +49,20 @@ switch($method) {
         } else {
             $response = ['status' => 0, 'message' => 'Failed to create record.'];
         }
-        echo json_encode($response);
+        echo json_encode($user);
         break;
 
     case "PUT":
         $user = json_decode( file_get_contents('php://input') );
         $sql = "UPDATE `student_information` SET `STUDENT_FIRSTNAME`=:fname,
-        `STUDENT_LASTNAME`=:lname,`EMAIL_ADDRESS`=:email,`PASSWORD`=:password,`SHS_TRACK`=:strand 
+        `STUDENT_LASTNAME`=:lname,`EMAIL_ADDRESS`=:email,`SHS_TRACK`=:strand 
         WHERE LRN = :lrn";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':lrn', $user->LRN);
         $stmt->bindParam(':fname', $user->FirstName);
         $stmt->bindParam(':lname', $user->LastName);
         $stmt->bindParam(':email', $user->Email);
-        $stmt->bindParam(':password', $user->Password);
+        // $stmt->bindParam(':password', $user->Password);
         $stmt->bindParam(':strand', $user->SHSstrand);
 
         if($stmt->execute()) {

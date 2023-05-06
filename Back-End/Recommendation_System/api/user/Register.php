@@ -11,11 +11,12 @@
 
     $stmt = $conn->prepare($sql);
     $created_at = date('Y-m-d');
+    $hashpassword = password_hash($user->Password, PASSWORD_DEFAULT);
     $stmt->bindParam(':fname', $user->FirstName);
     $stmt->bindParam(':lname', $user->LastName);
     $stmt->bindParam(':lrn', $user->LRN);
     $stmt->bindParam(':email', $user->Email);
-    $stmt->bindParam(':password', $user->Password);
+    $stmt->bindParam(':password', $hashpassword);
     $stmt->bindParam(':created_at', $created_at);
 
     if($stmt->execute()) {

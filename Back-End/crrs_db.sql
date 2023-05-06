@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2023 at 11:43 AM
+-- Generation Time: May 06, 2023 at 03:48 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -919,7 +919,8 @@ INSERT INTO `exam_result` (`ERID`, `MATH_SCORE`, `ENGLISH_SCORE`, `SCIENCE_SCORE
 ('ERID_1', 5, 3, 2, 3, 13, 'Failed', '123123123123', '2023-05-06'),
 ('ERID_2', -1, -1, -1, -1, -1, '', '353535325525', '2023-05-06'),
 ('ERID_3', 3, 3, 1, 5, 12, 'Failed', '123456789101', '2023-05-06'),
-('ERID_4', 6, 5, 4, 9, 24, 'Passed', '123456789012', '2023-05-06');
+('ERID_4', 6, 5, 4, 9, 24, 'Passed', '123456789012', '2023-05-06'),
+('ERID_5', 0, 0, 0, 0, 0, 'Failed', '568697023143', '2023-05-06');
 
 -- --------------------------------------------------------
 
@@ -1036,7 +1037,8 @@ CREATE TABLE `interest_assessment_result` (
 INSERT INTO `interest_assessment_result` (`IARID`, `REALISTIC_SCORE`, `INVESTIGATIVE_SCORE`, `ARTISTIC_SCORE`, `SOCIAL_SCORE`, `ENTERPRISING_SCORE`, `CONVENTIONAL_SCORE`, `IA_RESULT`, `LRN`, `DATE`) VALUES
 (20, 6, 2, 5, 3, 4, 4, 'R AND A', '123123123123', '2023-05-06'),
 (21, 5, 4, 2, 4, 4, 4, 'R AND I', '123456789101', '2023-05-06'),
-(23, 2, 7, 3, 2, 5, 4, 'E AND C', '123456789012', '2023-05-06');
+(23, 2, 7, 3, 2, 5, 4, 'E AND C', '123456789012', '2023-05-06'),
+(24, 4, 6, 2, 4, 5, 4, 'R AND I', '568697023143', '2023-05-06');
 
 -- --------------------------------------------------------
 
@@ -1061,7 +1063,12 @@ INSERT INTO `overall_result` (`RID`, `MATH_OVERALL`, `SCIENCE_OVERALL`, `ENGLISH
 (4, '0.0562', '0.0166', '0.0199', '0.0166', '123123123123'),
 (5, '1.7647', '0.5263', '2.1429', '3.5714', '123456789101'),
 (6, '0.3934', '3.4783', '3.3333', '6.6667', '123456789012'),
-(7, '0.1961', '40.0000', '50.0000', '90.0000', '123456789012');
+(7, '0.1961', '40.0000', '50.0000', '90.0000', '123456789012'),
+(8, '0.0000', '0.0000', '0.0000', '0.0000', '568697023143'),
+(9, '0.0000', '0.0000', '0.0000', '0.0000', '568697023143'),
+(10, '0.0000', '0.0000', '0.0000', '0.0000', '568697023143'),
+(11, '0.0000', '0.0000', '0.0000', '0.0000', '568697023143'),
+(12, '0.0000', '0.0000', '0.0000', '0.0000', '568697023143');
 
 -- --------------------------------------------------------
 
@@ -1102,6 +1109,52 @@ CREATE TABLE `save_answer` (
   `LRN` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `save_answer`
+--
+
+INSERT INTO `save_answer` (`SAID`, `SUBJECT`, `VALUE`, `ANSWER`, `EQID`, `LRN`) VALUES
+(3748, 'Math', '', '0.80', 'EQMID_12', '568697023143'),
+(3749, 'Math', '', '0.64', 'EQMID_11', '568697023143'),
+(3750, 'Math', '', '0.60', 'EQMID_13', '568697023143'),
+(3751, 'Math', '0.30', '1.00', 'EQMID_10', '568697023143'),
+(3752, 'Math', '', '0.39', 'EQMID_16', '568697023143'),
+(3753, 'Math', '', '4.0', 'EQMID_14', '568697023143'),
+(3754, 'Math', '', 'Bell-shaped', 'EQMID_18', '568697023143'),
+(3755, 'Math', '', '8.00', 'EQMID_15', '568697023143'),
+(3756, 'Math', '', '1 sq. unit', 'EQMID_19', '568697023143'),
+(3757, 'Math', '', '0.6879', 'EQMID_17', '568697023143'),
+(3758, 'Science', '', 'Supernova ', 'EQSID_11', '568697023143'),
+(3759, 'Science', '', 'Star Formation Theory', 'EQSID_1', '568697023143'),
+(3760, 'Science', '', 'White Dwarf', 'EQSID_10', '568697023143'),
+(3761, 'Science', '', 'Alpha Emission', 'EQSID_13', '568697023143'),
+(3762, 'Science', '', 'Henry Mosely', 'EQSID_12', '568697023143'),
+(3763, 'Science', '', 'Beta Emission', 'EQSID_14', '568697023143'),
+(3764, 'Science', '', 'Non-Polar', 'EQSID_17', '568697023143'),
+(3765, 'Science', '', 'Gamma Emission', 'EQSID_15', '568697023143'),
+(3766, 'Science', '', 'Symmetrical', 'EQSID_18', '568697023143'),
+(3767, 'Science', '', 'It is a Polar Molecule', 'EQSID_16', '568697023143'),
+(3768, 'English', '', 'Go through the article and refute each of the main points, explaining how stupid the author’s views are.', 'EQEID_18', '568697023143'),
+(3769, 'English', '', 'Physical Setting', 'EQEID_10', '568697023143'),
+(3770, 'English', '', 'Caution', 'EQEID_1', '568697023143'),
+(3771, 'English', '', 'Technical Report', 'EQEID_12', '568697023143'),
+(3772, 'English', '', 'Progress Report', 'EQEID_13', '568697023143'),
+(3773, 'English', '', 'Exact', 'EQEID_14', '568697023143'),
+(3774, 'English', '', 'Collecting Data', 'EQEID_16', '568697023143'),
+(3775, 'English', '', 'Writing that requires a reader to gather additional information to comprehend the content.', 'EQEID_15', '568697023143'),
+(3776, 'English', '', 'Identification of the debatable issue.', 'EQEID_17', '568697023143'),
+(3777, 'English', '', 'Concept Paper	', 'EQEID_11', '568697023143'),
+(3778, 'Reading_Comprehension', '', 'Pre-colonial Literature', 'EQRCID_1', '568697023143'),
+(3779, 'Reading_Comprehension', '', '21ST Century Literature', 'EQRCID_10', '568697023143'),
+(3780, 'Reading_Comprehension', '', 'Graphic Novel', 'EQRCID_13', '568697023143'),
+(3781, 'Reading_Comprehension', '', 'Illustrated Novel', 'EQRCID_11', '568697023143'),
+(3782, 'Reading_Comprehension', '', 'Digi-Fiction', 'EQRCID_12', '568697023143'),
+(3783, 'Reading_Comprehension', '', 'Doodle Fiction', 'EQRCID_14', '568697023143'),
+(3784, 'Reading_Comprehension', '', 'Chick Literature', 'EQRCID_17', '568697023143'),
+(3785, 'Reading_Comprehension', '', 'Science Fiction', 'EQRCID_18', '568697023143'),
+(3786, 'Reading_Comprehension', '', 'Manga', 'EQRCID_15', '568697023143'),
+(3787, 'Reading_Comprehension', '', 'Blogs', 'EQRCID_16', '568697023143');
+
 -- --------------------------------------------------------
 
 --
@@ -1130,7 +1183,8 @@ INSERT INTO `student_information` (`STUDENT_NO`, `STUDENT_FIRSTNAME`, `STUDENT_L
 (2, 'david', 'Braca', '321321321321', 'david@gmail.com', 'David72102', '', 'Not taken yet', '2023-03-27', 'ACTIVE'),
 (3, 'Gabriel', 'Louie', '353535325525', 'cascs@csa.com', 'D242ccsc', '', 'Not taken yet', '2023-04-17', 'ACTIVE'),
 (4, 'Francis', 'Antonio', '123456789012', 'francis@gmail.com', 'Fantonio123', '', 'Not taken yet', '2023-04-17', 'ACTIVE'),
-(5, 'Francis Louie', 'Antonio', '123456789101', 'francis@gmail.com', 'Francis123', 'STEM', 'Not taken yet', '2023-05-06', 'ACTIVE');
+(5, 'Francis Louie', 'Antonio', '123456789101', 'francis@gmail.com', 'Francis123', 'STEM', 'Not taken yet', '2023-05-06', 'ACTIVE'),
+(16, 'Gabriel', 'Antonio', '568697023143', 'francis@yahoo.com', '$2y$10$1lGqv7PRkSFHuemcXWpnmeJHsDSIjy2im.ybUXhpDONpPhinIZGiW', 'STEM', 'Exam Taken', '2023-05-06', 'ACTIVE');
 
 -- --------------------------------------------------------
 
@@ -1162,7 +1216,8 @@ INSERT INTO `timelimit` (`TID`, `LRN`, `MATH_MINUTE`, `MATH_SECOND`, `SCIENCE_MI
 (74, '123456789012', 5, 6, 0, 1, 0, 1, 0, 1),
 (75, '123456789012', 5, 6, 0, 1, 0, 1, 0, 1),
 (76, '123456789012', 5, 6, 0, 1, 0, 1, 0, 1),
-(77, '123456789012', 5, 6, 0, 1, 0, 1, 0, 1);
+(77, '123456789012', 5, 6, 0, 1, 0, 1, 0, 1),
+(78, '568697023143', 0, 2, 0, 1, 0, 1, 0, 1);
 
 --
 -- Indexes for dumped tables
@@ -1290,31 +1345,31 @@ ALTER TABLE `timelimit`
 -- AUTO_INCREMENT for table `interest_assessment_result`
 --
 ALTER TABLE `interest_assessment_result`
-  MODIFY `IARID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `IARID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `overall_result`
 --
 ALTER TABLE `overall_result`
-  MODIFY `RID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `RID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `save_answer`
 --
 ALTER TABLE `save_answer`
-  MODIFY `SAID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3748;
+  MODIFY `SAID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3788;
 
 --
 -- AUTO_INCREMENT for table `student_information`
 --
 ALTER TABLE `student_information`
-  MODIFY `STUDENT_NO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `STUDENT_NO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `timelimit`
 --
 ALTER TABLE `timelimit`
-  MODIFY `TID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `TID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

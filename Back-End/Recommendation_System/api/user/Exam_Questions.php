@@ -14,34 +14,40 @@ switch($method) {
         $lrn =  $params['LRN'];
         $result =  $params['RESULT'];
 
+        $sql = "SELECT * FROM exam_informations";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $info = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
         $sql = "SELECT * FROM exam_result WHERE LRN = $lrn";
-        // $sql = "SELECT SUBJECT, COUNT(SUBJECT) as count FROM save_answer GROUP BY SUBJECT";
+
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $fetch = $stmt->fetchaLL(PDO::FETCH_ASSOC);
 
         if($fetch === [] || $fetch[0]['MATH_SCORE'] === -1){
             $subject = "Math";
-            $limit = 30;
+            $limit = $info[0]['TOTAL_ITEMS'];
             $sub = "eq_math";
         }else if ($fetch[0]['SCIENCE_SCORE'] === -1){
             $subject = "Science";
-            $limit = 30;
+            $limit = $info[1]['TOTAL_ITEMS'];
             $sub = "eq_science";
         }else if ($fetch[0]['ENGLISH_SCORE'] === -1){
             $subject = "English";
-            $limit = 20;
+            $limit = $info[2]['TOTAL_ITEMS'];
             $sub = "eq_english";
         }else if ($fetch[0]['READING_COMPREHENSION_SCORE'] === -1){
             $subject = "Reading_Comprehension";
-            $limit = 20;
+            $limit = $info[3]['TOTAL_ITEMS'];
             $sub = "eq_reading_comprehension";
         }else{
             $subject = "Interest_Assessment";
         }
 
         if($result === "ALL"){
-            $sql = "SELECT * FROM $sub LIMIT 10";
+            $sql = "SELECT * FROM $sub LIMIT $limit";
             // -- ORDER BY RAND()
             $stmt = $conn->prepare($sql);
             $stmt->execute();
