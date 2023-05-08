@@ -117,7 +117,7 @@ switch($method) {
             
         $score = json_encode($fetch[0]['TOTAL']);
     
-        if($score >= $count['count']){
+        if((int)$score >= $count['count']/2){
             $status = "Passed";
         }else{
             $status = "Failed";
@@ -132,7 +132,7 @@ switch($method) {
         } else {
             $response = false;
         }
-        echo json_encode($response);
+        echo json_encode($count['count']);
         break;
 }
 ?>

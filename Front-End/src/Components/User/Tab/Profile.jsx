@@ -106,8 +106,8 @@ export default function Profile() {
         FirstName: '',
         LastName: '',
         Email: '',
-        Password: '',
-        Confirm: "",
+        // Password: '',
+        // Confirm: "",
     })
 
     const [field, setfield] = useState([
@@ -187,18 +187,20 @@ export default function Profile() {
                 }))
             }
         }
-
-        console.log(validation)
     }
 
     const onSubmit = (name) => {
         let a
 
-        axios.put(`http://localhost/recommendation_system/api/update`, Dataform).then(function (response) {
-            // console.log(response.data)
+        const val = Object.values(validation).some(el => el !== "")
+
+        if(!val){
+            axios.put(`http://localhost/recommendation_system/api/update`, Dataform).then(function (response) {
+
             setedit(prev => !prev)
             alert("Update Successfull")
         })
+        }
     }
 
     useEffect(() => {

@@ -79,12 +79,10 @@ export default function SAT() {
 
     const mtime = subject.length === 0 ? 15 : subject[0].TIMELIMIT_MINUTE
     const stime = subject.length === 0 ? 5 : subject[0].TIMELIMIT_SECOND
-    // console.log(mtime)
-    // console.log(stime)
+
     React.useEffect(() => {
         if (minute === Number(mtime) && second === Number(20)) {
             setOpen(true)
-            console.log("Hello")
         }
         else if(minute <= Number(mtime)){
             setTimeout(() => {
@@ -97,56 +95,8 @@ export default function SAT() {
 
                 update()
             }, 1000);
-            console.log("HI")
+
         }
-        //     // }if (second >= 59) {
-        //     //     setsecond(60)
-        //     //     setminute(prev => prev + 1)
-        //     // }
-        //     // if (minute === 0 && second === 49) {
-        //     //     setTimeout(() => {
-        //     //         if (minute === 0 && second === 49) {
-        //     //             alert("1 minute left")
-        //     //         }
-        //     //         setsecond(prev => prev + 1)
-        //     //     }, 1000);
-        //     // } 
-        //     // else {
-        //     //     setTimeout(() => {
-        //     //         if (second === 59) {
-        //     //             setsecond(60)
-        //     //             setminute(prev => prev + 1)
-        //     //         }
-
-        //     //         setsecond(prev => prev + 1)
-        //     //         console.log("vdvd")
-        //     //     }, 1000);
-        //     // }
-
-        //     // if (minute != -1) {
-        //     //     const update = {
-        //     //         sub: parts2,
-        //     //         minute: minute,
-        //     //         second: second,
-        //     //         lrn: JSON.parse(user).LRN,
-        //     //     }
-
-        //     //     if (minute !== -5 && second !== -5) {
-        //     //         axios.put(`http://localhost/recommendation_system/api/user/AddTimelimit.php?MIN=${update.sub}_MINUTE&&SEC=${update.sub}_SECOND`, update).then(function (response) {
-
-        //     //         });
-        //     //     }
-        //     //     else {
-        //     //         axios.get(`http://localhost/recommendation_system/api/user/AddTimelimit.php?LRN='${JSON.parse(user).LRN}'&&SUBJECT='${parts2}'`).then(function (response) {
-
-        //     //             const up = parts2.toUpperCase() + "_MINUTE"
-        //     //             const up2 = parts2.toUpperCase() + "_SECOND"
-        //     //             setminute(response.data[0][up])
-        //     //             setsecond(response.data[0][up2])
-        //     //         });
-        //     //     }
-        //     // }
-        //     // console.log("resca")
     }, [second]);
 
     React.useEffect(() => {
@@ -166,7 +116,7 @@ export default function SAT() {
             lrn: JSON.parse(user).LRN,
         }
         axios.put(`http://localhost/recommendation_system/api/user/AddTimelimit.php?MIN=${update.sub}_MINUTE&&SEC=${update.sub}_SECOND`, update).then(function (response) {
-            // console.log(response.data)
+       
         });
     }
 
@@ -177,8 +127,9 @@ export default function SAT() {
 
         if (value === "Interest_Assessment") {
             axios.put(`http://localhost/recommendation_system/api/user/Result.php?LRN='${JSON.parse(user).LRN}'`).then(function (response) {
+    
             })
-            navigate(`../../${value}`)
+            // navigate(`../../${value}`)
             window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(""))
             axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN='${JSON.parse(user).LRN}'&&FETCH='ALL'`).then(function (response) {
         
@@ -197,7 +148,7 @@ export default function SAT() {
 
             navigate(`../${value}/1`)
         }
-        reload()
+        // reload()
     }
 
     const reload = () => {
@@ -233,11 +184,8 @@ export default function SAT() {
 
         arr.map(() => {
             axios.get(`http://localhost/recommendation_system/api/user/AddTimelimit.php?LRN='${JSON.parse(user).LRN}'&&SUBJECT='${parts2}'`).then(function (response) {
-                // console.log(response.data)
                 const up = parts2.toUpperCase() + "_MINUTE"
                 const up2 = parts2.toUpperCase() + "_SECOND"
-                // setminute(response.data.length === 0 ? -5 : response.data[0][up])
-                // setsecond(response.data.length === 0 ? -5 : response.data[0][up2])
             });
         })
 
