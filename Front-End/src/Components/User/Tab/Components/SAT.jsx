@@ -129,7 +129,7 @@ export default function SAT() {
             axios.put(`http://localhost/recommendation_system/api/user/Result.php?LRN='${JSON.parse(user).LRN}'`).then(function (response) {
     
             })
-            // navigate(`../../${value}`)
+            navigate(`../../${value}`)
             window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(""))
             axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN='${JSON.parse(user).LRN}'&&FETCH='ALL'`).then(function (response) {
         
@@ -148,7 +148,7 @@ export default function SAT() {
 
             navigate(`../${value}/1`)
         }
-        // reload()
+        reload()
     }
 
     const reload = () => {
