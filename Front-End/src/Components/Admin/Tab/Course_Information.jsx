@@ -87,7 +87,7 @@ export default function Course_Information() {
         { id: 'FIELD', label: 'Field', minWidth: 100 },
         { id: 'ACRONYM', label: 'Acronym', minWidth: 100 },
         { id: 'COURSE_NAME', label: 'Course Name' },
-        { id: 'DATE', label: 'Date', align: 'center' },
+        { id: 'DATE_CREATED', label: 'Date', align: 'center' },
         { id: 'ACTION', label: 'Actions', align: 'center', minWidth: 50 },
     ]
 

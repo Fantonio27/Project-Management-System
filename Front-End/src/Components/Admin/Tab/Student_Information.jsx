@@ -98,7 +98,7 @@ export default function Student_Results() {
         { id: 'EXAM_STATUS', label: 'Exam Status', },
         { id: 'ACCOUNT_STATUS', label: 'Account Status', align: 'center' },
         { id: 'ACCOUNT_CREATED', label: 'Date', align: 'center' },
-        // { id: 'ACTION1', label: 'Action', align: 'center' },
+        { id: 'ACTION1', label: 'Action', align: 'center' },
     ]
 
     const field = [          //Field in dialog
@@ -110,17 +110,12 @@ export default function Student_Results() {
         { id: 'SHSTrack', label: 'SHS Track', value: 'ICT' },
     ]
 
-    // console.log(Dataform)
 
     React.useEffect(() => {
         axios.get(`http://localhost/recommendation_system/api/admin/Student_information.php`).then(function (response) {
             setDataform(response.data)
         })
     }, [tab])
-
-    // const onChange = () =>{
-
-    // }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -175,10 +170,10 @@ export default function Student_Results() {
                     {row.STUDENT_FIRSTNAME} {row.STUDENT_LASTNAME}
                 </p>
             )
+        
+        } else if (columnid === "ACTION1") {
+            return (option)
         }
-        // } else if (columnid === "ACTION1") {
-        //     return (option)
-        // }
         else if (columnid === "ACCOUNT_STATUS") {
             if (val === "ACTIVE") {
                 return (columnid = val,

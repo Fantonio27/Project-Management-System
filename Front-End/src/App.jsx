@@ -43,6 +43,8 @@ import Interest_Assessment from "./Components/Admin/Tab/IA";
 //Components 
 import Form from "./Components/Admin/Tab/Components/CI_Form";
 import Add_Entrance_Exam from "./Components/Admin/Tab/Components/Add_Entrance_Exam";
+import InterestForm from "./Components/Admin/Tab/Components/InterestFormAdd";
+import InterestFormEdit from "./Components/Admin/Tab/Components/InterestFormEdit";
 
 /* End*/
 
@@ -88,8 +90,8 @@ function App() {
         <Route path="Admin_Login" element={<Admin_Login />} />
 
         <Route path="Admin_Dashboard" element={<Admin_Dashboard />}>
-          {/* <Route path="" element={<Admin_Main />} /> */}
-          <Route path="" element={<Student_Info />} />
+          <Route path="" element={<Admin_Main />} />
+          <Route path="Student_Information" element={<Student_Info />} />
           <Route path="Course_Information">
             <Route index path="" element={<Course_Information />} />
             {/* <Route path=":name" element={<Course_Information />} /> */}
@@ -101,7 +103,11 @@ function App() {
             {/* <Route path="" element={<Entrance_Exam />} /> */}
             <Route path="" element={<Add_Entrance_Exam />} />
           </Route>
-          <Route path="Interest_Assessment" element={<Interest_Assessment />} />
+          <Route path="Interest_Assessment">
+            <Route path="" element={<Interest_Assessment />} />
+            <Route path="Edit/:cid" element={<InterestFormEdit />} />
+            <Route path="Add" element={<InterestForm />} />
+          </Route>
         </Route>
 
         <Route path='*' element={<Errorpage />} />
