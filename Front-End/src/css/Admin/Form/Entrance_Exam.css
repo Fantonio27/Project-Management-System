@@ -54,6 +54,9 @@
     font-size: 16px;
     font-family: 'QuickSand', sans-serif;
     color: #587f63ff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 .tab_p1 {
     font-size: 26px;
@@ -81,7 +84,7 @@
 .tab1_form {
     display: grid; 
     grid-template-columns: 1fr 1fr; 
-    grid-template-rows: 1fr 1fr; 
+    grid-template-rows: 1fr; 
 }
 
 .tab_input {
@@ -234,6 +237,25 @@
 }
 
 .tab3_form{
-    border: 1px solid #252a35ff;
-    padding: 30px;
+    margin: 30px 0px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: #505161ff;
+}
+
+.limit{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.choices{
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    width: 94.7%;
 }

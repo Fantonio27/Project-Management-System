@@ -40,6 +40,7 @@ export default function CI_Form() {
 
     const [Dataform, setDataform] = React.useState({})
     const [Coursejob, setCoursejob] = React.useState([])
+    const [CoursePercentage, setCoursePercentage] = React.useState({})
     const [open, setOpen] = React.useState(false);
     const [count, setcount] = React.useState({
         course: 0,
@@ -75,6 +76,18 @@ export default function CI_Form() {
                     { CIJID: `CIJID_${response.data + 3}`, JOB_NAME: '', INFORMATION: '', CID: '' },
                 ]))
             })
+
+            axios.get(`http://localhost/recommendation_system/api/admin/Count.php?table=course_percentage`).then(function (response) {
+                setcount(prev => ({
+                    ...prev,
+                    percentage: response.data
+                }))
+                // console.log(response.data)
+                setCoursePercentage(prev => ({
+                    ...prev,
+                    CPID: `CPID_${response.data + 1}`
+                }))
+            })
         } else {
             axios.get(`http://localhost/recommendation_system/api/admin/Course_Information.php?cid=${url}`).then(function (response) {
                 setDataform(response.data)
@@ -82,6 +95,10 @@ export default function CI_Form() {
 
             axios.get(`http://localhost/recommendation_system/api/admin/Course_Job.php?cid="${url}"`).then(function (response) {
                 setCoursejob(response.data)
+            })
+
+            axios.get(`http://localhost/recommendation_system/api/admin/Course_Percentage.php?cid="${url}"`).then(function (response) {
+                setCoursePercentage(response.data)
             })
         }
     }, [])
@@ -93,11 +110,19 @@ export default function CI_Form() {
         { id: "COURSE_NAME", label: "Course Name", text: "lorem ipsum" },
         { id: "INFORMATION", label: "Information", text: "lorem ipsum" },
         { id: "HEADER_PICTURE", label: "Header Picture", text: "lorem ipsum" },
-        // { id: "DATE", label: "Date", text: "lorem ipsum" },
+        { id: "INTEREST", label: "Interest", text: "lorem ipsum" },
         { id: "JOB", label: "Job", text: "lorem ipsum" },
+        { id: "COURSE_PERCENTAGE", label: "Course Percentage", text: "lorem ipsum" },
     ]
 
-    const tab = (val, job, loop) => {
+    const percentage = [
+        { id: "MATH", label: "Math Percentage" },
+        { id: "SCIENCE", label: "Science Percentage" },
+        { id: "ENGLISH", label: "English Percentage" },
+        { id: "READING_COMPREHENSION", label: "Reading Comprehension Percentage" },
+    ]
+
+    const tab = (val, job, cp) => {
         if (val.id === "INFORMATION") {
             return <textarea
                 id="COURSE"
@@ -144,6 +169,29 @@ export default function CI_Form() {
                     )
                 })
             )
+        } else if (val.id === "COURSE_PERCENTAGE") {
+            return (
+                percentage.map((sub, index) => {
+                    return (
+                        <div key={index} className="Form_Job">
+                            <input
+                                className="CI_Form_input"
+                                placeholder={sub.label}
+                                id="CP"
+                                value={cp[sub.id] || ""}
+                                onChange={onChange}
+                                // name={course.CIJID || `CIJID_${count.job + 1}`}
+                                name={sub.id}
+                                minLength={val.min}
+                                maxLength={val.max}
+                                pattern={val.pattern}
+                                title={val.title}
+                                required
+                            />
+                        </div>
+                    )
+                })
+            )
         } else {
             return <input
                 name={val.id}
@@ -171,11 +219,17 @@ export default function CI_Form() {
                 ...prev,
                 [name]: value
             }))
-        } else {
+        } else if (id === "CP") {
+            setCoursePercentage(prev => ({
+                ...prev,
+                [name]: value
+            }))
+        }
+        else {
             setCoursejob(current =>
                 current.map(obj => {
                     if (obj.CIJID === name) {
-                        return { ...obj, [id]: value , CID: Dataform.CID};
+                        return { ...obj, [id]: value, CID: Dataform.CID };
                     }
 
                     return obj;
@@ -186,32 +240,34 @@ export default function CI_Form() {
     const handleSubmit = () => {
         if (add) {
             axios.post(`http://localhost/recommendation_system/api/admin/Course_Information.php`, Dataform).then(function (response) {
-                console.log(response.data)
-                {
+
+                axios.post(`http://localhost/recommendation_system/api/admin/Course_Percentage.php?cid="${Dataform.CID}"`, CoursePercentage).then(function (response) {
                     Coursejob.map((prev) => {
                         axios.post(`http://localhost/recommendation_system/api/admin/Course_Job.php?cid="${Dataform.CID}"`, prev).then(function (response) {
-                            console.log(response.data)
+                        })
+                    })
+                })
+
+            })
+
+        } else {
+            axios.put(`http://localhost/recommendation_system/api/admin/Course_Information.php`, Dataform).then(function (response) {
+
+                {
+                    Coursejob.map((prev) => {
+                        axios.put(`http://localhost/recommendation_system/api/admin/Course_Job.php?cid="${Dataform.CID}"`, prev).then(function (response) {
                         })
                     })
                 }
             })
-            console.log(Dataform)
-            console.log(Coursejob)
-        } else {
-            axios.put(`http://localhost/recommendation_system/api/admin/Course_Information.php`, Dataform).then(function (response) {
-                // console.log(response.data)
-                {
-                    Coursejob.map((prev) => {
-                        axios.put(`http://localhost/recommendation_system/api/admin/Course_Job.php?cid="${Dataform.CID}"`, prev).then(function (response) {
-                            // console.log(response.data)
-                        })
-                    })
-                }
+            axios.put(`http://localhost/recommendation_system/api/admin/Course_Percentage.php`, CoursePercentage).then(function (response) {
             })
         }
 
         setOpen(false)
     }
+
+    // console.log(Dataform)
     return (
         <Fade in={true} timeout={1000}>
             <div className="CI_Form">
@@ -239,7 +295,7 @@ export default function CI_Form() {
                                         {/* <p className="CI_Form_p2">{val.text}</p> */}
                                     </div>
                                     <div>
-                                        {tab(val, Coursejob)}
+                                        {tab(val, Coursejob, CoursePercentage)}
                                     </div>
                                 </div>
                             )

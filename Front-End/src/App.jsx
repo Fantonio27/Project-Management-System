@@ -40,12 +40,14 @@ import Course_Information from "./Components/Admin/Tab/Course_Information";
 import Student_Results from "./Components/Admin/Tab/Student_Result";
 import Entrance_Exam from "./Components/Admin/Tab/Entrance_Exam";
 import Interest_Assessment from "./Components/Admin/Tab/IA";
+import Subject_Questions from "./Components/Admin/Tab/SubjectQuestions";
 //Components 
 import Form from "./Components/Admin/Tab/Components/CI_Form";
 import Add_Entrance_Exam from "./Components/Admin/Tab/Components/Add_Entrance_Exam";
 import InterestForm from "./Components/Admin/Tab/Components/InterestFormAdd";
 import InterestFormEdit from "./Components/Admin/Tab/Components/InterestFormEdit";
-
+import Edit_Questions from "./Components/Admin/Tab/Components/Edit_Questions";
+import Add_Questions from "./Components/Admin/Tab/Components/Add_Questions";
 /* End*/
 
 
@@ -99,9 +101,17 @@ function App() {
             <Route path="Add" element={<Form />} />
           </Route>
           <Route path="Student_Results/:name" element={<Student_Results />} />
-          <Route path="Scholastic_Aptitude_Test">
-            {/* <Route path="" element={<Entrance_Exam />} /> */}
-            <Route path="" element={<Add_Entrance_Exam />} />
+
+          <Route path="Examination">
+            <Route path="Information">
+              <Route path="" element={<Entrance_Exam />} />
+              <Route path="Edit/:id" element={<Add_Entrance_Exam />} />
+            </Route>
+            <Route path=":sub">
+              <Route path="" element={<Subject_Questions />} />
+              <Route path="Add" element={<Add_Questions />} />
+              <Route path="Edit/:id" element={<Edit_Questions />} />
+            </Route>
           </Route>
           <Route path="Interest_Assessment">
             <Route path="" element={<Interest_Assessment />} />

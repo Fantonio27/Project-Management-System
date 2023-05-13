@@ -42,6 +42,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function Course_Information() {
 
     const tab = useOutletContext()
+    const url = location.href.split('/').at(-1);
+    const subject = `eq_${url.toLowerCase()}`
+
     const [Dataform, setDataform] = React.useState([])
 
     const [content, setcontent] = React.useState()
@@ -74,31 +77,30 @@ export default function Course_Information() {
     const deleterecord = () => {
         setOpendelete(false);
 
-        axios.delete(`http://localhost/recommendation_system/api/admin/Course_Information.php?id="${id}"`).then(function (response) {
-            // console.log(response.data)
-            axios.delete(`http://localhost/recommendation_system/api/admin/Course_Job.php?id="${id}"`).then(function (response) {
-                axios.delete(`http://localhost/recommendation_system/api/admin/Course_Percentage.php?id="${id}"`).then(function (response) {
-                    // console.log(response.data)
-                })
-            })
-
-            
+        axios.delete(`http://localhost/recommendation_system/api/admin/SAT_Questions.php?id="${id}"&&SUB=${subject}`).then(function (response) {
+            if(response.data){
+                alert("Record deleted successfully")
+                window.location.reload()
+            }
         })
     }
 
     const column = [
-        { id: 'CID', label: 'CID', align: 'center', minWidth: 50 },
-        { id: 'FIELD', label: 'Field', minWidth: 100 },
-        { id: 'ACRONYM', label: 'Acronym', minWidth: 100 },
-        { id: 'COURSE_NAME', label: 'Course Name' },
-        { id: 'DATE_CREATED', label: 'Date', align: 'center' },
+        { id: 'EQID', label: 'EQID', align: 'center', minWidth: 50 },
+        { id: 'Question', label: 'Question', minWidth: 100 },
+        { id: 'Choice_A', label: 'Choice A', align: 'center', minWidth: 80},
+        { id: 'Choice_B', label: 'Choice B', align: 'center', minWidth: 80 },
+        { id: 'Choice_C', label: 'Choice C', align: 'center', minWidth: 80 },
+        { id: 'Choice_D', label: 'Choice D', align: 'center', minWidth: 80 },
+        { id: 'Answer', label: 'Answer', align: 'center', minWidth: 80 },
         { id: 'ACTION', label: 'Actions', align: 'center', minWidth: 50 },
     ]
 
+
     const text = (
         <div style={{ width: "100%", display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <p className="titlepertable">Course Information</p>
-            <Link to="Add" style={{ textDecoration: "none" }}><button className="button_add"><AddIcon sx={{ fontSize: "22px" }} />Add Course</button></Link>
+            <p className="titlepertable">{url} Questions</p>
+            <Link to="Add" style={{ textDecoration: "none" }}><button className="button_add"><AddIcon sx={{ fontSize: "22px" }} />Add Question</button></Link>
         </div>
     )
 
@@ -106,7 +108,7 @@ export default function Course_Information() {
         return (
             //Action in Table
             <div>
-                <IconButton onClick={handleClickAction(a)}>
+                <IconButton onClick={handleClickAction(a.EQID)}>
                     <MoreVertRoundedIcon sx={{ fontSize: "19px" }} />
                 </IconButton>
                 <Menu
@@ -147,7 +149,7 @@ export default function Course_Information() {
 
     function dataperrow(columnid, index, val, row) {
         if (columnid === "ACTION") {
-            return (option(row.CID))
+            return (option(row))
         } else {
             return val
         }
@@ -174,39 +176,21 @@ export default function Course_Information() {
     )
 
     React.useEffect(() => {
-        axios.get(`http://localhost/recommendation_system/api/admin/Course_Information.php`).then(function (response) {
+        axios.get(`http://localhost/recommendation_system/api/admin/SAT_QUESTIONS.php?FETCH='SUBJECT'&&SUB=${subject}`).then(function (response) {
             setDataform(response.data)
         })
     }, [tab])
 
-    React.useEffect(() => {
-        locationget()
-    }, [content])
-
-    function locationget() {
-        const parts = location.href.split('/').at(-1);
-
-        if (parts === "Delete" || parts === "Add" || parts === "Edit") {
-            setcontent(false)
-        } else {
-            setcontent(true)
-        }
-    }
-
     return (
         <div>
-            {content ?
-                <Data_Table
-                    Name="Course Information"
-                    Title={text}
-                    Column={column}
-                    Row={Dataform}
-                    Function={dataperrow}
-                    Dialog={dialogdelete}
-                />
-                :
-                <Outlet />
-            }
+            <Data_Table
+                Name="Course Information"
+                Title={text}
+                Column={column}
+                Row={Dataform}
+                Function={dataperrow}
+                Dialog={dialogdelete}
+            />
         </div>
     )
 }
