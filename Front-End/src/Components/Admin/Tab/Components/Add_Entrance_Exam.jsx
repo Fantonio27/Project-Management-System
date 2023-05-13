@@ -110,6 +110,18 @@ export default function Add_Entrance_Exam() {
         })
     }, [sub])
 
+    React.useEffect(() => {
+        // console.log(question)
+        // if(subjectinfo.TOTAL_ITEMS > question.length){
+        //     setquestion(current => [...current, obj]);
+        // }else if(subjectinfo.TOTAL_ITEMS < question.length){
+
+        // }
+        const plus = subjectinfo[0].TOTAL_ITEMS - question.length
+        console.log(plus)
+
+    }, [subjectinfo])
+
     // const QuestionNo = (No) => {
     // //    =<p>{No}</p>
     //     for (i = 0; i < No; i++) {
@@ -140,8 +152,24 @@ export default function Add_Entrance_Exam() {
 
     // console.log(question)
 
-    const onChangehandle = () => {
+    // const onChangehandle = (event) => {
+    //     const { name, value } = event.target
 
+
+    // }
+
+    const onChangehandle = (event) => {
+        const { name, value, id } = event.target
+
+        setsubjectinfo(current =>
+            current.map(obj => {
+                if (obj.EID === id) {
+                    return { ...obj, [name] : value };
+                }
+
+                return obj;
+            }),
+        );
     }
 
     const tab1 = (
@@ -157,8 +185,8 @@ export default function Add_Entrance_Exam() {
                                 <div key={index}>
                                     <p className="Tab_title">{sub.SUBJECT} Instruction</p>
                                     <textarea
-                                        // id="INFORMATION"
-                                        name={sub.SUBJECT}
+                                        id={sub.EID}
+                                        name="INSTRUCTION"
                                         className="tab_input"
                                         style={{ height: "100px" }}
                                         placeholder={`${sub.SUBJECT} Description`}
@@ -190,38 +218,10 @@ export default function Add_Entrance_Exam() {
                                 <div key={index}>
                                     <p>{sub.SUBJECT} Settings</p>
 
-                                    <div style={{ display: 'flex' }}>
-                                        <input type="text" className="tab_input" style={{ width: '30px' }}></input>
-                                        <FormControl size="small" sx={{ width: '100px', margin: '10px 20px' }}>
-                                            <InputLabel id="demo-simple-select-label">Hour</InputLabel>
-                                            <Select
-                                                labelId="demo-simple-select-label"
-                                                id="demo-simple-select"
-                                                value=""
-                                                label="Hour"
-                                            // onChange={handleChange}
-                                            >
-                                                <MenuItem value={0} sx={center}>0</MenuItem>
-                                                <MenuItem value={1} sx={center}>1</MenuItem>
-                                                <MenuItem value={2} sx={center}>2</MenuItem>
-                                                <MenuItem value={3} sx={center}>3</MenuItem>
-                                            </Select>
-                                        </FormControl>
-                                        <FormControl size="small" sx={{ width: '100px', margin: '10px 0px' }}>
-                                            <InputLabel id="demo-simple-select-label">Minutes</InputLabel>
-                                            <Select
-                                                labelId="demo-simple-select-label"
-                                                id="demo-simple-select"
-                                                value=""
-                                                label="Minutes"
-                                            // onChange={handleChange}
-                                            >
-                                                <MenuItem value={0} sx={center}>0</MenuItem>
-                                                <MenuItem value={1} sx={center}>1</MenuItem>
-                                                <MenuItem value={2} sx={center}>2</MenuItem>
-                                                <MenuItem value={3} sx={center}>3</MenuItem>
-                                            </Select>
-                                        </FormControl>
+                                    <div style={{ display: 'flex', gap: '10px' }}>
+                                        <input type="number" name="TOTAL_ITEMS" id={sub.EID} className="tab_input" style={{ width: '30px' }} value={sub.TOTAL_ITEMS} onChange={onChangehandle} />
+                                        <input type="number" name="TIMELIMIT_MINUTE" id={sub.EID} className="tab_input" style={{ width: '30px' }} value={sub.TIMELIMIT_MINUTE} onChange={onChangehandle} />
+                                        <input type="number" name="TIMELIMIT_SECOND" id={sub.EID} className="tab_input" style={{ width: '30px' }} value={sub.TIMELIMIT_SECOND} onChange={onChangehandle} />
                                     </div>
                                 </div>
                             )
@@ -233,6 +233,7 @@ export default function Add_Entrance_Exam() {
         </Grow>
     )
 
+    console.log(subjectinfo)
     let no = question.length === 0
     const tab3 = (
         <Zoom in={true} timeout={800}>
@@ -240,21 +241,25 @@ export default function Add_Entrance_Exam() {
                 <p className="tab_p1">Questions</p>
                 <div className="box_choices">
                     {
-                        subjects.map((sub, index) => {
+                        subjects.map((subject, index) => {
+                            let a = subject.id === sub
                             return (
-                                <div key={index} className="EE_subject" onClick={()=>setsub(sub.id)}>{sub.label}</div>
+                                <div key={index} className="EE_subject" onClick={() => setsub(subject.id)}
+                                    style={{
+                                        border: a ? "1px solid #8dbc6bff" : "1px solid #e0e3e6",
+                                    }}>{subject.label}</div>
                             )
                         })
                     }
                 </div>
                 <div className="tab3_form">
                     <p>{no ? "" : question[questionno].Question}</p>
-                    <div>{no ? "" :question[questionno].Choice_A}</div>
-                    <div>{no ? "" :question[questionno].Choice_B}</div>
-                    <div>{no ? "" :question[questionno].Choice_C}</div>
-                    <div>{no ? "" :question[questionno].Choice_D}</div>
-                    <button onClick={()=>setquestionno(prev => prev - 1)}>Back</button>
-                    <button onClick={()=>setquestionno(prev => prev + 1)}>Next</button>
+                    <div>{no ? "" : question[questionno].Choice_A}</div>
+                    <div>{no ? "" : question[questionno].Choice_B}</div>
+                    <div>{no ? "" : question[questionno].Choice_C}</div>
+                    <div>{no ? "" : question[questionno].Choice_D}</div>
+                    <button onClick={() => setquestionno(prev => prev - 1)}>Back</button>
+                    <button onClick={() => setquestionno(prev => prev + 1)}>Next</button>
                 </div>
                 {buttons(1)}
             </div>
@@ -331,7 +336,7 @@ export default function Add_Entrance_Exam() {
 
 // style={{color: '#5d616bff'}}
 
-  {/* {
+{/* {
                         subjects.map((val, index) => {
                             const { id, label, itemNo } = val
                             return (

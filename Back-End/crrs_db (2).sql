@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2023 at 03:48 PM
+-- Generation Time: May 13, 2023 at 09:32 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -655,52 +655,16 @@ CREATE TABLE `eq_math` (
 --
 
 INSERT INTO `eq_math` (`EQID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C`, `Choice_D`, `Answer`, `EID`) VALUES
-('EQMID_10', 'What is the probability that you will obtain a score AT LEAST 20? ', '0.50', '0.30', '0.80	', '1.00', '1.00', 'EID_10'),
-('EQMID_11', 'What is the probability that three or more copies will be demanded in a particular day?', '0.60', '0.80', '0.64', '0.74', '0.64', 'EID_11'),
-('EQMID_12', 'What is the probability that the demand will be at least two?\r\n', '0.60', '0.80', '0.64', '0.74', '0.80', 'EID_12'),
-('EQMID_13', 'What is the probability that the demand will be at least two but not more than six?', '0.60', '0.80', '0.64', '0.74', '0.60', 'EID_13'),
-('EQMID_14', 'What is the mean of the probability distribution?', '1.5', '2.0', '3.5', '4.0', '4.0', 'EID_14'),
-('EQMID_15', 'What is the variance of the probability distribution?', '4.15', '6.35', '8.00', '7.50', '8.00', 'EID_15'),
-('EQMID_16', 'What is the expected number of defective parts that will be manufactured in one day?', '0.51', '0.39', '0.46', '0.27', '0.39', 'EID_16'),
-('EQMID_17', 'What is the variance of the probability distribution?', '0.9876', '0.6789', '0.6879', '0.8679', '0.6879', 'EID_17'),
-('EQMID_18', 'Which of the following is the shape of a normal curve?', 'Bell-shaped', 'Cone-shaped', 'V-shaped', 'Heart-shaped', 'Bell-shaped', 'EID_18'),
-('EQMID_19', 'What is the total are under the normal curve?', '100 sq. unit', '1 sq. unit', '0.5 sq. unit', '50 sq. unit', '1 sq. unit', 'EID_19'),
 ('EQMID_20', 'Which of the following is a distribution with a mean of 0 and a standard deviation of 1?', 'Normal Distribution', 'Sampling Distribution', 'Standard Normal Distribution', 'Probability Distribution', 'Standard Normal Distribution', 'EID_20'),
-('EQMID_21', 'Given the mean \"μ\" =50 and the standard deviation \"σ\" =4 of a population, find the z-value that corresponds to a score X=58', '1.00	', '2.00', '3.00', '4.00', '2.00', 'EID_21'),
 ('EQMID_22', 'Given the mean \"μ\" =45 and the standard deviation \"σ\" =6 of a population, find the X-value that corresponds to z=-1.00.', '36', '37', '38', '39', ' 39', 'EID_22'),
-('EQMID_23', 'A certain tire company recorded that the average mileage per tire that they produced last year was 40,000 mi. with a standard deviation of 5300 mi. The z-score for one tire was -2.33. What mileage did this tire provide?', '27,651 mi', '31,280 mi', '32,108 mi', '31, 208 mi', '27,651 mi', 'EID_23'),
 ('EQMID_24', 'Jane works for New York theatrical agency whose employees had an average income this past year of $48,000 with a standard deviation of $2,500. How much did Jane earn this past year if her z-score is -2.3?', '$46,500', '$45,600', '$42,250', '$45,060', '$42,250', 'EID_24'),
-('EQMID_25', 'Which of the following cumulative area corresponds to the area of the region at the left of z=-0.56?', '0.2088', '0.2877', '0.1808', '0.2054', '0.2877', 'EID_25'),
-('EQMID_26', 'What is the cumulative area that corresponds to the area of the region at the left to z=1.32?', '0.9382', '0.9192', '0.9082', '0.9066', '0.9066', 'EID_26'),
-('EQMID_27', 'Find the area that corresponds to the area of the region at the right of z=1.05.', '0.1469', '0.6149', '0.1496', '0.1649', '0.1469', 'EID_27'),
-('EQMID_28', 'Which of the following corresponds to the area of the region at the right of z=2.18?', '0.4016', '0.1046', '0.0146', '0.6041', '0.0146', 'EID_28'),
-('EQMID_29', 'Find the proportion of area above z=-1.', '0.1586', '0.9332', '0.0440', '0.8413', '0.8413', 'EID_29'),
-('EQMID_30', 'Find the area to the left of z=1.5.', '0.1586', '0.9332', '0.0440', '0.8413', '0.9332', 'EID_30'),
 ('EQMID_31', 'Find the area between z=0.98 and z=2.58.', '0.1586', '0.9332', '0.0440', '0.8413', '0.1586', 'EID_31'),
 ('EQMID_32', 'Which of the following corresponds to the mean and standard deviation of the age of the applicants?', 'μ=20 and σ=4', 'μ=4 and σ=28', 'μ=28 and σ=4', 'μ=4 and σ=20', 'μ=28 and σ=4', 'EID_32'),
 ('EQMID_33', 'Find the z-score that corresponds to the age of 20 years old.', 'z=-2.00	', 'z=2.00', 'z=1.50', 'z=2.56', 'z=-2.00	', 'EID_33'),
-('EQMID_34', 'What is the area of the region corresponding the given problem?', '0.2280', '0.9772 ', '0.4772', '0.0228', '0.0228', 'EID_34'),
-('EQMID_35', 'If a total of 3000 applicants applied for the job last 2022, how many applicants are  below 20 years old?  ', '1,432 applicants	', '684 applicants', '69 applicants', '2,932 applicants', '69 applicants', 'EID_35'),
-('EQMID_36', 'What is the probability that a student, picked at random, has a height greater than 116cm?', '0.1587', '0.5187', '0.8157', '0.7158', '0.1587', 'EID_36'),
-('EQMID_37', 'What is the probability that the height of a student, picked at random, is less than 104cm?', '0.7158', '0.8157', '0.1587', '0.5187', '0.1587', 'EID_37'),
 ('EQMID_38', 'If 500 students participated in a field demonstration, how many students belong to the upper 15% of the group?', '70 children', '75 children', '80 children', '85 children', '75 children', 'EID_38'),
 ('EQMID_39', 'How do we call a sampling procedure that gives every element of the population an equal chance of being selected in the sample?', 'Quota Sampling', 'Convenience Sampling', 'Purposive Sampling', 'Random Sampling', 'Random Sampling', 'EID_39'),
 ('EQMID_40', 'Which of the following CANNOT be considered as a probability sampling?', 'Systematic Sampling', 'Judgement Sampling	', 'Cluster Sampling', 'Stratified Sampling', 'Judgement Sampling	', 'EID_40'),
-('EQMID_41', 'This sampling method involves selecting a simple random sample from EACH of a given number of groups also known as strata?', 'Simple Random Sampling', 'Cluster Random Sampling', 'Systematic Random Sampling', 'Stratified Random Sampling', 'Stratified Random Sampling', 'EID_41'),
-('EQMID_42', 'Which of the following sampling method involves dividing the population into groups known as clusters where a simple random sample will be taken from SELECTED clusters only.', 'Simple Random Sampling', 'Cluster Random Sampling', 'Systematic Random Sampling', 'Stratified Random Sampling', 'Cluster Random Sampling', 'EID_42'),
-('EQMID_43', 'It is a sampling method that involves the random selection of one of the first k elements in an ordered population?', 'Simple Random Sampling	', 'Cluster Random Sampling', 'Systematic Random Sampling', 'Stratified Random Sampling', 'Stratified Random Sampling', 'EID_43'),
-('EQMID_44', 'Which of the following terms corresponds to a computed measure that describes the population of the study?', 'Population', 'Parameter', 'Sample', 'Statistics', 'Parameter', 'EID_44'),
-('EQMID_45', 'These are descriptive measures computed from a sample that are used as estimate of the parameter.', 'Population', 'Parameter', 'Sample', 'Statistics', 'Statistics', 'EID_45'),
-('EQMID_46', 'The teacher randomly selects 20 boys and 15 girls from a batch of learners to be the members of a group that will go on a field trip.', 'Simple Random Sampling', 'Cluster Random Sampling', 'Systematic Random Sampling', 'Stratified Random Sampling', 'Stratified Random Sampling', 'EID_46'),
-('EQMID_47', 'A sample of 10 mice are selected at random from a set of 40 mice to test the effect of a certain medicine.', 'Simple Random Sampling', 'Cluster Random Sampling', 'Systematic Random Sampling', 'Stratified Random Sampling', 'Simple Random Sampling', 'EID_47'),
-('EQMID_48', 'Two out of five people in a certain seminar are asked what they think of the president', 'Simple Random Sampling', 'Cluster Random Sampling', 'Systematic Random Sampling', 'Stratified Random Sampling', 'Simple Random Sampling', 'EID_48'),
-('EQMID_49', 'A barangay health worker asks every 4th house in the village for the ages of the children living in those households.', 'Simple Random Sampling', 'Cluster Random Sampling', 'Systematic Random Sampling', 'Stratified Random Sampling', 'Systematic Random Sampling', 'EID_49'),
-('EQMID_5', 'Four coins are tossed. Let Z be the random variable representing the number of heads that occur. Find the values of the random variable Z.', 'Z={0,1,2,3}', 'Z={1,2,3}', 'Z={0,1,2,3,4}	', 'Z={1,2,3,4}', 'Z={0,1,2,3,4}', 'EID_5'),
-('EQMID_50', 'Bea, a Statistics student, wants to determine who cares more about their physical appearances – the male or the female students. She wants to limit her study to Grade 11 students; however, there are more females than males which are 279 and 250, respectively. If Bea wants her sample to consist only of 50 students, which sampling method will she use?', 'Simple Random Sampling', 'Cluster Random Sampling', 'Systematic Random Sampling', 'Stratified Random Sampling', 'Stratified Random Sampling', 'EID_50'),
-('EQMID_6', 'From a box containing 4 black balls and 2 green balls, 3 balls are drawn in succession. Each ball is placed back in the box before the next draw is made. Let G be a random variable representing the number of green balls that occur. Find the values of the random variable G.', 'G={0,1,2}', 'G={1,2}', 'G={0,1,2,3}', 'G={1,2,3}', 'G={0,1,2}', 'EID_6'),
-('EQMID_7', 'What is the probability that you will obtain a score EXACTLY 22?', '0.50', '0.30', '0.80	', '1.00', '0.30', 'EID_7'),
-('EQMID_8', 'What is the probability that you will obtain a score AT LEAST 21?', '0.50', '0.30', '0.80	', '1.00', '0.80	', 'EID_8'),
-('EQMID_9', 'What is the probability that you will obtain a score AT MOST 21?', '0.50', '0.30', '0.80	', '1.00', '0.50', 'EID_9');
+('EQMID_5', 'Four coins are tossed. Let Z be the random variable representing the number of heads that occur. Find the values of the random variable Z.', 'Z={0,1,2,3}', 'Z={1,2,3}', 'Z={0,1,2,3,4}	', 'Z={1,2,3,4}', 'Z={0,1,2,3,4}', 'EID_5');
 
 -- --------------------------------------------------------
 
@@ -916,11 +880,7 @@ CREATE TABLE `exam_result` (
 --
 
 INSERT INTO `exam_result` (`ERID`, `MATH_SCORE`, `ENGLISH_SCORE`, `SCIENCE_SCORE`, `READING_COMPREHENSION_SCORE`, `TOTAL_SCORE`, `EXAM_RESULT`, `LRN`, `DATE`) VALUES
-('ERID_1', 5, 3, 2, 3, 13, 'Failed', '123123123123', '2023-05-06'),
-('ERID_2', -1, -1, -1, -1, -1, '', '353535325525', '2023-05-06'),
-('ERID_3', 3, 3, 1, 5, 12, 'Failed', '123456789101', '2023-05-06'),
-('ERID_4', 6, 5, 4, 9, 24, 'Passed', '123456789012', '2023-05-06'),
-('ERID_5', 0, 0, 0, 0, 0, 'Failed', '568697023143', '2023-05-06');
+('ERID_1', 7, 3, 7, 5, 22, 'Passed', '112233445566', '2023-05-09');
 
 -- --------------------------------------------------------
 
@@ -1035,10 +995,7 @@ CREATE TABLE `interest_assessment_result` (
 --
 
 INSERT INTO `interest_assessment_result` (`IARID`, `REALISTIC_SCORE`, `INVESTIGATIVE_SCORE`, `ARTISTIC_SCORE`, `SOCIAL_SCORE`, `ENTERPRISING_SCORE`, `CONVENTIONAL_SCORE`, `IA_RESULT`, `LRN`, `DATE`) VALUES
-(20, 6, 2, 5, 3, 4, 4, 'R AND A', '123123123123', '2023-05-06'),
-(21, 5, 4, 2, 4, 4, 4, 'R AND I', '123456789101', '2023-05-06'),
-(23, 2, 7, 3, 2, 5, 4, 'E AND C', '123456789012', '2023-05-06'),
-(24, 4, 6, 2, 4, 5, 4, 'R AND I', '568697023143', '2023-05-06');
+(32, 5, 2, 4, 5, 5, 6, 'R AND C', '112233445566', '2023-05-09');
 
 -- --------------------------------------------------------
 
@@ -1060,15 +1017,7 @@ CREATE TABLE `overall_result` (
 --
 
 INSERT INTO `overall_result` (`RID`, `MATH_OVERALL`, `SCIENCE_OVERALL`, `ENGLISH_OVERALL`, `READING_COMPREHENSION_OVERALL`, `LRN`) VALUES
-(4, '0.0562', '0.0166', '0.0199', '0.0166', '123123123123'),
-(5, '1.7647', '0.5263', '2.1429', '3.5714', '123456789101'),
-(6, '0.3934', '3.4783', '3.3333', '6.6667', '123456789012'),
-(7, '0.1961', '40.0000', '50.0000', '90.0000', '123456789012'),
-(8, '0.0000', '0.0000', '0.0000', '0.0000', '568697023143'),
-(9, '0.0000', '0.0000', '0.0000', '0.0000', '568697023143'),
-(10, '0.0000', '0.0000', '0.0000', '0.0000', '568697023143'),
-(11, '0.0000', '0.0000', '0.0000', '0.0000', '568697023143'),
-(12, '0.0000', '0.0000', '0.0000', '0.0000', '568697023143');
+(13, '1.3208', '1.8919', '1.0345', '1.6667', '112233445566');
 
 -- --------------------------------------------------------
 
@@ -1114,46 +1063,46 @@ CREATE TABLE `save_answer` (
 --
 
 INSERT INTO `save_answer` (`SAID`, `SUBJECT`, `VALUE`, `ANSWER`, `EQID`, `LRN`) VALUES
-(3748, 'Math', '', '0.80', 'EQMID_12', '568697023143'),
-(3749, 'Math', '', '0.64', 'EQMID_11', '568697023143'),
-(3750, 'Math', '', '0.60', 'EQMID_13', '568697023143'),
-(3751, 'Math', '0.30', '1.00', 'EQMID_10', '568697023143'),
-(3752, 'Math', '', '0.39', 'EQMID_16', '568697023143'),
-(3753, 'Math', '', '4.0', 'EQMID_14', '568697023143'),
-(3754, 'Math', '', 'Bell-shaped', 'EQMID_18', '568697023143'),
-(3755, 'Math', '', '8.00', 'EQMID_15', '568697023143'),
-(3756, 'Math', '', '1 sq. unit', 'EQMID_19', '568697023143'),
-(3757, 'Math', '', '0.6879', 'EQMID_17', '568697023143'),
-(3758, 'Science', '', 'Supernova ', 'EQSID_11', '568697023143'),
-(3759, 'Science', '', 'Star Formation Theory', 'EQSID_1', '568697023143'),
-(3760, 'Science', '', 'White Dwarf', 'EQSID_10', '568697023143'),
-(3761, 'Science', '', 'Alpha Emission', 'EQSID_13', '568697023143'),
-(3762, 'Science', '', 'Henry Mosely', 'EQSID_12', '568697023143'),
-(3763, 'Science', '', 'Beta Emission', 'EQSID_14', '568697023143'),
-(3764, 'Science', '', 'Non-Polar', 'EQSID_17', '568697023143'),
-(3765, 'Science', '', 'Gamma Emission', 'EQSID_15', '568697023143'),
-(3766, 'Science', '', 'Symmetrical', 'EQSID_18', '568697023143'),
-(3767, 'Science', '', 'It is a Polar Molecule', 'EQSID_16', '568697023143'),
-(3768, 'English', '', 'Go through the article and refute each of the main points, explaining how stupid the author’s views are.', 'EQEID_18', '568697023143'),
-(3769, 'English', '', 'Physical Setting', 'EQEID_10', '568697023143'),
-(3770, 'English', '', 'Caution', 'EQEID_1', '568697023143'),
-(3771, 'English', '', 'Technical Report', 'EQEID_12', '568697023143'),
-(3772, 'English', '', 'Progress Report', 'EQEID_13', '568697023143'),
-(3773, 'English', '', 'Exact', 'EQEID_14', '568697023143'),
-(3774, 'English', '', 'Collecting Data', 'EQEID_16', '568697023143'),
-(3775, 'English', '', 'Writing that requires a reader to gather additional information to comprehend the content.', 'EQEID_15', '568697023143'),
-(3776, 'English', '', 'Identification of the debatable issue.', 'EQEID_17', '568697023143'),
-(3777, 'English', '', 'Concept Paper	', 'EQEID_11', '568697023143'),
-(3778, 'Reading_Comprehension', '', 'Pre-colonial Literature', 'EQRCID_1', '568697023143'),
-(3779, 'Reading_Comprehension', '', '21ST Century Literature', 'EQRCID_10', '568697023143'),
-(3780, 'Reading_Comprehension', '', 'Graphic Novel', 'EQRCID_13', '568697023143'),
-(3781, 'Reading_Comprehension', '', 'Illustrated Novel', 'EQRCID_11', '568697023143'),
-(3782, 'Reading_Comprehension', '', 'Digi-Fiction', 'EQRCID_12', '568697023143'),
-(3783, 'Reading_Comprehension', '', 'Doodle Fiction', 'EQRCID_14', '568697023143'),
-(3784, 'Reading_Comprehension', '', 'Chick Literature', 'EQRCID_17', '568697023143'),
-(3785, 'Reading_Comprehension', '', 'Science Fiction', 'EQRCID_18', '568697023143'),
-(3786, 'Reading_Comprehension', '', 'Manga', 'EQRCID_15', '568697023143'),
-(3787, 'Reading_Comprehension', '', 'Blogs', 'EQRCID_16', '568697023143');
+(3858, 'Math', '1.00', '1.00', 'EQMID_10', '112233445566'),
+(3859, 'Math', '0.64', '0.64', 'EQMID_11', '112233445566'),
+(3860, 'Math', '0.80', '0.60', 'EQMID_13', '112233445566'),
+(3861, 'Math', '0.39', '0.39', 'EQMID_16', '112233445566'),
+(3862, 'Math', '8.00', '8.00', 'EQMID_15', '112233445566'),
+(3863, 'Math', '0.6879', '0.6879', 'EQMID_17', '112233445566'),
+(3864, 'Math', 'Bell-shaped', 'Bell-shaped', 'EQMID_18', '112233445566'),
+(3865, 'Math', '3.5', '4.0', 'EQMID_14', '112233445566'),
+(3866, 'Math', '0.60', '0.80', 'EQMID_12', '112233445566'),
+(3867, 'Math', '1 sq. unit', '1 sq. unit', 'EQMID_19', '112233445566'),
+(3868, 'Science', 'White Dwarf', 'White Dwarf', 'EQSID_10', '112233445566'),
+(3869, 'Science', 'Star Formation Theory', 'Star Formation Theory', 'EQSID_1', '112233445566'),
+(3870, 'Science', 'Supernova ', 'Supernova ', 'EQSID_11', '112233445566'),
+(3871, 'Science', 'Henry Mosely', 'Henry Mosely', 'EQSID_12', '112233445566'),
+(3872, 'Science', 'Gamma Emission', 'Beta Emission', 'EQSID_14', '112233445566'),
+(3873, 'Science', 'Gamma Emission', 'Alpha Emission', 'EQSID_13', '112233445566'),
+(3874, 'Science', 'Beta Emission', 'Gamma Emission', 'EQSID_15', '112233445566'),
+(3875, 'Science', 'Symmetrical', 'Symmetrical', 'EQSID_18', '112233445566'),
+(3876, 'Science', 'Non-Polar', 'Non-Polar', 'EQSID_17', '112233445566'),
+(3877, 'Science', 'It is a Polar Molecule', 'It is a Polar Molecule', 'EQSID_16', '112233445566'),
+(3878, 'English', 'Physical Setting', 'Physical Setting', 'EQEID_10', '112233445566'),
+(3879, 'English', 'Formality', 'Caution', 'EQEID_1', '112233445566'),
+(3880, 'English', 'Review Paper', 'Concept Paper	', 'EQEID_11', '112233445566'),
+(3881, 'English', 'Exact', 'Exact', 'EQEID_14', '112233445566'),
+(3882, 'English', 'Proposal Paper', 'Technical Report', 'EQEID_12', '112233445566'),
+(3883, 'English', 'Preliminary Report', 'Progress Report', 'EQEID_13', '112233445566'),
+(3884, 'English', 'Wrap up of all the arguments and claims', 'Identification of the debatable issue.', 'EQEID_17', '112233445566'),
+(3885, 'English', 'Writing that emphasizes audience benefits.', 'Writing that requires a reader to gather additional information to comprehend the content.', 'EQEID_15', '112233445566'),
+(3886, 'English', 'Collecting Data', 'Collecting Data', 'EQEID_16', '112233445566'),
+(3887, 'English', 'Analyze and summarize the strong and weak points of the article, and then state your own position.', 'Go through the article and refute each of the main points, explaining how stupid the author’s views are.', 'EQEID_18', '112233445566'),
+(3888, 'Reading_Comprehension', 'Pre-colonial Literature', 'Pre-colonial Literature', 'EQRCID_1', '112233445566'),
+(3889, 'Reading_Comprehension', 'Digi-Fiction', 'Digi-Fiction', 'EQRCID_12', '112233445566'),
+(3890, 'Reading_Comprehension', '21ST Century Literature', '21ST Century Literature', 'EQRCID_10', '112233445566'),
+(3891, 'Reading_Comprehension', 'Illustrated Novel', 'Illustrated Novel', 'EQRCID_11', '112233445566'),
+(3892, 'Reading_Comprehension', 'Text Talk Novel', 'Blogs', 'EQRCID_16', '112233445566'),
+(3893, 'Reading_Comprehension', 'Manga', 'Chick Literature', 'EQRCID_17', '112233445566'),
+(3894, 'Reading_Comprehension', 'Doodle Fiction', 'Graphic Novel', 'EQRCID_13', '112233445566'),
+(3895, 'Reading_Comprehension', 'Doodle Fiction', 'Doodle Fiction', 'EQRCID_14', '112233445566'),
+(3896, 'Reading_Comprehension', 'Chick Literature', 'Manga', 'EQRCID_15', '112233445566'),
+(3897, 'Reading_Comprehension', 'Flash Fiction', 'Science Fiction', 'EQRCID_18', '112233445566');
 
 -- --------------------------------------------------------
 
@@ -1179,12 +1128,8 @@ CREATE TABLE `student_information` (
 --
 
 INSERT INTO `student_information` (`STUDENT_NO`, `STUDENT_FIRSTNAME`, `STUDENT_LASTNAME`, `LRN`, `EMAIL_ADDRESS`, `PASSWORD`, `SHS_TRACK`, `EXAM_STATUS`, `ACCOUNT_CREATED`, `ACCOUNT_STATUS`) VALUES
-(1, 'Vince', 'Braca', '123123123123', 'Vince@gmail.com', 'Vince72102', '', 'Not taken yet', '2023-03-27', 'ACTIVE'),
-(2, 'david', 'Braca', '321321321321', 'david@gmail.com', 'David72102', '', 'Not taken yet', '2023-03-27', 'ACTIVE'),
-(3, 'Gabriel', 'Louie', '353535325525', 'cascs@csa.com', 'D242ccsc', '', 'Not taken yet', '2023-04-17', 'ACTIVE'),
-(4, 'Francis', 'Antonio', '123456789012', 'francis@gmail.com', 'Fantonio123', '', 'Not taken yet', '2023-04-17', 'ACTIVE'),
-(5, 'Francis Louie', 'Antonio', '123456789101', 'francis@gmail.com', 'Francis123', 'STEM', 'Not taken yet', '2023-05-06', 'ACTIVE'),
-(16, 'Gabriel', 'Antonio', '568697023143', 'francis@yahoo.com', '$2y$10$1lGqv7PRkSFHuemcXWpnmeJHsDSIjy2im.ybUXhpDONpPhinIZGiW', 'STEM', 'Exam Taken', '2023-05-06', 'ACTIVE');
+(20, 'Francis', 'Antonio', '123456789012', 'francis@yahoo.com', '$2y$10$qcVff4HDqrZB0SrDjx./AeNCdlJQLXL98IJ3Tx1x0uPIlVWCNSUBa', '', 'Not taken yet', '2023-05-09', 'ACTIVE'),
+(21, 'Francis', 'Antonio', '112233445566', 'francis@yahoo.com', '$2y$10$RwKMopoorZc4apY3Q/VLROWqhmQrjytA2hhh2qdsE9IclhlBCZi0K', '', 'Exam Taken', '2023-05-09', 'ACTIVE');
 
 -- --------------------------------------------------------
 
@@ -1210,14 +1155,7 @@ CREATE TABLE `timelimit` (
 --
 
 INSERT INTO `timelimit` (`TID`, `LRN`, `MATH_MINUTE`, `MATH_SECOND`, `SCIENCE_MINUTE`, `SCIENCE_SECOND`, `ENGLISH_MINUTE`, `ENGLISH_SECOND`, `READING_COMPREHENSION_MINUTE`, `READING_COMPREHENSION_SECOND`) VALUES
-(68, '353535325525', 0, 3, 0, 0, 0, 0, 0, 0),
-(69, '123456789101', 0, 17, 0, 19, 0, 14, 0, 14),
-(70, '123456789012', 5, 6, 0, 1, 0, 1, 0, 1),
-(74, '123456789012', 5, 6, 0, 1, 0, 1, 0, 1),
-(75, '123456789012', 5, 6, 0, 1, 0, 1, 0, 1),
-(76, '123456789012', 5, 6, 0, 1, 0, 1, 0, 1),
-(77, '123456789012', 5, 6, 0, 1, 0, 1, 0, 1),
-(78, '568697023143', 0, 2, 0, 1, 0, 1, 0, 1);
+(83, '112233445566', 0, 53, 0, 37, 0, 29, 0, 30);
 
 --
 -- Indexes for dumped tables
@@ -1345,31 +1283,31 @@ ALTER TABLE `timelimit`
 -- AUTO_INCREMENT for table `interest_assessment_result`
 --
 ALTER TABLE `interest_assessment_result`
-  MODIFY `IARID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `IARID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `overall_result`
 --
 ALTER TABLE `overall_result`
-  MODIFY `RID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `RID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `save_answer`
 --
 ALTER TABLE `save_answer`
-  MODIFY `SAID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3788;
+  MODIFY `SAID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3898;
 
 --
 -- AUTO_INCREMENT for table `student_information`
 --
 ALTER TABLE `student_information`
-  MODIFY `STUDENT_NO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `STUDENT_NO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `timelimit`
 --
 ALTER TABLE `timelimit`
-  MODIFY `TID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `TID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
