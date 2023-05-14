@@ -28,8 +28,8 @@ switch($method) {
         break;
     case "POST":
         $user = json_decode( file_get_contents('php://input') );
-        $sql = "INSERT INTO `course_information`(`CID`, `FIELD`, `ACRONYM`, `COURSE_NAME`, `INFORMATION`, `HEADER_PICTURE`, `IAQID`, `DATE_CREATED`, `DATE_UPDATED`) 
-        VALUES (:cid,:field,:acro,:course,:info,:pic,'',:date,:date)";
+        $sql = "INSERT INTO `course_information`(`CID`, `FIELD`, `ACRONYM`, `COURSE_NAME`, `INFORMATION`, `HEADER_PICTURE`, `INTEREST`, `DATE_CREATED`, `DATE_UPDATED`) 
+        VALUES (:cid,:field,:acro,:course,:info,:pic,:inter,:date,:date)";
         $stmt = $conn->prepare($sql);
         $updated_at = date('Y-m-d');
         $stmt->bindParam(':cid', $user->CID);
@@ -38,6 +38,7 @@ switch($method) {
         $stmt->bindParam(':course', $user->COURSE_NAME);
         $stmt->bindParam(':info', $user->INFORMATION);
         $stmt->bindParam(':pic', $user->HEADER_PICTURE);
+        $stmt->bindParam(':inter', $user->INTEREST);
         $stmt->bindParam(':date',  $updated_at);
 
         if($stmt->execute()) {
@@ -50,7 +51,7 @@ switch($method) {
     case "PUT":
         $user = json_decode( file_get_contents('php://input') );
         $sql = "UPDATE `course_information` 
-        SET `FIELD`=:field,`ACRONYM`=:acro,`COURSE_NAME`=:course,`INFORMATION`=:info,`HEADER_PICTURE`=:pic,`DATE_UPDATED`=:updated_at
+        SET `FIELD`=:field,`ACRONYM`=:acro,`COURSE_NAME`=:course,`INFORMATION`=:info,`HEADER_PICTURE`=:pic,`INTEREST`=:inter,`DATE_UPDATED`=:updated_at
         WHERE CID= :cid";
         $stmt = $conn->prepare($sql);
         $updated_at = date('Y-m-d');
@@ -60,6 +61,7 @@ switch($method) {
         $stmt->bindParam(':course', $user->COURSE_NAME);
         $stmt->bindParam(':info', $user->INFORMATION);
         $stmt->bindParam(':pic', $user->HEADER_PICTURE);
+        $stmt->bindParam(':inter', $user->INTEREST);
         $stmt->bindParam(':updated_at', $updated_at);
 
         if($stmt->execute()) {

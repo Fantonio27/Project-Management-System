@@ -14,55 +14,35 @@ switch($method) {
         $fetch = $params['FETCH'];
         if($fetch === "'SUBJECT'"){
             $sql = "SELECT * FROM exam_informations";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }else{
-            $sql = "SELECT * FROM $fetch";
+            $id = $params['ID'];
+            $sql = "SELECT * FROM exam_informations WHERE EID = $id";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $users = $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($users);
         break;
     case "POST":
-        $user = json_decode( file_get_contents('php://input') );
-        $sql = "INSERT INTO `course_information`(`CID`, `FIELD`, `ACRONYM`, `COURSE_NAME`, `INFORMATION`, `HEADER_PICTURE`, `IAQID`, `DATE_CREATED`, `DATE_UPDATED`) 
-        VALUES (:cid,:field,:acro,:course,:info,:pic,'',:date,:date)";
-        $stmt = $conn->prepare($sql);
-        $updated_at = date('Y-m-d');
-        $stmt->bindParam(':cid', $user->CID);
-        $stmt->bindParam(':field', $user->FIELD);
-        $stmt->bindParam(':acro', $user->ACRONYM);
-        $stmt->bindParam(':course', $user->COURSE_NAME);
-        $stmt->bindParam(':info', $user->INFORMATION);
-        $stmt->bindParam(':pic', $user->HEADER_PICTURE);
-        $stmt->bindParam(':date',  $updated_at);
-
-        if($stmt->execute()) {
-            $response = ['status' => 1, 'message' => 'Record updated successfully.'];
-        } else {
-            $response = ['status' => 0, 'message' => 'Failed to update record.'];
-        }
-        echo json_encode($response);
         break;
     case "PUT":
         $user = json_decode( file_get_contents('php://input') );
-        $sql = "UPDATE `course_information` 
-        SET `FIELD`=:field,`ACRONYM`=:acro,`COURSE_NAME`=:course,`INFORMATION`=:info,`HEADER_PICTURE`=:pic,`DATE_UPDATED`=:updated_at
-        WHERE CID= :cid";
+        $sql = "UPDATE `exam_informations` SET `INSTRUCTION`=:ins,
+        `TIMELIMIT_MINUTE`=:min,`TIMELIMIT_SECOND`=:sec WHERE EID = :id";
         $stmt = $conn->prepare($sql);
-        $updated_at = date('Y-m-d');
-        $stmt->bindParam(':cid', $user->CID);
-        $stmt->bindParam(':field', $user->FIELD);
-        $stmt->bindParam(':acro', $user->ACRONYM);
-        $stmt->bindParam(':course', $user->COURSE_NAME);
-        $stmt->bindParam(':info', $user->INFORMATION);
-        $stmt->bindParam(':pic', $user->HEADER_PICTURE);
-        $stmt->bindParam(':updated_at', $updated_at);
+        $stmt->bindParam(':id', $user->EID);
+        $stmt->bindParam(':ins', $user->INSTRUCTION);
+        $stmt->bindParam(':min', $user->TIMELIMIT_MINUTE);
+        $stmt->bindParam(':sec', $user->TIMELIMIT_SECOND);
 
         if($stmt->execute()) {
-            $response = ['status' => 1, 'message' => 'Record updated successfully.'];
+            $response = true;
         } else {
-            $response = ['status' => 0, 'message' => 'Failed to update record.'];
+            $response = false;
         }
         echo json_encode($response);
         break;

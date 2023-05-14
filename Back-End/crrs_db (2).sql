@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2023 at 09:32 AM
+-- Generation Time: May 13, 2023 at 05:59 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -56,7 +56,7 @@ CREATE TABLE `course_information` (
 --
 
 INSERT INTO `course_information` (`CID`, `FIELD`, `ACRONYM`, `COURSE_NAME`, `INFORMATION`, `HEADER_PICTURE`, `INTEREST`, `DATE_CREATED`, `DATE_UPDATED`) VALUES
-('CID_1', 'Formal Sciences', 'BSCS', 'Bachelor of Science in Computer Science', 'Bachelor of Science in Computer Science is a four-year degree program in the Philippines that is generally concerned with the effective use of computation methods to analyze, solve, and come up with practical solutions for different problems, often through the use of computers or computer programs designed to perform specific tasks.', 'BSCS Computer science.jpg', 'Information Technology', '02/02/02', '2023-05-03'),
+('CID_1', 'Formal Sciences', 'BSCS', 'Bachelor of Science in Computer Science', 'Bachelor of Science in Computer Science is a four-year degree program in the Philippines that is generally concerned with the effective use of computation methods to analyze, solve, and come up with practical solutions for different problems, often through the use of computers or computer programs designed to perform specific tasks.', 'BSCS Computer science.jpg', 'Information Technology', '02/02/02', '2023-05-13'),
 ('CID_10', 'Social Science', 'BS Criminology', 'Bachelor of Science in Criminology', 'The Bachelor of Science in Criminology (BS Crim) is a four-year degree program in the Philippines that is mainly concerned with the nature of crimes and criminals. Taking up this course will help you understand what is crime, how do crimes occur, and what makes people more likely to commit a crime or be a victim of it. It will also teach you how the justice system works, how alleged and convicted criminals should be handled, and the methods that can be used to reform them. ', 'BS CRIMINOLOGY.jpg', 'Law & Public Safety', '04/17/23', ''),
 ('CID_11', 'Social Science', 'AB Political Science', 'Bachelor of Arts in Political Science', 'Bachelor of Arts in Political Science (AB PS or AB Pol Sci) is a four-year degree program in the Philippines that will help you gain the skills needed to make political and policy analyses that can be used to introduce changes that will be beneficial to both the government and the general public. ', 'AB POLITICAL SCIENCE.jpg', 'Government', '04/17/23', ''),
 ('CID_12', 'Social Science', 'AB English', 'Bachelor of Arts in English', 'The Bachelor of Arts in English (AB English) is a four-year degree program in the Philippines that will teach you about the structure; development; theories; and applications of languages, and how to use your knowledge of them to write and speak effectively, especially in English. ', 'AB ENGLISH.jpg', 'Education & Training', '04/17/23', ''),
@@ -573,65 +573,24 @@ CREATE TABLE `eq_english` (
   `Choice_B` varchar(255) NOT NULL,
   `Choice_C` varchar(255) NOT NULL,
   `Choice_D` varchar(255) NOT NULL,
-  `Answer` varchar(255) NOT NULL,
-  `EID` varchar(255) NOT NULL
+  `Answer` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `eq_english`
 --
 
-INSERT INTO `eq_english` (`EQID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C`, `Choice_D`, `Answer`, `EID`) VALUES
-('EQEID_1', 'It also means care that is required to avoid sweeping generalizations.', 'Objectivity', 'Formality', 'Caution', 'Cohesiveness', 'Caution', 'EID_1'),
-('EQEID_10', 'It pertains collectively to characteristics of an occupied space and the human use of such place where observations are being conducted:', 'Physical Setting', 'Objects and Material Culture	', 'Behavior Cycle	', 'Use of Language', 'Physical Setting', 'EID_10'),
-('EQEID_11', 'What paper generally serves the purpose of providing in-depth discussion of a topic that the writer has a strong position on, usually with the intent of obtaining funding for the project from sponsors?', 'Research Paper', 'Concept Paper	', 'Position Paper', 'Review Paper', 'Concept Paper	', 'EID_11'),
-('EQEID_12', 'Also known as scientific report, it is a document that describes a process, progress, or results of technical or scientific research:       ', 'Concept Paper', 'Business Correspondence', 'Proposal Paper', 'Technical Report', 'Technical Report', 'EID_12'),
-('EQEID_13', 'It gives a history of an undertaking over a limited period, or from the date of beginning until the date of writing. It is narrative in style and usually follows the chronological order.', 'Progress Report', 'Examination Report', 'Preliminary Report', 'Periodic Report', 'Progress Report', 'EID_13'),
-('EQEID_14', 'One significant difference between technical language and lay language is that technical language tends to be more:', 'Abstract', 'Subjective', 'Exact', 'Sophisticated', 'Exact', 'EID_14'),
-('EQEID_15', 'Which of the following represents POOR writing in technical documents?', 'Writing that takes less time to comprehend.', 'Writing that emphasizes audience benefits.', 'Writing that takes a short time to read.', 'Writing that requires a reader to gather additional information to comprehend the content.', 'Writing that requires a reader to gather additional information to comprehend the content.', 'EID_15'),
-('EQEID_16', 'In what stage of technical report writing does the writer conduct library research and recording of data?', 'Planning', 'Designing', 'Collecting Data', 'Rough Drafting', 'Collecting Data', 'EID_16'),
-('EQEID_17', 'The first few sentences in the introduction of a position paper should be dedicated to:', 'Statement of position on the issue.', 'Identification of the debatable issue.', 'Exposition of the strongest argument or claim.', 'Wrap up of all the arguments and claims', 'Identification of the debatable issue.', 'EID_17'),
-('EQEID_18', 'If you are assigned to read a newspaper article and argue against the opinions in the article, you should NOT:', 'Go through the article and refute each of the main points, explaining how stupid the author’s views are.', 'Analyze and summarize the strong and weak points of the article, and then state your own position.', 'Summarize the author’s main arguments and logically express your own views. ', 'Examine all the claims of the author and find loopholes or flaws in the light of logical explanations.', 'Go through the article and refute each of the main points, explaining how stupid the author’s views are.', 'EID_18'),
-('EQEID_19', 'Whether at work or at school, the first step for writing any assignment is to:', 'Check resources for credibility and sufficiency.', 'Take good and concise notes during the research phase of the writing process.', 'Make sure you understand the assignment’s purpose and requirements.', 'Create an outline of main points and sub-points of your arguments.', 'Make sure you understand the assignment’s purpose and requirements.', 'EID_19'),
-('EQEID_2', 'It means that academic writing must be impersonal and maintains a certain level of social distance.', 'Objectivity', 'Credibility', 'Partiality', 'Contextuality', 'Objectivity', 'EID_2'),
-('EQEID_20', 'Usually, the purpose of a formal technical report revolves around:', 'Recommending a Course of Action', 'Making a Claim	', 'Selling a Product', 'Solving a Problem', 'Recommending a Course of Action', 'EID_20'),
-('EQEID_21', 'Which part of a technical report provides information helpful in understanding the report such as subject and its scope, discussion of the problem, and what has been previously done to solve it', 'Discussion', 'Title Page	', 'Introduction', 'Summary Page', 'Discussion', 'EID_21'),
-('EQEID_22', 'What technical report determines whether something is feasible or not, hence presenting, interpreting, and summarizing the data relevant to study?', 'Progress Report		', 'Field Report	', 'Feasibility Report	', 'Preliminary Report', 'Feasibility Report	', 'EID_22'),
-('EQEID_23', 'Which section of a technical report provides an analysis, interpretation, and summary of results or findings?', 'Conclusions', 'Recommendations', 'Executive Summary	', 'Discussion', 'Conclusions', 'EID_23'),
-('EQEID_24', 'What part of a concept paper gives an overview of how the project will be carried out together with any innovative approaches, techniques, and processes employed?', 'Purpose', 'Project Description', 'Methodology		', 'Introduction', 'Purpose', 'EID_24'),
-('EQEID_25', 'Which definition structure is in essay length text that uses different rhetorical patterns to show meaning of a particular term or concept?', 'Extended Definition', 'Informal Definition', 'Sentence Definition', 'Formal Definition', 'Extended Definition', 'EID_25'),
-('EQEID_26', 'It is the initial part of the interview when questions that will make respondents more at ease are asked.', 'Definition', 'Title Page	', 'Experiment', 'Warm-up Stage', 'Warm-up Stage', 'EID_26'),
-('EQEID_27', 'Directly answers or addresses your research questions.', 'Informal Definition', 'Survey', 'Observation', 'Valid', 'Survey', 'EID_27'),
-('EQEID_28', 'The subjects are not aware that they are being observed.', 'Covert Observation	', 'Research Instrument', 'Survey Report', 'Concept Paper', 'Covert Observation	', 'EID_28'),
-('EQEID_29', 'Occurs when the researcher has a list of behaviors that he/she wants to observe.', 'Pre-Interview Stage', 'Structured Observation', 'Main Interview Stage', 'Survey report', 'Structured Observation', 'EID_29'),
-('EQEID_3', 'It is defined as the copying verbatim of language and ideas of other writers and taking credit for them.', 'Research', 'Plagiarism', 'Citation', 'Crediting', 'Plagiarism', 'EID_3'),
-('EQEID_30', 'Foundation of the full proposal.', 'Concept Paper (uses)', 'Overt Observation', 'Main interview stage', 'Concept Paper for a Project', 'Concept Paper for a Project', 'EID_30'),
-('EQEID_31', 'In this academic paper, it highlights and shows the authors’ expertise.', 'Direct Quoting', 'Paraphrasing', 'Summarizing', 'Notetaking', 'Direct Quoting', 'EID_31'),
-('EQEID_32', 'Is usually a short part of the text.', 'Direct Quoting', 'Paraphrasing', 'Summarizing', 'Notetaking', 'Direct Quoting', 'EID_32'),
-('EQEID_33', 'Matches the source word for word.', 'Direct Quoting', 'Paraphrasing', 'Summarizing', 'Notetaking', 'Direct Quoting', 'EID_33'),
-('EQEID_34', 'A text that convey powerful message.', 'Direct Quoting', 'Paraphrasing', 'Summarizing', 'Notetaking', 'Direct Quoting', 'EID_34'),
-('EQEID_35', 'Cited part appears between quotation marks.', 'Direct Quoting', 'Paraphrasing', 'Summarizing', 'Notetaking', 'Direct Quoting', 'EID_35'),
-('EQEID_36', 'Involves putting a passage from a source into your own words.', 'Direct Quoting', 'Paraphrasing', 'Summarizing', 'Notetaking', 'Paraphrasing', 'EID_36'),
-('EQEID_37', 'Presents a broad overview; so is usually much shorter than the original text.', 'Direct Quoting', 'Paraphrasing', 'Summarizing', 'Notetaking', 'Summarizing', 'EID_37'),
-('EQEID_38', 'A short text with one or two sentences or a paragraph with a maximum of five sentences.', 'Direct Quoting', 'Paraphrasing', 'Summarizing', 'Notetaking', 'Paraphrasing', 'EID_38'),
-('EQEID_39', 'Involves putting the main ideas/s into your own words, but including only the main point/s.', 'Direct Quoting', 'Paraphrasing', 'Summarizing', 'Notetaking', 'Summarizing', 'EID_39'),
-('EQEID_4', 'Many times, a formal report is read by:', 'Various Audiences at Various Levels of a Business', 'Non-Technical Audience', 'Science Professor', 'General Public', 'Various Audiences at Various Levels of a Business', 'EID_4'),
-('EQEID_40', 'Changes the words or phrasing of a passage but retain and fully communicates the original meaning.', 'Direct Quoting', 'Paraphrasing', 'Summarizing', 'Notetaking', 'Paraphrasing', 'EID_40'),
-('EQEID_41', 'It may require only 200-250 words for its abstract.', 'Academic Journal', 'Descriptive Abstract', 'APA Abstract', 'MLA Abstract', 'Academic Journal', 'EID_41'),
-('EQEID_42', 'These are papers presented in scholastic conferences, and may be revised as articles for possible publication in scholarly journals.', 'Academic Journal', 'Theses and Dissertations', 'Conference Papers', 'Manuscripts and Abstracts', 'Conference Papers', 'EID_42'),
-('EQEID_43', 'Published in scholarly journals, this type of academic text offers results of research and development that can either\r\nimpact the academic community or provide relevance to nation-building.\r\n', 'Academic Journal', 'Theses and Dissertations', 'Articles', 'Manuscripts and Abstracts', 'Articles', 'EID_43'),
-('EQEID_44', 'The purpose is just to pique the interest of the target audience. Condense information into 15 – 30% of the original text. (Ex. Publishing companies, libraries, and movie catalogues.)\r\n', 'Summative Abstract	', 'Descriptive Abstract', 'APA Abstract', 'MLA Abstract', 'Descriptive Abstract', 'EID_44'),
-('EQEID_45', 'Introduce by signal phrases that announce the purpose, scope, or direction of the text as well as its focus.', 'Thesis Statement', 'Purpose Statement', 'Topic Sentence	', 'Abstract', 'Purpose Statement', 'EID_45'),
-('EQEID_46', 'In this format, the summarized idea comes after the citation. The author’s name/s is/are connected by an appropriate reporting verb.\r\n', 'In-Text Citation', 'Coverage', 'Reporting Verb', 'Author-Heading Format', 'Author-Heading Format', 'EID_46'),
-('EQEID_47', 'A research paper does not use any citation, does not include specific result statistics, and is last to be written.', 'Quantitative Abstract	', 'Qualitative Abstract', 'Descriptive Abstract', 'Research Abstract', 'Research Abstract', 'EID_47'),
-('EQEID_48', 'Checking the list of authors credential and its domain is preferred (.edu, .gov, .org, or .net) refers to what criteria in \r\nevaluating sources.\r\n', 'Research', 'Authority', 'Theses', 'Articles', 'Research', 'EID_48'),
-('EQEID_49', 'When the information can be view properly and not limited to fees, browser technology, or software requirements refer to what criteria in evaluating sources.\r\n', 'Coverage', 'Topic Sentence', 'Theses', 'Articles', 'Coverage', 'EID_49'),
-('EQEID_5', 'Which categories of workers are largely responsible for preparing technical reports and communications?', 'Teachers and Professors', 'Marketing Consultants	', 'Language Experts', 'Professional and Technical Communicators', 'Professional and Technical Communicators', 'EID_5'),
-('EQEID_50', 'It provides accurate information with limited advertising, refers to what criteria in evaluating sources.', 'Research', 'Authority', 'Theses', 'Objectivity', 'Objectivity', 'EID_50'),
-('EQEID_6', 'What part of a long technical report serves as the navigation device by presenting a list of heading and subheadings together with their respective page numbers?', 'Table of Contents', 'Letter of Transmittal', 'Title Page', 'Executive Summary', 'Table of Contents', 'EID_6'),
-('EQEID_7', 'What paper presents the writer’s stance or point of view regarding an issue, thereby requiring authority and confidence?', 'Concept Paper', 'Position Paper', 'Technical Report', 'Field Report', 'Position Paper', 'EID_7'),
-('EQEID_8', 'What technique has the advantage of giving unfiltered record of an observation and facilitates repeated analysis of such observations?', 'Video and Audio Recordings	', 'Notetaking', 'Photography', 'Illustrations and Drawings', 'Video and Audio Recordings', 'EID_8'),
-('EQEID_9', 'Which technical report documents an observation of people, places, or events to identify common themes in relation to the research problem underpinning the study?', 'Feasibility Report	', 'Field Report', 'Recommendation Report', 'Operations Report', 'Field Report', 'EID_9');
+INSERT INTO `eq_english` (`EQID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C`, `Choice_D`, `Answer`) VALUES
+('EQEID_1', 'Many times, a formal report is read by:', 'Various Audiences at Various Levels of a Business', 'Non-Technical Audience', 'Science Professor', 'General Public', 'Various Audiences at Various Levels of a Business'),
+('EQEID_10', 'What technique has the advantage of giving unfiltered record of an observation and facilitates repeated analysis of such observations?', 'Video and Audio Recordings	', 'Notetaking', 'Photography', 'Illustrations and Drawings', 'Video and Audio Recordings'),
+('EQEID_2', 'Changes the words or phrasing of a passage but retain and fully communicates the original meaning.', 'Direct Quoting', 'Paraphrasing', 'Summarizing', 'Notetaking', 'Paraphrasing'),
+('EQEID_3', 'These are papers presented in scholastic conferences, and may be revised as articles for possible publication in scholarly journals.', 'Academic Journal', 'Theses and Dissertations', 'Conference Papers', 'Manuscripts and Abstracts', 'Conference Papers'),
+('EQEID_4', 'The purpose is just to pique the interest of the target audience. Condense information into 15 – 30% of the original text. (Ex. Publishing companies, libraries, and movie catalogues.)\r\n', 'Summative Abstract	', 'Descriptive Abstract', 'APA Abstract', 'MLA Abstract', 'Descriptive Abstract'),
+('EQEID_5', 'In this format, the summarized idea comes after the citation. The author’s name/s is/are connected by an appropriate reporting verb.\r\n', 'In-Text Citation', 'Coverage', 'Reporting Verb', 'Author-Heading Format', 'Author-Heading Format'),
+('EQEID_6', 'A research paper does not use any citation, does not include specific result statistics, and is last to be written.', 'Quantitative Abstract	', 'Qualitative Abstract', 'Descriptive Abstract', 'Research Abstract', 'Research Abstract'),
+('EQEID_7', 'When the information can be view properly and not limited to fees, browser technology, or software requirements refer to what criteria in evaluating sources.\r\n', 'Coverage', 'Topic Sentence', 'Theses', 'Articles', 'Coverage'),
+('EQEID_8', 'What part of a long technical report serves as the navigation device by presenting a list of heading and subheadings together with their respective page numbers?', 'Table of Contents', 'Letter of Transmittal', 'Title Page', 'Executive Summary', 'Table of Contents'),
+('EQEID_9', 'What paper presents the writer’s stance or point of view regarding an issue, thereby requiring authority and confidence?', 'Concept Paper', 'Position Paper', 'Technical Report', 'Field Report', 'Position Paper');
 
 -- --------------------------------------------------------
 
@@ -646,25 +605,24 @@ CREATE TABLE `eq_math` (
   `Choice_B` varchar(255) NOT NULL,
   `Choice_C` varchar(255) NOT NULL,
   `Choice_D` varchar(255) NOT NULL,
-  `Answer` varchar(255) NOT NULL,
-  `EID` varchar(255) NOT NULL
+  `Answer` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `eq_math`
 --
 
-INSERT INTO `eq_math` (`EQID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C`, `Choice_D`, `Answer`, `EID`) VALUES
-('EQMID_20', 'Which of the following is a distribution with a mean of 0 and a standard deviation of 1?', 'Normal Distribution', 'Sampling Distribution', 'Standard Normal Distribution', 'Probability Distribution', 'Standard Normal Distribution', 'EID_20'),
-('EQMID_22', 'Given the mean \"μ\" =45 and the standard deviation \"σ\" =6 of a population, find the X-value that corresponds to z=-1.00.', '36', '37', '38', '39', ' 39', 'EID_22'),
-('EQMID_24', 'Jane works for New York theatrical agency whose employees had an average income this past year of $48,000 with a standard deviation of $2,500. How much did Jane earn this past year if her z-score is -2.3?', '$46,500', '$45,600', '$42,250', '$45,060', '$42,250', 'EID_24'),
-('EQMID_31', 'Find the area between z=0.98 and z=2.58.', '0.1586', '0.9332', '0.0440', '0.8413', '0.1586', 'EID_31'),
-('EQMID_32', 'Which of the following corresponds to the mean and standard deviation of the age of the applicants?', 'μ=20 and σ=4', 'μ=4 and σ=28', 'μ=28 and σ=4', 'μ=4 and σ=20', 'μ=28 and σ=4', 'EID_32'),
-('EQMID_33', 'Find the z-score that corresponds to the age of 20 years old.', 'z=-2.00	', 'z=2.00', 'z=1.50', 'z=2.56', 'z=-2.00	', 'EID_33'),
-('EQMID_38', 'If 500 students participated in a field demonstration, how many students belong to the upper 15% of the group?', '70 children', '75 children', '80 children', '85 children', '75 children', 'EID_38'),
-('EQMID_39', 'How do we call a sampling procedure that gives every element of the population an equal chance of being selected in the sample?', 'Quota Sampling', 'Convenience Sampling', 'Purposive Sampling', 'Random Sampling', 'Random Sampling', 'EID_39'),
-('EQMID_40', 'Which of the following CANNOT be considered as a probability sampling?', 'Systematic Sampling', 'Judgement Sampling	', 'Cluster Sampling', 'Stratified Sampling', 'Judgement Sampling	', 'EID_40'),
-('EQMID_5', 'Four coins are tossed. Let Z be the random variable representing the number of heads that occur. Find the values of the random variable Z.', 'Z={0,1,2,3}', 'Z={1,2,3}', 'Z={0,1,2,3,4}	', 'Z={1,2,3,4}', 'Z={0,1,2,3,4}', 'EID_5');
+INSERT INTO `eq_math` (`EQID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C`, `Choice_D`, `Answer`) VALUES
+('EQMID_1', 'Which of the following is a distribution with a mean of 0 and a standard deviation of 1?', 'Normal Distribution', 'Sampling Distribution', 'Standard Normal Distribution', 'Probability Distribution', 'Standard Normal Distribution'),
+('EQMID_10', 'Which of the following CANNOT be considered as a probability sampling?', 'Systematic Sampling', 'Judgement Sampling	', 'Cluster Sampling', 'Stratified Sampling', 'Judgement Sampling	'),
+('EQMID_2', 'Given the mean \"μ\" =45 and the standard deviation \"σ\" =6 of a population, find the X-value that corresponds to z=-1.00.', '36', '37', '38', '39', ' 39'),
+('EQMID_3', 'Jane works for New York theatrical agency whose employees had an average income this past year of $48,000 with a standard deviation of $2,500. How much did Jane earn this past year if her z-score is -2.3?', '$46,500', '$45,600', '$42,250', '$45,060', '$42,250'),
+('EQMID_4', 'Find the area between z=0.98 and z=2.58.', '0.1586', '0.9332', '0.0440', '0.8413', '0.1586'),
+('EQMID_5', 'Four coins are tossed. Let Z be the random variable representing the number of heads that occur. Find the values of the random variable Z.', 'Z={0,1,2,3}', 'Z={1,2,3}', 'Z={0,1,2,3,4}	', 'Z={1,2,3,4}', 'Z={0,1,2,3,4}'),
+('EQMID_6', 'Which of the following corresponds to the mean and standard deviation of the age of the applicants?', 'μ=20 and σ=4', 'μ=4 and σ=28', 'μ=28 and σ=4', 'μ=4 and σ=20', 'μ=28 and σ=4'),
+('EQMID_7', 'Find the z-score that corresponds to the age of 20 years old.', 'z=-2.00	', 'z=2.00', 'z=1.50', 'z=2.56', 'z=-2.00	'),
+('EQMID_8', 'If 500 students participated in a field demonstration, how many students belong to the upper 15% of the group?', '70 children', '75 children', '80 children', '85 children', '75 children'),
+('EQMID_9', 'How do we call a sampling procedure that gives every element of the population an equal chance of being selected in the sample?', 'Quota Sampling', 'Convenience Sampling', 'Purposive Sampling', 'Random Sampling', 'Random Sampling');
 
 -- --------------------------------------------------------
 
@@ -679,65 +637,24 @@ CREATE TABLE `eq_reading_comprehension` (
   `Choice_B` varchar(255) NOT NULL,
   `Choice_C` varchar(255) NOT NULL,
   `Choice_D` varchar(255) NOT NULL,
-  `Answer` varchar(255) NOT NULL,
-  `EID` varchar(255) NOT NULL
+  `Answer` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `eq_reading_comprehension`
 --
 
-INSERT INTO `eq_reading_comprehension` (`EQID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C`, `Choice_D`, `Answer`, `EID`) VALUES
-('EQRCID_1', 'The period that includes all kinds of literature produced by our native ancestors before any colonization.', 'Pre-colonial Literature', 'Philippine Literature during Spanish Colonization', 'Philippine Literature during American Colonization', 'Philippine Literature during Japanese Colonization', 'Pre-colonial Literature', 'EID_1'),
-('EQRCID_10', 'All literary works written and published after the Period of the Third Republic.', 'Spanish and American Literature', '21ST Century Literature', 'New Literature', 'None of the above', '21ST Century Literature', 'EID_10'),
-('EQRCID_11', 'It is 50% of the narrative is presented without words and the reader must interpret the images to comprehend', 'Illustrated Novel', 'Manga', 'Doodle Fiction', 'Graphic Novel', 'Illustrated Novel', 'EID_11'),
-('EQRCID_12', 'It is a Triple Media Literature.', 'Digi-Fiction', 'Manga', 'Chick Lit', 'Science Fiction', 'Digi-Fiction', 'EID_12'),
-('EQRCID_13', 'The narrative work in which the story is conveyed to the reader using a comic form.', 'Manga', 'Graphic Novel', 'Doodle Fiction', 'Text Talk Novels', 'Graphic Novel', 'EID_13'),
-('EQRCID_14', 'The literary presentation where the author incorporates doodle writing, drawings and handwritten graphics in place of the traditional font.', 'Manga', 'Doodle Fiction', 'Text Talk Novel', 'Blogs', 'Doodle Fiction', 'EID_14'),
-('EQRCID_15', 'It is used in the English-speaking world as a generic term for all comic books and graphic novels originally published in Japan.', 'Manga', 'Blogs', 'Chick Literature', 'Text Talk Novel', 'Manga', 'EID_15'),
-('EQRCID_16', 'Accounts of daily life and adventures, advice, tutorials which are regularly updated are found here.', 'Manga', 'Blogs', 'Chick Lit', 'Text Talk Novel', 'Blogs', 'EID_16'),
-('EQRCID_17', 'The genre fiction which addresses issues of modern womanhood, often humorously and lightheartedly.', 'Manga', 'Blogs', 'Chick Literature', 'Text Talk Novel', 'Chick Literature', 'EID_17'),
-('EQRCID_18', 'It is a genre of speculative fiction dealing with imaginative  concepts  such as futuristic science and technology, space travel, time travel, faster than light travel, a parallel universe and extraterrestrial life.', 'Six word flash fiction', 'Science Fiction', 'Flash Fiction', 'Creative NonFiction', 'Science Fiction', 'EID_18'),
-('EQRCID_19', 'The style of fictional literature of extreme brevity.', 'Six word flash fiction', 'Science Fiction', 'Flash Fiction', 'Creative NonFiction', 'Flash Fiction', 'EID_19'),
-('EQRCID_2', 'These are literary genre examples of Philippine Literature during Spanish Colonization.', 'Riddle, Proverbs, Chants, Myths, Folks Songs, Epic', 'Christian Doctrines, Senakulo, Pasyon, Awit', 'Poetry, Short Story, Publications, Drama', 'None of the above', 'None of the above', 'EID_2'),
-('EQRCID_20', 'The genre of writing that uses literary styles and techniques to create factually accurate narratives.', 'Six word flash fiction', 'Science Fiction', 'Flash Fiction', 'Creative NonFiction', 'Creative NonFiction', 'EID_20'),
-('EQRCID_21', 'A factual story is written using literary devices and techniques.', 'Creative Nonfiction', 'Digi-Fiction', 'Doodle Fiction', 'Illustrated Novel', 'Creative Nonfiction', 'EID_21'),
-('EQRCID_22', 'Literature that uses hypertext mark-up to connect to other parts of the piece.', 'Blog', 'Flash Fiction', 'Digi-fiction', 'Hyper Poetry', 'Hyper Poetry', 'EID_22'),
-('EQRCID_23', 'The stories are told almost entirely in dialogue simulating social network exchange', 'Digi-Fiction', 'Manga', 'Graphic Novel', 'Text-Talk Novel', 'Text-Talk Novel', 'EID_23'),
-('EQRCID_24', 'It is defined as the circumstances that form the setting of events, statements or ideas and in the way of which it can be fully understood and assessed.', 'Imagery', 'Auditory Imagery', 'Kinesthetic Imagery', 'Context', 'Context', 'EID_24'),
-('EQRCID_25', 'It is creating a picture in the reader’s mind by using words that appeal to the senses.', 'Imagery', 'Auditory Imagery', 'Kinesthetic Imagery', 'Context', 'Imagery', 'EID_25'),
-('EQRCID_26', 'This genre of speculative fiction deals with concepts of time, travel, parallel universe, extraterrestrial life and futuristic technology.', 'Digi-Fiction', 'Doodle Fiction', 'Creative Nonfiction', 'Science Fiction', 'Science Fiction', 'EID_26'),
-('EQRCID_27', 'A 700-word story like Angels and Blueberries by Tara Campbell is a one-shot fiction that falls under this literary genre.', 'Flash Fiction', 'Blog', 'Hyper Poetry', 'Digi-Fiction', 'Flash Fiction', 'EID_27'),
-('EQRCID_28', 'It is a type of Imagery that produced by the use of words that appeal to the sense of hearing.', 'Imagery', 'Auditory Imagery', 'Kinesthetic Imagery', 'Context', 'Auditory Imagery', 'EID_28'),
-('EQRCID_29', 'It is a type of Imagery that produced by the use of words that appeal to the actions and movement.', 'Imagery', 'Auditory Imagery', 'Kinesthetic Imagery', 'Context', 'Auditory Imagery', 'EID_29'),
-('EQRCID_3', 'Which literary themes writers explored a lot of subjects but the theme of love and youth persistence. They had also acquired mastery of English writing.', 'Pre Colonial Literature', 'Philippine Literature during Spanish Colonization', 'Philippine Literature during American Colonization', 'Philippine Literature during Japanese Colonization', 'Philippine Literature during American Colonization', 'EID_3'),
-('EQRCID_30', 'Miranda Dickinson’s It started with a Kiss is an example of this genre.', 'Chick Lit', 'Digi-Fiction', 'Hyper Poetry', 'Text-Talk Novel', 'Chick Lit', 'EID_30'),
-('EQRCID_31', 'Before it was adapted into an anime, Yoshihiro Togashi’s Hunter X Hunter is a comic book series from Japan that falls under this literary genre.', 'Manga', 'Digi-Fiction', 'Graphic Novel', 'Illustrated Novel', 'Manga', 'EID_31'),
-('EQRCID_32', 'It is 50% of the narrative is presented without words and the reader must interpret the images to comprehend', 'Illustrated Novel', 'Manga', 'Doodle Fiction', 'Graphic Novel', 'Illustrated Novel', 'EID_32'),
-('EQRCID_33', 'The literary presentation where the author incorporates doodle writing, drawings and handwritten graphics in place of the traditional font.', 'Manga', 'Doodle Fiction', 'Text Talk Novel', 'Blog', 'Doodle Fiction', 'EID_33'),
-('EQRCID_34', 'A weblog, a website containing short articles called posts that are changed regularly.', 'Manga', 'Blog', 'Chick Lit', 'Text Talk Novel', 'Blog', 'EID_34'),
-('EQRCID_35', 'To get the full story, students must engage in navigation, reading and viewing in all three forms.', 'Manga', 'Digi-Fiction', 'Graphic Novel', 'Illustrated Novel', 'Digi-Fiction', 'EID_35'),
-('EQRCID_36', 'It is based on facts and the author\'s opinion about the subject.', 'Poetry', 'Drama', 'Fiction', 'Non-Fiction', 'Non-Fiction', 'EID_36'),
-('EQRCID_37', 'It is a composition in prose or verse presenting in dialogue or pantomime, a story involving conflict, more contrast of character especially intended to be acted on stage.', 'Poetry', 'Drama', 'Fiction', 'Non-Fiction', 'Drama', 'EID_37'),
-('EQRCID_38', 'It is an imaginative awareness of experience expressed through meaning, sound and rhythmic language choices to evoke an emotional response.', 'Poetry                     ', 'Drama                     ', 'Fiction', 'Non-Fiction', 'Poetry                     ', 'EID_38'),
-('EQRCID_39', 'PowerPoint application is used to________.', 'design animations', 'create slideshow presentations', 'process and store digital presentations', 'generate ideas from people thru mapping', 'create slideshow presentations', 'EID_39'),
-('EQRCID_4', 'These are literary samples of Philippine Literature during the American Colonization.', 'These are literary samples of Philippine Literature during the American Colonization.', 'Christian Doctrines, Senakulo, Pasyon, Awit,', 'Poetry, Short Story, Publications, Drama', 'None of the above', 'Poetry, Short Story, Publications, Drama', 'EID_4'),
-('EQRCID_40', 'This refers to an electronic medium for recording, copying, playing back, broadcasting, and displaying moving visual media.', 'audio', 'video', 'computer', 'animation', 'video', 'EID_40'),
-('EQRCID_41', 'Which of the following statements is TRUE?', 'Multimedia use in learning is expensive.', 'Multimedia solely uses graphics and animation.', 'Learners are encouraged to use only one multimedia format.', 'Integration of multimedia in studying literature enhances learner’s ICT skills.', 'Integration of multimedia in studying literature enhances learner’s ICT skills.', 'EID_41'),
-('EQRCID_42', 'It is used to describe any sound in terms of receiving, transmitting or   reproducing its specific frequency', 'audio', 'noise', 'video', 'frequency', 'audio', 'EID_42'),
-('EQRCID_43', 'Mind mapping is a tool used to visually organize information that helps us to analyze, synthesize, recall and__________new ideas.', 'draw', 'estimate', 'evaluate', 'generate', 'evaluate', 'EID_43'),
-('EQRCID_44', 'What kind of context is featured in the paragraph below.\r\n\"The short story depicted the usual atmosphere of the Philippines around the hostile environment the war had created—one of which had American soldiers around the vicinity\"\r\n', 'Text', 'Writer’s ', 'Reader’s', 'Socio-Cultural', 'Socio-Cultural', 'EID_44'),
-('EQRCID_45', 'What kind of context is being described below?\r\n\r\n\"It is part of the larger text such as newspaper, history, events, translated in it.\" \r\n', 'Text’s', 'Writer’s ', 'Reader’s', 'Socio-Cultural', 'Text’s', 'EID_45'),
-('EQRCID_46', 'What does someone talk about when he/she shares an anecdote?', 'opinions', 'personal experiences', 'plans and dreams in life', 'biography of other people', 'personal experiences', 'EID_46'),
-('EQRCID_47', 'What anecdote shares frightening stories of dangers that can be avoided by following regulations?', 'motivation', 'cautionary', 'reminiscence', 'entertainment', 'cautionary', 'EID_47'),
-('EQRCID_48', 'What is the purpose of the anecdote below?\r\n\r\n\"Oh, I would never dream of assuming I know all Hogwarts\' secrets, Igor. Only this morning, for instance, I took a wrong turn on the way to the bathroom and found myself in a beautifully proportioned room I had never seen before, containing a really rather magnificent collection of chamber pots. When I went back to investigate more closely, I discovered that the room had vanished.\"\r\n', 'cautionary', 'motivational', 'inspirational', 'reminiscence', 'reminiscence', 'EID_48'),
-('EQRCID_49', 'Before beginning a lecture on not following traffic rules, a father tells his son an incident of collision that caused many lives due to ignoring traffic signs. What is the purpose of this anecdote?', 'cautionary', 'motivational', 'inspirational', 'reminiscence', 'cautionary', 'EID_49'),
-('EQRCID_5', 'The themes of this period was nationalism, life in the barrio, faith, love, religion and the arts.', 'Pre Colonial Literature', 'Philippine Literature during Spanish Colonization', 'Philippine Literature during American Colonization', 'Philippine Literature during Japanese Colonization', 'Philippine Literature during Japanese Colonization', 'EID_5'),
-('EQRCID_50', 'Most of the writers use anecdote to___________________________________.', 'tell a story', 'deal with differences of opinions', 'share helpful tips on making a living', 'impart a lesson in an entertaining way', 'impart a lesson in an entertaining way', 'EID_50'),
-('EQRCID_6', 'The Haiku,Tanaga and Filipino drama are literary genre of_____________________________', 'Pre Colonial Literature', 'Philippine Literature during Spanish Colonization', 'Philippine Literature during American Colonization', 'Philippine Literature during Japanese Colonization', 'Philippine Literature during Japanese Colonization', 'EID_6'),
-('EQRCID_7', 'The period in Philippine Literature is based on oral tradition. During this time, folk songs, epics, narratives and sung narratives were popular which are passed from generation to generation.', 'Pre-Colonial Period', 'Spanish Colonial Period', 'American Colonial Period', 'Philippine Literature under the Republic', 'Pre-Colonial Period', 'EID_7'),
-('EQRCID_8', 'A 21st century poetry where readers move from one site to another because of the embedded links in the words.', 'Digi-fiction', 'Graphic-novel', 'Six-word stories', 'Hypertext Poetry', 'Hypertext Poetry', 'EID_8'),
-('EQRCID_9', 'Which of the following is the reason why Philippine Literature during the Japanese regime came to a halt?', 'Filipino writers were imprisoned as mandated by the Japanese government.', 'Filipino writers were banned from using English or any language other than Nihonggo.', 'Filipino writers were charged high costs for producing or publishing texts under their names.', 'None of the above.', 'Filipino writers were banned from using English or any language other than Nihonggo.', 'EID_9');
+INSERT INTO `eq_reading_comprehension` (`EQID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C`, `Choice_D`, `Answer`) VALUES
+('EQRCID_1', 'The stories are told almost entirely in dialogue simulating social network exchange', 'Digi-Fiction', 'Manga', 'Graphic Novel', 'Text-Talk Novel', 'Text-Talk Novel'),
+('EQRCID_10', 'It is 50% of the narrative is presented without words and the reader must interpret the images to comprehend', 'Illustrated Novel', 'Manga', 'Doodle Fiction', 'Graphic Novel', 'Illustrated Novel'),
+('EQRCID_2', 'It is defined as the circumstances that form the setting of events, statements or ideas and in the way of which it can be fully understood and assessed.', 'Imagery', 'Auditory Imagery', 'Kinesthetic Imagery', 'Context', 'Context'),
+('EQRCID_3', 'What anecdote shares frightening stories of dangers that can be avoided by following regulations?', 'motivation', 'cautionary', 'reminiscence', 'entertainment', 'cautionary'),
+('EQRCID_4', 'A 700-word story like Angels and Blueberries by Tara Campbell is a one-shot fiction that falls under this literary genre.', 'Flash Fiction', 'Blog', 'Hyper Poetry', 'Digi-Fiction', 'Flash Fiction'),
+('EQRCID_5', 'The themes of this period was nationalism, life in the barrio, faith, love, religion and the arts.', 'Pre Colonial Literature', 'Philippine Literature during Spanish Colonization', 'Philippine Literature during American Colonization', 'Philippine Literature during Japanese Colonization', 'Philippine Literature during Japanese Colonization'),
+('EQRCID_6', 'It is a type of Imagery that produced by the use of words that appeal to the actions and movement.', 'Imagery', 'Auditory Imagery', 'Kinesthetic Imagery', 'Context', 'Auditory Imagery'),
+('EQRCID_7', 'Which literary themes writers explored a lot of subjects but the theme of love and youth persistence. They had also acquired mastery of English writing.', 'Pre Colonial Literature', 'Philippine Literature during Spanish Colonization', 'Philippine Literature during American Colonization', 'Philippine Literature during Japanese Colonization', 'Philippine Literature during American Colonization'),
+('EQRCID_8', 'Before it was adapted into an anime, Yoshihiro Togashi’s Hunter X Hunter is a comic book series from Japan that falls under this literary genre.', 'Manga', 'Digi-Fiction', 'Graphic Novel', 'Illustrated Novel', 'Manga'),
+('EQRCID_9', 'Which of the following is the reason why Philippine Literature during the Japanese regime came to a halt?', 'Filipino writers were imprisoned as mandated by the Japanese government.', 'Filipino writers were banned from using English or any language other than Nihonggo.', 'Filipino writers were charged high costs for producing or publishing texts under their names.', 'None of the above.', 'Filipino writers were banned from using English or any language other than Nihonggo.');
 
 -- --------------------------------------------------------
 
@@ -752,84 +669,24 @@ CREATE TABLE `eq_science` (
   `Choice_B` varchar(255) NOT NULL,
   `Choice_C` varchar(255) NOT NULL,
   `Choice_D` varchar(255) NOT NULL,
-  `Answer` varchar(255) NOT NULL,
-  `EID` varchar(255) NOT NULL
+  `Answer` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `eq_science`
 --
 
-INSERT INTO `eq_science` (`EQID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C`, `Choice_D`, `Answer`, `EID`) VALUES
-('EQSID_1', 'Which of the following asserts that stars are formed when a dense region of molecular cloud collapse?', 'Big Bang Theory ', 'Evolution', 'Creation Theory ', 'Star Formation Theory', 'Star Formation Theory', 'EID_1'),
-('EQSID_10', 'At what stage does the outer covering of a star blow due to insufficient energy?', 'Protostar', 'Red Giant', 'Supernova ', 'White Dwarf', 'White Dwarf', 'EID_10'),
-('EQSID_11', 'What will happen to a star if its core can no longer produce the needed energy?', 'Protostar', 'Red Giant', 'Supernova ', 'White Dwarf', 'Supernova ', 'EID_11'),
-('EQSID_12', 'Who predicted new elements based on the atomic number of known elements?', 'Ernest Rutherford', 'John Newlands', 'Henry Mosely', 'Plato', 'Henry Mosely', 'EID_12'),
-('EQSID_13', 'What type of nuclear reaction emits a particle with two protons and two neutrons?', 'Alpha Emission', 'Beta Emission', 'Gamma Emission', 'Fusion', 'Alpha Emission', 'EID_13'),
-('EQSID_14', 'What type of nuclear reaction emits electrons?', 'Alpha Emission', 'Beta Emission', 'Gamma Emission', 'Fusion', 'Beta Emission', 'EID_14'),
-('EQSID_15', 'What type of nuclear reaction emits gamma rays?', 'Alpha Emission', 'Beta Emission', 'Gamma Emission', 'Fusion', 'Gamma Emission', 'EID_15'),
-('EQSID_16', 'Which of the following statement is TRUE about water?', 'It is a Polar Molecule', 'It is a Non-Polar Molecule', 'It is a both Polar & Non-Polar', 'It has no Polarity', 'It is a Polar Molecule', 'EID_16'),
-('EQSID_17', 'Which of the following will be the solvent if a non-polar substance dissolves in an unknown liquid?', 'Non-Polar', 'Polar ', 'Water', 'All of the above', 'Non-Polar', 'EID_17'),
-('EQSID_18', 'Which of the following is a shape a non-polar molecule will form?', 'Asymmetrical', 'Symmetrical', 'Square', 'Octagonal', 'Symmetrical', 'EID_18'),
-('EQSID_19', 'Which of the following is an example of non-polar molecule?', 'CO2', 'H2O', 'NH3 ', 'SO2', 'CO2', 'EID_19'),
-('EQSID_2', 'Which refers to the fragments of cloud that contract and form a stellar core?', 'Protostar', 'Red Giant', 'Supernova', 'White Dwarf', 'Protostar', 'EID_2'),
-('EQSID_20', 'Which of the following is an example of polar molecule?', 'CO2', 'H2O', 'CCI4', 'XeF4', 'H2O', 'EID_20'),
-('EQSID_21', 'Which of the following is an intermolecular force of attraction that is present only in polar molecules?', 'Covalent Bond', 'Dipole-Dipole Forces', 'Hydrogen Bond', 'London Dispersion Forces', 'Dipole-Dipole Forces', 'EID_21'),
-('EQSID_22', 'Which of these is the strongest intermolecular force of attraction?', 'Ionic Bond', 'Dipole-Dipole Forces', 'Hydrogen Bond', 'London Dispersion Forces', 'Hydrogen Bond', 'EID_22'),
-('EQSID_23', 'Which of the following molecules can exhibit hydrogen bond?', 'HF', 'HCI', 'NaF', 'NaBr', 'HF', 'EID_23'),
-('EQSID_24', 'What explains the very high boiling point of water?', 'A strong hydrogen bond exists between water molecules.', 'Dispersion forces are present in all molecules.', 'The shape of the polar bond is asymmetrical.', 'There is a strong dipole-dipole bonds between water molecules.', 'A strong hydrogen bond exists between water molecules.', 'EID_24'),
-('EQSID_25', 'Which of the following is TRUE concerning substances with weaker intermolecular forces of attraction?', 'The lower is the heat of vaporization. ', 'The lower its vapor pressure at a given temperature.', 'The lower is the rate of evaporation.', 'The higher the values of its melting point. ', 'The lower is the heat of vaporization. ', 'EID_25'),
-('EQSID_26', 'Which of the following is the intermolecular force that is present in all types of the neighboring molecules?', 'Ionic Bond', 'Dipole-Dipole Forces', 'Hydrogen Bond', 'London Dispersion Forces', 'London Dispersion Forces', 'EID_26'),
-('EQSID_27', 'Which set is correctly ordered from the weakest to strongest intermolecular attractions?', 'London Dispersion Forces, Dipole-Dipole, Hydrogen Bond', 'Dipole-Dipole, Hydrogen Bond, London Dispersion Forces', 'Dipole-Dipole, London Dispersion Forces, Hydrogen Bond', 'London Dispersion Forces, Hydrogen Bond, Dipole-Dipole', 'London Dispersion Forces, Dipole-Dipole, Hydrogen Bond', 'EID_27'),
-('EQSID_28', 'Which type of intermolecular force of attraction is present in the molecule HF?', 'Ionic Bond', 'Dipole-Dipole ', 'Dispersion', 'Hydrogen Bond', 'Hydrogen Bond', 'EID_28'),
-('EQSID_29', 'Which of the following properties decreases once the strength of its intermolecular forces increases?', 'Viscosity', 'Melting Point', 'Boiling Point', 'Evaporation rate', 'Evaporation rate', 'EID_29'),
-('EQSID_3', 'What will be formed when a protostar attains its gravitational equilibrium? ', 'Main Sequence Star', 'Red Giant', 'Supernova', 'White Dwarf', 'Main Sequence Star', 'EID_3'),
-('EQSID_30', 'Which of the following trends is correct about substances with stronger intermolecular attractions? ', 'Higher melting and higher boiling points', 'Lower melting points and higher boiling points', 'Lower melting and boiling points', 'Higher melting points and lower boiling points', 'Higher melting and higher boiling points', 'EID_30'),
-('EQSID_31', 'Which of the following macromolecules contains Carbon, Oxygen and Hydrogen?', 'Carbohydrates', 'Lipids', 'Protein', 'Nucleic Acid', 'Carbohydrates', 'EID_31'),
-('EQSID_32', 'Which type of bond exists between amino acids?', 'Ester', 'Glycosidic', 'Peptide', 'Phosphodiester', 'Peptide', 'EID_32'),
-('EQSID_33', 'Which of the following macromolecules contains Nitrogen base?', 'Carbohydrates', 'Lipids', 'Protein ', 'Nucleic Acid', 'Nucleic Acid', 'EID_33'),
-('EQSID_34', 'Which of the following is NOT an example of carbohydrates?', 'Cellulose', 'Chitin', 'Starch', 'Sugar', 'Chitin', 'EID_34'),
-('EQSID_35', 'Which of the following is NOT an example of amino acid?', 'Alanine', 'Ascorbic Acid', 'Lysine', 'Valine', 'Ascorbic Acid', 'EID_35'),
-('EQSID_36', 'Which refers to the smallest unit of macromolecule?', 'Amino Acid', 'Monomer', 'Polymer', 'Sucrose', 'Monomer', 'EID_36'),
-('EQSID_37', 'Which of the following serves as storage of energy for plants?', 'Chitin ', 'Cellulose', 'Glycogen', 'Starch', 'Glycogen', 'EID_37'),
-('EQSID_38', 'Which is NOT an example of lipids?', 'Fats', 'Starch', 'Steroid', 'Wax', 'Starch', 'EID_38'),
-('EQSID_39', 'Which of the following is the function being performed by lipids in our body?', 'Contractile', 'Insulation', 'Structural', 'Transport', 'Insulation', 'EID_39'),
-('EQSID_4', 'Where do hydrogen and helium fuse in a main sequence star?', 'Core', 'Crust', 'Inner Core', 'Mantle', 'Core', 'EID_4'),
-('EQSID_40', 'Carrying genetic materials is performed by what biological macromolecule?', 'Carbohydrates', 'Lipids', 'Protein', 'Nucleic Acid', 'Nucleic Acid', 'EID_40'),
-('EQSID_41', 'Which of the following is the minimum amount of energy needed to start a reaction?', 'Activation Energy', 'Entropy of reaction', 'Energy Reaction', 'Temperature', 'Activation Energy', 'EID_41'),
-('EQSID_42', 'Which of the following is a substance which lowers the activation energy of a reaction?', 'Enzyme', 'Polarity', 'Reactant', 'Temperature', 'Enzyme', 'EID_42'),
-('EQSID_43', 'Which of the following DOESN’T affect the rate of reaction?', 'Enzyme', 'Particle Size', 'Polarity', 'Reactant', 'Reactant', 'EID_43'),
-('EQSID_44', 'Which of the following is TRUE about catalysts?', 'Decreases activation energy', 'Decreases temperature', 'Increases the activation energy', 'Increases particle size', 'Decreases activation energy', 'EID_44'),
-('EQSID_45', 'Which of the following is TRUE about temperature?', 'Decreases activation energy', 'Decreases particle movement', 'Increases the activation energy', 'Increases particle movement', 'Increases the activation energy', 'EID_45'),
-('EQSID_46', 'Which of the following refers to a process that leads to the chemical transformation of the reactants?', 'Activation Energy', 'Rate of Reaction', 'Chemical Reaction', 'Collision Theory ', 'Chemical Reaction', 'EID_46'),
-('EQSID_47', 'Which of the following is NOT a factor that affect the rate of reactions?', 'Temperature', 'Particle Size', 'Catalyst', 'Volume of Reactant', 'Volume of Reactant', 'EID_47'),
-('EQSID_48', 'What principles describes how different reaction happens at different rates?', 'Kinetic Molecular Theory', 'Collision Theory', 'Ideal Gas Law', 'Rate of Reaction', 'Collision Theory', 'EID_48'),
-('EQSID_49', 'What refers to a factor which affects the rate of reaction denoting the increase in concentration is equivalent to an increase in the rate of reaction?', 'Catalyst ', 'Concentration', 'Particle Size', 'Temperature', 'Concentration', 'EID_49'),
-('EQSID_5', 'Helium will be converted into what after its fusion with two more helium atoms?', 'Argon', 'Carbon', 'Chlorine', 'Oxygen', 'Carbon', 'EID_5'),
-('EQSID_50', 'How does the temperature affect the rate of reaction?', 'By increasing the kinetic energy of the reactants', 'By decreasing the kinetic energy of the reactants', 'By increasing the potential energy of the reactants', 'By decreasing the potential energy of the reactants', 'By increasing the kinetic energy of the reactants', 'EID_50'),
-('EQSID_6', 'When a star has used up all the hydrogen in its core, hydrogen will be converted into helium in the layer immediately surrounding the core. What stage of star formation is this?', 'Protostar', 'Red Giant', 'Supernova', 'White Dwarf', 'Red Giant', 'EID_6'),
-('EQSID_7', 'During red giant formation, what element will be produced by the fusion of oxygen with helium?', 'Helium', 'Hydrogen', 'Neon', 'Silicon', 'Neon', 'EID_7'),
-('EQSID_8', 'During red giant formation, what element will be produced by the fusion of neon with helium?', 'Carbon ', 'Magnesium ', 'Manganese', 'Silicon', 'Magnesium ', 'EID_8'),
-('EQSID_9', 'During red giant formation, what element will be produced by the fusion of silicon with another silicon atom?', 'Argon', 'Boron', 'Iron', 'Gold', 'Iron', 'EID_9');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `exams_form`
---
-
-CREATE TABLE `exams_form` (
-  `EFID` varchar(255) NOT NULL,
-  `STATUS` varchar(255) NOT NULL,
-  `DATE` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `exams_form`
---
-
-INSERT INTO `exams_form` (`EFID`, `STATUS`, `DATE`) VALUES
-('EFID_1', 'ACTIVE', '01/02/23');
+INSERT INTO `eq_science` (`EQID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C`, `Choice_D`, `Answer`) VALUES
+('EQSID_1', 'Which of these is the strongest intermolecular force of attraction?', 'Ionic Bond', 'Dipole-Dipole Forces', 'Hydrogen Bond', 'London Dispersion Forces', 'Hydrogen Bond'),
+('EQSID_10', 'How does the temperature affect the rate of reaction?', 'By increasing the kinetic energy of the reactants', 'By decreasing the kinetic energy of the reactants', 'By increasing the potential energy of the reactants', 'By decreasing the potential energy of the reactants', 'By increasing the kinetic energy of the reactants'),
+('EQSID_2', 'Which of the following molecules can exhibit hydrogen bond?', 'HF', 'HCI', 'NaF', 'NaBr', 'HF'),
+('EQSID_3', 'Which of the following is the intermolecular force that is present in all types of the neighboring molecules?', 'Ionic Bond', 'Dipole-Dipole Forces', 'Hydrogen Bond', 'London Dispersion Forces', 'London Dispersion Forces'),
+('EQSID_4', 'Which of the following macromolecules contains Nitrogen base?', 'Carbohydrates', 'Lipids', 'Protein ', 'Nucleic Acid', 'Nucleic Acid'),
+('EQSID_5', 'Which of the following is NOT an example of carbohydrates?', 'Cellulose', 'Chitin', 'Starch', 'Sugar', 'Chitin'),
+('EQSID_6', 'Which of the following is the function being performed by lipids in our body?', 'Contractile', 'Insulation', 'Structural', 'Transport', 'Insulation'),
+('EQSID_7', 'Which of the following DOESN’T affect the rate of reaction?', 'Enzyme', 'Particle Size', 'Polarity', 'Reactant', 'Reactant'),
+('EQSID_8', 'Which of the following is NOT a factor that affect the rate of reactions?', 'Temperature', 'Particle Size', 'Catalyst', 'Volume of Reactant', 'Volume of Reactant'),
+('EQSID_9', 'What principles describes how different reaction happens at different rates?', 'Kinetic Molecular Theory', 'Collision Theory', 'Ideal Gas Law', 'Rate of Reaction', 'Collision Theory');
 
 -- --------------------------------------------------------
 
@@ -840,22 +697,21 @@ INSERT INTO `exams_form` (`EFID`, `STATUS`, `DATE`) VALUES
 CREATE TABLE `exam_informations` (
   `EID` varchar(255) NOT NULL,
   `SUBJECT` varchar(255) NOT NULL,
-  `INSTRUCTION` varchar(255) NOT NULL,
+  `INSTRUCTION` text NOT NULL,
   `TOTAL_ITEMS` varchar(255) NOT NULL,
   `TIMELIMIT_MINUTE` varchar(255) NOT NULL,
-  `TIMELIMIT_SECOND` varchar(255) NOT NULL,
-  `EFID` varchar(255) NOT NULL
+  `TIMELIMIT_SECOND` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `exam_informations`
 --
 
-INSERT INTO `exam_informations` (`EID`, `SUBJECT`, `INSTRUCTION`, `TOTAL_ITEMS`, `TIMELIMIT_MINUTE`, `TIMELIMIT_SECOND`, `EFID`) VALUES
-('EID_1', 'Math', 'Choose the correct answer by solving each problem and \nselecting only the best answer from the options provided below.', '10', '15', '0', 'EFID_1'),
-('EID_2', 'Science', 'Analyze the given table and sentence before the questions and select the appropriate answer for the questions below.', '10', '15', '0', 'EFID_1'),
-('EID_3', 'English', 'Each sentence is followed by a series of questions. You will evaluate how the passage could be altered to improve the expression of concepts for some questions. Other questions will need you to examine how the piece could be altered to fix flaws in senten', '10', '15', '0', 'EFID_1'),
-('EID_4', 'Reading_Comprehension', 'A series of questions follows each sentence or set of texts below. Choose the best response to each question based on what is stated or suggested in the passage after reading each passage or pair.', '10', '15', '0', 'EFID_1');
+INSERT INTO `exam_informations` (`EID`, `SUBJECT`, `INSTRUCTION`, `TOTAL_ITEMS`, `TIMELIMIT_MINUTE`, `TIMELIMIT_SECOND`) VALUES
+('EID_1', 'Math', 'Choose the correct answer by solving each problem and \nselecting only the best answer from the options provided below.', '10', '15', '0'),
+('EID_2', 'Science', 'Analyze the given table and sentence before the questions and select the appropriate answer for the questions below.', '10', '15', '0'),
+('EID_3', 'English', 'Each sentence is followed by a series of questions. You will evaluate how the passage could be altered to improve the expression of concepts for some questions. Other questions will need you to examine how the piece could be altered to fix flaws in senten', '10', '15', '0'),
+('EID_4', 'Reading_Comprehension', 'A series of questions follows each sentence or set of texts below. Choose the best response to each question based on what is stated or suggested in the passage after reading each passage or pair.', '10', '15', '0');
 
 -- --------------------------------------------------------
 
@@ -1202,12 +1058,6 @@ ALTER TABLE `eq_reading_comprehension`
 --
 ALTER TABLE `eq_science`
   ADD PRIMARY KEY (`EQID`);
-
---
--- Indexes for table `exams_form`
---
-ALTER TABLE `exams_form`
-  ADD PRIMARY KEY (`EFID`);
 
 --
 -- Indexes for table `exam_informations`
