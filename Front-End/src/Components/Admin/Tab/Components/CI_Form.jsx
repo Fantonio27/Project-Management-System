@@ -2,43 +2,31 @@ import "../../../../css/Admin/Form/CI_Form.css"
 import React from "react";
 import AddIcon from '@mui/icons-material/Add';
 import { IconButton, Button, Fade } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { FormControl, Select, MenuItem } from "@mui/material";
 
-const save_sx = {
-    textTransform: "none",
-    backgroundColor: "#8dbc6b",
-    color: "white",
-    fontFamily: "Poppins",
-    letterSpacing: "1.5px",
-    padding: "8px 25px",
 
-    "&:hover": {
-        backgroundColor: "#82ae62"
-    }
+const combo_sx = {
+    border: "0px solid #dee2e6",
+    fontFamily: '"Poppins", sans-serif',
+    fontSize: '13px',
+    color: '#697280ff',
+    boxShadow: 'rgba(0, 0, 0, 0.01) 0px 4px 12px',
+    padding: '3px 0px'
 }
-
-const cancel_sx = {
-    textTransform: "none",
-    color: "#505161ff",
-    fontFamily: "Poppins",
-    padding: "8px 30px",
-    border: "1px solid #DEE2E6",
-    backgroundColor: "white",
-
-    "&:hover": {
-        backgroundColor: "#F8F9FA"
-    }
-}
-
 export default function CI_Form() {
 
-    const [Dataform, setDataform] = React.useState({})
+    const nav = useNavigate()
+    const [Dataform, setDataform] = React.useState({
+        FIELD: '',
+        INTEREST: '',
+    })
     const [Coursejob, setCoursejob] = React.useState([])
     const [CoursePercentage, setCoursePercentage] = React.useState({})
     const [open, setOpen] = React.useState(false);
@@ -47,6 +35,7 @@ export default function CI_Form() {
         job: 0
     });
     const url = location.href.split('/').at(-1);
+
     let add = url === "Add"
 
     React.useEffect(() => {
@@ -105,14 +94,26 @@ export default function CI_Form() {
 
     const field = [
         { id: "CID", label: "Course Information ID", text: "lorem ipsum", disabled: true },
-        { id: "FIELD", label: "Field", text: "lorem ipsum" },
-        { id: "ACRONYM", label: "Acronym", text: "lorem ipsum" },
-        { id: "COURSE_NAME", label: "Course Name", text: "lorem ipsum" },
-        { id: "INFORMATION", label: "Information", text: "lorem ipsum" },
-        { id: "HEADER_PICTURE", label: "Header Picture", text: "lorem ipsum" },
-        { id: "INTEREST", label: "Interest", text: "lorem ipsum" },
-        { id: "JOB", label: "Job", text: "lorem ipsum" },
-        { id: "COURSE_PERCENTAGE", label: "Course Percentage", text: "lorem ipsum" },
+        { id: "FIELD", label: "Field", text: "Enter the general field or discipline of the course. For example: Engineering, Medicine, Business, Literature, etc." },
+        {
+            id: "ACRONYM", label: "Acronym", text: "Enter the abbreviated form or acronym of the course name. It is typically formed by taking the initial letters of each word in the course name.",
+            max: 40, min: 2, pattern: "[a-zA-Z]+", title: "Please enter on alphabets only."
+        },
+        {
+            id: "COURSE_NAME", label: "Course Name", text: "Enter the official name or title of the course. Starts with its field then the course name. Example (Bachelor of Science in Information Technology)",
+            max: 90, min: 15, pattern: "Bachelor of?.+", title: 'Must start at "Bachelor of"'
+        },
+        {
+            id: "INFORMATION", label: "Information", text: "Provide additional details or information about the course. This may include course objectives, prerequisite requirements, course content, learning outcomes, and other relevant information that will help students understand the course.",
+            max: 250, min: 20
+        },
+        { id: "HEADER_PICTURE", label: "Header Picture", text: "Upload or select a suitable image or graphic to be used as the header picture. Choose an image that represents the course theme, subject, or concept effectively. Ensure that the image is of high quality and appropriate for the course content." },
+        { id: "INTEREST", label: "Interest", text: "Allow users to select an interest field that aligns with the course. Provide a list of interest fields related to the course content, such as Technology, Business, Health Sciences, Arts, etc.", },
+        {
+            id: "JOB", label: "Job", text: "Enter the job or career opportunities associated with the course. This could include specific roles, professions, or industries where individuals who have completed the course can find employment. Provide relevant information about potential career paths and opportunities that the course can lead to.",
+            max: 40, min: 2, pattern: "[a-zA-Z]+", title: "Please enter on alphabets only."
+        },
+        { id: "COURSE_PERCENTAGE", label: "Course Percentage", text: "Assign a percentage to each subject to indicate its relative importance or relevance to the course. Divide a total of 100% among the four subjects based on their significance in relation to the course. Consider factors such as the depth of coverage, core concepts, and skills required for each subject." },
     ]
 
     const percentage = [
@@ -120,6 +121,40 @@ export default function CI_Form() {
         { id: "SCIENCE", label: "Science Percentage" },
         { id: "ENGLISH", label: "English Percentage" },
         { id: "READING_COMPREHENSION", label: "Reading Comprehension Percentage" },
+    ]
+
+    const fieldcourse = [
+        { id: "Humanities" },
+        { id: "Social Sciences" },
+        { id: "Natural Sciences" },
+        { id: "Formal Sciences" },
+        { id: "Professions and Applied Sciences" },
+        { id: "Health Sciences" },
+        { id: "Education" },
+        { id: "Engineering" },
+        { id: "Media and Communication" },
+        { id: "Public Administration" },
+        { id: "Transportation" },
+        { id: "Nutrition" },
+    ]
+
+    const interestcourse = [
+        { id: "Health Science" },
+        { id: "Human Service" },
+        { id: "Law & Public Safety" },
+        { id: "Arts & Communications" },
+        { id: "Hospitality & Tourism" },
+        { id: "Education & Training" },
+        { id: "Agriculture" },
+        { id: "Information Technology" },
+        { id: "Science, Technology & Math" },
+        { id: "Marketing & Sales" },
+        { id: "Government" },
+        { id: "Business & Management" },
+        { id: "Finance" },
+        { id: "Architecture & Construction" },
+        { id: "Manufacturing" },
+        { id: "Transportation" },
     ]
 
     const tab = (val, job, cp) => {
@@ -132,6 +167,7 @@ export default function CI_Form() {
                 placeholder={val.label}
                 value={Dataform[`${val.id}`] || ''}
                 onChange={onChange}
+                maxLength={val.max}
                 required
             />
         } else if (val.id === "JOB") {
@@ -161,8 +197,8 @@ export default function CI_Form() {
                                 placeholder="Job Description"
                                 value={course.INFORMATION || ""}
                                 onChange={onChange}
-                                // minLength={7}
-                                // maxLength={16}
+                                minLength={20}
+                                maxLength={250}
                                 required
                             />
                         </div>
@@ -175,6 +211,7 @@ export default function CI_Form() {
                     return (
                         <div key={index} className="Form_Job">
                             <input
+                                type="number"
                                 className="CI_Form_input"
                                 placeholder={sub.label}
                                 id="CP"
@@ -182,8 +219,8 @@ export default function CI_Form() {
                                 onChange={onChange}
                                 // name={course.CIJID || `CIJID_${count.job + 1}`}
                                 name={sub.id}
-                                minLength={val.min}
-                                maxLength={val.max}
+                                min={0}
+                                max={50}
                                 pattern={val.pattern}
                                 title={val.title}
                                 required
@@ -192,6 +229,51 @@ export default function CI_Form() {
                     )
                 })
             )
+        } else if (val.id === "FIELD") {
+            return <FormControl size="small" sx={{ width: '73%' }}>
+                <Select
+                    value={Dataform.FIELD || ""}
+                    onChange={onChange}
+                    displayEmpty
+                    // disabled={!edit}
+                    sx={combo_sx}
+                    name="FIELD"
+                    required
+                >
+                    <MenuItem value="">
+                        <p className="CI_Form_p2">None</p>
+                    </MenuItem>
+                    {
+                        fieldcourse.map((course, index) => {
+                            return (
+                                <MenuItem key={index} value={course.id}><p className="CI_Form_p2">{course.id}</p></MenuItem>
+                            )
+                        })
+                    }
+                </Select>
+            </FormControl>
+        } else if (val.id === "INTEREST") {
+            return <FormControl size="small" sx={{ width: '73%' }}>
+                <Select
+                    value={Dataform.INTEREST || ""}
+                    onChange={onChange}
+                    displayEmpty
+                    // disabled={!edit}
+                    sx={combo_sx}
+                    name="INTEREST"
+                >
+                    <MenuItem value="">
+                        <p className="CI_Form_p2">None</p>
+                    </MenuItem>
+                    {
+                        interestcourse.map((course, index) => {
+                            return (
+                                <MenuItem key={index} value={course.id}><p className="CI_Form_p2">{course.id}</p></MenuItem>
+                            )
+                        })
+                    }
+                </Select>
+            </FormControl>
         } else {
             return <input
                 name={val.id}
@@ -211,10 +293,12 @@ export default function CI_Form() {
         }
     }
 
+    // console.log(Dataform)
+
     const onChange = (event) => {
         const { name, value, id } = event.target
 
-        if (id === "COURSE") {
+        if (id === "COURSE" || name === "FIELD" || name === "INTEREST") {
             setDataform((prev) => ({
                 ...prev,
                 [name]: value
@@ -237,37 +321,60 @@ export default function CI_Form() {
         }
     }
 
-    const handleSubmit = () => {
-        if (add) {
-            axios.post(`http://localhost/recommendation_system/api/admin/Course_Information.php`, Dataform).then(function (response) {
+    const handleSubmit = (event) => {
+        event.preventDefault()
 
-                axios.post(`http://localhost/recommendation_system/api/admin/Course_Percentage.php?cid="${Dataform.CID}"`, CoursePercentage).then(function (response) {
-                    Coursejob.map((prev) => {
-                        axios.post(`http://localhost/recommendation_system/api/admin/Course_Job.php?cid="${Dataform.CID}"`, prev).then(function (response) {
+        const percentage = {
+            MATH: Number(CoursePercentage.MATH),
+            SCIENCE: Number(CoursePercentage.SCIENCE),
+            ENGLISH: Number(CoursePercentage.ENGLISH),
+            READING_COMPREHENSION: Number(CoursePercentage.READING_COMPREHENSION),
+        }
+        const values = Object.values(percentage);
+
+        const sum = values.reduce((accumulator, value) => {
+            return accumulator + value;
+        }, 0);
+        if (add) {
+            // console.log(CoursePercentage)
+
+            if (sum !== 100) {
+                alert(`Course Percentage must be 100% (${sum})`)
+            } else {
+                axios.post(`http://localhost/recommendation_system/api/admin/Course_Information.php`, Dataform).then(function (response) {
+                    axios.post(`http://localhost/recommendation_system/api/admin/Course_Percentage.php?cid="${Dataform.CID}"`, CoursePercentage).then(function (response) {
+                        Coursejob.map((prev) => {
+                            axios.post(`http://localhost/recommendation_system/api/admin/Course_Job.php?cid="${Dataform.CID}"`, prev).then(function (response) {
+                                
+                            })
                         })
                     })
                 })
-
-            })
+                nav("../")
+            }
 
         } else {
-            axios.put(`http://localhost/recommendation_system/api/admin/Course_Information.php`, Dataform).then(function (response) {
+            if (sum !== 100) {
+                alert(`Course Percentage must be 100% (${sum})`)
+            } else {
+                axios.put(`http://localhost/recommendation_system/api/admin/Course_Information.php`, Dataform).then(function (response) {
 
-                {
-                    Coursejob.map((prev) => {
-                        axios.put(`http://localhost/recommendation_system/api/admin/Course_Job.php?cid="${Dataform.CID}"`, prev).then(function (response) {
+                    {
+                        Coursejob.map((prev) => {
+                            axios.put(`http://localhost/recommendation_system/api/admin/Course_Job.php?cid="${Dataform.CID}"`, prev).then(function (response) {
+                            })
                         })
-                    })
-                }
-            })
-            axios.put(`http://localhost/recommendation_system/api/admin/Course_Percentage.php`, CoursePercentage).then(function (response) {
-            })
+                    }
+                })
+                axios.put(`http://localhost/recommendation_system/api/admin/Course_Percentage.php`, CoursePercentage).then(function (response) {
+                })
+                nav("../")
+            }
         }
 
         setOpen(false)
     }
 
-    // console.log(Dataform)
     return (
         <Fade in={true} timeout={1000}>
             <div className="CI_Form">
@@ -277,13 +384,11 @@ export default function CI_Form() {
                             <p>{add ? "Add" : "Edit"} Course Information</p>
                             <p className="CI_Form_subTitle">Update the details and other information of a Course</p>
                         </div>
-                        <div style={{ display: 'flex', gap: '10px' }}>
-                            <div>
-                                <input type="submit" value={add ? "Add" : "Save"} />
-                            </div>
-                            <Link to="../" style={{ textDecoration: 'none' }}>
-                                <Button sx={cancel_sx}>Cancel</Button>
-                            </Link>
+                        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+
+                            <input type="submit" className="button_save" value={add ? "Add" : "Save"} />
+
+                            <button className="cancel_sx" onClick={() => nav('../')}>Cancel</button>
                         </div>
                     </div>
                     {
@@ -292,7 +397,7 @@ export default function CI_Form() {
                                 <div className="CI_Form_container" key={index}>
                                     <div>
                                         <p className="CI_Form_p1">{val.label}</p>
-                                        {/* <p className="CI_Form_p2">{val.text}</p> */}
+                                        <p className="CI_Form_p2">{val.text}</p>
                                     </div>
                                     <div>
                                         {tab(val, Coursejob, CoursePercentage)}

@@ -84,7 +84,7 @@ export default function SAT() {
         if (minute === Number(mtime) && second === Number(20)) {
             setOpen(true)
         }
-        else if(minute <= Number(mtime)){
+        else if (minute <= Number(mtime)) {
             setTimeout(() => {
                 if (second >= 59) {
                     setminute(minute + 1)
@@ -116,7 +116,7 @@ export default function SAT() {
             lrn: JSON.parse(user).LRN,
         }
         axios.put(`http://localhost/recommendation_system/api/user/AddTimelimit.php?MIN=${update.sub}_MINUTE&&SEC=${update.sub}_SECOND`, update).then(function (response) {
-       
+
         });
     }
 
@@ -127,12 +127,12 @@ export default function SAT() {
 
         if (value === "Interest_Assessment") {
             axios.put(`http://localhost/recommendation_system/api/user/Result.php?LRN='${JSON.parse(user).LRN}'`).then(function (response) {
-    
+
             })
             navigate(`../../${value}`)
             window.localStorage.setItem('EXAM_QUESTION', JSON.stringify(""))
             axios.get(`http://localhost/recommendation_system/api/user/Result.php?LRN='${JSON.parse(user).LRN}'&&FETCH='ALL'`).then(function (response) {
-        
+
                 const subjects = {
                     Math: response.data[0].MATH_SCORE,
                     Science: response.data[0].SCIENCE_SCORE,

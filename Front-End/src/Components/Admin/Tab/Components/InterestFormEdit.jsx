@@ -26,7 +26,6 @@ export default function InterestForm() {
 
     const handleSubmit = () => {
         axios.put(`http://localhost/recommendation_system/api/admin/IA_Questions.php`, Dataform).then(function (response) {
-            // console.log(response.data)
             nav("../")
         })
     }
@@ -76,7 +75,7 @@ export default function InterestForm() {
                         )
                     })
                 }
-                <button onClick={handleSubmit}>Update</button>
+                <button className="button_save" onClick={handleSubmit}>Update</button>
             </div>
         </div>
     )

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2023 at 05:59 PM
+-- Generation Time: May 14, 2023 at 05:43 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -679,6 +679,7 @@ CREATE TABLE `eq_science` (
 INSERT INTO `eq_science` (`EQID`, `Question`, `Choice_A`, `Choice_B`, `Choice_C`, `Choice_D`, `Answer`) VALUES
 ('EQSID_1', 'Which of these is the strongest intermolecular force of attraction?', 'Ionic Bond', 'Dipole-Dipole Forces', 'Hydrogen Bond', 'London Dispersion Forces', 'Hydrogen Bond'),
 ('EQSID_10', 'How does the temperature affect the rate of reaction?', 'By increasing the kinetic energy of the reactants', 'By decreasing the kinetic energy of the reactants', 'By increasing the potential energy of the reactants', 'By decreasing the potential energy of the reactants', 'By increasing the kinetic energy of the reactants'),
+('EQSID_11', 'svava', 'vsvsva', 'cas', 'vsacacs', 'csascc', 'vsvsva'),
 ('EQSID_2', 'Which of the following molecules can exhibit hydrogen bond?', 'HF', 'HCI', 'NaF', 'NaBr', 'HF'),
 ('EQSID_3', 'Which of the following is the intermolecular force that is present in all types of the neighboring molecules?', 'Ionic Bond', 'Dipole-Dipole Forces', 'Hydrogen Bond', 'London Dispersion Forces', 'London Dispersion Forces'),
 ('EQSID_4', 'Which of the following macromolecules contains Nitrogen base?', 'Carbohydrates', 'Lipids', 'Protein ', 'Nucleic Acid', 'Nucleic Acid'),

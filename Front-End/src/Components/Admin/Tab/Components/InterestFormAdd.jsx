@@ -76,7 +76,7 @@ export default function InterestForm() {
                         )
                     })
                 }
-                <button onClick={handleSubmit}>Add</button>
+                <button className="button_save" onClick={handleSubmit}>Add</button>
             </div>
         </div>
     )

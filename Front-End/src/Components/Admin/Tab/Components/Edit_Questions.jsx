@@ -28,45 +28,77 @@ export default function Edit_Questions() {
     const sub = location.href.split('/').at(-3);
     const subject = `eq_${sub.toLowerCase()}`
     const [answer, setanswer] = React.useState()
+    const [validationcount, setvalidationcount] = React.useState(0)
 
     React.useEffect(() => {
         axios.get(`http://localhost/recommendation_system/api/admin/SAT_Questions.php?FETCH='SUB'&&ID="${url}"&&SUB=${subject}`).then(function (response) {
             setquestioninfo(response.data)
             setanswer(response.data.Answer)
+            setvalidationcount(response.data.Question.length)
         })
     }, [])
 
     const onChangehandle = (event) => {
         const { name, value, id, checked } = event.target
 
+        if (!value.startsWith(" ") && !value.includes('  ')) {
+            if (name !== "Answer") {
+                setanswer("")
+                setquestioninfo(prev => ({
+                    ...prev,
+                    Answer: ""
+                }))
+            }
+            setquestioninfo(prev => ({
+                ...prev,
+                [name]: value
+            }))
 
-        setquestioninfo(prev => ({
-            ...prev,
-            [name]: value
-        }))
-
-        if(name ==="Answer"){
-            setanswer(value)
+            if (name === "Answer") {
+                setanswer(value)
+            } else if (name == "Question") {
+                setvalidationcount(value.length)
+            }
         }
     }
 
     const onSubmit = () => {
-        axios.put(`http://localhost/recommendation_system/api/admin/SAT_Questions.php?SUB=${subject}`, questioninfo).then(function (response) {
-            if (response.data) {
-                alert("Record updated successfully")
-                nav("..")
+        const val2 = Object.values(questioninfo).every(value => {
+            if (value !== "") {
+                return true
             }
         })
+
+        const unique = choice.filter(
+            (obj, index) =>
+                choice.findIndex(
+                    (item) => item.value === obj.value
+                ) === index
+        )
+
+        if (val2) {
+            if(unique.length !== choice.length){
+                alert("Duplicate Choices!")
+            }
+            else{
+                axios.put(`http://localhost/recommendation_system/api/admin/SAT_Questions.php?SUB=${subject}`, questioninfo).then(function (response) {
+                    if (response.data) {
+                        alert("Record updated successfully")
+                        nav("..")
+                    }
+                })
+            }
+        } else {
+            alert("Please fill in all the fields")
+        }
     }
 
     const choice = [
-        { id: 'Choice_A', label: 'Choice A' },
-        { id: 'Choice_B', label: 'Choice B' },
-        { id: 'Choice_C', label: 'Choice C' },
-        { id: 'Choice_D', label: 'Choice D' },
+        { id: 'Choice_A', label: 'Choice A', value: questioninfo.Choice_A },
+        { id: 'Choice_B', label: 'Choice B', value: questioninfo.Choice_B },
+        { id: 'Choice_C', label: 'Choice C', value: questioninfo.Choice_C },
+        { id: 'Choice_D', label: 'Choice D', value: questioninfo.Choice_D },
     ]
-
-    // console.log(questioninfo)
 
     return (
         <div className="Add_Entrance_Exam">
@@ -92,16 +124,19 @@ export default function Edit_Questions() {
                                 value={questioninfo.Question || ""}
                                 onChange={onChangehandle}
                                 // minLength={7}
-                                // maxLength={10}
+                                maxLength={250}
                                 required
                             />
+                            <div className="validation_div">
+                                <p>{validationcount}/250</p>
+                            </div>
                         </div>
                         <div className="choices">
                             {
                                 choice.map((val, index) => {
                                     return (
                                         <div key={index}>
-                                            <p className="Tab_title"><Checkbox checked={questioninfo[val.id] === answer} name="Answer" value={questioninfo[val.id]} size="small" sx={{ padding: "0px" }} color="success" onClick={onChangehandle}/>{val.label}</p>
+                                            <p className="Tab_title"><Checkbox checked={questioninfo[val.id] === answer} name="Answer" value={questioninfo[val.id]} size="small" sx={{ padding: "0px" }} color="success" onClick={onChangehandle} />{val.label}</p>
                                             <input type="text" name={val.id} className="tab_input" value={questioninfo[val.id] || ""} onChange={onChangehandle} />
                                         </div>
                                     )
@@ -110,7 +145,7 @@ export default function Edit_Questions() {
                         </div>
                     </div>
 
-                    <Button sx={nextbutton_sx} onClick={onSubmit}>Update</Button>
+                    <button className="button_save" onClick={onSubmit}>Update</button>
                 </div>
 
 

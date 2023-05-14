@@ -75,10 +75,11 @@ export default function Course_Information() {
         setOpendelete(false);
 
         axios.delete(`http://localhost/recommendation_system/api/admin/Course_Information.php?id="${id}"`).then(function (response) {
-            // console.log(response.data)
             axios.delete(`http://localhost/recommendation_system/api/admin/Course_Job.php?id="${id}"`).then(function (response) {
                 axios.delete(`http://localhost/recommendation_system/api/admin/Course_Percentage.php?id="${id}"`).then(function (response) {
-                    // console.log(response.data)
+                    if(response.data){
+                        window.location.reload()
+                    }
                 })
             })
 

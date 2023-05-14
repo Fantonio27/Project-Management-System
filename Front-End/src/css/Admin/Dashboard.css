@@ -80,3 +80,59 @@ Body{
 .action_icon{
     
 }
+
+.button_save{
+    background-color: #69b96e;
+    color: white;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    padding: 8px 30px;
+    border: 0px;
+    transition: 0.3s;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+}
+
+.button_save:hover{
+    background-color: #5da462;
+}
+
+.cancel_sx{
+    color:#505161ff;
+    background-color: white;
+    border: 1px solid #DEE2E6;
+    font-family: 'Poppins';
+    padding: 8px 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 500;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.cancel_sx:hover{
+    background-color: #F8F9FA;
+}
+
+.validation_div{
+    display: flex;
+    justify-content: flex-end;
+    width: inherit;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: #6f727eff;
+    font-weight: 200;
+    letter-spacing: 1px;
+}
+
+/* .validation_p{
+    color: #db514cff;
+    font-size: 13px;
+    font-weight: 100;
+    height: 20px;
+    padding: 0px 5px;
+    transition: 0.4s;
+} */

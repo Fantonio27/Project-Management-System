@@ -27,8 +27,10 @@ export default function Edit_Questions() {
     const [questioninfo, setquestioninfo] = React.useState({})
     const sub = location.href.split('/').at(-2);
     const subject = `eq_${sub.toLowerCase()}`
-    const [answer, setanswer] = React.useState('dvvvv')
+    const [answer, setanswer] = React.useState('ans')
     const [count, setcount] = React.useState()
+
+    const [validationcount, setvalidationcount] = React.useState(0)
 
     React.useEffect(() => {
         axios.get(`http://localhost/recommendation_system/api/admin/Count.php?table=${subject}`).then(function (response) {
@@ -39,36 +41,79 @@ export default function Edit_Questions() {
     const onChangehandle = (event) => {
         const { name, value, id, checked } = event.target
 
-        setquestioninfo(prev => ({
-            ...prev,
-            [name]: value
-        }))
+        if (!value.startsWith(" ") && !value.includes('  ')) {
+            if (name !== "Answer") {
+                setanswer("")
+                setquestioninfo(prev => ({
+                    ...prev,
+                    Answer: ""
+                }))
+            }
+            setquestioninfo(prev => ({
+                ...prev,
+                [name]: value
+            }))
 
-        if(name ==="Answer"){
-            setanswer(value)
+            if (name === "Answer") {
+                setanswer(value)
+            } else if (name == "Question") {
+                setvalidationcount(value.length)
+            }
         }
+
+        // if (!value.startsWith(" ") && !value.includes('  ')) {
+        //     setquestioninfo(prev => ({
+        //         ...prev,
+        //         [name]: value
+        //     }))
+
+        //     if (name === "Answer") {
+        //         setanswer(value)
+        //     } else if (name == "Question") {
+        //         setvalidationcount(value.length)
+        //     }
+        // }
     }
 
     const onSubmit = () => {
-        const id = sub === "Reading_Comprehension"? `EQRCID`: `EQ${sub[0]}ID_${count+1}`
-        axios.post(`http://localhost/recommendation_system/api/admin/SAT_Questions.php?ID="${id}"&&SUB=${subject}`, questioninfo).then(function (response) {
-            if (response.data) {
-                alert("Record Added successfully")
-                nav("..")
+        const id = sub === "Reading_Comprehension" ? `EQRCID` : `EQ${sub[0]}ID_${count + 1}`
+        const val = Object.keys(questioninfo).length
+        const val2 = Object.values(questioninfo).every(value => {
+            if (value !== "") {
+                return true
             }
-
-            console.log(response.data)
         })
+
+        const unique = choice.filter(
+            (obj, index) =>
+                choice.findIndex(
+                    (item) => item.value === obj.value
+                ) === index
+        )
+
+        if (val === 6 && val2) {
+            if (unique.length !== choice.length) {
+                alert("Duplicate Choices!")
+            }
+            else {
+                axios.post(`http://localhost/recommendation_system/api/admin/SAT_Questions.php?ID="${id}"&&SUB=${subject}`, questioninfo).then(function (response) {
+                    if (response.data) {
+                        alert("Record Added successfully")
+                        nav("..")
+                    }
+                })
+            }
+        } else {
+            alert("Please fill in all the fields")
+        }
     }
 
     const choice = [
-        { id: 'Choice_A', label: 'Choice A' },
-        { id: 'Choice_B', label: 'Choice B' },
-        { id: 'Choice_C', label: 'Choice C' },
-        { id: 'Choice_D', label: 'Choice D' },
+        { id: 'Choice_A', label: 'Choice A', value: questioninfo.Choice_A },
+        { id: 'Choice_B', label: 'Choice B', value: questioninfo.Choice_B },
+        { id: 'Choice_C', label: 'Choice C', value: questioninfo.Choice_C },
+        { id: 'Choice_D', label: 'Choice D', value: questioninfo.Choice_D },
     ]
-
-    console.log(questioninfo)
 
     return (
         <div className="Add_Entrance_Exam">
@@ -89,22 +134,27 @@ export default function Edit_Questions() {
                                 id="text"
                                 name="Question"
                                 className="tab_input"
-                                style={{ height: "100px" }}
+                                style={{ height: "100px", }}
                                 placeholder={`${sub} Question`}
                                 value={questioninfo.Question || ""}
                                 onChange={onChangehandle}
                                 // minLength={7}
-                                // maxLength={10}
+                                maxLength={250}
                                 required
                             />
+                            <div className="validation_div">
+                                {/* <p className="validation_p" style={{opacity: validation.Question === ' '?0:1}}>{validation.Question}</p> */}
+                                <p>{validationcount}/250</p>
+                            </div>
                         </div>
                         <div className="choices">
                             {
                                 choice.map((val, index) => {
                                     return (
                                         <div key={index}>
-                                            <p className="Tab_title"><Checkbox checked={questioninfo[val.id] === answer} name="Answer" value={questioninfo[val.id]} size="small" sx={{ padding: "0px" }} color="success" onClick={onChangehandle}/>{val.label}</p>
-                                            <input type="text" name={val.id} className="tab_input" value={questioninfo[val.id] || ""} onChange={onChangehandle} />
+                                            <p className="Tab_title"><Checkbox checked={questioninfo[val.id] === answer} name="Answer" value={questioninfo[val.id]} size="small" sx={{ padding: "0px" }} color="success" onClick={onChangehandle} />{val.label}</p>
+                                            <input type="text" name={val.id} className="tab_input" value={questioninfo[val.id] || ""} onChange={onChangehandle} maxLength={80} />
+                                            {/* <p className="validation_p" style={{opacity: validation[val.id] === ''? 0:1}}>{validation[val.id]}</p> */}
                                         </div>
                                     )
                                 })
@@ -112,7 +162,7 @@ export default function Edit_Questions() {
                         </div>
                     </div>
 
-                    <Button sx={nextbutton_sx} onClick={onSubmit}>Add Question</Button>
+                    <button className="button_save" onClick={onSubmit}>Add Question</button>
                 </div>
 
 

@@ -6,7 +6,6 @@ import Button from '@mui/material/Button';
 import { useState, useEffect } from "react";
 import { useRef } from "react";
 import axios from "axios";
-
 import React from "react";
 
 export default function Profile() {
