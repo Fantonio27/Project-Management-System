@@ -48,6 +48,7 @@ import InterestForm from "./Components/Admin/Tab/Components/InterestFormAdd";
 import InterestFormEdit from "./Components/Admin/Tab/Components/InterestFormEdit";
 import Edit_Questions from "./Components/Admin/Tab/Components/Edit_Questions";
 import Add_Questions from "./Components/Admin/Tab/Components/Add_Questions";
+import Notification from "./Components/Admin/Tab/Components/Notification";
 /* End*/
 
 
@@ -92,7 +93,8 @@ function App() {
         <Route path="Admin_Login" element={<Admin_Login />} />
 
         <Route path="Admin_Dashboard" element={<Admin_Dashboard />}>
-          <Route path="" element={<Admin_Main />} />
+          <Route path="" element={<Student_Info />} />
+          <Route path="Notification" element={<Notification />} />
           <Route path="Student_Information" element={<Student_Info />} />
           <Route path="Course_Information">
             <Route index path="" element={<Course_Information />} />

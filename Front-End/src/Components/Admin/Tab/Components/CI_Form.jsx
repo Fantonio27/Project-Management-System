@@ -105,7 +105,7 @@ export default function CI_Form() {
         },
         {
             id: "INFORMATION", label: "Information", text: "Provide additional details or information about the course. This may include course objectives, prerequisite requirements, course content, learning outcomes, and other relevant information that will help students understand the course.",
-            max: 250, min: 20
+            max: 500, min: 20
         },
         { id: "HEADER_PICTURE", label: "Header Picture", text: "Upload or select a suitable image or graphic to be used as the header picture. Choose an image that represents the course theme, subject, or concept effectively. Ensure that the image is of high quality and appropriate for the course content." },
         { id: "INTEREST", label: "Interest", text: "Allow users to select an interest field that aligns with the course. Provide a list of interest fields related to the course content, such as Technology, Business, Health Sciences, Arts, etc.", },
@@ -163,7 +163,7 @@ export default function CI_Form() {
                 id="COURSE"
                 name={val.id}
                 className="CI_Form_input"
-                style={{ height: "120px" }}
+                style={{ height: "200px" }}
                 placeholder={val.label}
                 value={Dataform[`${val.id}`] || ''}
                 onChange={onChange}
@@ -193,12 +193,12 @@ export default function CI_Form() {
                                 id="INFORMATION"
                                 name={course.CIJID}
                                 className="CI_Form_input"
-                                style={{ height: "100px" }}
+                                style={{ height: "200px" }}
                                 placeholder="Job Description"
                                 value={course.INFORMATION || ""}
                                 onChange={onChange}
                                 minLength={20}
-                                maxLength={250}
+                                maxLength={500}
                                 required
                             />
                         </div>
@@ -210,6 +210,7 @@ export default function CI_Form() {
                 percentage.map((sub, index) => {
                     return (
                         <div key={index} className="Form_Job">
+                            <p className="CI_Form_p2">{sub.label}</p>
                             <input
                                 type="number"
                                 className="CI_Form_input"
@@ -274,7 +275,21 @@ export default function CI_Form() {
                     }
                 </Select>
             </FormControl>
-        } else {
+        }else if(val.id === "HEADER_PICTURE"){
+            return <input
+                type="file"
+                onChange={onInputChange}
+                
+                // name={val.id}
+                // className="CI_Form_input"
+                // placeholder={val.label}
+                // value={Dataform[`${val.id}`] || ""}
+                // onChange={onChange}
+                id="COURSE"
+                required
+            />
+        } 
+        else {
             return <input
                 name={val.id}
                 type="text"
@@ -321,6 +336,7 @@ export default function CI_Form() {
         }
     }
 
+    const [image, setimage] = React.useState()
     const handleSubmit = (event) => {
         event.preventDefault()
 
@@ -375,10 +391,16 @@ export default function CI_Form() {
         setOpen(false)
     }
 
+    const [file, setfile] = React.useState(null)
+    const onInputChange = (e) => {
+        setfile(e.target.files[0])
+    }
+
     return (
         <Fade in={true} timeout={1000}>
             <div className="CI_Form">
                 <form onSubmit={(event) => { event.preventDefault(), setOpen(true) }}>
+                    {/* <img src="http://localhost/recommendation_system/api/images/780071.jpg"></img> */}
                     <div className="CI_Form_Title">
                         <div>
                             <p>{add ? "Add" : "Edit"} Course Information</p>

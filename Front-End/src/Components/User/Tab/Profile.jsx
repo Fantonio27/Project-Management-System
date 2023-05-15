@@ -40,13 +40,13 @@ export default function Profile() {
     }
 
     const save_btn_sx = {
-        backgroundColor: "#388E3C",
+        backgroundColor: "#69b96eff",
         color: "white",
         fontFamily: "QuickSand",
         fontWeight: "600",
         letterSpacing: "2px",
         textTransform: "none",
-        border: "1.5px solid #388E3C",
+        border: "1.5px solid #69b96eff",
         mr: "15px",
         padding: "6px 20px",
         opacity: edit ? "1" : "0",
@@ -197,7 +197,16 @@ export default function Profile() {
             axios.put(`http://localhost/recommendation_system/api/update`, Dataform).then(function (response) {
 
             setedit(prev => !prev)
+
+            const data = {
+                LRN : Dataform.LRN,
+                FIRSTNAME : Dataform.FirstName,
+                LASTNAME : Dataform.LastName,
+            };
+
+            window.localStorage.setItem('USER_DATA', JSON.stringify(data))
             alert("Update Successfull")
+            window.location.reload()
         })
         }
     }
@@ -214,6 +223,7 @@ export default function Profile() {
                 SHSstrand: response.data.SHS_TRACK,
                 Confirm: ""
             }))
+
         })
     }, [edit === false])
 
@@ -233,7 +243,7 @@ export default function Profile() {
                             <h1 className="Profile-Information-h1">Student Profile</h1>
                             <div className="Profile-layout">
                                 <div className="Profile-Avatar">
-                                    <div className="Profile_Avatar">
+                                    <div className="Profile_Avatar" style={{textTransform: "uppercase"}}>
                                         <p>{JSON.parse(user).FIRSTNAME[0]}</p>
                                         <p>{JSON.parse(user).LASTNAME[0]}</p>
                                     </div>
@@ -286,6 +296,7 @@ export default function Profile() {
                                                                             onChange={handlechange}
                                                                             name={id}
                                                                             maxLength={max}
+                                                                            className="tab_input"
                                                                         />
                                                                         <p className="Validation_user">{validation[id]}</p>
                                                                     </div>

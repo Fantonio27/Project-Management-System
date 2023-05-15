@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2023 at 01:36 PM
+-- Generation Time: May 15, 2023 at 07:57 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -363,10 +363,13 @@ INSERT INTO `course_information_job` (`CIJID`, `JOB_NAME`, `INFORMATION`, `CID`)
 ('CIJID_270', 'Human Resource Developer ', 'complete and oversee a variety of professional assignments to plan, develop, conduct, and/or evaluate training and development or other informational programs.', 'CID_95'),
 ('CIJID_271', 'Program Developer ', 'Researching, designing, implementing, and managing software programs. Identifying areas for modification in existing programs and subsequently developing these modifications. Writing and implementing efficient code.', 'CID_95'),
 ('CIJID_272', 'Project Manager ', 'plan and develop the project idea. They need to create and lead the team, monitor project progress, set deadlines, solve issues that arise, manage money, ensure stakeholder satisfaction, and evaluate project performance, including the performance of their team members.', 'CID_95'),
+('CIJID_273', 'cascasc', 'csacasc', 'CID_96'),
+('CIJID_274', 'ccsca', 'accc', 'CID_96'),
+('CIJID_275', 'csac', 'scasc', 'CID_96'),
 ('CIJID_28', 'Law Enforcer ', 'Deterring crimes and assure community through high-visibility policing. Patrolling assigned areas and monitor activities to protect people/property. Investigating crimes and apprehending suspected law violators.', 'CID_10'),
-('CIJID_29', 'Forensic Scientist ', 'Forensic scientists analyse evidence from crime scenes and create detailed scientific reports for legal proceedings. They spend much time in laboratories examining traces of evidence; their findings can then be used to associate or disassociate suspects with victims or crime scenes.', 'CID_10'),
-('CIJID_3', 'Software Developer  ', 'A systems developer is a type of software developer. They develop and implement applications and programs for the backend processing systems used in businesses and organizations.', 'CID_1');
+('CIJID_29', 'Forensic Scientist ', 'Forensic scientists analyse evidence from crime scenes and create detailed scientific reports for legal proceedings. They spend much time in laboratories examining traces of evidence; their findings can then be used to associate or disassociate suspects with victims or crime scenes.', 'CID_10');
 INSERT INTO `course_information_job` (`CIJID`, `JOB_NAME`, `INFORMATION`, `CID`) VALUES
+('CIJID_3', 'Software Developer  ', 'A systems developer is a type of software developer. They develop and implement applications and programs for the backend processing systems used in businesses and organizations.', 'CID_1'),
 ('CIJID_30', 'Correctional Officer ', 'Correctional officers typically do the following: Enforce rules and keep order within jails or prisons. Supervise activities of people in custody. Inspect facilities to ensure that they meet security and safety standards. Conduct searches in the facility, such as of persons and property, for rule violations.', 'CID_10'),
 ('CIJID_31', 'Political Analyst ', 'Political analysts (also known as political scientists) study how political systems originate, develop, and operate. They research and analyze governments, political ideas, policies, political trends, and foreign relations.', 'CID_11'),
 ('CIJID_32', 'Program Coordinator ', 'A Program Coordinator is a professional who is responsible for overseeing projects and programs within an organization. They will plan and implement these projects with strong time management skills and team synergy with their assistants.', 'CID_11'),
@@ -558,7 +561,8 @@ INSERT INTO `course_percentage` (`CPID`, `MATH`, `SCIENCE`, `ENGLISH`, `READING_
 ('CPID_92', 15, 15, 30, 40, 'CID_92'),
 ('CPID_93', 15, 15, 30, 40, 'CID_93'),
 ('CPID_94', 30, 30, 20, 20, 'CID_94'),
-('CPID_95', 10, 30, 20, 40, 'CID_95');
+('CPID_95', 10, 30, 20, 40, 'CID_95'),
+('CPID_96', 30, 30, 20, 20, 'CID_96');
 
 -- --------------------------------------------------------
 
@@ -737,7 +741,8 @@ CREATE TABLE `exam_result` (
 --
 
 INSERT INTO `exam_result` (`ERID`, `MATH_SCORE`, `ENGLISH_SCORE`, `SCIENCE_SCORE`, `READING_COMPREHENSION_SCORE`, `TOTAL_SCORE`, `EXAM_RESULT`, `LRN`, `DATE`) VALUES
-('ERID_1', 7, 3, 7, 5, 22, 'Passed', '112233445566', '2023-05-09');
+('ERID_1', 7, 3, 7, 5, 22, 'Passed', '112233445566', '2023-05-09'),
+('ERID_2', 1, -1, -1, -1, -1, '', '253532222222', '2023-05-15');
 
 -- --------------------------------------------------------
 
@@ -760,58 +765,57 @@ CREATE TABLE `ia_informations` (
 CREATE TABLE `ia_questions` (
   `IAQID` varchar(255) NOT NULL,
   `QUESTION` varchar(255) NOT NULL,
-  `HIP` varchar(255) NOT NULL,
-  `IAIID` varchar(255) NOT NULL
+  `HIP` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `ia_questions`
 --
 
-INSERT INTO `ia_questions` (`IAQID`, `QUESTION`, `HIP`, `IAIID`) VALUES
-('IAQID_1', 'do puzzles', 'Investigative', 'IAIID_1'),
-('IAQID_10', 'influence or persuade people', 'Enterprising', 'IAIID_1'),
-('IAQID_11', 'do experiments', 'Investigative', 'IAIID_1'),
-('IAQID_12', 'teach or train people', 'Social', 'IAIID_1'),
-('IAQID_13', 'help people solve their problems', 'Social', 'IAIID_1'),
-('IAQID_14', 'take care of animals', 'Realistic', 'IAIID_1'),
-('IAQID_15', 'have my day structured', 'Conventional', 'IAIID_1'),
-('IAQID_16', 'sell things', 'Enterprising', 'IAIID_1'),
-('IAQID_17', 'do creative writing', 'Artistic', 'IAIID_1'),
-('IAQID_18', 'work on science projects', 'Investigative', 'IAIID_1'),
-('IAQID_19', 'take on new responsibilities', 'Enterprising', 'IAIID_1'),
-('IAQID_2', 'work on cars', 'Realistic', 'IAIID_1'),
-('IAQID_20', 'heal people', 'Social', 'IAIID_1'),
-('IAQID_21', 'figure out how things work', 'Investigative', 'IAIID_1'),
-('IAQID_22', 'put things together or assemble models', 'Realistic', 'IAIID_1'),
-('IAQID_23', 'be creative', 'Artistic', 'IAIID_1'),
-('IAQID_24', 'pay attention to details', 'Conventional', 'IAIID_1'),
-('IAQID_25', 'do filing or typing', 'Conventional', 'IAIID_1'),
-('IAQID_26', 'learn about other cultures', 'Social', 'IAIID_1'),
-('IAQID_27', 'analyze things like problems, situations or trends', 'Investigative', 'IAIID_1'),
-('IAQID_28', 'play instruments or sing', 'Artistic', 'IAIID_1'),
-('IAQID_29', 'dream about starting my own business', 'Enterprising', 'IAIID_1'),
-('IAQID_3', 'attend concerts, theaters or art exhibits', 'Artistic', 'IAIID_1'),
-('IAQID_30', 'cook', 'Realistic', 'IAIID_1'),
-('IAQID_31', 'act in plays', 'Artistic', 'IAIID_1'),
-('IAQID_32', 'think things through before making decisions', 'Realistic', 'IAIID_1'),
-('IAQID_33', 'work with numbers or charts', 'Investigative', 'IAIID_1'),
-('IAQID_34', 'have discussions about issues like politics or current events', 'Social', 'IAIID_1'),
-('IAQID_35', 'keep records of my work', 'Conventional', 'IAIID_1'),
-('IAQID_36', 'be a leader', 'Enterprising', 'IAIID_1'),
-('IAQID_37', 'work outdoors', 'Realistic', 'IAIID_1'),
-('IAQID_38', 'work in an office', 'Conventional', 'IAIID_1'),
-('IAQID_39', 'work on math problems', 'Investigative', 'IAIID_1'),
-('IAQID_4', 'work in teams', 'Social', 'IAIID_1'),
-('IAQID_40', 'help people', 'Social', 'IAIID_1'),
-('IAQID_41', 'draw', 'Artistic', 'IAIID_1'),
-('IAQID_42', 'give speeches', 'Enterprising', 'IAIID_1'),
-('IAQID_43', 'sssss', 'Realistic', ''),
-('IAQID_5', 'organize things like files, offices or activities', 'Conventional', 'IAIID_1'),
-('IAQID_6', 'set goals for myself', 'Enterprising', 'IAIID_1'),
-('IAQID_7', 'build things', 'Realistic', 'IAIID_1'),
-('IAQID_8', 'read fiction, poetry or plays', 'Artistic', 'IAIID_1'),
-('IAQID_9', 'have clear instructions to follow', 'Conventional', 'IAIID_1');
+INSERT INTO `ia_questions` (`IAQID`, `QUESTION`, `HIP`) VALUES
+('IAQID_1', 'do puzzles', 'Investigative'),
+('IAQID_10', 'influence or persuade people', 'Enterprising'),
+('IAQID_11', 'do experiments', 'Investigative'),
+('IAQID_12', 'teach or train people', 'Social'),
+('IAQID_13', 'help people solve their problems', 'Social'),
+('IAQID_14', 'take care of animals', 'Realistic'),
+('IAQID_15', 'have my day structured', 'Conventional'),
+('IAQID_16', 'sell things', 'Enterprising'),
+('IAQID_17', 'do creative writing', 'Artistic'),
+('IAQID_18', 'work on science projects', 'Investigative'),
+('IAQID_19', 'take on new responsibilities', 'Enterprising'),
+('IAQID_2', 'work on cars', 'Realistic'),
+('IAQID_20', 'heal people', 'Social'),
+('IAQID_21', 'figure out how things work', 'Investigative'),
+('IAQID_22', 'put things together or assemble models', 'Realistic'),
+('IAQID_23', 'be creative', 'Artistic'),
+('IAQID_24', 'pay attention to details', 'Conventional'),
+('IAQID_25', 'do filing or typing', 'Conventional'),
+('IAQID_26', 'learn about other cultures', 'Social'),
+('IAQID_27', 'analyze things like problems, situations or trends', 'Investigative'),
+('IAQID_28', 'play instruments or sing', 'Artistic'),
+('IAQID_29', 'dream about starting my own business', 'Enterprising'),
+('IAQID_3', 'attend concerts, theaters or art exhibits', 'Artistic'),
+('IAQID_30', 'cook', 'Realistic'),
+('IAQID_31', 'act in plays', 'Artistic'),
+('IAQID_32', 'think things through before making decisions', 'Realistic'),
+('IAQID_33', 'work with numbers or charts', 'Investigative'),
+('IAQID_34', 'have discussions about issues like politics or current events', 'Social'),
+('IAQID_35', 'keep records of my work', 'Conventional'),
+('IAQID_36', 'be a leader', 'Enterprising'),
+('IAQID_37', 'work outdoors', 'Realistic'),
+('IAQID_38', 'work in an office', 'Conventional'),
+('IAQID_39', 'work on math problems', 'Investigative'),
+('IAQID_4', 'work in teams', 'Social'),
+('IAQID_40', 'help people', 'Social'),
+('IAQID_41', 'draw', 'Artistic'),
+('IAQID_42', 'give speeches', 'Enterprising'),
+('IAQID_43', 'sssss', 'Realistic'),
+('IAQID_5', 'organize things like files, offices or activities', 'Conventional'),
+('IAQID_6', 'set goals for myself', 'Enterprising'),
+('IAQID_7', 'build things', 'Realistic'),
+('IAQID_8', 'read fiction, poetry or plays', 'Artistic'),
+('IAQID_9', 'have clear instructions to follow', 'Conventional');
 
 -- --------------------------------------------------------
 
@@ -921,7 +925,7 @@ CREATE TABLE `save_answer` (
 --
 
 INSERT INTO `save_answer` (`SAID`, `SUBJECT`, `VALUE`, `ANSWER`, `EQID`, `LRN`) VALUES
-(3858, 'Math', '1.00', '1.00', 'EQMID_10', '112233445566'),
+(3858, 'Math', 'Judgement Sampling	', '1.00', 'EQMID_10', '112233445566'),
 (3859, 'Math', '0.64', '0.64', 'EQMID_11', '112233445566'),
 (3860, 'Math', '0.80', '0.60', 'EQMID_13', '112233445566'),
 (3861, 'Math', '0.39', '0.39', 'EQMID_16', '112233445566'),
@@ -960,7 +964,27 @@ INSERT INTO `save_answer` (`SAID`, `SUBJECT`, `VALUE`, `ANSWER`, `EQID`, `LRN`) 
 (3894, 'Reading_Comprehension', 'Doodle Fiction', 'Graphic Novel', 'EQRCID_13', '112233445566'),
 (3895, 'Reading_Comprehension', 'Doodle Fiction', 'Doodle Fiction', 'EQRCID_14', '112233445566'),
 (3896, 'Reading_Comprehension', 'Chick Literature', 'Manga', 'EQRCID_15', '112233445566'),
-(3897, 'Reading_Comprehension', 'Flash Fiction', 'Science Fiction', 'EQRCID_18', '112233445566');
+(3897, 'Reading_Comprehension', 'Flash Fiction', 'Science Fiction', 'EQRCID_18', '112233445566'),
+(3898, 'Math', 'Normal Distribution', 'Standard Normal Distribution', 'EQMID_1', '253532222222'),
+(3899, 'Math', '39', ' 39', 'EQMID_2', '253532222222'),
+(3900, 'Math', 'Z={1,2,3}', 'Z={0,1,2,3,4}', 'EQMID_5', '253532222222'),
+(3901, 'Math', '$46,500', '$42,250', 'EQMID_3', '253532222222'),
+(3902, 'Math', 'Judgement Sampling	', 'Judgement Sampling	', 'EQMID_10', '253532222222'),
+(3903, 'Math', 'z=2.56', 'z=-2.00	', 'EQMID_7', '253532222222'),
+(3904, 'Math', 'Quota Sampling', 'Random Sampling', 'EQMID_9', '253532222222'),
+(3905, 'Math', '70 children', '75 children', 'EQMID_8', '253532222222'),
+(3906, 'Math', 'μ=4 and σ=28', 'μ=28 and σ=4', 'EQMID_6', '253532222222'),
+(3907, 'Math', '0.0440', '0.1586', 'EQMID_4', '253532222222'),
+(3908, 'Science', '', 'Hydrogen Bond', 'EQSID_1', '253532222222'),
+(3909, 'Science', '', 'HF', 'EQSID_2', '253532222222'),
+(3910, 'Science', '', 'vsvsva', 'EQSID_11', '253532222222'),
+(3911, 'Science', '', 'By increasing the kinetic energy of the reactants', 'EQSID_10', '253532222222'),
+(3912, 'Science', '', 'Nucleic Acid', 'EQSID_4', '253532222222'),
+(3913, 'Science', '', 'London Dispersion Forces', 'EQSID_3', '253532222222'),
+(3914, 'Science', '', 'Chitin', 'EQSID_5', '253532222222'),
+(3915, 'Science', '', 'Insulation', 'EQSID_6', '253532222222'),
+(3916, 'Science', '', 'Reactant', 'EQSID_7', '253532222222'),
+(3917, 'Science', '', 'Volume of Reactant', 'EQSID_8', '253532222222');
 
 -- --------------------------------------------------------
 
@@ -987,7 +1011,9 @@ CREATE TABLE `student_information` (
 
 INSERT INTO `student_information` (`STUDENT_NO`, `STUDENT_FIRSTNAME`, `STUDENT_LASTNAME`, `LRN`, `EMAIL_ADDRESS`, `PASSWORD`, `SHS_TRACK`, `EXAM_STATUS`, `ACCOUNT_CREATED`, `ACCOUNT_STATUS`) VALUES
 (20, 'Francis', 'Antonio', '123456789012', 'francis@yahoo.com', '$2y$10$qcVff4HDqrZB0SrDjx./AeNCdlJQLXL98IJ3Tx1x0uPIlVWCNSUBa', '', 'Not taken yet', '2023-05-09', 'ACTIVE'),
-(21, 'Francis', 'Antonio', '112233445566', 'francis@yahoo.com', '$2y$10$RwKMopoorZc4apY3Q/VLROWqhmQrjytA2hhh2qdsE9IclhlBCZi0K', '', 'Exam Taken', '2023-05-09', 'ACTIVE');
+(21, 'Francis', 'Antonio', '112233445566', 'francis@yahoo.com', '$2y$10$RwKMopoorZc4apY3Q/VLROWqhmQrjytA2hhh2qdsE9IclhlBCZi0K', '', 'Exam Taken', '2023-05-09', 'ACTIVE'),
+(22, 'francis', 'antonio', '253532222222', 'asvv@cac.com', '$2y$10$CaGbpzLizJxUl2F7MR1A3uBTAGHneaI8XIe6CZXjTLi1DHo3flYVm', '', 'Not taken yet', '2023-05-15', 'ACTIVE'),
+(23, 'vavsvsa', 'asccac', '222222222222', 'sav@cas.com', '$2y$10$r8xY.F0JDEQtbQJPOEtsteJXNldNhjQsOEvPtDdV1ufqVW76mt5Xq', '', 'Exam Taken', '2023-05-15', 'ACTIVE');
 
 -- --------------------------------------------------------
 
@@ -1013,7 +1039,8 @@ CREATE TABLE `timelimit` (
 --
 
 INSERT INTO `timelimit` (`TID`, `LRN`, `MATH_MINUTE`, `MATH_SECOND`, `SCIENCE_MINUTE`, `SCIENCE_SECOND`, `ENGLISH_MINUTE`, `ENGLISH_SECOND`, `READING_COMPREHENSION_MINUTE`, `READING_COMPREHENSION_SECOND`) VALUES
-(83, '112233445566', 0, 53, 0, 37, 0, 29, 0, 30);
+(83, '112233445566', 0, 53, 0, 37, 0, 29, 0, 30),
+(84, '253532222222', 1, 12, 0, 9, 0, 0, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -1147,19 +1174,19 @@ ALTER TABLE `overall_result`
 -- AUTO_INCREMENT for table `save_answer`
 --
 ALTER TABLE `save_answer`
-  MODIFY `SAID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3898;
+  MODIFY `SAID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3918;
 
 --
 -- AUTO_INCREMENT for table `student_information`
 --
 ALTER TABLE `student_information`
-  MODIFY `STUDENT_NO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `STUDENT_NO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `timelimit`
 --
 ALTER TABLE `timelimit`
-  MODIFY `TID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `TID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

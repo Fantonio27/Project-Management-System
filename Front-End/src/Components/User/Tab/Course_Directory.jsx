@@ -37,9 +37,9 @@ export default function Course_Directory() {
         const value = event.target.value
         setdep(value)
         let dep
-        if(value === ""){
+        if (value === "") {
             dep = "ALLDEP"
-        }else{
+        } else {
             dep = "EACHDEP"
         }
 
@@ -47,7 +47,7 @@ export default function Course_Directory() {
             setDataform(response.data)
         })
     }
-
+    // const [image, setimage] = React.useState()
     return (
         <Fade in={true} timeout={800}>
             <div className="Course_Directory" >
@@ -61,7 +61,7 @@ export default function Course_Directory() {
                                 onChange={handleChange}
                                 displayEmpty
                                 size="small"
-                            sx={{width: '250px'}}
+                                sx={{ width: '250px' }}
                             >
                                 <MenuItem value="">
                                     <em>All Fields</em>
@@ -77,7 +77,6 @@ export default function Course_Directory() {
                     <div className="Course_D_Container">
                         {
                             dataform.map((val, index) => {
-                                // {`/${val.COURSE_NAME}`}
                                 return (
                                     <Link to={`${val.CID}`} style={{ textDecoration: 'none' }} key={index}>
                                         <div className="Course_D_Box">
@@ -85,9 +84,11 @@ export default function Course_Directory() {
                                                 // src="https://drive.google.com/uc?export=view&id=1qviHfamCOF4u8L8WzZf8jsyu4M0qzfYR" 
                                                 src={`/${val.HEADER_PICTURE}`}
                                                 className="Course_B_Img"
+                                                id="image"
                                             />
                                             <div className="Course_B_div">
                                                 <p className="Course_B_p1">{val.FIELD}</p>
+
                                                 <p className="Course_B_p2">{val.COURSE_NAME}</p>
                                             </div>
                                         </div>

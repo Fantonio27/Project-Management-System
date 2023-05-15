@@ -42,8 +42,9 @@ const icon_dialog_sx = {
 
 const button_sx = {
     padding: '6px 35px',
-    backgroundColor: '#0096c7',
-    color: 'white',
+    backgroundColor: 'WHITE',
+    border: '1px solid #e6e8ebff',
+    color: '#697280ff',
     borderRadius: '5px',
     textTransform: "none",
     fontSize: '13px',
@@ -81,13 +82,19 @@ export default function Student_Results() {
     const openaction = Boolean(anchorEl);
 
     const [id, setid] = React.useState()
+    const [stat, setstat] = React.useState()
 
     const handleClickAction = (id) => (event) => {
         setAnchorEl(event.currentTarget);
-        setid(id)
+        setid(id.LRN)
+        setstat(id.ACCOUNT_STATUS)
     };
     const handleCloseAction = () => {
         setAnchorEl(null);
+
+        // if(a === 1){
+        //     console.log("1")
+        // }
     };
 
     const text = (
@@ -105,14 +112,24 @@ export default function Student_Results() {
     ]
 
     const field = [          //Field in dialog
-        { id: 'FirstName', label: 'First Name', value: 'Francis' },
-        { id: 'LastName', label: 'Last Name', value: 'Antonio' },
-        { id: 'Email', label: 'Email Address', value: 'francis.antonio@yahoo.com' },
-        { id: 'Password', label: 'Password', value: 'password' },
-        { id: 'ExamStatus', label: 'Exam Status', value: 'Passed' },
-        { id: 'SHSTrack', label: 'SHS Track', value: 'ICT' },
+        { id: 'STUDENT_FIRSTNAME', label: 'First Name', value: 'Francis', disable: true },
+        { id: 'STUDENT_LASTNAME', label: 'Last Name', value: 'Antonio', disable: true },
+        { id: 'EMAIL_ADDRESS', label: 'Email Address', value: 'francis.antonio@yahoo.com', disable: true },
+        { id: 'PASSWORD', label: 'Password', value: 'password', disable: false },
+        { id: 'CONFIRM_PASSWORD', label: 'Confirm Password', value: 'Confirm Password', disable: false },
+        { id: 'EXAM_STATUS', label: 'Exam Status', value: 'Passed', disable: true },
+        { id: 'SHS_TRACK', label: 'SHS Track', value: 'ICT', disable: true },
     ]
 
+    const [userdata, setuserdata] = React.useState({
+        // ACCOUNT_CREATED: '',
+        // STUDENT_FIRSTNAME: '',
+        // STUDENT_LASTNAME: '',
+        // EMAIL_ADDRESS: '',
+        // PASSWORD: '',
+        // EXAM_STATUS: '',
+        // SHS_TRACK: '',
+    })
 
     React.useEffect(() => {
         axios.get(`http://localhost/recommendation_system/api/admin/Student_information.php`).then(function (response) {
@@ -120,7 +137,23 @@ export default function Student_Results() {
         })
     }, [tab])
 
-    const handleClickOpen = ()=> {
+    React.useEffect(() => {
+        axios.get(`http://localhost/recommendation_system/api/admin/user.php?lrn=${id}`).then(function (response) {
+            setuserdata(prev => ({
+                ...prev,
+                ACCOUNT_CREATED: response.data.ACCOUNT_CREATED,
+                STUDENT_FIRSTNAME: response.data.STUDENT_FIRSTNAME,
+                STUDENT_LASTNAME: response.data.STUDENT_LASTNAME,
+                EMAIL_ADDRESS: response.data.EMAIL_ADDRESS,
+                EXAM_STATUS: response.data.EXAM_STATUS,
+                SHS_TRACK: response.data.SHS_TRACK,
+                PASSWORD: '',
+                CONFIRM: '',
+            }))
+        })
+    }, [id])
+
+    const handleClickOpen = () => {
         setOpen(true);
         setAnchorEl(null);
     };
@@ -128,7 +161,16 @@ export default function Student_Results() {
     const handleClose = () => {
         setOpen(false);
         setid("")
+        setstat("")
     };
+
+    const handleupdate = () => {
+        const ac = stat === "ACTIVE" ? "INACTIVE" : "ACTIVE"
+        axios.put(`http://localhost/recommendation_system/api/admin/updatestatus.php?val=${ac}&&lrn=${id}`).then(function (response) {
+            // console.log(response.data)
+            window.location.reload()
+        })
+    }
 
     const option = (a) => {
         return (    //Action in Table
@@ -158,10 +200,10 @@ export default function Student_Results() {
                             Edit
                         </MenuItem>
                     </span>
-                    <span style={{ color: '#db514cff' }}>
-                        <MenuItem sx={menuitem_sx} onClick={handleCloseAction}>
-                            <DeleteRoundedIcon sx={{ fontSize: "19px" }} />
-                            Inactive
+                    <span style={{ color: stat === "ACTIVE" ? '#db514cff' : '#69b96eff' }}>
+                        <MenuItem sx={menuitem_sx} onClick={handleupdate}>
+                            {/* <DeleteRoundedIcon sx={{ fontSize: "19px" }} /> */}
+                            {stat === "ACTIVE" ? "Inactive" : "Active"}
                         </MenuItem>
                     </span>
                 </Menu>
@@ -178,7 +220,7 @@ export default function Student_Results() {
             )
 
         } else if (columnid === "ACTION1") {
-            return (option(row.EXAM_STATUS))
+            return (option(row))
         }
         else if (columnid === "ACCOUNT_STATUS") {
             if (val === "ACTIVE") {
@@ -196,6 +238,31 @@ export default function Student_Results() {
     }
 
     // console.log(id)
+
+    const onchangepassword = (event) => {
+        const { name, value } = event.target
+        setuserdata(prev => ({
+            ...prev,
+            [name]: value
+        }))
+    }
+
+    const onsubmit = (event) => {
+        var password_val = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/
+
+        if (!password_val.test(userdata.PASSWORD)) { 
+                alert("Password should be contain: at least 8 characters, one uppercase letter, one lowercase letter, and one number")
+        }else if(userdata.PASSWORD !== userdata.CONFIRM_PASSWORD){
+            alert("Password didn't match")
+        }else {
+            axios.put(`http://localhost/recommendation_system/api/admin/updateuser.php?pass=${userdata.PASSWORD}&&lrn=${id}`).then(function (response) {
+            // console.log(response.data)
+            alert("Record Saved")
+            window.location.reload()
+        })
+        }
+    }
+
     const dialog = (
         <Dialog
             open={open}
@@ -219,12 +286,12 @@ export default function Student_Results() {
                 <div>
                     <div className="dialog_body_p1">
                         <div className="dialog_body_div">
-                            <p>Date Created: </p>
+                            <p>Date Created:{userdata.ACCOUNT_CREATED}</p>
                             LRN:
                             <span style={{ color: '#1e6091', marginLeft: '5px' }}>{id}</span>
                         </div>
-                        <div className="dialog_body_alert">
-                            <p>Active</p>
+                        <div className="dialog_body_alert" style={{ backgroundColor: stat === "ACTIVE" ? "#7bb255ff" : "#db514cff", height: '15px' }}>
+                            <p style={{ color: 'white' }}>Active</p>
                         </div>
                     </div>
                     <div className="dialog_body">
@@ -232,7 +299,11 @@ export default function Student_Results() {
                             field.map((val) => (
                                 <div key={val.id} className={val.id}>
                                     <p className="dialog_body_p2">{val.label}</p>
-                                    <input type="text" value={val.value} placeholder={val.label} className="dialog_body_input" disabled />
+                                    {
+                                        val.id === "PASSWORD" || val.id === "CONFIRM_PASSWORD" ?
+                                            <input type="text" name={val.id === "PASSWORD" ? "PASSWORD" : "CONFIRM_PASSWORD"} value={userdata[val.id]|| ""} placeholder={val.label} className="dialog_body_input" disabled={val.disable} onChange={onchangepassword} /> :
+                                            <input type="text" value={userdata[val.id] || ""} placeholder={val.label} className="dialog_body_input" disabled={val.disable} />
+                                    }
                                 </div>
                             ))
                         }
@@ -240,6 +311,7 @@ export default function Student_Results() {
                 </div>
                 <DialogActions>
                     <Button sx={button_sx} onClick={handleClose}>Close</Button>
+                    <button className="button_save" onClick={onsubmit}>Save</button>
                 </DialogActions>
             </DialogContent>
         </Dialog>

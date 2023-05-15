@@ -13,27 +13,11 @@ import { Fade, IconButton, Chip } from "@mui/material";
 import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import Tooltip from '@mui/material/Tooltip';
 import Grow from '@mui/material/Grow';
-import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import FolderSharedOutlinedIcon from '@mui/icons-material/FolderSharedOutlined';
-import DialogActions from '@mui/material/DialogActions';
-import Button from "@mui/material/Button";
-import Menu from '@mui/material/Menu';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import Collapse from '@mui/material/Collapse';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import ImportExportRoundedIcon from '@mui/icons-material/ImportExportRounded';
-import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
-import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
 import MenuItem from '@mui/material/MenuItem';
 import FilterListRoundedIcon from '@mui/icons-material/FilterListRounded';
+import axios from "axios";
 
 const search_sx = {
     position: "absolute",
@@ -107,6 +91,24 @@ export default function Data_Table(props) {
         setExpanded(prev => -1)
     }, [sortmenu])
 
+    const [tableatt, settableatt] = React.useState({
+        tablename : '',
+        search : '',
+        value : '',
+    })
+
+    useEffect(() => {
+        tablename(props.Name)
+
+        if(tableatt.value !== ""){
+            axios.get(`http://localhost/recommendation_system/api/admin/search.php?`, tableatt).then(function (response) {
+                console.log(response.data)
+            })
+        }
+        
+    }, [tableatt.value])
+
+    console.log(tableatt)
     const sortmenuclose = () => {
         setanchorsort(null);
     };
@@ -211,68 +213,32 @@ export default function Data_Table(props) {
         }
     }
 
-    // const menu = (
-    //     <Menu
-    //         elevation={0}
-    //         anchorEl={anchorsort}
-    //         open={sortmenu}
-    //         onClose={sortmenuclose}
-    //         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-    //         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-    //         PaperProps={{
-    //             style: {
-    //                 marginTop: "10px",
-    //                 borderRadius: "10px",
-    //                 border: '1px solid #F8F9FA',
-    //                 boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px'
-    //             }
-    //         }}
-    //     >
-    //         <List
-    //             sx={{ width: '250px', padding: "10px", bgcolor: 'background.paper' }}
-    //             component="nav"
-    //             subheader={
-    //                 <div style={{ display: 'flex', alignItems: "center", justifyContent: 'space-between' }}>
-    //                     <p className="Filter_header_p1">
-    //                         Filters
-    //                     </p>
-    //                     <p className="Filter_header_p2">
-    //                         Clear All
-    //                     </p>
-    //                 </div>
-    //             }
-    //         >
-    //             {
-    //                 filtertabs.map((tab, index) => {
-    //                     const { id, icon, label, } = tab
-    //                     return (
-    //                         <div key={id}>
-    //                             <ListItemButton onClick={handleopentab(index)} sx={accordion_filter_sx}>
-    //                                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-    //                                     {icon}
-    //                                     <p className="filter_p2">{label}</p>
-    //                                 </div>
-    //                                 {expanded === index ? <ExpandLess /> : <ExpandMore />}
-    //                             </ListItemButton>
-    //                             <Collapse in={expanded === index} timeout="auto" unmountOnExit>
-    //                                 {tab.sub.map((val, index) => {
-    //                                     const { sublabel, idlabel, list } = val
-    //                                     return (
-    //                                         <List key={index} component="div" disablePadding sx={{ pl: 4, display: 'flex', alignItems: 'center' }}>
+    const tablename = (a) => {
+        let na = ''
+        let sea = ''
+        if(a == "Student Information"){
+            na = "student_information"
+            sea = "LRN"
+        }
+        
+        settableatt(prev=> ({
+            ...prev,
+            tablename : na,
+            search : sea,
+        }))
+    }
 
-    //                                             {Filterrow(sublabel, idlabel, list)}
-    //                                         </List>
-    //                                     )
-    //                                 })}
-    //                             </Collapse>
-    //                         </div>
-    //                     )
-    //                 })
-    //             }
-    //         </List>
-    //     </Menu >
-    // )
+    const onChangesearch = (event) => {
+        const {value, name} = event.target
+        const number = /^[0-9]+$/
 
+        if(number.test(value)|| value.length === 0){
+            settableatt(prev=> ({
+                ...prev,
+                [name] : value
+            }))
+        }
+    }
     return (
         <Grow in={true} timeout={600}>
             <div className="Student_Info">
@@ -280,7 +246,11 @@ export default function Data_Table(props) {
                 <div className="Student_Info_container">
                     <div className="S_Info_header">
                         <div style={{ position: "relative" }}>
-                            <input className="Student_Info_Search" placeholder="Search"></input>
+                            <input className="Student_Info_Search" 
+                            name="value"
+                            placeholder={`Search for ${tableatt.search}`} 
+                            value={tableatt.value||""}
+                            onChange={onChangesearch}></input>
                             <SearchRoundedIcon sx={search_sx} />
                         </div>
                         {/* <IconButton onClick={handlefilter}>

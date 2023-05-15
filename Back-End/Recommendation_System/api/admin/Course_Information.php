@@ -37,7 +37,7 @@ switch($method) {
         $stmt->bindParam(':acro', $user->ACRONYM);
         $stmt->bindParam(':course', $user->COURSE_NAME);
         $stmt->bindParam(':info', $user->INFORMATION);
-        $stmt->bindParam(':pic', $user->HEADER_PICTURE);
+        $stmt->bindParam(':pic', $user->COURSE_NAME);
         $stmt->bindParam(':inter', $user->INTEREST);
         $stmt->bindParam(':date',  $updated_at);
 

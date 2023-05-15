@@ -17,11 +17,11 @@ import List from '@mui/material/List';
 export default function Admin_Sidebar(props) {
 
     const Menu = [
-        {
-            Title: "Overview",
-            Icon: <SignalCellularAltRoundedIcon />,
-            Link: "",
-        },
+        // {
+        //     Title: "Overview",
+        //     Icon: <SignalCellularAltRoundedIcon />,
+        //     Link: "",
+        // },
         {
             Title: "Student Information",
             Icon: <FolderSharedRoundedIcon />,

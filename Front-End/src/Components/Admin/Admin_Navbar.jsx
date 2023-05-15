@@ -21,6 +21,7 @@ export default function Admin_Navbar() {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
     return (
         <div className="Admin_Navbar">
             <div>
@@ -32,17 +33,19 @@ export default function Admin_Navbar() {
                         <GroupRoundedIcon />
                     </IconButton>
                 </Tooltip> */}
-                {/* <Tooltip title="Notifications">
-                    <IconButton sx={{ color: "#6f727e" }} name="notif">
-                        <Badge variant="dot" sx={{
-                            "& .MuiBadge-badge": {
-                                backgroundColor: "rgb(67, 160, 71)"
-                            }
-                        }}>
-                            <NotificationsRoundedIcon />
-                        </Badge>
-                    </IconButton>
-                </Tooltip> */}
+                <Tooltip title="Notifications">
+                    <Link to="Notification" style={{ textDecoration: 'none' }}>
+                        <IconButton sx={{ color: "#6f727e" }} name="notif">
+                            <Badge variant="dot" sx={{
+                                "& .MuiBadge-badge": {
+                                    backgroundColor: "rgb(67, 160, 71)"
+                                }
+                            }}>
+                                <NotificationsRoundedIcon />
+                            </Badge>
+                        </IconButton>
+                    </Link>
+                </Tooltip>
                 <Tooltip title="Admin Profile">
                     <Avatar sx={{ backgroundColor: 'rgba(78, 127, 56, 0.85)', cursor: 'pointer' }} onClick={handleClick}></Avatar>
                 </Tooltip>
