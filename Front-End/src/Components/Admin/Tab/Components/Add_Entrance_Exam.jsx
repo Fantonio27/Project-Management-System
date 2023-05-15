@@ -12,7 +12,6 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
 export default function Add_Entrance_Exam() {
     const url = location.href.split('/').at(-1);
     const nav = useNavigate()
@@ -81,57 +80,59 @@ export default function Add_Entrance_Exam() {
     }
 
     return (
-        <div className="Add_Entrance_Exam">
-            <div className="A_EE_BreadCrumbs">
-                <p style={{ color: 'rgba(37, 42, 53, 0.6)' }}>Scholastic Aptitude Test </p>
-                <ArrowForwardIosRoundedIcon sx={{ fontSize: '14px' }} />
-                <p style={{ fontWeight: '700' }}>{subjectinfo.SUBJECT}</p>
-            </div>
-            <div className="A_EE_tab1">
-                <div style={{ width: '100%' }}>
-                    <p className="tab_p1">Subjects Information</p>
-                    <p className="tab_p2">Give your each subject a instructions so it gives clearifications to the students</p>
+        <Fade in={true} timeout={1000}>
+            <div className="Add_Entrance_Exam">
+                <div className="A_EE_BreadCrumbs">
+                    <p style={{ color: 'rgba(37, 42, 53, 0.6)' }}>Scholastic Aptitude Test </p>
+                    <ArrowForwardIosRoundedIcon sx={{ fontSize: '14px' }} />
+                    <p style={{ fontWeight: '700' }}>{subjectinfo.SUBJECT}</p>
+                </div>
+                <div className="A_EE_tab1">
+                    <div style={{ width: '100%' }}>
+                        <p className="tab_p1">Subjects Information</p>
+                        <p className="tab_p2">Give your each subject a instructions so it gives clearifications to the students</p>
 
-                    <div className="tab1_form">
-                        <div>
-                            <p className="Tab_title">{subjectinfo.SUBJECT} Instruction</p>
-                            <textarea
-                                name="INSTRUCTION"
-                                className="tab_input"
-                                style={{ height: "100px", width: '90%' }}
-                                placeholder={`${subjectinfo.SUBJECT} Description`}
-                                value={subjectinfo.INSTRUCTION || ""}
-                                onChange={onChangehandle}
-                                // minLength={7}
-                                maxLength={250}
-                                required
-                            />
-                            <div className="validation_div" style={{ width: '93%' }}>
-                                <p>{validationcount}/250</p>
+                        <div className="tab1_form">
+                            <div>
+                                <p className="Tab_title">{subjectinfo.SUBJECT} Instruction</p>
+                                <textarea
+                                    name="INSTRUCTION"
+                                    className="tab_input"
+                                    style={{ height: "100px", width: '90%' }}
+                                    placeholder={`${subjectinfo.SUBJECT} Description`}
+                                    value={subjectinfo.INSTRUCTION || ""}
+                                    onChange={onChangehandle}
+                                    // minLength={7}
+                                    maxLength={250}
+                                    required
+                                />
+                                <div className="validation_div" style={{ width: '93%' }}>
+                                    <p>{validationcount}/250</p>
+                                </div>
+                            </div>
+                            <div style={{ display: 'flex', gap: '50px' }}>
+                                <div className="limit">
+                                    <p className="Tab_title">Total Items</p>
+                                    <input type="number" name="TOTAL_ITEMS" id="number" className="tab_input" style={{ width: '50px' }} value={subjectinfo.TOTAL_ITEMS || ""} onChange={onChangehandle} max={30} min={5} maxLength={2} disabled />
+                                </div>
+                                <div className="limit">
+                                    <p className="Tab_title">TimeLimit (Minute)</p>
+                                    <input type="number" name="TIMELIMIT_MINUTE" id="number" className="tab_input" style={{ width: '50px' }} value={subjectinfo.TIMELIMIT_MINUTE || ""} onChange={onChangehandle} max={50} min={0} />
+                                </div>
+                                <div className="limit">
+                                    <p className="Tab_title">TimeLimit (Second)</p>
+                                    <input type="number" name="TIMELIMIT_SECOND" id="number" className="tab_input" style={{ width: '50px' }} value={subjectinfo.TIMELIMIT_SECOND || ""} onChange={onChangehandle} max={59} min={0} />
+                                </div>
                             </div>
                         </div>
-                        <div style={{ display: 'flex', gap: '50px' }}>
-                            <div className="limit">
-                                <p className="Tab_title">Total Items</p>
-                                <input type="number" name="TOTAL_ITEMS" id="number" className="tab_input" style={{ width: '50px' }} value={subjectinfo.TOTAL_ITEMS || ""} onChange={onChangehandle} max={30} min={5} maxLength={2} disabled />
-                            </div>
-                            <div className="limit">
-                                <p className="Tab_title">TimeLimit (Minute)</p>
-                                <input type="number" name="TIMELIMIT_MINUTE" id="number" className="tab_input" style={{ width: '50px' }} value={subjectinfo.TIMELIMIT_MINUTE || ""} onChange={onChangehandle} max={50} min={0} />
-                            </div>
-                            <div className="limit">
-                                <p className="Tab_title">TimeLimit (Second)</p>
-                                <input type="number" name="TIMELIMIT_SECOND" id="number" className="tab_input" style={{ width: '50px' }} value={subjectinfo.TIMELIMIT_SECOND || ""} onChange={onChangehandle} max={59} min={0} />
-                            </div>
-                        </div>
+
+                        <button className="button_save" onClick={onSubmit}>Update</button>
                     </div>
 
-                    <button className="button_save" onClick={onSubmit}>Update</button>
+
                 </div>
-
-
             </div>
-        </div>
+        </Fade>
     )
 }
 

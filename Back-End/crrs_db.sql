@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2023 at 05:43 PM
+-- Generation Time: May 15, 2023 at 01:36 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -806,6 +806,7 @@ INSERT INTO `ia_questions` (`IAQID`, `QUESTION`, `HIP`, `IAIID`) VALUES
 ('IAQID_40', 'help people', 'Social', 'IAIID_1'),
 ('IAQID_41', 'draw', 'Artistic', 'IAIID_1'),
 ('IAQID_42', 'give speeches', 'Enterprising', 'IAIID_1'),
+('IAQID_43', 'sssss', 'Realistic', ''),
 ('IAQID_5', 'organize things like files, offices or activities', 'Conventional', 'IAIID_1'),
 ('IAQID_6', 'set goals for myself', 'Enterprising', 'IAIID_1'),
 ('IAQID_7', 'build things', 'Realistic', 'IAIID_1'),

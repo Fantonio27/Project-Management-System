@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 import Alert from '@mui/material/Alert';
-import Fade from '@mui/material/Fade'
+import Grow from '@mui/material/Grow'
 import { Link, useNavigate } from 'react-router-dom';
 
 const logo_sx = {
@@ -114,49 +114,51 @@ export default function Login() {
 
     return (
         <div className="A_login">
+            <Grow in={true} timeout={1000}>
+                <form>
+                    <div className='A_login_container'>
+                        <div className='A_login_form'>
+                            <AdminLogo sx={logo_sx} />
+                            <h1 className='A_login_h1'>Admin Login</h1>
+                            <div className='notif'>
+                                {notif.Show &&
+                                    <Fade in={notif.Show}>
+                                        <Alert onClose={() => setnotif(e => ({ ...e, Show: false }))} variant="outlined" sx={notif_sx} severity={notif.Severity}>
+                                            {notif.Text}
+                                        </Alert>
+                                    </Fade>
+                                }
+                            </div>
+                            <input
+                                type="text"
+                                className='A_login_username'
+                                placeholder='Username'
+                                name="Username"
+                                value={Dataform.Username}
+                                onChange={handlechange}
+                            />
 
-            <form>
-                <div className='A_login_container'>
-                    <div className='A_login_form'>
-                        <AdminLogo sx={logo_sx} />
-                        <h1 className='A_login_h1'>Admin Login</h1>
-                        <div className='notif'>
-                            {notif.Show &&
-                                <Fade in={notif.Show}>
-                                    <Alert onClose={() => setnotif(e => ({ ...e, Show: false }))} variant="outlined" sx={notif_sx} severity={notif.Severity}>
-                                        {notif.Text}
-                                    </Alert>
-                                </Fade>
-                            }
+                            <input
+                                type={showpass ? 'text' : 'password'}
+                                className='A_login_password'
+                                placeholder='Password'
+                                name="Password"
+                                value={Dataform.Password}
+                                onChange={handlechange}
+                            />
+                            <IconButton sx={icon_sx} onClick={handleclick}>
+                                {showpass ?
+                                    <On sx={{ color: '#6c757d' }} />
+                                    :
+                                    <Off sx={{ color: '#6c757d' }} />
+                                }
+                            </IconButton>
+                            <Button sx={btn_sx} onClick={login}>Login</Button>
                         </div>
-                        <input
-                            type="text"
-                            className='A_login_username'
-                            placeholder='Username'
-                            name="Username"
-                            value={Dataform.Username}
-                            onChange={handlechange}
-                        />
-
-                        <input
-                            type={showpass ? 'text' : 'password'}
-                            className='A_login_password'
-                            placeholder='Password'
-                            name="Password"
-                            value={Dataform.Password}
-                            onChange={handlechange}
-                        />
-                        <IconButton sx={icon_sx} onClick={handleclick}>
-                            {showpass ?
-                                <On sx={{ color: '#6c757d' }} />
-                                :
-                                <Off sx={{ color: '#6c757d' }} />
-                            }
-                        </IconButton>
-                        <Button sx={btn_sx} onClick={login}>Login</Button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </Grow>
+
         </div>
     )
 }

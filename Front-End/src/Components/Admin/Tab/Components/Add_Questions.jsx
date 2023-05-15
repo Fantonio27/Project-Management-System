@@ -1,7 +1,7 @@
 import "../../../../css/Admin/Form/Entrance_Exam.css"
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 import React from "react";
-import { Button } from "@mui/material"
+import { Button, Fade } from "@mui/material"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Checkbox from '@mui/material/Checkbox';
@@ -116,57 +116,59 @@ export default function Edit_Questions() {
     ]
 
     return (
-        <div className="Add_Entrance_Exam">
-            <div className="A_EE_BreadCrumbs">
-                <p style={{ color: 'rgba(37, 42, 53, 0.6)' }}>Questions</p>
-                <ArrowForwardIosRoundedIcon sx={{ fontSize: '14px' }} />
-                <p style={{ fontWeight: '700' }}>{sub}</p>
-            </div>
-            <div className="A_EE_tab1">
-                <div style={{ width: '100%' }}>
-                    <p className="tab_p1">{sub} Question</p>
-                    <p className="tab_p2">Update the questions, and choices</p>
+        <Fade in={true} timeout={1000}>
+            <div className="Add_Entrance_Exam">
+                <div className="A_EE_BreadCrumbs">
+                    <p style={{ color: 'rgba(37, 42, 53, 0.6)' }}>Questions</p>
+                    <ArrowForwardIosRoundedIcon sx={{ fontSize: '14px' }} />
+                    <p style={{ fontWeight: '700' }}>{sub}</p>
+                </div>
+                <div className="A_EE_tab1">
+                    <div style={{ width: '100%' }}>
+                        <p className="tab_p1">{sub} Question</p>
+                        <p className="tab_p2">Update the questions, and choices</p>
 
-                    <div className="tab3_form">
-                        <div>
-                            <p className="Tab_title">Question</p>
-                            <textarea
-                                id="text"
-                                name="Question"
-                                className="tab_input"
-                                style={{ height: "100px", }}
-                                placeholder={`${sub} Question`}
-                                value={questioninfo.Question || ""}
-                                onChange={onChangehandle}
-                                // minLength={7}
-                                maxLength={250}
-                                required
-                            />
-                            <div className="validation_div">
-                                {/* <p className="validation_p" style={{opacity: validation.Question === ' '?0:1}}>{validation.Question}</p> */}
-                                <p>{validationcount}/250</p>
+                        <div className="tab3_form">
+                            <div>
+                                <p className="Tab_title">Question</p>
+                                <textarea
+                                    id="text"
+                                    name="Question"
+                                    className="tab_input"
+                                    style={{ height: "100px", }}
+                                    placeholder={`${sub} Question`}
+                                    value={questioninfo.Question || ""}
+                                    onChange={onChangehandle}
+                                    // minLength={7}
+                                    maxLength={250}
+                                    required
+                                />
+                                <div className="validation_div">
+                                    {/* <p className="validation_p" style={{opacity: validation.Question === ' '?0:1}}>{validation.Question}</p> */}
+                                    <p>{validationcount}/250</p>
+                                </div>
+                            </div>
+                            <div className="choices">
+                                {
+                                    choice.map((val, index) => {
+                                        return (
+                                            <div key={index}>
+                                                <p className="Tab_title"><Checkbox checked={questioninfo[val.id] === answer} name="Answer" value={questioninfo[val.id]} size="small" sx={{ padding: "0px" }} color="success" onClick={onChangehandle} />{val.label}</p>
+                                                <input type="text" name={val.id} className="tab_input" value={questioninfo[val.id] || ""} onChange={onChangehandle} maxLength={80} />
+                                                {/* <p className="validation_p" style={{opacity: validation[val.id] === ''? 0:1}}>{validation[val.id]}</p> */}
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
                         </div>
-                        <div className="choices">
-                            {
-                                choice.map((val, index) => {
-                                    return (
-                                        <div key={index}>
-                                            <p className="Tab_title"><Checkbox checked={questioninfo[val.id] === answer} name="Answer" value={questioninfo[val.id]} size="small" sx={{ padding: "0px" }} color="success" onClick={onChangehandle} />{val.label}</p>
-                                            <input type="text" name={val.id} className="tab_input" value={questioninfo[val.id] || ""} onChange={onChangehandle} maxLength={80} />
-                                            {/* <p className="validation_p" style={{opacity: validation[val.id] === ''? 0:1}}>{validation[val.id]}</p> */}
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
+
+                        <button className="button_save" onClick={onSubmit}>Add Question</button>
                     </div>
 
-                    <button className="button_save" onClick={onSubmit}>Add Question</button>
+
                 </div>
-
-
             </div>
-        </div>
+        </Fade>
     )
 }

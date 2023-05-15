@@ -80,8 +80,11 @@ export default function Student_Results() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const openaction = Boolean(anchorEl);
 
-    const handleClickAction = (event) => {
+    const [id, setid] = React.useState()
+
+    const handleClickAction = (id) => (event) => {
         setAnchorEl(event.currentTarget);
+        setid(id)
     };
     const handleCloseAction = () => {
         setAnchorEl(null);
@@ -117,51 +120,54 @@ export default function Student_Results() {
         })
     }, [tab])
 
-    const handleClickOpen = () => {
+    const handleClickOpen = ()=> {
         setOpen(true);
         setAnchorEl(null);
     };
 
     const handleClose = () => {
         setOpen(false);
+        setid("")
     };
 
-    const option = (    //Action in Table
-        <div>
-            <IconButton onClick={handleClickAction}>
-                <MoreVertRoundedIcon sx={{ fontSize: "19px" }} />
-            </IconButton>
-            <Menu
-                elevation={0}
-                anchorEl={anchorEl}
-                open={openaction}
-                onClose={handleCloseAction}
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-                PaperProps={{
-                    style: {
-                        padding: '0px 5px',
-                        borderRadius: "10px",
-                        border: '1px solid #F8F9FA',
-                        boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
-                    }
-                }}
-            >
-                <span style={{ color: '#252a35' }}>
-                    <MenuItem sx={menuitem_sx} onClick={handleClickOpen}>
-                        <EditRoundedIcon sx={{ fontSize: "19px" }} />
-                        Edit
-                    </MenuItem>
-                </span>
-                <span style={{ color: '#db514cff' }}>
-                    <MenuItem sx={menuitem_sx} onClick={handleCloseAction}>
-                        <DeleteRoundedIcon sx={{ fontSize: "19px"}} />
-                        Inactive
-                    </MenuItem>
-                </span>
-            </Menu>
-        </div>
-    )
+    const option = (a) => {
+        return (    //Action in Table
+            <div>
+                <IconButton onClick={handleClickAction(a)}>
+                    <MoreVertRoundedIcon sx={{ fontSize: "19px" }} />
+                </IconButton>
+                <Menu
+                    elevation={0}
+                    anchorEl={anchorEl}
+                    open={openaction}
+                    onClose={handleCloseAction}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                    transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                    PaperProps={{
+                        style: {
+                            padding: '0px 5px',
+                            borderRadius: "10px",
+                            border: '1px solid #F8F9FA',
+                            boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
+                        }
+                    }}
+                >
+                    <span style={{ color: '#252a35' }}>
+                        <MenuItem sx={menuitem_sx} onClick={handleClickOpen}>
+                            <EditRoundedIcon sx={{ fontSize: "19px" }} />
+                            Edit
+                        </MenuItem>
+                    </span>
+                    <span style={{ color: '#db514cff' }}>
+                        <MenuItem sx={menuitem_sx} onClick={handleCloseAction}>
+                            <DeleteRoundedIcon sx={{ fontSize: "19px" }} />
+                            Inactive
+                        </MenuItem>
+                    </span>
+                </Menu>
+            </div>
+        )
+    }
 
     function dataperrow(columnid, index, val, row) {
         if (columnid === "STUDENT_NAME") {
@@ -170,9 +176,9 @@ export default function Student_Results() {
                     {row.STUDENT_FIRSTNAME} {row.STUDENT_LASTNAME}
                 </p>
             )
-        
+
         } else if (columnid === "ACTION1") {
-            return (option)
+            return (option(row.EXAM_STATUS))
         }
         else if (columnid === "ACCOUNT_STATUS") {
             if (val === "ACTIVE") {
@@ -189,6 +195,7 @@ export default function Student_Results() {
         }
     }
 
+    // console.log(id)
     const dialog = (
         <Dialog
             open={open}
@@ -214,7 +221,7 @@ export default function Student_Results() {
                         <div className="dialog_body_div">
                             <p>Date Created: </p>
                             LRN:
-                            <span style={{ color: '#1e6091', marginLeft: '5px' }}>123456789012</span>
+                            <span style={{ color: '#1e6091', marginLeft: '5px' }}>{id}</span>
                         </div>
                         <div className="dialog_body_alert">
                             <p>Active</p>

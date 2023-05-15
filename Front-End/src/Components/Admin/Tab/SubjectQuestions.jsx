@@ -168,10 +168,14 @@ export default function Course_Information() {
                     Are you sure you want to delete this?
                 </DialogContentText>
             </DialogContent>
-            <DialogActions>
+            <DialogActions sx={{display: 'flex',gap: '5px',padding: '10px 20px'}}>
+                <button className="cancel_sx" style={{width: '90px', padding: '7px 0px'}} onClick={handleClosedelete}>Cancel</button>
+                <button className="button_save" style={{width: '90px', padding: '7px 0px'}} onClick={deleterecord}>Agree</button>
+            </DialogActions>
+            {/* <DialogActions>
                 <Button onClick={handleClosedelete}>Cancel</Button>
                 <Button onClick={deleterecord}>Agree</Button>
-            </DialogActions>
+            </DialogActions> */}
         </Dialog>
     )
 

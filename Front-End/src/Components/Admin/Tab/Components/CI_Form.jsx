@@ -97,7 +97,7 @@ export default function CI_Form() {
         { id: "FIELD", label: "Field", text: "Enter the general field or discipline of the course. For example: Engineering, Medicine, Business, Literature, etc." },
         {
             id: "ACRONYM", label: "Acronym", text: "Enter the abbreviated form or acronym of the course name. It is typically formed by taking the initial letters of each word in the course name.",
-            max: 40, min: 2, pattern: "[a-zA-Z]+", title: "Please enter on alphabets only."
+            max: 40, min: 2, pattern: "[a-zA-Z- ]+", title: "Please enter on alphabets only."
         },
         {
             id: "COURSE_NAME", label: "Course Name", text: "Enter the official name or title of the course. Starts with its field then the course name. Example (Bachelor of Science in Information Technology)",
@@ -111,7 +111,7 @@ export default function CI_Form() {
         { id: "INTEREST", label: "Interest", text: "Allow users to select an interest field that aligns with the course. Provide a list of interest fields related to the course content, such as Technology, Business, Health Sciences, Arts, etc.", },
         {
             id: "JOB", label: "Job", text: "Enter the job or career opportunities associated with the course. This could include specific roles, professions, or industries where individuals who have completed the course can find employment. Provide relevant information about potential career paths and opportunities that the course can lead to.",
-            max: 40, min: 2, pattern: "[a-zA-Z]+", title: "Please enter on alphabets only."
+            max: 40, min: 2, pattern: "[a-zA-Z- ]+", title: "Please enter on alphabets only."
         },
         { id: "COURSE_PERCENTAGE", label: "Course Percentage", text: "Assign a percentage to each subject to indicate its relative importance or relevance to the course. Divide a total of 100% among the four subjects based on their significance in relation to the course. Consider factors such as the depth of coverage, core concepts, and skills required for each subject." },
     ]
@@ -125,7 +125,7 @@ export default function CI_Form() {
 
     const fieldcourse = [
         { id: "Humanities" },
-        { id: "Social Sciences" },
+        { id: "Social Science" },
         { id: "Natural Sciences" },
         { id: "Formal Sciences" },
         { id: "Professions and Applied Sciences" },
@@ -345,7 +345,7 @@ export default function CI_Form() {
                     axios.post(`http://localhost/recommendation_system/api/admin/Course_Percentage.php?cid="${Dataform.CID}"`, CoursePercentage).then(function (response) {
                         Coursejob.map((prev) => {
                             axios.post(`http://localhost/recommendation_system/api/admin/Course_Job.php?cid="${Dataform.CID}"`, prev).then(function (response) {
-                                
+
                             })
                         })
                     })
@@ -412,17 +412,24 @@ export default function CI_Form() {
                 // onClose={()=>setOpen(false)}
                 >
                     <DialogTitle id="alert-dialog-title">
-                        {"Update a Record"}
+                        {add ? "Add a Record" : "Update a Record"}
                     </DialogTitle>
                     <DialogContent>
-                        Are you sure you want to {add ? "Add" : "Update"} this?
+                        <DialogContentText id="alert-dialog-slide-description" sx={{fontSize: '15px'}}>
+                            Are you sure you want to {add ? "Add" : "Update"} this?
+                        </DialogContentText>
+
                     </DialogContent>
-                    <DialogActions>
+                    <DialogActions sx={{ display: 'flex', gap: '5px', padding: '10px 20px' }}>
+                        <button className="cancel_sx" style={{ width: '90px', padding: '7px 0px' }} onClick={() => setOpen(false)}>Cancel</button>
+                        <button className="button_save" style={{ width: '100px', padding: '7px 0px' }} onClick={handleSubmit}>{add ? "Add" : "Save"}</button>
+                    </DialogActions>
+                    {/* <DialogActions>
                         <Button onClick={() => setOpen(false)}>Cancel</Button>
                         <Button onClick={handleSubmit} autoFocus>
                             Update
                         </Button>
-                    </DialogActions>
+                    </DialogActions> */}
                 </Dialog>
             </div>
         </Fade>

@@ -93,9 +93,6 @@ export default function User_Navbar(props) {
     const handleLeave = () => {
 
     }
-
-    // const parts2 = location.href.split('/').at(-1);
-    // console.log(parts2)
     return (
         <div>
             <AppBar component="nav" sx={{ backgroundColor: 'white', boxShadow: 'rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;' }} elevation={0}>

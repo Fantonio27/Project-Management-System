@@ -10,6 +10,7 @@ import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 // import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import Fade from '@mui/material/Fade'
 
 export default function Admin_Main() {
 
@@ -97,31 +98,33 @@ export default function Admin_Main() {
         }
     }
     return (
-        <div className="Admin_Main">
-            <div className="A_Main_GroupBox">
-                {
-                    group.map((e, index) => (
-                        <div key={index} className="A_Main_Container">
-                            <div className="A_Main_Box">
-                                <PeopleAltRoundedIcon sx={icon_sx} />
-                                <p className="A_Main_p1">{e.Title}</p>
-                                <p className="A_Main_p2">{e.Number}</p>
-                                <p className="A_Main_p1">{e.Text}</p>
+        <Fade in={true} timeout={1000}>
+            <div className="Admin_Main">
+                <div className="A_Main_GroupBox">
+                    {
+                        group.map((e, index) => (
+                            <div key={index} className="A_Main_Container">
+                                <div className="A_Main_Box">
+                                    <PeopleAltRoundedIcon sx={icon_sx} />
+                                    <p className="A_Main_p1">{e.Title}</p>
+                                    <p className="A_Main_p2">{e.Number}</p>
+                                    <p className="A_Main_p1">{e.Text}</p>
+                                </div>
                             </div>
-                        </div>
-                    ))
-                }
-            </div>
-            <div className="A_Main_Diagrams">
-                <div className="A_Main_Chart">
-                    <p className="A_Main_Chart_p1">Students Result</p>
-                    <div className="A_Main_Chart_box">
-                        <div>
-                            <Doughnut data={data} options={option} />
+                        ))
+                    }
+                </div>
+                <div className="A_Main_Diagrams">
+                    <div className="A_Main_Chart">
+                        <p className="A_Main_Chart_p1">Students Result</p>
+                        <div className="A_Main_Chart_box">
+                            <div>
+                                <Doughnut data={data} options={option} />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </Fade>
     )
 }

@@ -70,11 +70,12 @@ export default function Student_Results() {
             setcolumn([
                 { id: 'RID', label: 'RID',  align: 'center'},
                 { id: 'LRN', label: 'LRN', align: 'center'},
-                { id: 'ERID', label: 'ERID', align: 'center'},
-                { id: 'IRID', label: 'IRID', align: 'center'},
-                { id: 'RECOMMENDED_COURSE', label: 'Recommendation Course',  align: 'center'},
+                { id: 'MATH_OVERALL', label: 'Math', align: 'center'},
+                { id: 'SCIENCE_OVERALL', label: 'Science', align: 'center'},
+                { id: 'ENGLISH_OVERALL', label: 'English',  align: 'center'},
+                { id: 'READING_COMPREHENSION_OVERALL', label: 'Reading Comprehension',  align: 'center'},
                 // { id: 'RESULT_STATUS', label: 'Result Status',  align: 'center'},
-                { id: 'DATE', label: 'Date',  align: 'center'},
+                // { id: 'DATE', label: 'Date',  align: 'center'},
             ])
         }
     }
@@ -110,11 +111,10 @@ export default function Student_Results() {
         
     }
 
-
     React.useEffect(() => {
         axios.get(`http://localhost/recommendation_system/api/admin/Student_Results.php?result=${data.name}`).then(function (response) {
             setDataform(response.data)
-            console.log(response.data)
+            // console.log(response.data)
         })
     }, [tab])
 

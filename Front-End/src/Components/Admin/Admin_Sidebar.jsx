@@ -61,7 +61,7 @@ export default function Admin_Sidebar(props) {
             tab: [
                 { sub: "Entrance Exam Results", Link2: "Entrance_Exam_Results" },
                 { sub: "Interest Assessment Results", Link2: "Interest_Assessment_Results" },
-                // { sub: "OverAll Results", Link2: "OverAll_Results" },
+                { sub: "OverAll Results", Link2: "OverAll_Results" },
             ]
         }
     ]
