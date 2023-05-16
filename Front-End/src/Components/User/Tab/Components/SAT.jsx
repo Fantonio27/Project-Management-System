@@ -99,12 +99,25 @@ export default function SAT() {
         }
     }, [second]);
 
+    const [subjectcount, setsubjectcount] = React.useState({
+        Math: 0,
+        Science: 0,
+        English: 0,
+        Reading_Comprehension: 0,
+    })
     React.useEffect(() => {
         axios.get(`http://localhost/recommendation_system/api/user/AddTimelimit.php?LRN='${JSON.parse(user).LRN}'&&SUBJECT='${parts2}'`).then(function (response) {
             const up = parts2.toUpperCase() + "_MINUTE"
             const up2 = parts2.toUpperCase() + "_SECOND"
             setminute(response.data.length === 0 ? 0 : response.data[0][up])
             setsecond(response.data.length === 0 ? 0 : response.data[0][up2])
+        });
+
+        axios.get(`http://localhost/recommendation_system/api/user/countquestion.php?table='${parts2}'`).then(function (response) {
+            setsubjectcount(prev=>({
+                ...prev,
+                [parts2] : response.data
+            }))
         });
     }, [])
 

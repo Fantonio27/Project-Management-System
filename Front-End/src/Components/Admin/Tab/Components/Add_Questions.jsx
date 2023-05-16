@@ -96,6 +96,14 @@ export default function Edit_Questions() {
                 alert("Duplicate Choices!")
             }
             else {
+                axios.get(`http://localhost/recommendation_system/api/admin/Count.php?table=${subject}`).then(function (response) {
+                    (response.data) 
+                    axios.put(`http://localhost/recommendation_system/api/admin/update_question.php?subject=${sub}&&item=${response.data + 1}`).then(function (response) {
+                        console.log(response.data) 
+                        
+                    })
+                })
+
                 axios.post(`http://localhost/recommendation_system/api/admin/SAT_Questions.php?ID="${id}"&&SUB=${subject}`, questioninfo).then(function (response) {
                     if (response.data) {
                         alert("Record Added successfully")
